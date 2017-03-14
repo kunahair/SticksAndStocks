@@ -16,3 +16,6 @@ use Illuminate\Http\Request;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+//Companies route, should return all companies listed on ASX stock exchange in form of JSON string
+Route::get('/companies', 'CompaniesController@index');
