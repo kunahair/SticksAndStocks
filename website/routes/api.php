@@ -19,3 +19,5 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 //Companies route, should return all companies listed on ASX stock exchange in form of JSON string
 Route::get('/companies', 'CompaniesController@index');
+
+Route::get('/company/{id?}/hourly', 'CompanyController@historyHour');
