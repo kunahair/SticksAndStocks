@@ -6,103 +6,217 @@ use App\User;
 use App\Http\Controllers\Controller;
 use Faker\Provider\cs_CZ\DateTime;
 use Psy\Util\Json;
+use PHPHtmlParser\Dom;
 
+/**
+ * Class CompanyController
+ * Libraries used:
+ *      - PHPHtmlParser: https://github.com/paquettg/php-html-parser
+ *          Used to perform CSS like selections from a loaded webpage
+ *
+ * APIs Used
+ *      - Yahoo! Finance (australian listing): https://au.finance.yahoo.com
+ *      Web page scraped for information
+ * @package App\Http\Controllers
+ */
 class CompanyController extends Controller
 {
+
     /**
-     * Get the current (or earliest available) hour by hour data for selected listee
-     *
-     * @param  int  $code
-     * @return Response
+     * Get the current listing information for selected company
+     * Returns JSON of scraped Yahoo! Finance for company
+     * @param null $code - Code that the company is listed under
+     * @return \Illuminate\Contracts\Routing\ResponseFactory|\Symfony\Component\HttpFoundation\Response - JSON representation of selected company, or error JSON
      */
-    public function historyHour($code)
+    public function currentDetails($code = null)
     {
-        return response($this->hourly($code), 200);
+        //Base URL for code readability
+        $base_link = 'https://au.finance.yahoo.com';
+
+        //Returned data array
+        $data = array();
+
+        //If there is no code selected, set to NAB as default
+        //todo: send user fatal error JSON
+        if ($code == null)
+            $code = "NAB";
+
+        //Create new DOM object to store page to be scraped
+        $dom = new Dom;
+        //Load the company Yahoo! Finance listing
+        //https://au.finance.yahoo.com/quote/NAB.AX
+        $dom->load($base_link . '/quote/' . $code . '.AX');
+
+        //Get the current information on selected company
+        $data["curr_price"] = $this->getPrice($dom);
+
+        //Return data array (that then is converted to JSON by Laravel) and a 200 OK status code
+        return response($data, 200);
     }
 
     /**
-     * Get the hourly data for selected company
-     * @param null $code
-     * @return array|string
+     * Extract current information from DOM
+     * @param $dom - DOM containing page of interest
+     * @return array - price, movement since last update (direction, amount, percentage amount)
      */
-    private function hourly($code = null)
+    function getPrice($dom)
     {
-        //http://chartapi.finance.yahoo.com/instrument/1.0/NAB.AX/chartdata;type=quote;range=10d/json
+        //Get the contents of the bar
+        $contents = $dom->find('#quote-header-info [data-reactid=240]');
 
-        //Set time and date to Melbourne, needed for Timestamp conversion from Epoch to human readable
-        date_default_timezone_set('Australia/Melbourne');
-
-        //Check if the input code is null, if it has not been set default to NAB for testing
-        //todo: call fatal error on no $code set
-        if ($code != null)
-            $code = $code . ".AX";
-        else
-            $code = "NAB.AX";
-
-        //Base url with input from code to get retrieve data
-        $url = "http://chartapi.finance.yahoo.com/instrument/1.0/" . $code . "/chartdata;type=quote;range=1d/json";
-
-        //Get the information for current listee
-        $contents = file_get_contents($url);
-
-        //Remove some of the wrapping code that Yahoo! adds
-        $contents = str_replace("finance_charts_json_callback( ", "", $contents);
-        $contents = str_replace(")", "", $contents);
-
-        //Convert the retrieved data to JSON
-        $historyJSON = \GuzzleHttp\json_decode($contents, true);
-
-        //We are only concerned with the time and value data, so this key gives us those
-        $series = $historyJSON["series"];
-
-        //Create outer array to capture data
-        $hrArray = array();
-
-        //Loop through each item in the series key, get all data out (see below) and also calculate the average
-        //"Timestamp" :1488928197,"close" :32.3400,"high" :32.3700,"low" :32.3200,"open" :32.3600,"volume" :59700
-        $index = 0;
-        foreach ($series as $detail)
+        //Try to get the current price, if this fails if means that the stock did not load, so return an error
+        try
         {
-            //Get the Average and convert to String (for max 2 places )
-            $avg = ($detail["high"] + $detail["low"]) / 2.00;
-            $avg = round($avg, 2);
-            $avg = number_format($avg, 2, '.', '');
-
-            //Convert to a float to keep consistent with other values (note that 2.10 will give 2.1)
-            $avg = (float) $avg;
-
-            //Convert the timestamp to a human readable date
-            $date = new \DateTime();
-            $date->setTimestamp($detail["Timestamp"]);
-
-            //Add all values to array with index of current position
-            $hrArray[$index] = array(
-                "time" => $date->format("H:i:s"),
-                "average" => $avg,
-                "close" => $detail["close"],
-                "high" => $detail["high"],
-                "low" => $detail["low"],
-                "open" => $detail["open"],
-                "volume" => $detail["volume"]
-            );
-
-            //Increment the position index
-            $index++;
+            //Extract price from span
+            $price = $contents->find('[data-reactid=241]')->text();
+        }catch (\Exception $errorException)
+        {
+            //If an error occures, return a fatal error back to the user
+            exit(json_encode($this->fatalError()));
         }
 
-        //If the array is empty something went wrong, so return an error
-        //todo: Put error JSON as return, not just a blank string
-        if (empty($hrArray))
-            return "";
+        //Get stock movement information
+        $stockMovement = $contents->find('[data-reactid=242]')->text();
+        //Put into array that has the amount moved and the percentage
+        $stockMovementArray = explode(" ", $stockMovement);
 
-        //Create array to be an outer layer for the data
-        //this puts the list of series in the hrArray into a JSON array (better for handling on front end)
+        //Remove brackets from percentage movement
+        $stockMovementArray[1] = str_replace("(", "", $stockMovementArray[1]);
+        $stockMovementArray[1] = str_replace(")", "", $stockMovementArray[1]);
+
+        //Get the amount that the stock moved
+        $stockMovementAmount = $stockMovementArray[0];
+        //Get the percentage the stock moved
+        $stockMovementPercentage = $stockMovementArray[1];
+
+        //Array that holds extra data
+        $extraData = array();
+
+        //Additional information from the two tables in Yahoo! Finance
+
+        //Previous close
+        $heading = $dom->find('[data-reactid=321]')->text();
+        $value = $dom->find('[data-reactid=322]')->text();
+        $extraData[$heading] = $value;
+
+        //Open
+        $heading = $dom->find('[data-reactid=325]')->text();
+        $value = $dom->find('[data-reactid=326]')->text();
+        $extraData[$heading] = $value;
+
+        //Bid
+        $heading = $dom->find('[data-reactid=329]')->text();
+        $value = $dom->find('[data-reactid=330]')->text();
+        $extraData[$heading] = $value;
+
+        //Ask
+        $heading = $dom->find('[data-reactid=333]')->text();
+        $value = $dom->find('[data-reactid=334]')->text();
+        $extraData[$heading] = $value;
+
+        //Days Range
+        $heading = 'Days range';
+        $value = $dom->find('[data-reactid=338]')->text();
+        $extraData[$heading] = $value;
+
+        //52 Week Range
+        $heading = $dom->find('[data-reactid=341]')->text();
+        $value = $dom->find('[data-reactid=342]')->text();
+        $extraData[$heading] = $value;
+
+        //Volume
+        $heading = $dom->find('[data-reactid=345]')->text();
+        $value = $dom->find('[data-reactid=346]')->text();
+        $extraData[$heading] = $value;
+
+        //Average Volume
+        $heading = $dom->find('[data-reactid=349]')->text();
+        $value = $dom->find('[data-reactid=350]')->text();
+        $extraData[$heading] = $value;
+
+        //Table 2
+        //Market Cap
+        $heading = $dom->find('[data-reactid=356]')->text();
+        $value = $dom->find('[data-reactid=357]')->text();
+        $extraData[$heading] = $value;
+
+        //Beta
+        $heading = $dom->find('[data-reactid=360]')->text();
+        $value = $dom->find('[data-reactid=361]')->text();
+        $extraData[$heading] = $value;
+
+        //PE ratio (TTM)
+        $heading = $dom->find('[data-reactid=364]')->text();
+        $value = $dom->find('[data-reactid=365]')->text();
+        $extraData[$heading] = $value;
+
+        //EPS (TTM)
+//        $heading = $dom->find('[data-reactid=368]')->text();
+//        $value = $dom->find('[data-reactid=369]')->text();
+//        $extraData[$heading] = $value;
+
+        //Earnings Data
+//        $heading = $dom->find('[data-reactid=372]')->text();
+//        $value = $dom->find('[data-reactid=373]')->text();
+//        $extraData[$heading] = $value;
+
+        //Dividend and Yield
+        $value = $dom->find('[data-reactid=377]')->text();
+
+        //Separate values into array
+        $dayArray = explode(" ", $value);
+
+        //Dividend
+        $heading = "Dividend";
+        $value = $dayArray[0];
+        $extraData[$heading] = $value;
+
+        //Remove brackets from Yield
+        $yield = $dayArray[1];
+        $yield = str_replace("(", "", $yield);
+        $yield = str_replace(")", "", $yield);
+
+        //Yield
+        $heading = "Yield";
+        $value = $yield;
+        $extraData[$heading] = $value;
+
+
+        //Ex-dividend Date
+//        $heading = $dom->find('[data-reactid=380]')->text();
+//        $value = $dom->find('[data-reactid=381]')->text();
+//        $extraData[$heading] = $value;
+
+        //1year target estimation
+        $heading = $dom->find('[data-reactid=384]')->text();
+        $value = $dom->find('[data-reactid=385]')->text();
+        $extraData[$heading] = $value;
+
+
+        //Load return data into structured array
         $data = array();
-        $data[$code] = $hrArray;
+        $data["price"] = $price;
+//        $data["direction"] = $stockMovement;
+        $data["amount"] = $stockMovementAmount;
+        $data["percentage"] = $stockMovementPercentage;
+        $data["extraData"] = $extraData;
 
-        //Return the data
+        //Return data
         return $data;
+    }
 
+    /**
+     * If there is a 404 error, don't freak the user out, just send back a 404 error with a message wrapped as a JSON string
+     * @param string $message - show default message if no message is passed
+     * @param int $status - Default status code 404 (not found) unless otherwise specifed
+     */
+    function fatalError($message = "Could not find ASX item", $status = 404)
+    {
+        $error = array();
+        http_response_code($status);
+        $error["message"] = $message;
+        $error["code"] = 404;
+        exit(json_encode($error));
     }
 }
 
