@@ -1,0 +1,1660 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="608787d3-05fa-4afa-98ae-b59fb2a6191d" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/website/public/img/Pineapple.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/website/public/img/PineappleWC (1).gif" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/website/public/img/background1.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/website/public/img/background2.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/website/public/img/background3.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/website/public/img/background3.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/website/public/img/image1.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/.editorconfig" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/.eslintignore" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/.eslintrc" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/.npmignore" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/CONTRIBUTING.md" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/LICENSE.md" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/MAINTAINING.md" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/README.md" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/bower.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/composer.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/config.jshintrc" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/dist/Chart.bundle.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/dist/Chart.bundle.min.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/dist/Chart.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/dist/Chart.min.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/docs/00-Getting-Started.md" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/docs/01-Chart-Configuration.md" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/docs/02-Scales.md" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/docs/03-Line-Chart.md" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/docs/04-Bar-Chart.md" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/docs/05-Radar-Chart.md" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/docs/06-Polar-Area-Chart.md" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/docs/07-Pie-Doughnut-Chart.md" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/docs/08-Bubble-Chart.md" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/docs/09-Advanced.md" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/docs/10-Notes.md" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/gulpfile.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/karma.conf.ci.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/karma.conf.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/karma.coverage.conf.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/chartjs-color/CHANGELOG.md" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/chartjs-color/LICENSE" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/chartjs-color/README.md" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/chartjs-color/index.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/chartjs-color/node_modules/chartjs-color-string/.travis.yml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/chartjs-color/node_modules/chartjs-color-string/CHANGELOG.md" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/chartjs-color/node_modules/chartjs-color-string/LICENSE" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/chartjs-color/node_modules/chartjs-color-string/README.md" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/chartjs-color/node_modules/chartjs-color-string/color-string.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/chartjs-color/node_modules/chartjs-color-string/node_modules/color-name/LICENSE" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/chartjs-color/node_modules/chartjs-color-string/node_modules/color-name/README.md" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/chartjs-color/node_modules/chartjs-color-string/node_modules/color-name/index.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/chartjs-color/node_modules/chartjs-color-string/node_modules/color-name/package.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/chartjs-color/node_modules/chartjs-color-string/package.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/chartjs-color/node_modules/chartjs-color-string/test/basic.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/chartjs-color/node_modules/color-convert/.travis.yml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/chartjs-color/node_modules/color-convert/CHANGELOG.md" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/chartjs-color/node_modules/color-convert/LICENSE" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/chartjs-color/node_modules/color-convert/README.md" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/chartjs-color/node_modules/color-convert/component.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/chartjs-color/node_modules/color-convert/conversions.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/chartjs-color/node_modules/color-convert/index.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/chartjs-color/node_modules/color-convert/package.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/chartjs-color/node_modules/color-convert/test/basic.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/chartjs-color/node_modules/color-convert/test/speed.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/chartjs-color/package.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/CHANGELOG.md" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/LICENSE" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/README.md" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/ender.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/locale/af.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/locale/ar-dz.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/locale/ar-kw.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/locale/ar-ly.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/locale/ar-ma.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/locale/ar-sa.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/locale/ar-tn.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/locale/ar.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/locale/az.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/locale/be.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/locale/bg.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/locale/bn.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/locale/bo.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/locale/br.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/locale/bs.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/locale/ca.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/locale/cs.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/locale/cv.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/locale/cy.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/locale/da.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/locale/de-at.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/locale/de-ch.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/locale/de.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/locale/dv.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/locale/el.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/locale/en-au.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/locale/en-ca.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/locale/en-gb.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/locale/en-ie.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/locale/en-nz.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/locale/eo.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/locale/es-do.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/locale/es.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/locale/et.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/locale/eu.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/locale/fa.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/locale/fi.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/locale/fo.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/locale/fr-ca.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/locale/fr-ch.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/locale/fr.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/locale/fy.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/locale/gd.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/locale/gl.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/locale/gom-latn.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/locale/he.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/locale/hi.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/locale/hr.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/locale/hu.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/locale/hy-am.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/locale/id.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/locale/is.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/locale/it.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/locale/ja.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/locale/jv.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/locale/ka.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/locale/kk.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/locale/km.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/locale/kn.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/locale/ko.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/locale/ky.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/locale/lb.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/locale/lo.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/locale/lt.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/locale/lv.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/locale/me.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/locale/mi.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/locale/mk.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/locale/ml.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/locale/mr.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/locale/ms-my.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/locale/ms.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/locale/my.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/locale/nb.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/locale/ne.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/locale/nl-be.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/locale/nl.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/locale/nn.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/locale/pa-in.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/locale/pl.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/locale/pt-br.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/locale/pt.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/locale/ro.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/locale/ru.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/locale/sd.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/locale/se.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/locale/si.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/locale/sk.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/locale/sl.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/locale/sq.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/locale/sr-cyrl.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/locale/sr.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/locale/ss.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/locale/sv.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/locale/sw.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/locale/ta.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/locale/te.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/locale/tet.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/locale/th.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/locale/tl-ph.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/locale/tlh.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/locale/tr.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/locale/tzl.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/locale/tzm-latn.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/locale/tzm.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/locale/uk.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/locale/ur.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/locale/uz-latn.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/locale/uz.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/locale/vi.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/locale/x-pseudo.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/locale/yo.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/locale/zh-cn.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/locale/zh-hk.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/locale/zh-tw.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/min/locales.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/min/locales.min.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/min/moment-with-locales.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/min/moment-with-locales.min.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/min/moment.min.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/moment.d.ts" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/moment.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/package.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/package.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/src/lib/create/check-overflow.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/src/lib/create/date-from-array.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/src/lib/create/from-anything.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/src/lib/create/from-array.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/src/lib/create/from-object.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/src/lib/create/from-string-and-array.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/src/lib/create/from-string-and-format.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/src/lib/create/from-string.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/src/lib/create/local.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/src/lib/create/parsing-flags.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/src/lib/create/utc.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/src/lib/create/valid.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/src/lib/duration/abs.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/src/lib/duration/add-subtract.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/src/lib/duration/as.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/src/lib/duration/bubble.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/src/lib/duration/constructor.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/src/lib/duration/create.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/src/lib/duration/duration.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/src/lib/duration/get.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/src/lib/duration/humanize.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/src/lib/duration/iso-string.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/src/lib/duration/prototype.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/src/lib/duration/valid.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/src/lib/format/format.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/src/lib/locale/base-config.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/src/lib/locale/calendar.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/src/lib/locale/constructor.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/src/lib/locale/en.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/src/lib/locale/formats.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/src/lib/locale/invalid.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/src/lib/locale/lists.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/src/lib/locale/locale.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/src/lib/locale/locales.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/src/lib/locale/ordinal.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/src/lib/locale/pre-post-format.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/src/lib/locale/prototype.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/src/lib/locale/relative.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/src/lib/locale/set.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/src/lib/moment/add-subtract.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/src/lib/moment/calendar.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/src/lib/moment/clone.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/src/lib/moment/compare.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/src/lib/moment/constructor.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/src/lib/moment/creation-data.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/src/lib/moment/diff.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/src/lib/moment/format.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/src/lib/moment/from.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/src/lib/moment/get-set.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/src/lib/moment/locale.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/src/lib/moment/min-max.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/src/lib/moment/moment.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/src/lib/moment/now.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/src/lib/moment/prototype.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/src/lib/moment/start-end-of.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/src/lib/moment/to-type.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/src/lib/moment/to.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/src/lib/moment/valid.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/src/lib/parse/regex.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/src/lib/parse/token.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/src/lib/units/aliases.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/src/lib/units/constants.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/src/lib/units/day-of-month.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/src/lib/units/day-of-week.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/src/lib/units/day-of-year.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/src/lib/units/hour.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/src/lib/units/millisecond.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/src/lib/units/minute.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/src/lib/units/month.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/src/lib/units/offset.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/src/lib/units/priorities.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/src/lib/units/quarter.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/src/lib/units/second.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/src/lib/units/timestamp.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/src/lib/units/timezone.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/src/lib/units/units.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/src/lib/units/week-calendar-utils.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/src/lib/units/week-year.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/src/lib/units/week.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/src/lib/units/year.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/src/lib/utils/abs-ceil.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/src/lib/utils/abs-floor.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/src/lib/utils/abs-round.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/src/lib/utils/compare-arrays.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/src/lib/utils/defaults.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/src/lib/utils/deprecate.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/src/lib/utils/extend.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/src/lib/utils/has-own-prop.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/src/lib/utils/hooks.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/src/lib/utils/index-of.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/src/lib/utils/is-array.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/src/lib/utils/is-date.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/src/lib/utils/is-function.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/src/lib/utils/is-number.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/src/lib/utils/is-object-empty.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/src/lib/utils/is-object.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/src/lib/utils/is-undefined.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/src/lib/utils/keys.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/src/lib/utils/map.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/src/lib/utils/some.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/src/lib/utils/to-int.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/src/lib/utils/zero-fill.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/src/locale/af.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/src/locale/ar-dz.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/src/locale/ar-kw.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/src/locale/ar-ly.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/src/locale/ar-ma.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/src/locale/ar-sa.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/src/locale/ar-tn.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/src/locale/ar.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/src/locale/az.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/src/locale/be.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/src/locale/bg.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/src/locale/bn.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/src/locale/bo.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/src/locale/br.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/src/locale/bs.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/src/locale/ca.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/src/locale/cs.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/src/locale/cv.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/src/locale/cy.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/src/locale/da.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/src/locale/de-at.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/src/locale/de-ch.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/src/locale/de.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/src/locale/dv.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/src/locale/el.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/src/locale/en-au.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/src/locale/en-ca.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/src/locale/en-gb.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/src/locale/en-ie.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/src/locale/en-nz.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/src/locale/eo.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/src/locale/es-do.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/src/locale/es.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/src/locale/et.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/src/locale/eu.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/src/locale/fa.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/src/locale/fi.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/src/locale/fo.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/src/locale/fr-ca.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/src/locale/fr-ch.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/src/locale/fr.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/src/locale/fy.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/src/locale/gd.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/src/locale/gl.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/src/locale/gom-latn.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/src/locale/he.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/src/locale/hi.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/src/locale/hr.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/src/locale/hu.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/src/locale/hy-am.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/src/locale/id.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/src/locale/is.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/src/locale/it.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/src/locale/ja.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/src/locale/jv.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/src/locale/ka.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/src/locale/kk.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/src/locale/km.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/src/locale/kn.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/src/locale/ko.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/src/locale/ky.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/src/locale/lb.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/src/locale/lo.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/src/locale/lt.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/src/locale/lv.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/src/locale/me.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/src/locale/mi.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/src/locale/mk.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/src/locale/ml.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/src/locale/mr.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/src/locale/ms-my.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/src/locale/ms.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/src/locale/my.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/src/locale/nb.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/src/locale/ne.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/src/locale/nl-be.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/src/locale/nl.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/src/locale/nn.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/src/locale/pa-in.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/src/locale/pl.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/src/locale/pt-br.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/src/locale/pt.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/src/locale/ro.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/src/locale/ru.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/src/locale/sd.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/src/locale/se.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/src/locale/si.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/src/locale/sk.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/src/locale/sl.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/src/locale/sq.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/src/locale/sr-cyrl.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/src/locale/sr.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/src/locale/ss.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/src/locale/sv.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/src/locale/sw.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/src/locale/ta.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/src/locale/te.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/src/locale/tet.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/src/locale/th.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/src/locale/tl-ph.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/src/locale/tlh.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/src/locale/tr.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/src/locale/tzl.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/src/locale/tzm-latn.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/src/locale/tzm.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/src/locale/uk.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/src/locale/ur.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/src/locale/uz-latn.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/src/locale/uz.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/src/locale/vi.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/src/locale/x-pseudo.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/src/locale/yo.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/src/locale/zh-cn.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/src/locale/zh-hk.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/src/locale/zh-tw.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/node_modules/moment/src/moment.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/package.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/samples/animation/progress-bar.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/samples/bar/bar-horizontal.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/samples/bar/bar-multi-axis.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/samples/bar/bar-stacked-group.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/samples/bar/bar-stacked.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/samples/bar/bar.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/samples/bubble.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/samples/combo-bar-line.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/samples/data_labelling.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/samples/doughnut.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/samples/legend/pointstyle.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/samples/legend/positions.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/samples/line/different-point-sizes.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/samples/line/interpolation-modes.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/samples/line/line-multi-axis.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/samples/line/line-skip-points.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/samples/line/line-stacked-area.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/samples/line/line-stepped.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/samples/line/line-styles.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/samples/line/line.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/samples/line/point-styles.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/samples/pie.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/samples/polar-area.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/samples/radar/radar-skip-points.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/samples/radar/radar.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/samples/scales/display-settings.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/samples/scales/filtering-labels.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/samples/scales/gridlines.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/samples/scales/line-non-numeric-y.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/samples/scales/linear/min-max-settings.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/samples/scales/linear/step-size.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/samples/scales/linear/suggested-min-max-settings.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/samples/scales/logarithmic/line-logarithmic.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/samples/scales/logarithmic/scatter-logX.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/samples/scales/multiline-labels.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/samples/scales/time/combo-time-scale.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/samples/scales/time/line-time-point-data.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/samples/scales/time/line-time-scale.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/samples/scatter/scatter-multi-axis.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/samples/scatter/scatter.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/samples/tooltips/dataPoints-customTooltips.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/samples/tooltips/interaction-modes.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/samples/tooltips/line-customTooltips.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/samples/tooltips/pie-customTooltips.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/samples/tooltips/position-modes.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/samples/tooltips/tooltip-callbacks.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/samples/utils.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/scripts/release.sh" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/src/chart.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/src/charts/Chart.Bar.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/src/charts/Chart.Bubble.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/src/charts/Chart.Doughnut.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/src/charts/Chart.Line.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/src/charts/Chart.PolarArea.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/src/charts/Chart.Radar.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/src/charts/Chart.Scatter.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/src/controllers/controller.bar.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/src/controllers/controller.bubble.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/src/controllers/controller.doughnut.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/src/controllers/controller.line.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/src/controllers/controller.polarArea.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/src/controllers/controller.radar.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/src/core/core.animation.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/src/core/core.canvasHelpers.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/src/core/core.controller.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/src/core/core.datasetController.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/src/core/core.element.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/src/core/core.helpers.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/src/core/core.interaction.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/src/core/core.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/src/core/core.layoutService.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/src/core/core.legend.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/src/core/core.plugin.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/src/core/core.scale.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/src/core/core.scaleService.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/src/core/core.ticks.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/src/core/core.title.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/src/core/core.tooltip.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/src/elements/element.arc.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/src/elements/element.line.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/src/elements/element.point.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/src/elements/element.rectangle.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/src/platforms/platform.dom.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/src/platforms/platform.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/src/scales/scale.category.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/src/scales/scale.linear.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/src/scales/scale.linearbase.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/src/scales/scale.logarithmic.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/src/scales/scale.radialLinear.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/src/scales/scale.time.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/test/controller.bar.tests.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/test/controller.bubble.tests.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/test/controller.doughnut.tests.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/test/controller.line.tests.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/test/controller.polarArea.tests.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/test/controller.radar.tests.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/test/core.controller.tests.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/test/core.datasetController.tests.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/test/core.element.tests.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/test/core.helpers.tests.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/test/core.interaction.tests.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/test/core.layoutService.tests.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/test/core.legend.tests.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/test/core.plugin.tests.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/test/core.scaleService.tests.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/test/core.title.tests.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/test/core.tooltip.tests.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/test/defaultConfig.tests.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/test/element.arc.tests.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/test/element.line.tests.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/test/element.point.tests.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/test/element.rectangle.tests.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/test/mockContext.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/test/platform.dom.tests.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/test/scale.category.tests.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/test/scale.linear.tests.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/test/scale.logarithmic.tests.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/test/scale.radialLinear.tests.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/test/scale.time.tests.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/chart.js/thankyou.md" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/website/public/css/style.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/website/public/jj/js/AnimationClipCreator.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/website/public/jj/js/BlendCharacter.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/website/public/jj/js/BlendCharacterGui.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/website/public/jj/js/BufferGeometryUtils.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/website/public/jj/js/Car.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/website/public/jj/js/Cloth.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/website/public/jj/js/CurveExtras.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/website/public/jj/js/Detector.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/website/public/jj/js/GPUParticleSystem.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/website/public/jj/js/Gyroscope.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/website/public/jj/js/ImprovedNoise.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/website/public/jj/js/MD2Character.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/website/public/jj/js/MD2CharacterComplex.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/website/public/jj/js/MarchingCubes.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/website/public/jj/js/Mirror.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/website/public/jj/js/MorphAnimMesh.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/website/public/jj/js/MorphAnimation.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/website/public/jj/js/Ocean.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/website/public/jj/js/Octree.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/website/public/jj/js/PRNG.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/website/public/jj/js/ParametricGeometries.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/website/public/jj/js/ShaderGodRays.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/website/public/jj/js/ShaderSkin.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/website/public/jj/js/ShaderTerrain.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/website/public/jj/js/ShaderToon.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/website/public/jj/js/SimplexNoise.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/website/public/jj/js/SimulationRenderer.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/website/public/jj/js/SkyShader.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/website/public/jj/js/TypedArrayUtils.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/website/public/jj/js/UCSCharacter.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/website/public/jj/js/WaterShader.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/website/public/jj/js/cameras/CombinedCamera.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/website/public/jj/js/controls/DeviceOrientationControls.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/website/public/jj/js/controls/DragControls.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/website/public/jj/js/controls/EditorControls.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/website/public/jj/js/controls/FirstPersonControls.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/website/public/jj/js/controls/FlyControls.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/website/public/jj/js/controls/MouseControls.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/website/public/jj/js/controls/OrbitControls.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/website/public/jj/js/controls/OrthographicTrackballControls.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/website/public/jj/js/controls/PointerLockControls.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/website/public/jj/js/controls/TrackballControls.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/website/public/jj/js/controls/TransformControls.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/website/public/jj/js/controls/VRControls.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/website/public/jj/js/crossfade/gui.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/website/public/jj/js/crossfade/scenes.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/website/public/jj/js/crossfade/transition.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/website/public/jj/js/curves/NURBSCurve.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/website/public/jj/js/curves/NURBSSurface.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/website/public/jj/js/curves/NURBSUtils.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/website/public/jj/js/effects/AnaglyphEffect.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/website/public/jj/js/effects/AsciiEffect.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/website/public/jj/js/effects/ParallaxBarrierEffect.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/website/public/jj/js/effects/StereoEffect.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/website/public/jj/js/effects/VREffect.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/website/public/jj/js/exporters/OBJExporter.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/website/public/jj/js/exporters/STLBinaryExporter.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/website/public/jj/js/exporters/STLExporter.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/website/public/jj/js/exporters/TypedGeometryExporter.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/website/public/jj/js/geometries/ConvexGeometry.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/website/public/jj/js/geometries/DecalGeometry.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/website/public/jj/js/geometries/TeapotBufferGeometry.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/website/public/jj/js/geometries/TextGeometry.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/website/public/jj/js/geometries/hilbert2D.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/website/public/jj/js/geometries/hilbert3D.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/website/public/jj/js/libs/dat.gui.min.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/website/public/jj/js/libs/jszip.min.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/website/public/jj/js/libs/msgpack-js.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/website/public/jj/js/libs/pnltri.min.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/website/public/jj/js/libs/require.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/website/public/jj/js/libs/stats.min.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/website/public/jj/js/libs/system.min.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/website/public/jj/js/libs/tween.min.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/website/public/jj/js/loaders/AMFLoader.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/website/public/jj/js/loaders/AWDLoader.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/website/public/jj/js/loaders/AssimpJSONLoader.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/website/public/jj/js/loaders/BabylonLoader.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/website/public/jj/js/loaders/BinaryLoader.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/website/public/jj/js/loaders/ColladaLoader.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/website/public/jj/js/loaders/ColladaLoader2.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/website/public/jj/js/loaders/DDSLoader.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/website/public/jj/js/loaders/KMZLoader.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/website/public/jj/js/loaders/MD2Loader.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/website/public/jj/js/loaders/MTLLoader.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/website/public/jj/js/loaders/OBJLoader.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/website/public/jj/js/loaders/OBJMTLLoader.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/website/public/jj/js/loaders/PDBLoader.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/website/public/jj/js/loaders/PLYLoader.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/website/public/jj/js/loaders/PVRLoader.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/website/public/jj/js/loaders/RGBELoader.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/website/public/jj/js/loaders/STLLoader.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/website/public/jj/js/loaders/SVGLoader.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/website/public/jj/js/loaders/TGALoader.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/website/public/jj/js/loaders/UTF8Loader.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/website/public/jj/js/loaders/VRMLLoader.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/website/public/jj/js/loaders/VTKLoader.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/website/public/jj/js/loaders/collada/Animation.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/website/public/jj/js/loaders/collada/AnimationHandler.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/website/public/jj/js/loaders/collada/KeyFrameAnimation.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/website/public/jj/js/loaders/ctm/CTMLoader.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/website/public/jj/js/loaders/ctm/CTMWorker.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/website/public/jj/js/loaders/ctm/ctm.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/website/public/jj/js/loaders/ctm/license/OpenCTM.txt" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/website/public/jj/js/loaders/ctm/license/js-lzma.txt" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/website/public/jj/js/loaders/ctm/license/js-openctm.txt" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/website/public/jj/js/loaders/ctm/lzma.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/website/public/jj/js/loaders/deprecated/SceneLoader.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/website/public/jj/js/loaders/gltf/glTF-parser.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/website/public/jj/js/loaders/gltf/glTFAnimation.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/website/public/jj/js/loaders/gltf/glTFLoader.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/website/public/jj/js/loaders/gltf/glTFLoaderUtils.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/website/public/jj/js/loaders/sea3d/SEA3D.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/website/public/jj/js/loaders/sea3d/SEA3DDeflate.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/website/public/jj/js/loaders/sea3d/SEA3DLZMA.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/website/public/jj/js/loaders/sea3d/SEA3DLoader.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/website/public/jj/js/math/ColorConverter.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/website/public/jj/js/math/Lut.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/website/public/jj/js/modifiers/ExplodeModifier.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/website/public/jj/js/modifiers/SubdivisionModifier.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/website/public/jj/js/modifiers/TessellateModifier.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/website/public/jj/js/objects/ShadowMesh.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/website/public/jj/js/postprocessing/AdaptiveToneMappingPass.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/website/public/jj/js/postprocessing/BloomPass.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/website/public/jj/js/postprocessing/BokehPass.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/website/public/jj/js/postprocessing/DotScreenPass.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/website/public/jj/js/postprocessing/EffectComposer.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/website/public/jj/js/postprocessing/FilmPass.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/website/public/jj/js/postprocessing/GlitchPass.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/website/public/jj/js/postprocessing/MaskPass.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/website/public/jj/js/postprocessing/RenderPass.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/website/public/jj/js/postprocessing/SavePass.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/website/public/jj/js/postprocessing/ShaderPass.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/website/public/jj/js/postprocessing/TexturePass.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/website/public/jj/js/renderers/CSS2DRenderer.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/website/public/jj/js/renderers/CSS3DRenderer.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/website/public/jj/js/renderers/CSS3DStereoRenderer.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/website/public/jj/js/renderers/CanvasRenderer.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/website/public/jj/js/renderers/Projector.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/website/public/jj/js/renderers/RaytracingRenderer.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/website/public/jj/js/renderers/SVGRenderer.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/website/public/jj/js/renderers/SoftwareRenderer.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/website/public/jj/js/shaders/BasicShader.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/website/public/jj/js/shaders/BleachBypassShader.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/website/public/jj/js/shaders/BlendShader.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/website/public/jj/js/shaders/BokehShader.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/website/public/jj/js/shaders/BokehShader2.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/website/public/jj/js/shaders/BrightnessContrastShader.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/website/public/jj/js/shaders/ColorCorrectionShader.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/website/public/jj/js/shaders/ColorifyShader.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/website/public/jj/js/shaders/ConvolutionShader.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/website/public/jj/js/shaders/CopyShader.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/website/public/jj/js/shaders/DOFMipMapShader.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/website/public/jj/js/shaders/DigitalGlitch.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/website/public/jj/js/shaders/DotScreenShader.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/website/public/jj/js/shaders/EdgeShader.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/website/public/jj/js/shaders/EdgeShader2.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/website/public/jj/js/shaders/FXAAShader.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/website/public/jj/js/shaders/FilmShader.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/website/public/jj/js/shaders/FocusShader.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/website/public/jj/js/shaders/FresnelShader.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/website/public/jj/js/shaders/GammaCorrectionShader.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/website/public/jj/js/shaders/HorizontalBlurShader.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/website/public/jj/js/shaders/HorizontalTiltShiftShader.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/website/public/jj/js/shaders/HueSaturationShader.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/website/public/jj/js/shaders/KaleidoShader.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/website/public/jj/js/shaders/LuminosityShader.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/website/public/jj/js/shaders/MirrorShader.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/website/public/jj/js/shaders/NormalMapShader.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/website/public/jj/js/shaders/OceanShaders.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/website/public/jj/js/shaders/ParallaxShader.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/website/public/jj/js/shaders/RGBShiftShader.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/website/public/jj/js/shaders/SSAOShader.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/website/public/jj/js/shaders/SepiaShader.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/website/public/jj/js/shaders/TechnicolorShader.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/website/public/jj/js/shaders/ToneMapShader.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/website/public/jj/js/shaders/TriangleBlurShader.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/website/public/jj/js/shaders/UnpackDepthRGBAShader.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/website/public/jj/js/shaders/VerticalBlurShader.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/website/public/jj/js/shaders/VerticalTiltShiftShader.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/website/public/jj/js/shaders/VignetteShader.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/website/public/jj/js/three.min" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/website/public/jj/js/three.min.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/website/public/jj/js/utils/FontUtils.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/website/public/jj/js/utils/GeometryUtils.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/website/public/jj/js/utils/ImageUtils.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/website/public/jj/js/utils/ShadowMapViewer.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/website/public/jj/js/utils/UVsDebug.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/website/resources/assets/style.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/website/resources/views/home.blade.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/website/resources/views/layouts/chart.blade.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/website/resources/views/layouts/master.blade.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/website/composer.lock" afterPath="$PROJECT_DIR$/website/composer.lock" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/website/resources/views/welcome.blade.php" afterPath="$PROJECT_DIR$/website/resources/views/welcome.blade.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/website/routes/web.php" afterPath="$PROJECT_DIR$/website/routes/web.php" />
+    </list>
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="TRACKING_ENABLED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="CreatePatchCommitExecutor">
+    <option name="PATCH_PATH" value="" />
+  </component>
+  <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
+  <component name="FileEditorManager">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="web.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/website/routes/web.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="323">
+              <caret line="28" column="3" lean-forward="false" selection-start-line="28" selection-start-column="3" selection-end-line="28" selection-end-column="3" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="welcome.blade.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/website/resources/views/welcome.blade.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="816">
+              <caret line="48" column="32" lean-forward="false" selection-start-line="48" selection-start-column="32" selection-end-line="48" selection-end-column="32" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="master.blade.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/website/resources/views/layouts/master.blade.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-497">
+              <caret line="218" column="37" lean-forward="false" selection-start-line="218" selection-start-column="37" selection-end-line="218" selection-end-column="37" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="index.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/website/public/index.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="home.blade.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/website/resources/views/home.blade.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="221">
+              <caret line="13" column="19" lean-forward="false" selection-start-line="13" selection-start-column="19" selection-end-line="13" selection-end-column="19" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="chart.blade.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/website/resources/views/layouts/chart.blade.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="4726">
+              <caret line="278" column="33" lean-forward="false" selection-start-line="278" selection-start-column="33" selection-end-line="278" selection-end-column="33" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="api.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/website/routes/api.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="153">
+              <caret line="9" column="47" lean-forward="false" selection-start-line="9" selection-start-column="47" selection-end-line="9" selection-end-column="47" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="CompanyController.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/website/app/Http/Controllers/CompanyController.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="style.css" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/website/public/css/style.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="34">
+              <caret line="2" column="18" lean-forward="false" selection-start-line="2" selection-start-column="18" selection-end-line="2" selection-end-column="18" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="CSS File" />
+      </list>
+    </option>
+  </component>
+  <component name="FrameworkCommandLineHistory">
+    <commandsHistory>
+      <command text="composer run-script post-root-package-install" />
+      <command text="npm install chart.js --save" />
+      <command text="bower install chart.js --save" />
+      <command text="npm bower install chart.js --save" />
+    </commandsHistory>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/website/.env" />
+        <option value="$PROJECT_DIR$/website/resources/assets/style.css" />
+        <option value="$PROJECT_DIR$/website/resources/views/welcome.blade.php" />
+        <option value="$PROJECT_DIR$/website/routes/web.php" />
+        <option value="$PROJECT_DIR$/website/public/css/style.css" />
+        <option value="$PROJECT_DIR$/website/resources/views/home.blade.php" />
+        <option value="$PROJECT_DIR$/website/resources/views/layouts/chart.blade.php" />
+        <option value="$PROJECT_DIR$/website/resources/views/layouts/master.blade.php" />
+      </list>
+    </option>
+  </component>
+  <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsGulpfileManager">
+    <detection-done>true</detection-done>
+    <sorting>DEFINITION_ORDER</sorting>
+  </component>
+  <component name="NodeModulesDirectoryManager">
+    <handled-path value="$PROJECT_DIR$/node_modules" />
+  </component>
+  <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
+  <component name="ProjectFrameBounds">
+    <option name="x" value="-8" />
+    <option name="width" value="1370" />
+    <option name="height" value="744" />
+  </component>
+  <component name="ProjectView">
+    <navigator currentView="ProjectPane" proportions="" version="1">
+      <flattenPackages />
+      <showMembers />
+      <showModules />
+      <showLibraryContents />
+      <hideEmptyPackages />
+      <abbreviatePackageNames />
+      <autoscrollToSource />
+      <autoscrollFromSource />
+      <sortByType />
+      <manualOrder />
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="ProjectPane">
+        <subPane>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="SticksAndStocks" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="SticksAndStocks" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="SticksAndStocks" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="SticksAndStocks" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="website" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="SticksAndStocks" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="SticksAndStocks" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="website" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="routes" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="SticksAndStocks" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="SticksAndStocks" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="website" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="resources" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="views" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="SticksAndStocks" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="SticksAndStocks" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="website" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="resources" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="views" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="layouts" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="SticksAndStocks" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="SticksAndStocks" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="website" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="resources" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="SticksAndStocks" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="SticksAndStocks" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="website" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="public" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="SticksAndStocks" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="SticksAndStocks" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="website" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="public" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="jj" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="js" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="SticksAndStocks" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="SticksAndStocks" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="website" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="public" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="jj" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="js" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="libs" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="SticksAndStocks" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="SticksAndStocks" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="website" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="public" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="img" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="SticksAndStocks" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="SticksAndStocks" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="website" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="public" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="css" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="SticksAndStocks" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="SticksAndStocks" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="website" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="bootstrap" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="SticksAndStocks" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="SticksAndStocks" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="website" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
+      <pane id="Scope" />
+      <pane id="Scratches" />
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="last_opened_file_path" value="C:/xampp/htdocs/untitled" />
+    <property name="settings.editor.selected.configurable" value="editor.preferences.import" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="HbShouldOpenHtmlAsHb" value="" />
+    <property name="nodejs_interpreter_path" value="C:/Program Files/nodejs/node" />
+    <property name="js.eslint.eslintPackage" value="" />
+    <property name="js-jscs-nodeInterpreter" value="C:\Program Files\nodejs\node.exe" />
+    <property name="list.type.of.created.stylesheet" value="CSS" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\abnezer\Documents\GitHub\SticksAndStocks\website\public\jj" />
+      <recent name="C:\Users\abnezer\Documents\GitHub\SticksAndStocks\website\public\img" />
+      <recent name="C:\Users\abnezer\Documents\GitHub\SticksAndStocks\website\resources\img" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\abnezer\Documents\GitHub\SticksAndStocks\website\public" />
+      <recent name="C:\Users\abnezer\Documents\GitHub\SticksAndStocks\website\resources" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration default="true" type="JavaScriptTestRunnerProtractor" factoryName="Protractor">
+      <config-file value="" />
+      <node-interpreter value="project" />
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="true" type="JavascriptDebugType" factoryName="JavaScript Debug">
+      <method />
+    </configuration>
+    <configuration default="true" type="NodeJSConfigurationType" factoryName="Node.js" path-to-node="project" working-dir="">
+      <method />
+    </configuration>
+    <configuration default="true" type="PHPUnitRunConfigurationType" factoryName="PHPUnit">
+      <TestRunner />
+      <method />
+    </configuration>
+    <configuration default="true" type="PhpBehatConfigurationType" factoryName="Behat">
+      <BehatRunner />
+      <method />
+    </configuration>
+    <configuration default="true" type="PhpLocalRunConfigurationType" factoryName="PHP Console">
+      <method />
+    </configuration>
+    <configuration default="true" type="PhpSpecConfigurationType" factoryName="PHPSpec">
+      <PhpTestRunnerSettings />
+      <method />
+    </configuration>
+    <configuration default="true" type="js.build_tools.gulp" factoryName="Gulp.js">
+      <node-interpreter>project</node-interpreter>
+      <node-options />
+      <gulpfile />
+      <tasks />
+      <arguments />
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="true" type="js.build_tools.npm" factoryName="npm">
+      <command value="run" />
+      <scripts />
+      <node-interpreter value="project" />
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="true" type="mocha-javascript-test-runner" factoryName="Mocha">
+      <node-interpreter>project</node-interpreter>
+      <node-options />
+      <working-directory />
+      <pass-parent-env>true</pass-parent-env>
+      <envs />
+      <ui />
+      <extra-mocha-options />
+      <test-kind>DIRECTORY</test-kind>
+      <test-directory />
+      <recursive>false</recursive>
+      <method />
+    </configuration>
+  </component>
+  <component name="ShelveChangesManager" show_recycled="false">
+    <option name="remove_strategy" value="false" />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="608787d3-05fa-4afa-98ae-b59fb2a6191d" name="Default" comment="" />
+      <created>1490085045141</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1490085045141</updated>
+      <workItem from="1490085047076" duration="165000" />
+      <workItem from="1490162916030" duration="1698000" />
+      <workItem from="1490168516599" duration="8056000" />
+      <workItem from="1490260029620" duration="10923000" />
+      <workItem from="1490305088052" duration="14468000" />
+      <workItem from="1490355522195" duration="6570000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TimeTrackingManager">
+    <option name="totallyTimeSpent" value="41880000" />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="-8" y="0" width="1370" height="744" extended-state="1" />
+    <editor active="true" />
+    <layout>
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24741507" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="DB Browser" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="DB Execution Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="true" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Command Line Tools Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3280757" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+    </layout>
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="processedProjectFiles" value="true" />
+  </component>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager />
+    <watches-manager />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/website/routes/web.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="28" column="3" lean-forward="false" selection-start-line="28" selection-start-column="3" selection-end-line="28" selection-end-column="3" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/website/resources/views/welcome.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="816">
+          <caret line="48" column="32" lean-forward="false" selection-start-line="48" selection-start-column="32" selection-end-line="48" selection-end-column="32" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/website/resources/views/layouts/master.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/website/public/index.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/website/resources/views/home.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="13" column="19" lean-forward="false" selection-start-line="13" selection-start-column="19" selection-end-line="13" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/website/resources/views/layouts/chart.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4726">
+          <caret line="278" column="33" lean-forward="false" selection-start-line="278" selection-start-column="33" selection-end-line="278" selection-end-column="33" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/website/routes/api.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="9" column="47" lean-forward="false" selection-start-line="9" selection-start-column="47" selection-end-line="9" selection-end-column="47" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/website/app/Http/Controllers/CompanyController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/website/public/css/style.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="18" lean-forward="false" selection-start-line="2" selection-start-column="18" selection-end-line="2" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/website/routes/web.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="28" column="3" lean-forward="false" selection-start-line="28" selection-start-column="3" selection-end-line="28" selection-end-column="3" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/website/resources/views/welcome.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1258">
+          <caret line="74" column="19" lean-forward="false" selection-start-line="74" selection-start-column="19" selection-end-line="74" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/website/resources/views/layouts/master.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="459">
+          <caret line="27" column="56" lean-forward="false" selection-start-line="27" selection-start-column="56" selection-end-line="27" selection-end-column="56" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/website/public/index.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/website/public/web.config">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/website/resources/views/home.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="13" column="17" lean-forward="true" selection-start-line="13" selection-start-column="17" selection-end-line="13" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/website/resources/views/layouts/chart.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="357">
+          <caret line="21" column="19" lean-forward="true" selection-start-line="21" selection-start-column="19" selection-end-line="21" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/website/routes/api.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/website/public/img/Pineapple.svg" />
+    <entry file="file://$PROJECT_DIR$/website/resources/assets/style.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="833">
+          <caret line="49" column="1" lean-forward="false" selection-start-line="49" selection-start-column="1" selection-end-line="49" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/website/routes/channels.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/website/.env">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="11" column="17" lean-forward="false" selection-start-line="11" selection-start-column="17" selection-end-line="11" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/website/routes/web.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="28" column="3" lean-forward="true" selection-start-line="28" selection-start-column="3" selection-end-line="28" selection-end-column="3" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/website/resources/views/welcome.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="11" column="0" lean-forward="false" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/website/resources/views/layouts/master.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/website/public/index.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/website/public/web.config">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/website/resources/views/home.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="14" column="0" lean-forward="false" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/website/resources/assets/style.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="833">
+          <caret line="49" column="1" lean-forward="false" selection-start-line="49" selection-start-column="1" selection-end-line="49" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/website/routes/channels.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/website/.env">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/website/routes/channels.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/website/routes/channels.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/website/.env">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="11" column="17" lean-forward="false" selection-start-line="11" selection-start-column="17" selection-end-line="11" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/website/public/css/app.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/website/resources/assets/style.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="833">
+          <caret line="49" column="1" lean-forward="false" selection-start-line="49" selection-start-column="1" selection-end-line="49" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/website/public/web.config">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/website/routes/web.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="28" column="3" lean-forward="false" selection-start-line="28" selection-start-column="3" selection-end-line="28" selection-end-column="3" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/website/public/img/Pineapple.svg" />
+    <entry file="file://$PROJECT_DIR$/website/public/index.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/website/resources/views/welcome.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="816">
+          <caret line="48" column="32" lean-forward="false" selection-start-line="48" selection-start-column="32" selection-end-line="48" selection-end-column="32" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/website/public/css/style.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="18" lean-forward="false" selection-start-line="2" selection-start-column="18" selection-end-line="2" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/website/public/img/PineappleWC (1).gif">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/website/app/Http/Controllers/CompanyController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/website/routes/api.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="9" column="47" lean-forward="false" selection-start-line="9" selection-start-column="47" selection-end-line="9" selection-end-column="47" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/website/resources/views/layouts/chart.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4726">
+          <caret line="278" column="33" lean-forward="false" selection-start-line="278" selection-start-column="33" selection-end-line="278" selection-end-column="33" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/website/resources/views/home.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="13" column="19" lean-forward="false" selection-start-line="13" selection-start-column="19" selection-end-line="13" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/website/public/jj/js/libs/require.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/website/resources/views/layouts/master.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-497">
+          <caret line="218" column="37" lean-forward="false" selection-start-line="218" selection-start-column="37" selection-end-line="218" selection-end-column="37" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+  </component>
+</project>
