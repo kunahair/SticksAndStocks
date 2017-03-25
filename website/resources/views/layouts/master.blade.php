@@ -48,6 +48,7 @@
         .content {
             text-align: center;
             background-color: black;
+            padding: 15px;
         }
 
         .title {
@@ -66,7 +67,7 @@
 
         }
         .links > a {
-            color: #636b6f;
+            color: white;
             padding: 25px;
             font-size: 15px;
             font-weight: 600;
@@ -79,7 +80,7 @@
         a:hover{
             background-color: yellowgreen;
             padding: 25px;
-            box-shadow: 3px 3px 1px #888888;
+
         }
 
         .m-b-md {
@@ -90,14 +91,15 @@
         .button{
             float: right;
         }
-        .input-group{
-            float:right;
-            width: 20%;
+        .input-group {
+            float: right;
+            width: 25%;
+        }
 
         .font-color{
             color: white;
         }
-        }
+
         #logo {
             display: inline-block;
 
@@ -183,14 +185,14 @@
         var programFill = function ( context ) {
 
             context.beginPath();
-            context.arc( 0, 0, 1, 0, PI2, true );
+            context.arc( 0, 0, 2, 0, PI2, true );
             context.fill();
 
         };
 
         var programStroke = function ( context ) {
 
-            context.lineWidth = 0.06;
+            context.lineWidth = 0.03;
             context.beginPath();
             context.arc( 0, 0, 0.5, 0, PI2, false );
             context.stroke();
@@ -215,8 +217,8 @@
              info.innerHTML = '<a href="http://threejs.org" target="_blank">three.js</a> canvas - interactive particles';
              container.appendChild( info );*/
 
-            camera = new THREE.PerspectiveCamera( 80, window.innerWidth / window.innerHeight, 6, 10000 );
-            camera.position.set( 0, 300, 500 );
+            camera = new THREE.PerspectiveCamera( 80, window.innerWidth / window.innerHeight, 8, 10000 );
+            camera.position.set( 0, 100, 500 );
 
             scene = new THREE.Scene();
 
@@ -288,11 +290,11 @@
 
             // rotate camera
 
-            theta += 1;
+            theta += 0.2;
 
-            camera.position.x = radius * Math.cos( THREE.Math.degToRad( theta ) );
+            //camera.position.x = radius * Math.cos( THREE.Math.degToRad( theta ) );
             camera.position.y = radius * Math.sin( THREE.Math.degToRad( theta ) );
-            //camera.position.z = radius * Math.tan( THREE.Math.degToRad( theta ) );
+            camera.position.z = radius * Math.tan( THREE.Math.degToRad( theta ) );
             camera.lookAt( scene.position );
 
             camera.updateMatrixWorld();
@@ -331,7 +333,7 @@
 
 
     <div class=" ">
-        <div class=" content ">
+        <div class="content ">
         <div class="title m-b-md ">
             <div id="logo">
            <img src="img/PineappleWC (1).gif" alt="logo" hight="100px" width="100px" align="">
