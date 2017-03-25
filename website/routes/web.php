@@ -22,7 +22,7 @@ Route::get('/', function () {
 	));
 	$stock->save();
     
-	return view('welcome');
+	return view('home');
 });
 Route::get('home',function (){
     return view('home');

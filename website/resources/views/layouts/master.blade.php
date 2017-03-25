@@ -47,7 +47,7 @@
 
         .content {
             text-align: center;
-            background-color: #1b6d85;
+            background-color: black;
         }
 
         .title {
@@ -215,7 +215,7 @@
              info.innerHTML = '<a href="http://threejs.org" target="_blank">three.js</a> canvas - interactive particles';
              container.appendChild( info );*/
 
-            camera = new THREE.PerspectiveCamera( 50, window.innerWidth / window.innerHeight, 6, 10000 );
+            camera = new THREE.PerspectiveCamera( 80, window.innerWidth / window.innerHeight, 6, 10000 );
             camera.position.set( 0, 300, 500 );
 
             scene = new THREE.Scene();
@@ -328,22 +328,10 @@
     </script>
 </head>
 <body>
-    @section('login')
-    <div class=" position-ref full-height">
-    @if (Route::has('login'))
-        <div class="flex-center links">
-            @if (Auth::check())
-                <a href="{{ url('/home') }}">Home</a>
-            @else
-                <a href="{{ url('/login') }}">Login</a>
-                <a href="{{ url('/register') }}">Register</a>
-            @endif
-        </div>
-    @endif
-    @show
-    @section('top')
-    <div class="content ">
-        <div class="top-center ">
+
+
+    <div class=" ">
+        <div class=" content ">
         <div class="title m-b-md ">
             <div id="logo">
            <img src="img/PineappleWC (1).gif" alt="logo" hight="100px" width="100px" align="">
@@ -372,11 +360,11 @@
 
 
     </div>
-    @show
 
-    </div>
 
-            <div class="text-container">
+
+
+            <!--div class="text-container">
                 <div class="row">
                     <div class="col-sm-4">
                         <h2>Column 1</h2>
@@ -393,7 +381,7 @@
 
                     </div>
                 </div>
-            </div>
+            </div-->
 
     @section('charter')
 
