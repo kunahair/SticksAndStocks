@@ -133,6 +133,7 @@
     <script src="jj/js/controls/TrackballControls.js"></script>
     <!--<script src="js/effects/AsciiEffect.js"></script>-->
 
+    <script src="js/Detector.js"></script>
     <script src="jj/js/renderers/Projector.js"></script>
     <script src="jj/js/renderers/CanvasRenderer.js"></script>
 
@@ -164,8 +165,10 @@
          };
 
          render();*/
+        //if ( ! Detector.webgl ) Detector.addGetWebGLMessage();
+
         var container, stats;
-        var camera, scene, renderer;
+        var camera, scene, controls, renderer;
 
         var raycaster;
         var mouse;
@@ -217,29 +220,55 @@
              info.innerHTML = '<a href="http://threejs.org" target="_blank">three.js</a> canvas - interactive particles';
              container.appendChild( info );*/
 
-            camera = new THREE.PerspectiveCamera( 80, window.innerWidth / window.innerHeight, 8, 10000 );
-            camera.position.set( 0, 100, 500 );
+
+            camera = new THREE.PerspectiveCamera( 30, window.innerWidth / window.innerHeight, 6, 10000 );
+            camera.position.set( 0, 300, 500 );
+
+            controls = new THREE.TrackballControls( camera );
+            controls.rotateSpeed = 1.0;
+            controls.zoomSpeed = 1.2;
+            controls.panSpeed = 0.8;
+            controls.noZoom = false;
+            controls.noPan = false;
+            controls.staticMoving = true;
+            controls.dynamicDampingFactor = 0.3;
+            controls.keys = [ 65, 83, 68 ];
+            controls.addEventListener( 'change', render );
 
             scene = new THREE.Scene();
 
             for ( var i = 0; i < 100; i ++ ) {
 
-                var particle = new THREE.Sprite( new THREE.SpriteCanvasMaterial( { color: Math.random() * 0x808080 + 0x808080, program: programStroke } ) );
-                particle.position.x = Math.random() * 800 - 400;
-                particle.position.y = Math.random() * 800 - 400;
-                particle.position.z = Math.random() * 800 - 400;
-                particle.scale.x = particle.scale.y = Math.random() * 20 + 20;
-                scene.add( particle );
+                var geometry = new THREE.BoxGeometry( 2, 2, 0 );
+                var material = new THREE.MeshBasicMaterial( { map:THREE.ImageUtils.loadTexture('img/PineappleWC (1).gif')} );
+                var cube = new THREE.Mesh( geometry, material );
+
+               // var particle = new THREE.Sprite( new THREE.SpriteCanvasMaterial( { color: Math.random() * 0x808080 + 0x808080, program: programStroke } ) );
+                cube.position.x = Math.random() * 700 - 400;
+                cube.position.y = Math.random() * 700 - 400;
+                cube.position.z = Math.random() * 700 - 400;
+                cube.scale.x = cube.scale.y = Math.random() * 20 + 20;
+                scene.add( cube );
 
             }
 
-            //
+            //light
+            light = new THREE.DirectionalLight( 0xffffff );
+            light.position.set( 1, 1, 1 );
+            scene.add( light );
+            light = new THREE.DirectionalLight( 0x002288 );
+            light.position.set( -1, -1, -1 );
+            scene.add( light );
+            light = new THREE.AmbientLight( 0x222222 );
+            scene.add( light );
+
+            //render
 
             raycaster = new THREE.Raycaster();
             mouse = new THREE.Vector2();
 
             renderer = new THREE.CanvasRenderer();
-            renderer.setClearColor(  );
+            renderer.setClearColor( 0xffffff );
             renderer.setPixelRatio( window.devicePixelRatio );
             renderer.setSize( window.innerWidth, window.innerHeight );
             container.appendChild( renderer.domElement );
@@ -260,6 +289,7 @@
             camera.updateProjectionMatrix();
 
             renderer.setSize( window.innerWidth, window.innerHeight );
+            controls.handleResize();
 
         }
 
@@ -277,7 +307,7 @@
         function animate() {
 
             requestAnimationFrame( animate );
-
+            controls.update();
             render();
 
 
@@ -294,7 +324,7 @@
 
             //camera.position.x = radius * Math.cos( THREE.Math.degToRad( theta ) );
             camera.position.y = radius * Math.sin( THREE.Math.degToRad( theta ) );
-            camera.position.z = radius * Math.tan( THREE.Math.degToRad( theta ) );
+            //camera.position.z = radius * Math.tan( THREE.Math.degToRad( theta ) );
             camera.lookAt( scene.position );
 
             camera.updateMatrixWorld();
@@ -342,10 +372,10 @@
         </div>
 
         <div class="links">
-            <a href="https://laravel.com/docs">Stock information</a>
-            <a href="https://laracasts.com">play-Game</a>
-            <a href="https://laravel-news.com">News</a>
-            <a href="https://forge.laravel.com">contact us</a>
+            <a href="">Stock information</a>
+            <a href="">play-Game</a>
+            <a href="">News</a>
+            <a href="">contact us</a>
         </div>
         </div>
         <div class="top-right">
