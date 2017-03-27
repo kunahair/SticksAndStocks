@@ -16,6 +16,4 @@ Route::get('/', function () {
 	return view('home');
 });
 
-Route::get('stock',function (){
-    return view('stock');
-});
+Route::get('stock/{id}', 'ShowStock');
