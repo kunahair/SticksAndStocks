@@ -43,10 +43,9 @@ class updateAllHistory extends Command
             $number = 1;
             foreach ($stocks as $stock) {
                 print($number . "\t" . $stock->stock_name . "\t" . $stock->stock_symbol . "\n");
-                $data = $this->call('company:get', [
+                $this->call('company:get', [
                             'code' => $stock->stock_symbol
                         ]);
-                $stock->appendHistory($data);
                 $number++;
             }
         });

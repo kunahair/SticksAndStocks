@@ -29,13 +29,13 @@
 <div class="box">
 @section('charter')
 <div class="stock">
-    <h2 style='float:left; font-family: "Raleway", sans-serif;'>National Australia Bank Ltd.</h2>
+    <h2 style='float:left; font-family: "Raleway", sans-serif;'>{{ $stock->stock_name }}</h2>
     <h4 style="font-family: 'Raleway', sans-serif; float:right; margin-right: 1400px;">22/03/2017</h4>
     <br/>
     <br/>
     <br/>
 
-    <h4 style='font-family: "Raleway", sans-serif;'>ASX: NAB</h4>
+    <h4 style='font-family: "Raleway", sans-serif;'>{{ $stock->stock_symbol }}.AX</h4>
 
 
     <div style="width: 500px;">
@@ -48,10 +48,10 @@
 </div>
 
 <script>
-    var values = {}
-    var dataIn = []
-
-    $.each({{ stock }}, function(index, value) {
+    var values = {};
+    var dataIn = [];
+    var what = JSON.parse({{!! json_encode($stock->history) !!}});
+    $.each(what, function(index, value) {
         var time = "2017/03/22 " + value.time;
         var average = value.average;
         dataIn.push({x: time, y: average});

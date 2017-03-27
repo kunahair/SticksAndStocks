@@ -8,6 +8,7 @@ use Illuminate\Console\Command;
 use Faker\Provider\cs_CZ\DateTime;
 use Psy\Util\Json;
 use PHPHtmlParser\Dom;
+use App\Stock as Stock;
 
 class getCompany extends Command
 {
@@ -45,9 +46,10 @@ class getCompany extends Command
         $stock_code = $this->argument('code');
         $indexString = $stock_code . ".AX";
 
-        // print_r($this->historyHour($stock_code)[$indexString]);
+        print_r($this->historyHour($stock_code)[$indexString]);
 
-        return $this->historyHour($stock_code)[$indexString];
+        $currentStock = Stock::where('stock_symbol', $stock_code)->first(); 
+		$currentStock->appendHistory($this->historyHour($stock_code)[$indexString]);
     }
 
     /**
