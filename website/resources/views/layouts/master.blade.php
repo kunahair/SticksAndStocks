@@ -21,7 +21,7 @@
     <style>
         html, body {
             background-color: #fff;
-            color: black;
+            color: white;
             font-family: 'Raleway', sans-serif;
             font-weight: 100;
             height: 100vh;
@@ -36,8 +36,8 @@
 
         .top-center {
             position: absolute;
-            left: 350px;
-            top: 18px;
+            left: 0px;
+            top: 20%;
         }
         .top-right {
             position: absolute;
@@ -47,7 +47,6 @@
 
         .content {
             text-align: center;
-            background-color: black;
             padding: 15px;
         }
 
@@ -110,25 +109,34 @@
             width: 100%;
         }
 
+        .background-tint {
+            z-index: 1;
+            height: 100%;
+            width: 100%;
+            position: fixed;
+            overflow: auto;
+            top: 0px;
+            left: 0px;
+            background: rgba(0, 0, 0, 0.7)
+        }
+
         .footer{
             position: absolute;
             background-color: black;
             width: 100%;
-            height: 20%;
+            height: 10%;
 
         }
 
     </style>
 
-    <!--script>
+    <script>
         $(document).ready(function(){
             $("button").click(function(){
-                $("input").toggle();
-                $("span").toggle();
-                $("i").toggle();
+                $("footer").toggle();
             });
         });
-    </script-->
+    </script>
     <script src="jj/js/three.min.js"></script>
     <script src="jj/js/controls/TrackballControls.js"></script>
     <!--<script src="js/effects/AsciiEffect.js"></script>-->
@@ -323,7 +331,7 @@
             theta += 0.2;
 
             //camera.position.x = radius * Math.cos( THREE.Math.degToRad( theta ) );
-            camera.position.y = radius * Math.sin( THREE.Math.degToRad( theta ) );
+           // camera.position.y = radius * Math.sin( THREE.Math.degToRad( theta ) );
             //camera.position.z = radius * Math.tan( THREE.Math.degToRad( theta ) );
             camera.lookAt( scene.position );
 
@@ -362,8 +370,8 @@
 <body>
 
 
-    <div class=" ">
-        <div class="content ">
+    <div class="background-tint ">
+        <div class="top-center ">
         <div class="title m-b-md ">
             <div id="logo">
            <img src="img/PineappleWC (1).gif" alt="logo" hight="100px" width="100px" align="">
@@ -395,7 +403,6 @@
 
 
 
-
             <!--div class="text-container">
                 <div class="row">
                     <div class="col-sm-4">
@@ -415,12 +422,12 @@
                 </div>
             </div-->
 
-    @section('charter')
+
 
 
 <footer class="footer">
-    <p> footer</p>
-<footer>
+    <p>footer</p>
+</footer>
 
 </body>
 </html>

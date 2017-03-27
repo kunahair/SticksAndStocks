@@ -8,10 +8,8 @@
 
 </head>
 <body>
-@section('top')
 
 
-@section('content')
 
 </body>
 </html>
