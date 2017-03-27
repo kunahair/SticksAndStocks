@@ -13,7 +13,9 @@ class Kernel extends ConsoleKernel
      * @var array
      */
     protected $commands = [
-        //
+        Commands\getCompany::class,
+        Commands\getCompanies::class,
+        Commands\updateAllHistory::class
     ];
 
     /**
@@ -25,7 +27,13 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
         // $schedule->command('inspire')
-        //          ->hourly();
+        //         ->hourly();
+		
+		
+		$schedule->call(function() {
+
+		})->dailyAt('16:05')->timezone('Australia/Melbourne');
+		
     }
 
     /**

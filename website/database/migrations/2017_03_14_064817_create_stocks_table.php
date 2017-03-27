@@ -17,8 +17,9 @@ class CreateStocksTable extends Migration
             $table->increments('id');
 			$table->string('stock_symbol');
             $table->string('stock_name');
-			$table->float('current_price',8,2);
-			$table->json('history');
+			$table->float('current_price',8,2)->default(0.0);
+			$table->json('history')->nullable();
+            $table->string('group')->default("n/a");
 			
 			$table->timestamps();
         });
