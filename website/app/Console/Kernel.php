@@ -26,14 +26,8 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        // $schedule->command('inspire')
-        //         ->hourly();
-		
-		
-		$schedule->call(function() {
-
-		})->dailyAt('16:05')->timezone('Australia/Melbourne');
-		
+		$schedule->command('company:getAll')->dailyAt('10:00')->timezone('Australia/Melbourne');
+        $schedule->command('company:updateAllHistory')->everyTenMinutes()->timezone('Australia/Melbourne')->between('10:05','16:40');
     }
 
     /**
