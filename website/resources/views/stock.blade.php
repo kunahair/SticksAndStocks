@@ -13,7 +13,7 @@
     <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
 
     <!--<link rel="stylesheet" href="style.css"/>-->
-    <style>
+    <!--<style>
         .box{
             background-color: white;
             width:500px ;
@@ -22,7 +22,8 @@
         .box:hover{
             box-shadow: 4px 4px 2px #888888;
         }
-    </style>
+    </style>-->
+    {{ !date_default_timezone_set('Australia/Melbourne') }}
 </head>
 
 <body>
@@ -30,12 +31,12 @@
 @section('charter')
 <div class="stock">
     <h2 style='float:left; font-family: "Raleway", sans-serif;'>{{ $stock->stock_name }}</h2>
-    <h4 style="font-family: 'Raleway', sans-serif; float:right; margin-right: 1400px;">22/03/2017</h4>
+    <h4 style="font-family: 'Raleway', sans-serif; float:right;">{{ date('d/m/y') }}</h4>
     <br/>
     <br/>
     <br/>
 
-    <h4 style='font-family: "Raleway", sans-serif;'>{{ $stock->stock_symbol }}.AX</h4>
+    <!--<h4 style='font-family: "Raleway", sans-serif;'>{{ $stock->stock_symbol }}.AX</h4>-->
 
 
     <div style="width: 500px;">
@@ -50,12 +51,18 @@
 <script>
     var values = {};
     var dataIn = [];
-    var what = JSON.parse({{!! json_encode($stock->history) !!}});
-    $.each(what, function(index, value) {
-        var time = "2017/03/22 " + value.time;
+    var dataAsString = '{{!! $stock->history !!}}';
+    var dataAsJSON = JSON.parse(dataAsString.slice(1,-1));
+    // console.log(dataAsJSON['{{date('d-m-y')}}']);
+
+    $.each(dataAsJSON['{{date('d-m-y')}}'], function(index, value) {
+        var time = "{{date('Y/m/d')}} " + value.time;
+        console.log(time);
         var average = value.average;
         dataIn.push({x: time, y: average});
     });
+
+    // console.log(dataIn);
 
     var ctx = document.getElementById('chart');
     var stockValue = new Chart(ctx, {
@@ -89,8 +96,8 @@
                         displayFormats: {
                             hour: 'hh:mm a'
                         },
-                        min: '2017/03/22 10:00',
-                        max: '2017/03/22 16:00'
+                        min: '{{date("Y/m/d")}} 10:00',
+                        max: '{{date("Y/m/d")}} 16:00'
                     },
                     gridLines : {
                         display : false
