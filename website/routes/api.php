@@ -25,3 +25,5 @@ Route::get('/company/{code?}/current', 'CompanyController@currentDetails');
 
 //Get the latest days hourly history for company
 Route::get('/company/{code?}/hourly', 'CompanyHistoryController@historyHour');
+
+Route::get('/top20', 'Top20Controller@getList');
