@@ -17,7 +17,7 @@ class Top20Controller extends Controller
     public function getList()
     {
         //Load the top20 webpage into DOM
-        $url = "https://www.asx20list.com.a/";
+        $url = "https://www.asx20list.com/";
         $dom = new Dom();
 
         try {
