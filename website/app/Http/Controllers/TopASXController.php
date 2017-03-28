@@ -7,28 +7,49 @@ use App\Http\Controllers\Controller;
 use PHPHtmlParser\Dom;
 
 
-class Top20Controller extends Controller
+class TopASXController extends Controller
 {
     /**
      * Get the list of top 20 companies by market capitalisation, sort list by market-cap and return JSON
      * Includes company code, company name, company sector, market cap and weight in percentage
      * @return \Illuminate\Contracts\Routing\ResponseFactory|\Symfony\Component\HttpFoundation\Response
      */
-    public function getList()
+    public function getList($count = 20)
     {
         //Load the top20 webpage into DOM
         $url = "https://www.asx20list.com/";
+
+        //Check what list is needed and set the URL accordingly
+        //Return fatal error if the count is not valid
+        if ($count == 20)
+            ;
+        else if ($count == 50)
+            $url = "https://www.asx50list.com/";
+        else if ($count == 100)
+            $url = "https://www.asx100list.com/";
+        else if ($count == 200)
+            $url = "http://www.asx200list.com/";
+        else if ($count == 300)
+            $url = "https://www.asx300list.com/";
+        else
+            return $this->fatalError("Unable to load Top " . $count . " List", 404);
+
         $dom = new Dom();
 
+        //Try to load data from correct site into the DOM, if there is an error return JSON of error with 404 code
         try {
             $dom->load($url);
         }catch (\Exception $exception){
-            return $this->fatalError("Unable to load top 20 list", 404);
+            return $this->fatalError("Unable to load Top " . $count . " List", 404);
         }
 
 
-        //Get the table that lists the top 20
+        //Get the table that lists the top companies
         $table = $dom->find('table', 0);
+
+        //If the count is 200, the page is layed out differently, so it is the 9th table, not the 0th
+        if ($count == 200)
+            $table = $dom->find('table', 9);
 
         //Create a new list to store extracted data
         $list = array();
@@ -71,6 +92,7 @@ class Top20Controller extends Controller
         }
 
         //Sort list by market capitalisation
+        //NOTE: Needs PHP 7+ to run as <=> "spaceship" operator is not in PHP 5
         usort($list, function($a, $b) {
            return $a["market-cap"] <=> $b["market-cap"];
         });
@@ -81,12 +103,13 @@ class Top20Controller extends Controller
         {
             $marketCapFormat = number_format($row["market-cap"]);
             $list[$index]["market-cap"] = $marketCapFormat;
+            $index++;
         }
 
         //Create new wrapper array to return formatted data
         $data = array();
         //Add top20 key and set value as list of captured companies
-        $data["top20"] = $list;
+        $data["top" . $count] = $list;
 
         //Return the list with a 200 status code
         return response($data, 200);
