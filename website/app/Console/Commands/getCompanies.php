@@ -43,7 +43,7 @@ class getCompanies extends Command
     {
         $companies = $this->getAllListedCompanies()["companies"];
 
-        Stock::getQuery()->delete();
+        // Stock::getQuery()->delete();
 
         foreach ($companies as $value) {
             $stock = Stock::updateOrCreate(['stock_symbol' => str_replace(array("."," "), "", $value['ASX code']), 'stock_name' => $value['Company name'], 'group' => $value['GICS industry group']]);
