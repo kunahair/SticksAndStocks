@@ -120,11 +120,15 @@
             background: rgba(0, 0, 0, 0.7)
         }
 
-        .footer{
-            position: absolute;
-            background-color: black;
-            width: 100%;
-            height: 10%;
+        
+.footer{
+
+background-color:#2D2D2D;
+color: blue;
+max-width:auto;
+padding:25px;
+margin:25px;
+border:25px;
 
         }
 
