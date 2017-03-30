@@ -1,26 +1,22 @@
 html, body {
-    background-color: #fff;
-    color: yellow;
+    background-color: #2D2D2D;
+    color: black;
     font-family: 'Raleway', sans-serif;
     font-weight: 100;
-    height: 100vh;
+    height: auto;
     margin: 0;
+
+
 }
 
 .full-height {
-    height: 100vh;
+    height: 50vh;
 }
 
-.flex-center {
-    align-items: center;
-    display: flex;
-    justify-content: center;
+.top-center {
+    position: absolute;
+    top: 20%;
 }
-
-.position-ref {
-    position: relative;
-}
-
 .top-right {
     position: absolute;
     right: 10px;
@@ -29,22 +25,90 @@ html, body {
 
 .content {
     text-align: center;
+    padding: 15px;
 }
 
 .title {
     font-size: 84px;
+    padding: 10px;
+    align: center;
+    position: relative;
+    color: white;
 }
+.text-container{
+    font-size: 23px;
+    font-color: black;
+    background-color: orange;
+    padding: 5px;
+    border: 19px solid transparent;
 
+}
 .links > a {
-    color: #636b6f;
-    padding: 0 25px;
-    font-size: 12px;
+    color: white;
+    padding: 25px;
+    font-size: 15px;
     font-weight: 600;
-    letter-spacing: .1rem;
+    letter-spacing: .0rem;
     text-decoration: none;
     text-transform: uppercase;
+
+
+}
+a:hover{
+    background-color: yellowgreen;
+    padding: 25px;
+
 }
 
 .m-b-md {
     margin-bottom: 30px;
+
+
+}
+.button{
+    float: right;
+}
+.input-group {
+    float: inherit;
+    width: 100%;
+}
+
+.font-color{
+    color: black;
+    font-weight: 100px;
+}
+
+#logo {
+    display: inline-block;
+
+    right: 30px;
+}
+.wrapper{
+    height: 100%;
+    width: 100%;
+}
+
+.background-tint {
+    z-index: 1;
+    height: 100%;
+    width: 100%;
+    position: fixed;
+    overflow: auto;
+    top: 0px;
+    left: 0px;
+    background: rgba(0, 0, 0, 0.7)
+}
+.modal-body{
+    padding: 80px;
+}
+
+.footer{
+
+    background-color:#2D2D2D;
+    color: blue;
+    max-width:auto;
+    padding:25px;
+    margin:25px;
+    border:25px;
+
 }
