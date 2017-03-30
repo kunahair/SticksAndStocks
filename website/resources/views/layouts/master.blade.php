@@ -378,7 +378,7 @@ border:25px;
         <div class="top-center ">
         <div class="title m-b-md ">
             <div id="logo">
-           <img src="img/PineappleWC (1).gif" alt="logo" hight="100px" width="100px" align="">
+           <img src="img/PineappleWC (1).gif" alt="logo" height="100px" width="100px" align="">
             </div>
             Pineapple
         </div>
