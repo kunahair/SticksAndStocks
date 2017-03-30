@@ -9,7 +9,7 @@ class Stock extends Model
 	//protected $primaryKey = "stock_symbol";
 	//public $incrementing = false;
 
-	protected $fillable = ["stock_symbol",'stock_name', 'current_price','history','group'];
+	protected $fillable = ["stock_symbol",'stock_name', 'current_price','history','group','top_lists'];
 	// Add function to insert stock price -- Useless by me.
 	public function appendHistory($value) {
 		date_default_timezone_set('Australia/Melbourne');
@@ -29,4 +29,23 @@ class Stock extends Model
 
 		$this->save();
 	}
+
+	public function appendTopLists($value) {
+	    // Check for non-empty list
+        if ($this->top_lists != null) {
+            // Push into lists
+            $currentLists = json_decode($this->top_lists);
+            // Don't double up on lists in this array
+            if (in_array($value,$currentLists) == false) {
+                array_push($currentLists, $value);
+            }
+            $this->top_lists = json_encode($currentLists);
+        // Check for empty list
+        } else {
+            $currentLists = [$value];
+            $this->top_lists = json_encode($currentLists);
+        }
+        // Encode it back into String & save it into the database
+        $this->save();
+    }
 }
