@@ -20,8 +20,9 @@ class CreateStocksTable extends Migration
 			$table->float('current_price',8,2)->default(0.0);
 			$table->json('history')->nullable();
             $table->string('group')->default("n/a");
-			
-			$table->timestamps();
+            $table->json('top_lists')->nullable();
+
+            $table->timestamps();
         });
     }
 

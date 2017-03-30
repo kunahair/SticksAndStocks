@@ -2,8 +2,6 @@
 
 namespace App\Console\Commands;
 
-require "vendor/autoload.php";
-
 use Illuminate\Console\Command;
 use Faker\Provider\cs_CZ\DateTime;
 use Psy\Util\Json;
