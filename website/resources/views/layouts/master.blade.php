@@ -16,7 +16,7 @@
     <link href="{{ url('css/style.css') }}" rel="stylesheet" type="text/css">
     <link href="{{ url('js/background.js') }}" rel="stylesheet" type="text/css">
     <!-- scripts-->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <!-- Styles -->
     <style>
@@ -35,7 +35,7 @@
     <script src="jj/js/controls/TrackballControls.js"></script>
     <!--<script src="js/effects/AsciiEffect.js"></script>-->
 
-    <script src="js/Detector.js"></script>
+  
     <script src="jj/js/renderers/Projector.js"></script>
     <script src="jj/js/renderers/CanvasRenderer.js"></script>
 
@@ -135,7 +135,7 @@
 </head>
 <body>
 
-
+@section("header")
 <div class="">
     <div class="top-center ">
         <div class="title m-b-md ">
@@ -147,8 +147,7 @@
 
         <div class="links">
             <a href="">Stock information</a>
-            <a href="">play-Game</a>
-            <a href="">News</a>
+            <a href="">About us</a>
             <a href="">contact us</a>
         </div>
     </div>
@@ -157,10 +156,10 @@
 
             <!-- Trigger the modal with a button -->
             <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#login">Login</button>
-            <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#signup">Sign Up</button>
+            <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#signup">Register</button>
 
             <!-- Modal -->
-            <div class="modal fade" id="login" role="dialog">
+            <form class="modal fade" id="login" role="dialog" action="" method="post">
                 <div class="modal-dialog">
 
                     <!-- Modal content-->
@@ -182,12 +181,12 @@
                             </div>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-info btn-lg" data-dismiss="modal">Login</button>
+                            <button type="submit" class="btn btn-info btn-lg" data-dismiss="modal">Login</button>
                         </div>
                     </div>
 
                 </div>
-            </div>
+            </form>
             <!-- sign up -->
             <div class="modal fade" id="signup" role="dialog">
                 <div class="modal-dialog">
@@ -196,14 +195,29 @@
                     <div class="modal-content">
                         <div class="modal-header">
                             <button type="button" class="close" data-dismiss="modal">&times;</button>
-                            <h4 class="font-color">Sign Up</h4>
+                            <h4 class="font-color">Register</h4>
                         </div>
-                        <div class="modal-body font-color">
-
+                    <form action="{{ url('/user.blade.php')}}" method="post">
+                        <div class="form-group" >
+                            <label for="firstname">FirstName:</label>
+                            <input type="email" class="form-control" id="firstname" placeholder="Enter email">
+                        </div>
+                        <div class="form-group" >
+                            <label for="lastname">LastName:</label>
+                            <input type="email" class="form-control" id="lastname" placeholder="Enter email">
+                        </div>
+                        <div class="form-group">
+                            <label class="email">Email:</label>
+                            <input id="email" type="text" class="form-control" name="email" placeholder="Email">
+                        </div>
+                        <div class="form-group">
+                            <label for="pwd">Password:</label>
+                            <input type="password" class="form-control" id="pwd" placeholder="Enter password">
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-info btn-lg" data-dismiss="modal">Login</button>
+                            <button type="submit" value="submit" class="btn btn-info btn-lg" data-dismiss="modal">Submit</button>
                         </div>
+                      </form>
                     </div>
 
                 </div>
@@ -212,7 +226,7 @@
     </div>
 
 </div>
-
+@show
 <footer class="footer">
     <p>footer</p>
 </footer>
