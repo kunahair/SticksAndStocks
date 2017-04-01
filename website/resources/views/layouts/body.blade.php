@@ -10,9 +10,9 @@
         </div>
 
         <div class="links">
-            <a href="">Stock information</a>
-            <a href="">About us</a>
-            <a href="">contact us</a>
+            <a href="">How to Play</a>
+            <a href="">Stock Market</a>
+            <a href="">Trends</a>
         </div>
     </div>
     <div class="top-right">

@@ -5,6 +5,7 @@ html, body {
     font-weight: 100;
     height: auto;
     margin: 0;
+    overflow-y: hidden;
 }
 
 .form-group{
@@ -15,6 +16,7 @@ html, body {
     position: absolute;
     top: 20%;
 }
+
 .top-right {
     position: absolute;
     right: 10px;
@@ -29,18 +31,10 @@ html, body {
 .title {
     font-size: 84px;
     padding: 10px;
-    align: center;
     position: relative;
     color: white;
 }
-.text-container{
-    font-size: 23px;
-    font-color: black;
-    background-color: orange;
-    padding: 5px;
-    border: 19px solid transparent;
 
-}
 .links > a {
     color: white;
     padding: 25px;
@@ -49,10 +43,9 @@ html, body {
     letter-spacing: .0rem;
     text-decoration: none;
     text-transform: uppercase;
-
-
 }
-a:hover{
+
+.links > a:hover{
     background-color: yellowgreen;
     padding: 25px;
 
@@ -63,9 +56,11 @@ a:hover{
 
 
 }
+
 .button{
     float: right;
 }
+
 .input-group {
     float: inherit;
     width: 100%;
@@ -81,21 +76,7 @@ a:hover{
 
     right: 30px;
 }
-/*.wrapper{
-    height: 100%;
-    width: 100%;
-}*/
-/*
-.background-tint {
-    z-index: 1;
-    height: 100%;
-    width: 100%;
-    position: fixed;
-    overflow: auto;
-    top: 0px;
-    left: 0px;
-    background: rgba(0, 0, 0, 0.7)
-}*/
+
 .modal-body{
     padding: 80px;
 }
@@ -114,6 +95,12 @@ a:hover{
 	bottom:0;
 	left:0;
 
+}
+
+.footer > ul > li {
+    text-decoration: none;
+    display: inline-block;
+    padding: 20px;
 }
 
 canvas {

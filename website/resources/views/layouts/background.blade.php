@@ -1,18 +1,10 @@
 <script>
-    $(document).ready(function(){
-        $("button").click(function(){
-            $("footer").toggle();
-        });
-    });
-</script>
-
-<script>
 
     var container;
     var camera, scene, controls, renderer;
 
     init();
-    animate();
+    render();
 
     function init() {
 
@@ -65,18 +57,18 @@
         camera.updateProjectionMatrix();
 
         renderer.setSize( window.innerWidth, window.innerHeight );
+        render();
         // controls.handleResize();
 
     }
 
-    function animate() {
+    // function animate() {
 
-        requestAnimationFrame( animate );
+    //     requestAnimationFrame( animate );
 
-        render();
+    //     render();
 
-
-    }
+    // }
 
     var radius = 600;
     var theta = 0;
