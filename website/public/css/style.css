@@ -9,6 +9,10 @@ html, body {
 
 }
 
+.form-group{
+    padding: 10px;
+}
+
 .full-height {
     height: 50vh;
 }

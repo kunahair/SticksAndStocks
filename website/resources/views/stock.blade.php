@@ -11,6 +11,7 @@
             integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
             crossorigin="anonymous"></script>
     <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+    <link href="{{ url('css/style.css') }}" rel="stylesheet" type="text/css">
 
     <!--<link rel="stylesheet" href="style.css"/>-->
     <!--<style>
@@ -27,7 +28,10 @@
 </head>
 
 <body>
+
 <div class="box">
+</div>
+
 @section('charter')
 <div class="stock">
     <h2 style='float:left; font-family: "Raleway", sans-serif;'>{{ $stock->stock_name }}</h2>

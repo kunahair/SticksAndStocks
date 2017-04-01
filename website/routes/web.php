@@ -19,5 +19,3 @@ Route::get('/', function () {
 Route::get('stock/{id}', 'ShowStock');
 
 Auth::routes();
-
-Route::get('/home', 'HomeController@index');
