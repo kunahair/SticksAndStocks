@@ -126,7 +126,7 @@
 
             {{--Current stock quick stats--}}
             <div id="current-stock-price" style="padding: 0px;  margin-bottom: 3%; width: 50%">
-                <text id="stock-current-price" style="font-size: 200%; font-weight: bold;">50.00</text> <br />
+                <text id="stock-current-price" style="font-size: 200%; font-weight: bold;">50.00AUD</text> <br />
                 <text id="stock-movement">+2.00</text><text id="stock-movement-percentage"> (+4.00%)</text>
             </div>
 
