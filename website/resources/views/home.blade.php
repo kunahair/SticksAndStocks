@@ -1,16 +1,5 @@
-@extends('layouts.master')
+@include('layouts.header')
 
-<html>
-<head>
 @section('title','Pineapple')
-<!-- links-->
 
-
-</head>
-<body>
-
-
-
-</body>
-</html>
-
+@include('layouts.body')
