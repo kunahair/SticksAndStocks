@@ -62,11 +62,15 @@ class getCompanies extends Command
         $data = "";
         $data = file_get_contents('http://www.asx.com.au/asx/research/ASXListedCompanies.csv');
 
+        //If the list is not retrievable from ASX, then use the local CSV file
+        //If the list is available, overwrite the existing csv file.
         if ($data == false) {
             print("Using backup, because ASX is offline. \n");
+            //Use local backup
             $data = file_get_contents('ASXListedCompanies.csv', true);
         } else {
             print("Making Backup, ASX must be online. \n");
+            //Make a backup of the file with the new companies list
             $fp = fopen('ASXListedCompanies.csv', 'w');
             fwrite($fp, $data);
             fclose($fp);

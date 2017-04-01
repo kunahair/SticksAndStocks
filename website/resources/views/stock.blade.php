@@ -11,7 +11,20 @@
             integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
             crossorigin="anonymous"></script>
     <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+          crossorigin="anonymous"
+    >
+
     <link href="{{ url('css/style.css') }}" rel="stylesheet" type="text/css">
+
+    <style type="text/css">
+        .stock-table-data {
+            width: 50%;
+        }
+    </style>
 
     <!--<link rel="stylesheet" href="style.css"/>-->
     <!--<style>
@@ -29,90 +42,113 @@
 
 <body>
 
-<div class="box">
-</div>
+<div class="container">
 
-@section('charter')
-<div class="stock">
-    <h2 style='float:left; font-family: "Raleway", sans-serif;'>{{ $stock->stock_name }}</h2>
-    <h4 style="font-family: 'Raleway', sans-serif; float:right;">{{ date('d/m/y') }}</h4>
-    <br/>
-    <br/>
-    <br/>
-
-    <!--<h4 style='font-family: "Raleway", sans-serif;'>{{ $stock->stock_symbol }}.AX</h4>-->
-
-
-    <div style="width: 500px;">
-        <canvas id='chart'></canvas>
+    <div class="box">
     </div>
-</div>
-<div id='data'>
-</div>
-@show
-</div>
 
-<script>
-    var values = {};
-    var dataIn = [];
-    var dataAsString = '{{!! $stock->history !!}}';
-    var dataAsJSON = JSON.parse(dataAsString.slice(1,-1));
-    // console.log(dataAsJSON['{{date('d-m-y')}}']);
+    @section('charter')
+        <div class="stock">
+            <h2 style='float:left; font-family: "Raleway", sans-serif;'>{{ $stock->stock_name }}</h2>
+            <h4 style="font-family: 'Raleway', sans-serif; float:right;">{{ date('d/m/y') }}</h4>
+            <br/>
+            <br/>
+            <br/>
 
-    $.each(dataAsJSON['{{date('d-m-y')}}'], function(index, value) {
-        var time = "{{date('Y/m/d')}} " + value.time;
-        console.log(time);
-        var average = value.average;
-        dataIn.push({x: time, y: average});
-    });
+            <div id="current-stock-price" style="padding: 0px; font-size: 200%; font-weight: bold; margin-bottom: 3%; width: 50%">
+                50.00
 
-    // console.log(dataIn);
 
-    var ctx = document.getElementById('chart');
-    var stockValue = new Chart(ctx, {
-        type: 'line',
-        data: {
-            datasets: [{
-                data: dataIn,
-                // pointStyle: "line",
-                lineTension: 0,
-                fill: false,
-                borderColor: '#039BE5',
-                borderWidth: 2,
-                lineTension: 0
-            }]
-        },
-        options: {
-            animation: {
-                // easing: 'easeInOutBounce'
-            },
-            legend: {
-                display: false
-            },
-            elements: {
-                point: { radius: 0 }
-            },
-            scales: {
-                xAxes: [{
-                    type: 'time',
-                    time: {
-                        unit: 'hour',
-                        displayFormats: {
-                            hour: 'hh:mm a'
-                        },
-                        min: '{{date("Y/m/d")}} 10:00',
-                        max: '{{date("Y/m/d")}} 16:00'
-                    },
-                    gridLines : {
-                        display : false
-                    }
+            </div>
+
+            {{--Table to show quick stats about stock--}}
+            <div id="stock-stats-table" style="width: 50%; margin">
+                <table style="width: 100%;">
+                    <tr>
+                        <td>Previous Close</td>
+                        <td>55.50</td>
+                    </tr>
+
+
+                </table>
+            </div>
+
+        <!--<h4 style='font-family: "Raleway", sans-serif;'>{{ $stock->stock_symbol }}.AX</h4>-->
+
+
+            <div style="width: 500px;">
+                <canvas id='chart'></canvas>
+            </div>
+        </div>
+        <div id='data'>
+        </div>
+    @show
+
+    <script>
+        //Array that stores data to be shown in Stock Daily Graph
+        var dataIn = [];
+        //Blade syntax to get the stocks element that was passed by the Laravel controller, get the history JSON string
+        var dataAsString = '{{!! $stock->history !!}}';
+        //Convert the history data from String to JSON
+        var dataAsJSON = JSON.parse(dataAsString.slice(1,-1));
+
+        //Loop through each json object that contains the stocks data
+        //Get the time and the average and plog on a graph
+        $.each(dataAsJSON['{{date('d-m-y')}}'], function(index, value) {
+            //Get the time value that is going to be shown on the chart
+            var time = "{{date('Y/m/d')}} " + value.time;
+            //Get the average of the stock value at time to plot on graph
+            var average = value.average;
+            //Add the collected time and average to the dataIn array that is to be displayed on the graph
+            dataIn.push({x: time, y: average});
+        });
+
+        //Populate the graph inside the selected canvas using the DataIn array and some settings
+        var ctx = document.getElementById('chart');
+        var stockValue = new Chart(ctx, {
+            type: 'line',
+            data: {
+                datasets: [{
+                    data: dataIn,
+                    // pointStyle: "line",
+                    lineTension: 0,
+                    fill: false,
+                    borderColor: '#039BE5',
+                    borderWidth: 2,
+                    lineTension: 0
                 }]
+            },
+            options: {
+                animation: {
+                    // easing: 'easeInOutBounce'
+                },
+                legend: {
+                    display: false
+                },
+                elements: {
+                    point: { radius: 0 }
+                },
+                scales: {
+                    xAxes: [{
+                        type: 'time',
+                        time: {
+                            unit: 'hour',
+                            displayFormats: {
+                                hour: 'hh:mm a'
+                            },
+                            min: '{{date("Y/m/d")}} 10:00',
+                            max: '{{date("Y/m/d")}} 16:00'
+                        },
+                        gridLines : {
+                            display : false
+                        }
+                    }]
+                }
             }
-        }
-    });
-</script>
+        });
+    </script>
 
-
+</div>
 </body>
 
 </html>
