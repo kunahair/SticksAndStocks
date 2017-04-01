@@ -31,3 +31,4 @@ Route::get('/top/{count}', 'TopASXController@getList');
 Route::get('/all-ords', 'AllOrdinariesController@getCurrentAllOrdinaries');
 
 Route::get('/all-stocks', 'DatabaseStockCodes@getAllStockCodesAndCompanyNames');
+
