@@ -12,18 +12,17 @@ class Stock extends Model
 	protected $fillable = ["stock_symbol",'stock_name', 'current_price','history','group','top_lists'];
 	// Add function to insert stock price -- Useless by me.
 	public function appendHistory($value) {
-		date_default_timezone_set('Australia/Melbourne');
-		$current_date = date('d-m-y');
-		
+		// Set the current price
+		$this->current_price = end($value[1])['average'];
 
 		if ($this->history != null) {
 			// Override current day's history
 			$database_data = json_decode($this->history, true);
-			$database_data[$current_date] = $value;
+			$database_data[$value[0]] = $value[1];
 			$this->history = json_encode($database_data);
 		} else {
 			// Insert the first piece of data which isn't null
-			$newData = [ $current_date => $value ];
+			$newData = [$value[0] => $value[1]];
 			$this->history = json_encode($newData);
 		}
 

@@ -59,7 +59,18 @@ class getCompanies extends Command
     function getAllListedCompanies()
     {
         //Load CSV file from asx.com.au
+        $data = "";
         $data = file_get_contents('http://www.asx.com.au/asx/research/ASXListedCompanies.csv');
+
+        if ($data == false) {
+            print("Using backup, because ASX is offline. \n");
+            $data = file_get_contents('ASXListedCompanies.csv', true);
+        } else {
+            print("Making Backup, ASX must be online. \n");
+            $fp = fopen('ASXListedCompanies.csv', 'w');
+            fwrite($fp, $data);
+            fclose($fp);
+        }
 
         //Remove the first 2 lines in the CSV file (file info and blank space)
         $data = substr($data, strpos($data, "\n") + 2);

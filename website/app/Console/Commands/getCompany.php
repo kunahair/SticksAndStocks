@@ -42,12 +42,11 @@ class getCompany extends Command
     public function handle()
     {
         $stock_code = $this->argument('code');
-        $indexString = $stock_code . ".AX";
 
-        print_r($this->historyHour($stock_code)[$indexString]);
+        // print_r($this->historyHour($stock_code));
 
         $currentStock = Stock::where('stock_symbol', $stock_code)->first(); 
-		$currentStock->appendHistory($this->historyHour($stock_code)[$indexString]);
+		$currentStock->appendHistory($this->historyHour($stock_code));
     }
 
     /**
@@ -111,6 +110,8 @@ class getCompany extends Command
 
         //Loop through each item in the series key, get all data out (see below) and also calculate the average
         //"Timestamp" :1488928197,"close" :32.3400,"high" :32.3700,"low" :32.3200,"open" :32.3600,"volume" :59700
+        $dataTimestamp = '';
+
         $index = 0;
         foreach ($series as $detail)
         {
@@ -125,6 +126,7 @@ class getCompany extends Command
             //Convert the timestamp to a human readable date
             $date = new \DateTime();
             $date->setTimestamp($detail["Timestamp"]);
+            $dataTimestamp = $date;
 
             //Add all values to array with index of current position
             $hrArray[$index] = array(
@@ -148,10 +150,11 @@ class getCompany extends Command
         //Create array to be an outer layer for the data
         //this puts the list of series in the hrArray into a JSON array (better for handling on front end)
         $data = array();
-        $data[$code] = $hrArray;
-
+        $dataString = $dataTimestamp->format('d-m-y');
+        $data = $hrArray;
+        
         //Return the data
-        return $data;
+        return [$dataString, $data];
 
     }
 
