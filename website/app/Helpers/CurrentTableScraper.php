@@ -29,6 +29,11 @@ function extractCurrentTableRowFromDom(&$dom, &$dataArray, $heading = null, $rea
             //Otherwise, assume the heading has been set manually and make the Key the heading
             $heading1 = $heading;
 
+        $heading1 = str_replace(" ", "", $heading1);
+        $heading1 = str_replace(".", "", $heading1);
+        $heading1 = str_replace(")", "", $heading1);
+        $heading1 = str_replace(")", "", $heading1);
+
         //Extract the Value, given by the reactID, from the DOM object
         $value = $dom->find('[data-reactid=' . $reactID . ']')->text();
 
@@ -40,8 +45,9 @@ function extractCurrentTableRowFromDom(&$dom, &$dataArray, $heading = null, $rea
     //Add the Key-Value to the given dataArray
     //NOTE: Done this way so when it is called multiple times in a row, the ultimate JSON will show a list
     //of JSON objects instead of one big JSON object.
-    array_push($dataArray, [$heading1 => $value]);
+//    array_push($dataArray, [$heading1 => $value]);
 
+    $dataArray[$heading1] = $value;
     //Returns null as it is a mutator function, nothing to return
     return null;
 }
