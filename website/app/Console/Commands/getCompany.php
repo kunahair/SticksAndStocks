@@ -45,8 +45,10 @@ class getCompany extends Command
 
         // print_r($this->historyHour($stock_code));
 
-        $currentStock = Stock::where('stock_symbol', $stock_code)->first(); 
-		$currentStock->appendHistory($this->historyHour($stock_code));
+        $currentStock = Stock::where('stock_symbol', $stock_code)->first();
+        if ($this->historyHour($stock_code) != null) {
+		    $currentStock->appendHistory($this->historyHour($stock_code));
+        }
     }
 
     /**
