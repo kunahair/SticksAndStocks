@@ -51,6 +51,8 @@
 
 <body>
 
+
+
 <div class="container">
 
     <nav class="navbar navbar-default">
@@ -101,6 +103,8 @@
     <div class="box">
     </div>
 
+
+
     @section('charter')
         <div class="stock">
             <h2 style='float:left; font-family: "Raleway", sans-serif;'>{{ $stock->stock_name }}</h2>
@@ -111,8 +115,9 @@
 
             <!--Current 1stock quick stats-->
             <div id="current-stock-price" style="padding: 0px;  margin-bottom: 3%; width: 50%">
-                <text id="stock-current-price" style="font-size: 200%; font-weight: bold;"></text> <br />
-                <text id="stock-movement"></text><text id="stock-movement-percentage"> (+4.00%)</text>
+                <text id="stock-current-price" style="font-size: 200%; font-weight: bold;">{{$currentDataArray["curr_price"]["price"]}}</text> <br />
+                <text id="stock-movement">{{$currentDataArray["curr_price"]["amount"]}}</text>
+                <text id="stock-movement-percentage">&nbsp;({{$currentDataArray["curr_price"]["percentage"]}})</text>
             </div>
 
             <!--Table to show quick stats about stock-->
@@ -120,6 +125,15 @@
             <!--<div id="stock-stats-table" style="margin-bottom: 10%;">-->
             <div class="table-responsive" style="margin-bottom: 3%; border: none">
                 <table id="stock-stats-table-left" class="col-xs-12 col-md-6 table-hover">
+
+                    @for($i = 0; $i < count($currentDataArray["curr_price"]["extraData"])/2; $i++)
+
+                        <tr>
+                            <td class="col-xs-6" style="padding: 0px">{{$currentDataArray["curr_price"]["extraData"][$i]["title"]}}</td>
+                            <td class="col-xs-6" style="padding: 0px">{{$currentDataArray["curr_price"]["extraData"][$i]["value"]}}</td>
+                        </tr>
+
+                    @endfor
                     <tr>
                         <td class="col-xs-6" style="padding: 0px"></td>
                         <td class="col-xs-6" style="padding: 0px"></td>
@@ -132,6 +146,13 @@
                         <td class="col-xs-6" style="padding: 0px"></td>
                         <td class="col-xs-6" style="padding: 0px"></td>
                     </tr>
+
+                    @for($i = count($currentDataArray["curr_price"]["extraData"])/2; $i < count($currentDataArray["curr_price"]["extraData"]); $i++)
+                        <tr>
+                            <td class="col-xs-6" style="padding: 0px">{{$currentDataArray["curr_price"]["extraData"][$i]["title"]}}</td>
+                            <td class="col-xs-6" style="padding: 0px">{{$currentDataArray["curr_price"]["extraData"][$i]["value"]}}</td>
+                        </tr>
+                    @endfor
                 </table>
             </div>
 
@@ -221,41 +242,18 @@
         }
 
         $(document).ready(function () {
-            //Blade syntax to get the stocks element that was passed by the Laravel controller, get the current data JSON string
-            var dataAsString = '{{!! $current !!}}';
-            //Convert the current data from String to JSON
-            var dataAsJSON = JSON.parse(dataAsString.slice(1, -1));
+            {{--//Blade syntax to get the stocks element that was passed by the Laravel controller, get the current data JSON string--}}
+            {{--var dataAsString = '{{!! $current !!}}';--}}
+            {{--//Convert the current data from String to JSON--}}
+            {{--var dataAsJSON = JSON.parse(dataAsString.slice(1, -1));--}}
 
-            //Data to load for current stats
-            var tableData = dataAsJSON;
+            {{--//Data to load for current stats--}}
+            {{--var tableData = dataAsJSON;--}}
 
-            //Updated the top section of data
-            $("text#stock-current-price").text(tableData.curr_price.price + "AUD");
-            $("#stock-movement").text(tableData.curr_price.amount);
-            $("#stock-movement-percentage").text(" (" + tableData.curr_price.percentage + ")");
-
-            //Get the number of rows that we expected
-            var rowsCount = tableData.curr_price.extraData.length;
-
-            //Loop through each item in the extraData array and pull out the the title and data.
-            //Then add the values to the display table
-            $.each(tableData.curr_price.extraData, function (index, value) {
-
-                //Get the title element
-                var tableRowTitle = '<tr><td class="col-xs-6" style="padding: 0px">' + value.title + '</td>';
-                //Get the value element
-                var tableRowValue =  '<td class="col-xs-6" style="padding: 0px">' + value.value + '</td></tr>';
-
-                //Make the row HTML string
-                var tableRow = tableRowTitle + tableRowValue;
-
-                //If it is in the first half of the array, put it on the left, otherwise right.
-                if (index < (rowsCount / 2))
-                    $('#stock-stats-table-left tbody').append(tableRow);
-                else
-                    $('#stock-stats-table-right tbody').append(tableRow);
-
-            });
+            {{--//Updated the top section of data--}}
+            {{--$("text#stock-current-price").text(tableData.curr_price.price + "AUD");--}}
+            {{--$("#stock-movement").text(tableData.curr_price.amount);--}}
+            {{--$("#stock-movement-percentage").text(" (" + tableData.curr_price.percentage + ")");--}}
 
         });
 

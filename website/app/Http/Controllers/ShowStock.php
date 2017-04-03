@@ -16,7 +16,9 @@ class ShowStock extends Controller
 		$currentDataArray = $currentDataClass->currentDetails($code);
 		$currentData = \GuzzleHttp\json_encode($currentDataArray);
 
+//		$currentDataCollection = collect($currentDataArray);
+
 		//Load Blade view with database and current info
-		return view('stock', ['stock' => $data[0], 'current' => $currentData]);
+		return view('stock', ['stock' => $data[0], 'current' => $currentData])->with('currentDataArray', $currentDataArray);
 	}
 }
