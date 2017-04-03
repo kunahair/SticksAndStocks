@@ -12,14 +12,14 @@
             crossorigin="anonymous"></script>
     <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
 
-    {{--Bootstrap CSS--}}
+    <!--Bootstrap CSS-->
     <link rel="stylesheet"
           href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
           integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
           crossorigin="anonymous"
     >
 
-    {{--Bootstrap Javascript--}}
+    <!--Bootstrap Javascript-->
 <!-- Latest compiled and minified JavaScript -->
     <script
             src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
@@ -109,15 +109,15 @@
             <br/>
             <br/>
 
-            {{--Current stock quick stats--}}
+            <!--Current 1stock quick stats-->
             <div id="current-stock-price" style="padding: 0px;  margin-bottom: 3%; width: 50%">
                 <text id="stock-current-price" style="font-size: 200%; font-weight: bold;"></text> <br />
                 <text id="stock-movement"></text><text id="stock-movement-percentage"> (+4.00%)</text>
             </div>
 
-            {{--Table to show quick stats about stock--}}
-            {{--In full screen mode the table is divided into two, side by side. when on mobile they are stacked--}}
-            {{--<div id="stock-stats-table" style="margin-bottom: 10%;">--}}
+            <!--Table to show quick stats about stock-->
+            <!--In full screen mode the table is divided into two, side by side. when on mobile they are stacked-->
+            <!--<div id="stock-stats-table" style="margin-bottom: 10%;">-->
             <div class="table-responsive" style="margin-bottom: 3%; border: none">
                 <table class="col-xs-12 col-md-6 table-hover">
                     <tr class="danger">
@@ -195,7 +195,7 @@
 
             <div class="col-xs-1 col-md-2"></div>
             <div class="col-xs-10 col-md-8" style="margin: auto">
-                {{--style="width: 500px;">--}}
+                <!--style="width: 500px;">-->
                 <canvas id='chart'></canvas>
             </div>
             <div class="col-xs-1 col-md-2"></div>

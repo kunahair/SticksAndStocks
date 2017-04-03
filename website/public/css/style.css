@@ -53,8 +53,6 @@ html, body {
 
 .m-b-md {
     margin-bottom: 30px;
-
-
 }
 
 .button{
@@ -82,11 +80,6 @@ html, body {
 }
 
 .footer{
-
-    background-color:#2D2D2D;
-    color: blue;
-    /*max-width:auto;*/
-    padding:25px;
     border:25px;
 
     width:100%;
@@ -97,10 +90,29 @@ html, body {
 
 }
 
-.footer > ul > li {
+.footer > .container {
+    padding: 25px;
+    background-color: #e7e7e7;
+}
+
+.container > ul > li {
     text-decoration: none;
     display: inline-block;
     padding: 20px;
+}
+
+footer > ul > li {
+    text-decoration: none;
+    display: inline-block;
+    padding: 20px;
+}
+
+footer > ul > li > a {
+    color: #aaa;
+}
+
+.container > ul > li > a {
+    color: black;
 }
 
 canvas {
