@@ -54,7 +54,6 @@ class CurrentCompanyStockInformation {
         {
             //If an error occures, return a fatal error back to the user
             return $this->fatalError();
-//            exit(json_encode($this->fatalError()));
         }
 
         //Get stock movement information
@@ -76,154 +75,13 @@ class CurrentCompanyStockInformation {
 
         //Additional information from the two tables in Yahoo! Finance
 
-
+        //Load all the rows in the left table into extraData array
         $tableLeft = $dom->find('[data-test=left-summary-table] table');
+        $this->scrapeTableRow($extraData, $tableLeft);
 
-//        echo($tableLeft);
-
-        foreach ($tableLeft->find('tr') as $tr)
-        {
-            $row = array();
-            $td = $tr->find('td', 0);
-            $heading = $td->find('span')->text();
-
-            $row["title"] = $heading;
-            $row["value"] = $tr->find('td', 1)->text();
-
-            array_push($extraData, $row);
-
-//            $extraData[$heading] = $tr->find('td', 1)->text();
-        }
-
+        //Load all the rows in the right table into extraData array
         $tableRight = $dom->find('[data-test=right-summary-table] table');
-
-        foreach ($tableRight->find('tr') as $tr)
-        {
-            $row = array();
-            $td = $tr->find('td', 0);
-            $heading = $td->find('span')->text();
-
-            $row["title"] = $heading;
-            $row["value"] = $tr->find('td', 1)->text();
-
-            array_push($extraData, $row);
-
-//            $extraData[$heading] = $tr->find('td', 1)->text();
-        }
-
-//        var_dump($extraData);
-
-//        //Previous close
-//        extractCurrentTableRowFromDom($dom, $extraData, 321, 322);
-////        $heading = $dom->find('[data-reactid=321]')->text();
-////        $value = $dom->find('[data-reactid=322]')->text();
-////        $extraData[$heading] = $value;
-//
-//        //Open
-//        extractCurrentTableRowFromDom($dom, $extraData, 325, 326);
-////        $heading = $dom->find('[data-reactid=325]')->text();
-////        $value = $dom->find('[data-reactid=326]')->text();
-////        $extraData[$heading] = $value;
-//
-//        //Bid
-//        extractCurrentTableRowFromDom($dom, $extraData, 329, 330);
-////        $heading = $dom->find('[data-reactid=329]')->text();
-////        $value = $dom->find('[data-reactid=330]')->text();
-////        $extraData[$heading] = $value;
-//
-//        //Ask
-//        extractCurrentTableRowFromDom($dom, $extraData, 333, 334);
-////        $heading = $dom->find('[data-reactid=333]')->text();
-////        $value = $dom->find('[data-reactid=334]')->text();
-////        $extraData[$heading] = $value;
-//
-//        //Days Range
-//        extractCurrentTableRowFromDom($dom, $extraData, "Days range", 338);
-////        $heading = 'Days range';
-////        $value = $dom->find('[data-reactid=338]')->text();
-////        $extraData[$heading] = $value;
-//
-//        //52 Week Range
-//        extractCurrentTableRowFromDom($dom, $extraData, "Year week range", 342);
-////        $heading = $dom->find('[data-reactid=341]')->text();
-////        $value = $dom->find('[data-reactid=342]')->text();
-////        $extraData[$heading] = $value;
-//
-//        //Volume
-//        extractCurrentTableRowFromDom($dom, $extraData, 345, 346);
-////        $heading = $dom->find('[data-reactid=345]')->text();
-////        $value = $dom->find('[data-reactid=346]')->text();
-////        $extraData[$heading] = $value;
-//
-//        //Average Volume
-//        extractCurrentTableRowFromDom($dom, $extraData, 349, 350);
-////        $heading = $dom->find('[data-reactid=349]')->text();
-////        $value = $dom->find('[data-reactid=350]')->text();
-////        $extraData[$heading] = $value;
-//
-//        //Table 2
-//        //Market Cap
-//        extractCurrentTableRowFromDom($dom, $extraData, 356, 357);
-////        $heading = $dom->find('[data-reactid=356]')->text();
-////        $value = $dom->find('[data-reactid=357]')->text();
-////        $extraData[$heading] = $value;
-//
-//        //Beta
-//        extractCurrentTableRowFromDom($dom, $extraData, 360, 361);
-////        $heading = $dom->find('[data-reactid=360]')->text();
-////        $value = $dom->find('[data-reactid=361]')->text();
-////        $extraData[$heading] = $value;
-//
-//        //PE ratio (TTM)
-//        extractCurrentTableRowFromDom($dom, $extraData, "PEratio", 365);
-////        $heading = $dom->find('[data-reactid=364]')->text();
-////        $value = $dom->find('[data-reactid=365]')->text();
-////        $extraData[$heading] = $value;
-//
-//        //EPS (TTM)
-////        $heading = $dom->find('[data-reactid=368]')->text();
-////        $value = $dom->find('[data-reactid=369]')->text();
-////        $extraData[$heading] = $value;
-//
-//        //Earnings Data
-////        $heading = $dom->find('[data-reactid=372]')->text();
-////        $value = $dom->find('[data-reactid=373]')->text();
-////        $extraData[$heading] = $value;
-//
-//        //Dividend and Yield
-//        $value = $dom->find('[data-reactid=377]')->text();
-//
-//        //Separate values into array
-//        $dayArray = explode(" ", $value);
-//
-//
-//        //Dividend
-//        $heading = "Dividend";
-//        $value = $dayArray[0];
-//        $extraData[$heading] = $value;
-//
-//        //Remove brackets from Yield
-//        $yield = $dayArray[1];
-//        $yield = str_replace("(", "", $yield);
-//        $yield = str_replace(")", "", $yield);
-//
-//        //Yield
-//        $heading = "Yield";
-//        $value = $yield;
-//        $extraData[$heading] = $value;
-//
-//
-//        //Ex-dividend Date
-////        $heading = $dom->find('[data-reactid=380]')->text();
-////        $value = $dom->find('[data-reactid=381]')->text();
-////        $extraData[$heading] = $value;
-//
-//        //1year target estimation
-//        extractCurrentTableRowFromDom($dom, $extraData, 384, 385);
-////        $heading = $dom->find('[data-reactid=384]')->text();
-////        $value = $dom->find('[data-reactid=385]')->text();
-////        $extraData[$heading] = $value;
-
+        $this->scrapeTableRow($extraData, $tableRight);
 
         //Load return data into structured array
         $data = array();
@@ -235,6 +93,33 @@ class CurrentCompanyStockInformation {
 
         //Return data
         return $data;
+    }
+
+    /**
+     * Loop through each row in a given table and get the title and value pair that is held and push onto reference array.
+     * This is a mutating function, does not return anything
+     * @param $dataArray - Array that has the title and value pushed into
+     * @param $table - DOM element that represents a table for extracting current stock data
+     */
+    private function scrapeTableRow(&$dataArray, $table)
+    {
+        //Loop through each table row
+        foreach ($table->find('tr') as $tr)
+        {
+            //Key/Value holder to add to the dataArray
+            $row = array();
+            //Extract the title/heading of the selected row, assume it is the first element
+            $td = $tr->find('td', 0);
+            $heading = $td->find('span')->text();
+
+            //Set the title in the holder
+            $row["title"] = $heading;
+            //Extract the value and set the value in the holder
+            $row["value"] = $tr->find('td', 1)->text();
+
+            //Add the holder with values to the dataArray reference
+            array_push($dataArray, $row);
+        }
     }
 
     /**

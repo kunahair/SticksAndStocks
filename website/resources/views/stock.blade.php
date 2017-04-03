@@ -51,54 +51,9 @@
 
 <body>
 
-
+@include('layouts.navbar')
 
 <div class="container">
-
-    <nav class="navbar navbar-default">
-        <div class="container-fluid">
-            <!-- Brand and toggle get grouped for better mobile display -->
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <img src="/img/PineappleWC (1).gif" alt="logo" hight="100px" width="100px" align="">
-                <text style="font-size: 300%;">Pineapple</text>
-            </div>
-
-            <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-
-                <form class="navbar-form navbar-left">
-                    <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Search">
-                    </div>
-                    <button type="submit" class="btn btn-default">Submit</button>
-                </form>
-                <ul class="nav navbar-nav navbar-right">
-                    <li><a href="#">View Portfolio</a></li>
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Account <span class="caret"></span></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="#">View Profile</a></li>
-                            <li><a href="#">Account Dashboard</a></li>
-                            <li><a href="#"></a></li>
-                            <li role="separator" class="divider"></li>
-                            <li><a href="#">Logout</a></li>
-                        </ul>
-                    </li>
-                </ul>
-            </div><!-- /.navbar-collapse -->
-        </div><!-- /.container-fluid -->
-    </nav>
-
-    <nav>
-
-    </nav>
-
 
     <div class="box">
     </div>
@@ -124,8 +79,9 @@
             <!--In full screen mode the table is divided into two, side by side. when on mobile they are stacked-->
             <!--<div id="stock-stats-table" style="margin-bottom: 10%;">-->
             <div class="table-responsive" style="margin-bottom: 3%; border: none">
-                <table id="stock-stats-table-left" class="col-xs-12 col-md-6 table-hover">
+                <table class="col-xs-12 col-md-6 table-hover">
 
+                    {{--Loop through the first half of the current data array and populate the left side of the table--}}
                     @for($i = 0; $i < count($currentDataArray["curr_price"]["extraData"])/2; $i++)
 
                         <tr>
@@ -141,12 +97,13 @@
 
                 </table>
 
-                <table id="stock-stats-table-right" class="col-xs-12 col-md-6 table-hover">
+                <table class="col-xs-12 col-md-6 table-hover">
                     <tr>
                         <td class="col-xs-6" style="padding: 0px"></td>
                         <td class="col-xs-6" style="padding: 0px"></td>
                     </tr>
 
+                    {{--Loop through the second half of the current data array and populate the right side of the table--}}
                     @for($i = count($currentDataArray["curr_price"]["extraData"])/2; $i < count($currentDataArray["curr_price"]["extraData"]); $i++)
                         <tr>
                             <td class="col-xs-6" style="padding: 0px">{{$currentDataArray["curr_price"]["extraData"][$i]["title"]}}</td>
@@ -200,8 +157,7 @@
                     lineTension: 0,
                     fill: false,
                     borderColor: '#039BE5',
-                    borderWidth: 2,
-                    lineTension: 0
+                    borderWidth: 2
                 }]
             },
             options: {
@@ -235,28 +191,12 @@
     </script>
 
     <script type="application/javascript">
+        //Method to turn HTML encoded entities into their string representation
         function htmlDecode(input){
             var e = document.createElement('div');
             e.innerHTML = input;
             return e.childNodes.length === 0 ? "" : e.childNodes[0].nodeValue;
         }
-
-        $(document).ready(function () {
-            {{--//Blade syntax to get the stocks element that was passed by the Laravel controller, get the current data JSON string--}}
-            {{--var dataAsString = '{{!! $current !!}}';--}}
-            {{--//Convert the current data from String to JSON--}}
-            {{--var dataAsJSON = JSON.parse(dataAsString.slice(1, -1));--}}
-
-            {{--//Data to load for current stats--}}
-            {{--var tableData = dataAsJSON;--}}
-
-            {{--//Updated the top section of data--}}
-            {{--$("text#stock-current-price").text(tableData.curr_price.price + "AUD");--}}
-            {{--$("#stock-movement").text(tableData.curr_price.amount);--}}
-            {{--$("#stock-movement-percentage").text(" (" + tableData.curr_price.percentage + ")");--}}
-
-        });
-
 
     </script>
 
