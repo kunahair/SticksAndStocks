@@ -119,73 +119,18 @@
             {{--In full screen mode the table is divided into two, side by side. when on mobile they are stacked--}}
             {{--<div id="stock-stats-table" style="margin-bottom: 10%;">--}}
             <div class="table-responsive" style="margin-bottom: 3%; border: none">
-                <table class="col-xs-12 col-md-6 table-hover">
-                    <tr class="danger">
-                        <td class="col-xs-6" style="padding: 0px">Previous Close</td>
-                        <td id="stock-previous-close" class="col-xs-6" style="padding: 0px"></td>
-                    </tr>
-
+                <table id="stock-stats-table-left" class="col-xs-12 col-md-6 table-hover">
                     <tr>
-                        <td class="col-xs-6" style="padding: 0px">Open</td>
-                        <td id="stock-open" class="col-xs-6" style="padding: 0px"></td>
-                    </tr>
-
-                    <tr>
-                        <td class="col-xs-6" style="padding: 0px">Bid</td>
-                        <td id="stock-bid"></td>
-                    </tr>
-
-                    <tr>
-                        <td class="col-xs-6" style="padding: 0px">Ask</td>
-                        <td id="stock-ask" class="col-xs-6" style="padding: 0px"></td>
-                    </tr>
-
-                    <tr>
-                        <td class="col-xs-6" style="padding: 0px">Days's Range</td>
-                        <td id="stock-days-range" class="col-xs-6" style="padding: 0px"></td>
-                    </tr>
-
-                    <tr>
-                        <td class="col-xs-6" style="padding: 0px">52 Week Range</td>
-                        <td id="stock-year-week-range" class="col-xs-6" style="padding: 0px"></td>
-                    </tr>
-
-                    <tr>
-                        <td class="col-xs-6" style="padding: 0px">Volume</td>
-                        <td id="stock-volume" class="col-xs-6" style="padding: 0px"></td>
+                        <td class="col-xs-6" style="padding: 0px"></td>
+                        <td class="col-xs-6" style="padding: 0px"></td>
                     </tr>
 
                 </table>
 
-                <table class="col-xs-12 col-md-6 table-hover">
+                <table id="stock-stats-table-right" class="col-xs-12 col-md-6 table-hover">
                     <tr>
-                        <td class="col-xs-6" style="padding: 0px">Average Volume</td>
-                        <td id="stock-avg-volume" class="col-xs-6" style="padding: 0px"></td>
-                    </tr>
-
-                    <tr>
-                        <td class="col-xs-6" style="padding: 0px">Market Capitalisation</td>
-                        <td id="stock-market-cap" class="col-xs-6" style="padding: 0px"></td>
-                    </tr>
-
-                    <tr>
-                        <td class="col-xs-6" style="padding: 0px">Beta</td>
-                        <td id="stock-beta" class="col-xs-6" style="padding: 0px"></td>
-                    </tr>
-
-                    <tr>
-                        <td class="col-xs-6" style="padding: 0px">PE Ratio</td>
-                        <td id="stock-pe-ratio" class="col-xs-6" style="padding: 0px"></td>
-                    </tr>
-
-                    <tr>
-                        <td class="col-xs-6" style="padding: 0px">Dividend</td>
-                        <td id="stock-dividend" class="col-xs-6" style="padding: 0px"></td>
-                    </tr>
-
-                    <tr>
-                        <td class="col-xs-6" style="padding: 0px">Yield</td>
-                        <td id="stock-yield" class="col-xs-6" style="padding: 0px"></td>
+                        <td class="col-xs-6" style="padding: 0px"></td>
+                        <td class="col-xs-6" style="padding: 0px"></td>
                     </tr>
                 </table>
             </div>
@@ -274,6 +219,7 @@
             e.innerHTML = input;
             return e.childNodes.length === 0 ? "" : e.childNodes[0].nodeValue;
         }
+
         $(document).ready(function () {
             //Blade syntax to get the stocks element that was passed by the Laravel controller, get the current data JSON string
             var dataAsString = '{{!! $current !!}}';
@@ -288,22 +234,29 @@
             $("#stock-movement").text(tableData.curr_price.amount);
             $("#stock-movement-percentage").text(" (" + tableData.curr_price.percentage + ")");
 
-            //Load table 1
-            $("#stock-previous-close").text(tableData.curr_price.extraData.Previousclose);
-            $("#stock-open").text(tableData.curr_price.extraData.Open);
-            $("#stock-bid").text(tableData.curr_price.extraData.Bid);
-            $("#stock-ask").text(tableData.curr_price.extraData.Ask);
-            $("#stock-days-range").text(tableData.curr_price.extraData.Daysrange);
-            $("#stock-year-week-range").text(tableData.curr_price.extraData.Yearweekrange);
-            $("#stock-volume").text(tableData.curr_price.extraData.Volume);
+            //Get the number of rows that we expected
+            var rowsCount = tableData.curr_price.extraData.length;
 
-            //Load table 2
-            $("#stock-avg-volume").text(tableData.curr_price.extraData.Avgvolume);
-            $("#stock-market-cap").text(tableData.curr_price.extraData.Marketcap);
-            $("#stock-beta").text(tableData.curr_price.extraData.Beta);
-            $("#stock-pe-ratio").text(tableData.curr_price.extraData.PEratio);
-            $("#stock-dividend").text(tableData.curr_price.extraData.Dividend);
-            $("#stock-yield").text(tableData.curr_price.extraData.Yield);
+            //Loop through each item in the extraData array and pull out the the title and data.
+            //Then add the values to the display table
+            $.each(tableData.curr_price.extraData, function (index, value) {
+
+                //Get the title element
+                var tableRowTitle = '<tr><td class="col-xs-6" style="padding: 0px">' + value.title + '</td>';
+                //Get the value element
+                var tableRowValue =  '<td class="col-xs-6" style="padding: 0px">' + value.value + '</td></tr>';
+
+                //Make the row HTML string
+                var tableRow = tableRowTitle + tableRowValue;
+
+                //If it is in the first half of the array, put it on the left, otherwise right.
+                if (index < (rowsCount / 2))
+                    $('#stock-stats-table-left tbody').append(tableRow);
+                else
+                    $('#stock-stats-table-right tbody').append(tableRow);
+
+            });
+
         });
 
 
