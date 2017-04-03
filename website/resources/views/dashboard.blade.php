@@ -4,9 +4,11 @@
 
 <body>
 
-@include('layouts.navbar')
+    @include('layouts.navbar')
 
-<div>Logged In</div>
+    <div id='content'>
+        <div>Logged In</div>
+    </div>
 
 <footer class="footer">
     <div class="container">
