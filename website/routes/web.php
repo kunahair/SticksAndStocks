@@ -16,14 +16,15 @@ Route::get('/', function () {
 	return view('home');
 });
 
+Route::get('dashboard', function () {
+	return view('dashboard');
+})->middleware('auth');
+
 Route::get('stock/{id}', 'ShowStock');
 
 Auth::routes();
 
-Route::get('/trading', function(){
-    return view('trading');
-});
-
-Route::get('/user', function(){
-    return view('Useraccount');
+Route::get('logout', function () {
+	Auth::logout();
+	return view('home');
 });
