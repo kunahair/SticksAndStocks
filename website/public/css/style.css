@@ -81,7 +81,7 @@ html, body {
 
 .footer{
     border:25px;
-
+    background-color: #123;
     width:100%;
 	height:100px;
 	position:absolute;
@@ -92,7 +92,7 @@ html, body {
 
 .footer > .container {
     padding: 25px;
-    background-color: #e7e7e7;
+    color: #e7e7e7;
 }
 
 .container > ul > li {
@@ -112,7 +112,7 @@ footer > ul > li > a {
 }
 
 .container > ul > li > a {
-    color: black;
+    color: white;
 }
 
 canvas {

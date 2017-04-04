@@ -27,12 +27,7 @@
 
 </div>
 
-<footer class="footer" style="background-color: #123;">
-    <ul>
-        <li><a>About Us</a></li>
-        <li><a>Contact Us</a></li>
-    </ul>
-</footer>
+@include('layouts.footer')
 
 @include('layouts.background')
 
