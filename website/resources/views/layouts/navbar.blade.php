@@ -10,7 +10,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <img src="/img/PineappleWC (1).gif" alt="logo" hight="100px" width="100px" align="">
+                <a href="/"><img src="/img/PineappleWC (1).gif" alt="logo" hight="100px" width="100px" align=""></a>
                 <text style="font-size: 300%;">Pineapple</text>
             </div>
 
