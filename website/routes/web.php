@@ -23,3 +23,8 @@ Route::get('dashboard', function () {
 Route::get('stock/{id}', 'ShowStock');
 
 Auth::routes();
+
+Route::get('logout', function () {
+	Auth::logout();
+	return view('home');
+});
