@@ -32,5 +32,8 @@ Auth::routes();
 
 Route::get('logout', function () {
 	Auth::logout();
-	return view('home');
+	return redirect('/');
 });
+
+Route::post('createAccount', 'TradeAccountController@create');
+Route::post('editUser', 'UserAccountController@edit');
