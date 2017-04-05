@@ -27,14 +27,14 @@
 
 </div>
 
-<footer class="footer" style="background-color: #123;">
-    <ul>
-        <li><a>About Us</a></li>
-        <li><a>Contact Us</a></li>
-    </ul>
-</footer>
+<div>
+    @include('layouts.background')
+</div>
 
-@include('layouts.background')
+<div class="content">
+
+</div>
+@include('layouts.footer')
 
 </body>
-</html>
+

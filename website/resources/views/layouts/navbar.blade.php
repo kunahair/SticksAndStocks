@@ -10,7 +10,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <img src="/img/PineappleWC (1).gif" alt="logo" hight="100px" width="100px" align="">
+                <a href="/"><img src="/img/PineappleWC (1).gif" alt="logo" hight="100px" width="100px" align=""></a>
                 <text style="font-size: 300%;">Pineapple</text>
             </div>
 
@@ -29,10 +29,15 @@
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Account <span class="caret"></span></a>
                         <ul class="dropdown-menu">
                             <li><a href="#">View Profile</a></li>
-                            <li><a href="#">Account Dashboard</a></li>
+                            <li><a href="/dashboard">Account Dashboard</a></li>
                             <li><a href="#"></a></li>
                             <li role="separator" class="divider"></li>
-                            <li><a href="{{ Auth::logout() }}">Logout</a></li>
+                            @if(Auth::check())
+                                <li><a href="{{url('/logout')}}">Logout</a></li>
+                            @else
+                                <li><a href="{{ url('/login') }}">Login</a></li>
+
+                            @endif
                         </ul>
                     </li>
                 </ul>
