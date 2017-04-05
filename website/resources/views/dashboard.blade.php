@@ -69,6 +69,15 @@
                 </span>
                 <hr />
                 <div >
+                    @if (count($errors) > 0)
+                        <div class="alert alert-danger">
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
                     <p>
                         <text style="font-weight: bold">Name: </text>
                         <text class="account-info-edit">{{Auth::user()->name}}</text>
@@ -134,6 +143,33 @@
 
 
         });
+
+        $('#account-info-save-button').click(function () {
+            
+            var postData = {};
+
+            //Change save and cancel buttons to edit
+            $('#account-info-view-mode').css('display', 'block');
+            $('#account-info-edit-mode').css('display', 'none');
+
+            //Hide the input fields and just show original text
+            $('.account-info-edit').css('display', 'inline');
+            $('.account-info-edit-field').css('display', 'none');
+
+            $('.account-info-edit-field').each(function(i,v){
+                if (i == 0) {
+                    postData['name'] = v.value;
+                }
+                if (i == 1) {
+                    postData['email'] = v.value;
+                }
+            });
+
+            $.post("{{ url('editUser') }}", postData);
+
+        });
+
+
     </script>
 
 </body>

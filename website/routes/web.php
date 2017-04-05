@@ -33,3 +33,4 @@ Route::get('logout', function () {
 });
 
 Route::post('createAccount', 'TradeAccountController@create');
+Route::post('editUser', 'UserAccountController@edit');
