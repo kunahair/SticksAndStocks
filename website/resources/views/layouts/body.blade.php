@@ -27,9 +27,14 @@
 
 </div>
 
+<div>
+    @include('layouts.background')
+</div>
+
+<div class="content">
+
+</div>
 @include('layouts.footer')
 
-@include('layouts.background')
-
 </body>
-</html>
+
