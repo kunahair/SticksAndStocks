@@ -49,4 +49,5 @@ class Stock extends Model
         // Encode it back into String & save it into the database
         $this->save();
     }
+
 }
