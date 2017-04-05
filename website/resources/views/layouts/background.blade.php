@@ -11,7 +11,7 @@
         container = document.createElement( 'div' );
         document.body.appendChild( container );
 
-        camera = new THREE.PerspectiveCamera( 30, window.innerWidth / window.innerHeight, 6, 10000 );
+        camera = new THREE.PerspectiveCamera( 30, window.innerHeight / window.innerHeight, 6, 10000 );
         camera.position.set( 0, 300, 500 );
         scene = new THREE.Scene();
 

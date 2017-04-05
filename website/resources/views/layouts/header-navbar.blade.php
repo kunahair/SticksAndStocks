@@ -1,19 +1,19 @@
 @include('layouts.background')
 <div class="tops">
-    <div class="top-center ">
+    <div class="top-center">
+
+
         <div class="title m-b-md ">
-            <div id="logo">
+            <div class="col-sm-4" >
+                <div id="logo">
                 <img src="img/PineappleWC (1).gif" alt="logo" hight="100px" width="100px" align="">
+                </div>
             </div>
-            Pineapple
-        </div>
+            <div class="col-sm-4" >
+                Pineapple
+            </div>
 
-        <div class="links">
-            <a href="{{url('/user')}}">Profile</a>
-            <a href="">Trading Market</a>
-            <a href="">Buy/sell</a>
         </div>
-
     </div>
 
     <div class="move-right">
@@ -21,6 +21,5 @@
     </div>
 
     <!-- Trigger the modal with a button -->
-
 
 </div>

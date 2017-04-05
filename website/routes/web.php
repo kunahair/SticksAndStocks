@@ -15,10 +15,12 @@ use App\Stock;
 Route::get('/', function () {
 	return view('home');
 });
-Route::get('template', function () {
-    return view('template');
+Route::get('stockinfo', function () {
+    return view('stockinfo');
 });
-
+Route::get('contact', function () {
+    return view('contact');
+});
 
 Route::get('dashboard', function () {
 	return view('dashboard');
