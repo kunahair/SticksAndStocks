@@ -35,5 +35,14 @@ Route::get('logout', function () {
 	return redirect('/');
 });
 
-Route::post('createAccount', 'TradeAccountController@create');
+// Takes two parameters, user and email
+// Also requires that there is a CSRF header on the webpage.
 Route::post('editUser', 'UserAccountController@edit');
+
+// Takes one parameters, username
+// Also requires that there is a CSRF header on the webpage.
+Route::post('createTA', 'TradeAccountController@create');
+
+// Takes two parameters, id and username
+// The id show be the id of the Trade Account
+Route::post('editTA', 'TradeAccountController@edit');
