@@ -38,6 +38,8 @@ Route::get('logout', function () {
 // Takes two parameters, user and email
 // Also requires that there is a CSRF header on the webpage.
 Route::post('editUser', 'UserAccountController@edit');
+//API call version of the editUser functionality, used for AJAX calls
+Route::post('api/editUser', 'UserAccountController@apiEdit');
 
 // Takes one parameters, username
 // Also requires that there is a CSRF header on the webpage.

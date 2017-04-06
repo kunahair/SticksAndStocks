@@ -78,15 +78,17 @@
                             </ul>
                         </div>
                     @endif
+
+                    <div id="update-user-error" style="display: none; color: #FF0000">There was an error updating your information<br /><br /></div>
                     <p>
                         <text style="font-weight: bold">Name: </text>
-                        <text class="account-info-edit">{{Auth::user()->name}}</text>
+                        <text id="name-view" class="account-info-edit">{{Auth::user()->name}}</text>
                         <input name="name" class="account-info-edit-field" value="{{Auth::user()->name}}" style="display: none" />
                     </p>
 
                     <p>
                         <text style="font-weight: bold">Email: </text>
-                        <text class="account-info-edit">{{Auth::user()->email}}</text>
+                        <text id="email-view" class="account-info-edit">{{Auth::user()->email}}</text>
                         <input name="email" class="account-info-edit-field" value="{{Auth::user()->email}}" style="display: none" />
                     </p>
 
@@ -148,13 +150,13 @@
             
             var postData = {};
 
-            //Change save and cancel buttons to edit
-            $('#account-info-view-mode').css('display', 'block');
-            $('#account-info-edit-mode').css('display', 'none');
+//            //Change save and cancel buttons to edit
+//            $('#account-info-view-mode').css('display', 'block');
+//            $('#account-info-edit-mode').css('display', 'none');
 
-            //Hide the input fields and just show original text
-            $('.account-info-edit').css('display', 'inline');
-            $('.account-info-edit-field').css('display', 'none');
+//            //Hide the input fields and just show original text
+//            $('.account-info-edit').css('display', 'inline');
+//            $('.account-info-edit-field').css('display', 'none');
 
             $('.account-info-edit-field').each(function(i,v){
                 if (i == 0) {
@@ -165,7 +167,29 @@
                 }
             });
 
-            $.post("{{ url('editUser') }}", postData);
+            //Send the data to the server to validate and update the database
+            $.post("{{ url('api/editUser') }}", postData)
+
+            //If the operation was successful, then update the fields to refelect the changes
+                .done(function (data) {
+                    var jsonData = JSON.parse(data);
+                    $('#update-user-error').css('display', 'none');
+                    $('#name-view').text(postData['name']);
+                    $('#email-view').text(postData['email']);
+
+                    //Change save and cancel buttons to edit
+                    $('#account-info-view-mode').css('display', 'block');
+                    $('#account-info-edit-mode').css('display', 'none');
+
+                    //Hide the input fields and just show original text
+                    $('.account-info-edit').css('display', 'inline');
+                    $('.account-info-edit-field').css('display', 'none');
+                })
+
+                //Otherwise show generic error
+                .fail(function (error) {
+                    $('#update-user-error').css('display', 'block');
+                });
 
         });
 
