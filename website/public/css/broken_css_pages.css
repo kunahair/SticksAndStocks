@@ -5,7 +5,7 @@ html, body {
     font-weight: 100;
     height: auto;
     margin: 0;
-    /*overflow-y: hidden;*/
+    overflow-y: hidden;
 }
 
 .form-group{
@@ -48,6 +48,7 @@ html, body {
 .links > a:hover{
     background-color: yellowgreen;
     padding: 25px;
+
 }
 
 .m-b-md {
@@ -79,32 +80,24 @@ html, body {
     padding: 80px;
 }
 
-html {
-    position: relative;
-    min-height: 100%;
-}
-
-body {
-    margin-bottom: 60px;
-}
-
 .footer{
     border:25px;
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-    height: 60px;
+    background-color: #123;
+    width:100%;
+    height:70px;
+    position:fixed;
+    bottom:0;
+    left:0;
 }
 
 .footer > .container {
-    background-color: #123;
     color: #e7e7e7;
 }
 
 .container > ul > li {
     text-decoration: none;
     display: inline-block;
-    padding: 20px 20px 10px 20px;
+    padding: 20px;
 }
 
 footer > ul > li {
@@ -135,9 +128,8 @@ canvas {
     position:absolute;
     top:0%;
     padding: 10px;
-
-
 }
+
 .background-tint {
     z-index: 1;
     height: 10%;
@@ -156,12 +148,13 @@ canvas {
     position:absolute;
     top:30%;
     padding: 10px;
-
 }
+
 .content{
     min-height: calc(40vh - 70px);
     padding: 40px 40px 0 40px;
 }
+
 .move-right{
 
     color: white;
