@@ -35,4 +35,15 @@
             }
         });
     </script>
+
+    <!--Style for the suggestions div-->
+    <style>
+        p.suggestion {
+            font-weight: bold;
+            background-color: #FFFFFF;
+        }
+        p.suggestion:hover {
+            background-color: orange !important;
+        }
+    </style>
 </head>

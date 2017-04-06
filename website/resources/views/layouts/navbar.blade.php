@@ -18,10 +18,12 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 
                 <form class="navbar-form navbar-left">
+                    {{--ASX company search with autocomplete--}}
                     <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Search">
+                        <input type="text" class="form-control" placeholder="Search" id="autocomplete">
+                        <div id="stocksList" style="position: absolute; z-index: 300"></div>
                     </div>
-                    <button type="submit" class="btn btn-default">Submit</button>
+                    {{--<button type="submit" class="btn btn-default">Search</button>--}}
                 </form>
                 <ul class="nav navbar-nav navbar-right">
                     <li><a href="#">View Portfolio</a></li>
@@ -44,4 +46,92 @@
             </div><!-- /.navbar-collapse -->
         </div><!-- /.container-fluid -->
     </nav>
+
+    {{--<form>--}}
+        {{--<input type="text" class="form-control col-2" name="stockList" id="autocomplete"/>--}}
+        {{--<div id="stocksList" style="position: absolute; z-index: 300"></div>--}}
+    {{--</form>--}}
+
+    <script>
+
+
+        $(document).ready(function(){ // this will be called when the DOM is ready
+
+            /**
+             * When user clicks a suggested item, the text box is filled with the ASX code and the
+             * User is directed to the stocks page of that code
+             **/
+            $(document).on('click', '.suggestion', function(event) {
+
+                //Stop the default click behaviour of this event
+                event.preventDefault();
+
+                //Get the decoded element
+                var string = htmlDecode(event.target.innerHTML);
+                //Tokenize the string into an array
+                var split = string.split(" ");
+
+                //Put the stock symbol value into the text field
+                $("#autocomplete").val(split[split.length - 1]);
+
+                //Direct User to the stock page of selected suggestion
+                location.href = 'http://pineapple-stocks.ddns.net/stock/' + split[split.length - 1];
+            });
+
+            var stocksList = null; //Set stocksList to null initially
+
+            //Get all stocks names and ASX codes from API
+            $.get("{{url('api/all-stocks')}}")// 'http://localhost:8000/api/all-stocks')
+                .done(function (data) {
+                    stocksList = data;
+                });
+
+            //When there is a key up inside the searchbar, search through the stocks list and return a max of 10 results to auto complete
+            $('#autocomplete').keyup(function() {
+
+                var query = $('#autocomplete').val(); //Get query
+
+                //If stocksList is still null, just return
+                if (stocksList == null)
+                    return;
+
+                //Clear contents of stocksList suggestions box
+                $("#stocksList").empty();
+
+                //If Query is an empty string, just return
+                if (query == "")
+                    return;
+
+                //Track the number of results to return
+                var j = 10;
+
+                //Go through each stock in the API stocksList, see if the query matches the name or symbol.
+                //If it does, add it to the suggestions
+                $.each(stocksList, function(i, item) {
+                    if ((item["stock_symbol"].indexOf(query.toUpperCase()) >= 0 || item["stock_name"].indexOf(query.toUpperCase()) >= 0) && j >= 0)
+                    {
+                        var link = 'http//pineapples.ddns.net/stocks/' + item["stock_symbol"];
+                        $('#stocksList').append('' +
+                            '<a href="#"><p class="suggestion" style="margin: 0; padding-bottom: 10px">' + item["stock_name"] + ' <br /><text class="stock_symbol">' + item["stock_symbol"] + '</text></p></a>'
+                        );
+                        j--;
+                    }
+
+                });
+            });
+
+        });
+
+        /**
+         * Function to convert html escaped characters into their proper symbols.
+         * Found on: http://stackoverflow.com/questions/1912501/unescape-html-entities-in-javascript
+         * @param input Encoded string
+         * @returns {string} Decoded string
+         */
+        function htmlDecode(input)
+        {
+            var doc = new DOMParser().parseFromString(input, "text/html");
+            return doc.documentElement.textContent;
+        }
+    </script>
 </div>
