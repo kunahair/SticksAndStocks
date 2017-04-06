@@ -4,7 +4,7 @@
     <div class="top-center ">
         <div class="title m-b-md ">
             <div id="logo">
-                <img src="img/PineappleWC (1).gif" alt="logo" hight="100px" width="100px" align="">
+                <a href="{{url('/')}}"> <img src="img/PineappleWC (1).gif" alt="logo" hight="100px" width="100px" align=""></a>
             </div>
             Pineapple
         </div>
