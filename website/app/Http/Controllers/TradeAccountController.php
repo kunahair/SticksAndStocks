@@ -13,12 +13,14 @@ class TradeAccountController extends Controller
 
     public function create(Request $request)
     {
-        $this->validate($request, [
-            'username' => 'required|unique:TradeAccounts,username'
-        ]);
+        $validator = Validator::make($request->all(), [
+            'username' => ['required','unique:TradeAccounts']
+        ])->validator();
         
         $username = $request->username;
         Auth::User()->tradingAccounts()->create(['username' => $username, 'balance' => 1000000]);
+
+        return response("Trading Account Created", 200);
     }
 
     public function edit(Request $request)
@@ -26,17 +28,13 @@ class TradeAccountController extends Controller
         $validator = Validator::make($request->all(), [
             'id' => ['required', 'exists:trade_accounts'],
             'username' => ['required', 'max:255', Rule::unique('trade_accounts')->ignore($request->id)]
-        ]);
-
-        if ($validator->fails()) {
-            return redirect('/dashboard')
-                ->withErrors($validator)
-                ->withInput();
-        }
+        ])->validator();
 
         $currentTA = TradeAccount::find($request->id);
         $currentTA->username = $request->username;
         $currentTA->save();
+
+        return response("Trading Account Edited", 200);
     }
 
 }

@@ -18,19 +18,14 @@ class UserAccountController extends Controller
         $validator = Validator::make($request->all(), [
             'name' => ['required', 'max:255'],
             'email' => ['required', 'email', 'max:255', Rule::unique('users')->ignore($currentUser->id)]
-        ]);
-        
-        if ($validator->fails()) {
-            return redirect('/dashboard')
-                        ->withErrors($validator)
-                        ->withInput();
-        }
+        ])->validate();
         
         $currentUser->name = $request->name;
         $currentUser->email = $request->email;
 
         $currentUser->save();
 
+        return response('User Account Edited.', 200);
     }
 
 }
