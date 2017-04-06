@@ -1,4 +1,4 @@
-ASX listed companies as at Thu Apr 06 19:30:02 EST 2017
+ASX listed companies as at Fri Apr 07 08:05:02 EST 2017
 
 Company name,ASX code,GICS industry group
 "ISHARES S&P MID-CAP ETF",IJH,"Not Applic"
@@ -416,6 +416,7 @@ Company name,ASX code,GICS industry group
 "CAENEUS MINERALS LTD",CAD,"Materials"
 "CAISSE FRANCAISE DE FINANCEMENT LOCAL",DXA,"Not Applic"
 "CALTEX AUSTRALIA LIMITED",CTX,"Energy"
+"CANN GROUP LIMITED",CAN,"Class Pend"
 "CANNINDAH RESOURCES LIMITED",CAE,"Materials"
 "CANYON RESOURCES LIMITED",CAY,"Materials"
 "CAPE LAMBERT RESOURCES LIMITED",CFE,"Materials"
@@ -602,7 +603,7 @@ Company name,ASX code,GICS industry group
 "DAVENPORT RESOURCES LIMITED",DAV,"Materials"
 "DAWINE LTD",DW8,"Food, Beverage & Tobacco"
 "DE GREY MINING LIMITED",DEG,"Materials"
-"DE.MEM LIMITED",DEM,"Class Pend"
+"DE.MEM LIMITED",DEM,"Utilities"
 "DECIMAL SOFTWARE LIMITED",DSX,"Software & Services"
 "DECMIL GROUP LIMITED",DCG,"Capital Goods"
 "DEEP YELLOW LIMITED",DYL,"Energy"
@@ -1438,6 +1439,7 @@ Company name,ASX code,GICS industry group
 "OBJECTIVE CORPORATION LIMITED",OCL,"Software & Services"
 "OCEANAGOLD CORPORATION",OGC,"Materials"
 "OCEANIA CAPITAL PARTNERS LIMITED",OCP,"Diversified Financials"
+"OCEANIA HEALTHCARE LIMITED",OCA,"Class Pend"
 "OCHRE GROUP HOLDINGS LIMITED",OGH,"Materials"
 "OCTANEX LIMITED",OXX,"Energy"
 "ODIN ENERGY LIMITED",ODN,"Energy"

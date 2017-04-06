@@ -135,9 +135,16 @@
         //Convert the history data from String to JSON
         var dataAsJSON = JSON.parse(dataAsString.slice(1,-1));
 
+        var date = "{{date("d-m-y")}}";
+
+        if (!('{{date("d-m-y")}}' in dataAsJSON)) {
+            date = Object.keys(dataAsJSON)[0];
+            // date = '{{date("d-m-y",strtotime("-1 days"))}}';
+        }
+
         //Loop through each json object that contains the stocks data
         //Get the time and the average and plog on a graph
-        $.each(dataAsJSON['{{date('d-m-y')}}'], function(index, value) {
+        $.each(dataAsJSON[date], function(index, value) {
             //Get the time value that is going to be shown on the chart
             var time = "{{date('Y/m/d')}} " + value.time;
             //Get the average of the stock value at time to plot on graph
