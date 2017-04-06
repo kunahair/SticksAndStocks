@@ -109,6 +109,7 @@
 
     <script>
 
+        //Holder for values of input fields if they need to be put back the way they where from error
         var account_fields = [];
 
         $('#account-info-edit-button').click(function () {
@@ -147,17 +148,11 @@
         });
 
         $('#account-info-save-button').click(function () {
-            
+
+            //Post data holder
             var postData = {};
 
-//            //Change save and cancel buttons to edit
-//            $('#account-info-view-mode').css('display', 'block');
-//            $('#account-info-edit-mode').css('display', 'none');
-
-//            //Hide the input fields and just show original text
-//            $('.account-info-edit').css('display', 'inline');
-//            $('.account-info-edit-field').css('display', 'none');
-
+            //Loop through the input fields and check which fileds have been edited
             $('.account-info-edit-field').each(function(i,v){
                 if (i == 0) {
                     postData['name'] = v.value;
