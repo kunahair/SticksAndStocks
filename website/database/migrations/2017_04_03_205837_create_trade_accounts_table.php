@@ -16,7 +16,7 @@ class CreateTradeAccountsTable extends Migration
         Schema::create('trade_accounts', function (Blueprint $table) {
             $table->increments('id');
 
-            $table->string('username');
+            $table->string('name');
             $table->float('balance',20,2);
 
             $table->timestamps();
