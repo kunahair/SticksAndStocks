@@ -48,3 +48,5 @@ Route::post('createTA', 'TradeAccountController@create');
 // Takes two parameters, id and username
 // The id show be the id of the Trade Account
 Route::post('editTA', 'TradeAccountController@edit');
+
+Route::get('tradeaccount/{accountId}', 'TradeAccountController@view');

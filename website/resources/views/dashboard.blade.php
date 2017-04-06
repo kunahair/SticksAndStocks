@@ -24,38 +24,37 @@
     <div id='content' class="container">
         <div class="alert alert-success" role="alert">Logged In</div>
 
+        <div id="create-ta-form" style="padding-bottom: 3%;">
+            <label>Trade Account Name: </label>
+            <input id="input-ta-name" type="text" value="" />
+            <button id="button-create-ta" type="button">Create Account</button>
+            <div id="create-ta-error" style="color: red; display: none">There was an error creating Trade Account</div>
+        </div>
+
         {{--User Trade Accounts cards--}}
         <div id="accounts" class="col-xs-12">
-            <div class="panel panel-default col-xs-12 col-md-3">
-                <div class="panel-heading">
-                    <h3 class="panel-title">Trade Account Title</h3>
-                </div>
-                <div class="panel-body">
-                    Basic panel example
-                </div>
-            </div>
 
-            <div class="col-md-1"></div>
+            {{--Loop through all the trade accounts that the user has and list them as panels with name and stats--}}
+            @foreach(Auth::user()->tradingAccounts as $ta)
+                {{--Create Panel that links to its individual Trade Account Page--}}
+                <a href="{{url('/tradeaccount/' . $ta->id) }}">
+                    <div class="panel panel-default col-xs-12 col-md-3">
+                        {{--Name of Trade Account--}}
+                        <div class="panel-heading">
+                            <h3 class="panel-title">{{$ta->name}}</h3>
+                        </div>
+                        {{--Stats about Trade Account--}}
+                        <div class="panel-body">
+                            Balance: ${{$ta->balance}}
+                        </div>
 
-            <div class="panel panel-default col-xs-12 col-md-3">
-                <div class="panel-heading">
-                    <h3 class="panel-title">Trade Account Title</h3>
-                </div>
-                <div class="panel-body">
-                    Basic panel example
-                </div>
-            </div>
+                    </div>
+                </a>
+                {{--Spacer for panels--}}
+                <div class="col-md-1"></div>
+            @endforeach
 
-            <div class="col-md-1"></div>
-
-            <div class="panel panel-default col-xs-12 col-md-3">
-                <div class="panel-heading">
-                    <h3 class="panel-title">Trade Account Title</h3>
-                </div>
-                <div class="panel-body">
-                    Basic panel example
-                </div>
-            </div>
+        </div>
 
             {{--Account information div--}}
             <div id="account-info" >
@@ -108,6 +107,23 @@
 @include('layouts.footer')
 
     <script>
+
+        {{--API call to create a new Trade account for the user, reload page if success, otherwise show error--}}
+        $('#button-create-ta').click(function () {
+            var tradeAccountName = {};
+            tradeAccountName['name'] = $('#input-ta-name').val();
+//            AJAX POST call to create a new Trade Account
+            $.post("{{ url('createTA') }}", tradeAccountName)
+                .done(function (data) {
+                    //If successful, reload the page to show the new Trade Account
+                    location.reload();
+                })
+
+                .fail(function (error) {
+                    //Otherwise show an error
+                    $('#create-ta-error').css('display', 'block');
+                })
+        });
 
         //Holder for values of input fields if they need to be put back the way they where from error
         var account_fields = [];

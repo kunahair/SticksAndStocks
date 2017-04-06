@@ -53,18 +53,19 @@
 @include('layouts.navbar')
 
     <div class="container">
-        <h2>Trade Account Name</h2>
+        <h2>{{$tradeAccount["name"]}}</h2>
         <hr />
+        <h3>${{$tradeAccount["balance"]}}</h3>
 
-        <div class="col-xs-1 col-md-3"></div>
-        <div id="trade-account-info-box" class="col-xs-10 col-md-6">
-            <h3>$(balance)</h3>
+        <div id="trade-account-info-box" class="col-xs-10 col-md-12" style="padding-top: 3%">
 
-            <table class="col-xs-12 col-md-6 table-hover">
+            <div class="col-xs-1 col-md-2"></div>
+
+            <table class="col-xs-9 table-hover">
                 <tr>
-                    <td class="col-xs-6" style="padding: 0px">Code</td>
-                    <td class="col-xs-6" style="padding: 0px">Name</td>
-                    <td class="col-xs-6" style="padding: 0px"></td>
+                    <td class="col-xs-3" style="padding: 0px">Code</td>
+                    <td class="col-xs-3" style="padding: 0px">Name</td>
+                    <td class="col-xs-3" style="padding: 0px">Price</td>
                 </tr>
             </table>
 

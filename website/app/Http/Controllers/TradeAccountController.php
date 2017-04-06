@@ -13,14 +13,24 @@ class TradeAccountController extends Controller
 
     public function create(Request $request)
     {
-        $validator = Validator::make($request->all(), [
-            'name' => ['required','unique:TradeAccounts']
-        ])->validator();
-        
+        //todo: validator does not work here, needs to be fixed, will probs need a try catch around it
+//        $validator = Validator::make($request->all(), [
+//            'name' => ['required','unique:TradeAccounts']
+//        ])->validator();
+
+        //Get the name for the new Trade Account
         $name = $request->name;
+
+        //Through the Authenticated user, create a new Trade Account and associate with current User
         Auth::User()->tradingAccounts()->create(['name' => $name, 'balance' => 1000000]);
 
-        return response("Trading Account Created", 200);
+        //Create a response array that returns the account was created
+        $response = array();
+        $response["message"] = "Trade Account Created";
+        $response["code"] = 200;
+
+        //Return the response in JSON with a 200 status (OK)
+        return response(json_encode($request), 200);
     }
 
     public function edit(Request $request)
@@ -35,6 +45,24 @@ class TradeAccountController extends Controller
         $currentTA->save();
 
         return response("Trading Account Edited", 200);
+    }
+
+    /**
+     * Show the Trade Account Page given an accountId in the request
+     * @param Request $request
+     * @return \Illuminate\Contracts\View\View
+     */
+    public function view(Request $request)
+    {
+        //Get the Account ID from the Request and convert to an INT
+        $accountIdString = $request->accountId;
+        $accountIdInt = intval($accountIdString);
+
+        //Query the TradeAccount table and get the correct Trade Account row by id
+        $tradeAccount = TradeAccount::where('id', $accountIdInt)->get();
+
+        //Return, loading the view into memory and passing the tradeAccount as an array (for Blade)
+        return view('trade-account')->with('tradeAccount', $tradeAccount[0]);
     }
 
 }
