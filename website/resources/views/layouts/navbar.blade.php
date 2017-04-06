@@ -75,7 +75,8 @@
                 $("#autocomplete").val(split[split.length - 1]);
 
                 //Direct User to the stock page of selected suggestion
-                location.href = 'http://pineapple-stocks.ddns.net/stock/' + split[split.length - 1];
+                //'http://pineapple-stocks.ddns.net/stock/'
+                location.href = "{{url('stock')}}" + "/" + split[split.length - 1];
             });
 
             var stocksList = null; //Set stocksList to null initially
@@ -103,16 +104,16 @@
                     return;
 
                 //Track the number of results to return
-                var j = 10;
+                var j = 5;
 
                 //Go through each stock in the API stocksList, see if the query matches the name or symbol.
                 //If it does, add it to the suggestions
                 $.each(stocksList, function(i, item) {
                     if ((item["stock_symbol"].indexOf(query.toUpperCase()) >= 0 || item["stock_name"].indexOf(query.toUpperCase()) >= 0) && j >= 0)
                     {
-                        var link = 'http//pineapples.ddns.net/stocks/' + item["stock_symbol"];
+                        {{--var link = "{{url('stock')}}" + "/" + item["stock_symbol"];--}}
                         $('#stocksList').append('' +
-                            '<a href="#"><p class="suggestion" style="margin: 0; padding-bottom: 10px">' + item["stock_name"] + ' <br /><text class="stock_symbol">' + item["stock_symbol"] + '</text></p></a>'
+                            '<a href="#"><p class="suggestion" style="margin: 0; padding: 10px;">' + item["stock_name"] + ' <br /><text class="stock_symbol">' + item["stock_symbol"] + '</text></p></a>'
                         );
                         j--;
                     }

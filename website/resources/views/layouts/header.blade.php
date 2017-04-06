@@ -45,5 +45,9 @@
         p.suggestion:hover {
             background-color: orange !important;
         }
+
+        p.suggestion>text:hover{
+
+        }
     </style>
 </head>
