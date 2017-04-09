@@ -5,7 +5,7 @@
 @include('layouts.header-navbar')
 
 <div class="table-responsive body-content">
-    <div class="table table-hover">
+    <div class=" table-hover">
         <h1> Top 20 Stock information</h1>
         <table class="font-color">
             <thead>

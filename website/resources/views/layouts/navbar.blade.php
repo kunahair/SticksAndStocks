@@ -1,6 +1,6 @@
-<div class="container">
+<div class="container ">
 
-    <nav class="navbar navbar-default">
+    <nav class="navbar navbar-inverse bg-primary">
         <div class="container-fluid">
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header">
@@ -12,6 +12,7 @@
                 </button>
                 <a href="/"><img src="/img/PineappleWC (1).gif" alt="logo" hight="100px" width="100px" align=""></a>
                 <text style="font-size: 300%;">Pineapple</text>
+
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
@@ -23,25 +24,52 @@
                         <input type="text" class="form-control" placeholder="Search" id="autocomplete">
                         <div id="stocksList" style="position: absolute; z-index: 300"></div>
                     </div>
+
                     {{--<button type="submit" class="btn btn-default">Search</button>--}}
                 </form>
-                <ul class="nav navbar-nav navbar-right">
-                    <li><a href="#">View Portfolio</a></li>
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Account <span class="caret"></span></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="#">View Profile</a></li>
-                            <li><a href="/dashboard">Account Dashboard</a></li>
-                            <li><a href="#"></a></li>
-                            <li role="separator" class="divider"></li>
-                            @if(Auth::check())
-                                <li><a href="{{url('/logout')}}">Logout</a></li>
-                            @else
-                                <li><a href="{{ url('/login') }}">Login</a></li>
+                <!-- links-->
+                <div class="nav navbar-nav navbar-left">
+                <li > <a href="#">View Portfolio</a></li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Account <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">View Profile</a></li>
+                        <li><a href="/dashboard">Account Dashboard</a></li>
+                        <li><a href="#"></a></li>
+                        <li><a href=""></a></li>
 
-                            @endif
-                        </ul>
+                        <li role="separator" class="divider"></li>
+                        @if(Auth::check())
+                            <li><a href="{{url('/logout')}}">Logout</a></li>
+                        @else
+                            <li><a href="{{ url('/login') }}">Login</a></li>
+
+                        @endif
+                    </ul>
+                    <li><a href="#">
+                            Messages <span class="badge">4</span>
+                            </a>
                     </li>
+                </li>
+                </div>
+                <!-- user details-->
+                <ul class="nav navbar-nav navbar-right">
+
+
+                    <p>
+                        <text style="font-weight: bold">Welcome,  </text>
+                        <text id="name-view" class="account-info-edit" style="font-weight: bold">{{Auth::user()->name}}</text>
+                        <input name="name" class="account-info-edit-field" value="{{Auth::user()->name}}" style="display: none" />
+                    </p>
+
+                    <p>
+
+                        <text id="email-view" class="account-info-edit" style="font-weight: bold">{{Auth::user()->email}}</text>
+                        <input name="email" class="account-info-edit-field" value="{{Auth::user()->email}}" style="display: none" />
+                    </p>
+
+
+
                 </ul>
             </div><!-- /.navbar-collapse -->
         </div><!-- /.container-fluid -->

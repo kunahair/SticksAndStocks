@@ -6,15 +6,14 @@
 
     <link href="{{ url('css/broken_css_pages.css') }}" rel="stylesheet" type="text/css">
 
-    <div class="body-content font-color">
-        <div class="col-sm-4" ><h1>Contact Us</h1>
+    <div class="body-content  font-color">
+        <div class="col-md-3 col-md-offset-4" ><h1>Contact Us</h1>
             <ul class="list-group">
                 <li class="list-group-item">SticksAndStocks Ltd Pty</li>
                 <li class="list-group-item">PH:963424</li>
                 <li class="list-group-item">Address: 435-457 Swanston St, Melbourne VIC 3000</li>
             </ul>
-        </div>
-        <div class="col-sm-4" >
+
             <div id="map" style="width:400px;height:400px;"></div>
             <script>
                 function initMap() {
