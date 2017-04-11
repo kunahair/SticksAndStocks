@@ -50,3 +50,6 @@ Route::post('createTA', 'TradeAccountController@create');
 Route::post('editTA', 'TradeAccountController@edit');
 
 Route::get('tradeaccount/{accountId}', 'TradeAccountController@view');
+
+Route::post('api/broker/buy', 'BrokerController@buy');
+Route::post('api/broker/sell', 'BrokerController@sell');
