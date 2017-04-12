@@ -67,7 +67,20 @@
                                 </button>
                             </div>
                         </div>
+
                     </form>
+                    <div class="form-group">
+                        <label class="col-md-6 col-md-offset-4"> Sign in with Facebook</label>
+                    </div>
+                    <div class="col-md-6 col-md-offset-4">
+                        <a class="btn btn-block btn-social btn-twitter">
+                            <span class="fa fa-twitter"></span> Sign in with Twitter
+                        </a>
+
+                        <a href="{{url('/facebooklogin.blade.php')}}"> <img src="/img/facebook.png"></a>
+                        <a href="#"> <img src="{{url('img/googleplus.png')}}"></a>
+                        <a href="#">  <img src="{{url('img/twitter.png')}}"></a>
+                    </div>
                 </div>
             </div>
         </div>

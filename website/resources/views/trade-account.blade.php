@@ -51,8 +51,10 @@
 <body>
 
 @include('layouts.navbar')
+<!-- Modal -->
+@include('layouts.buystock')
 
-    <div class="container">
+    <div class=" container">
         <h2>{{$tradeAccount["name"]}}</h2>
         <hr />
         <h3>${{$tradeAccount["balance"]}}</h3>
@@ -61,14 +63,31 @@
 
             <div class="col-xs-1 col-md-2"></div>
 
-            <table class="col-xs-9 table-hover">
+            <table class="table col-xs-9 ">
+                <thead>
                 <tr>
                     <td class="col-xs-3" style="padding: 0px">Code</td>
                     <td class="col-xs-3" style="padding: 0px">Name</td>
                     <td class="col-xs-3" style="padding: 0px">Price</td>
+                    <td class="col-xs-3" style="padding: 0px">Growth</td>
+                    <td class="col-xs-3" style="padding: 0px">Buy/sell</td>
                 </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td class=col-xs-3" style="padding: 0px"> NAB</td>
+                    <td class=col-xs-3" style="padding: 0px"> National Australia Bank</td>
+                    <td class=col-xs-3" style="padding: 0px"> $$</td>
+                    <td class=col-xs-3" style="padding: 0px"> <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#Buy">Buy</button><button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#Sell">Sell</button></td>
+                </tr>
+                <tr>
+                    <td class="col-xs-1 " style="padding: 0px"> CBA</td>
+                    <td class=col-xs-3" style="padding: 0px"> CommonWealth Bank Australia</td>
+                    <td class=col-xs-3" style="padding: 0px"> $$</td>
+                    <td class=col-xs-3" style="padding: 0px"> <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#Buy">Buy</button><button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#Sell">Sell</button></td>
+                </tr>
+                </tbody>
             </table>
-
         </div>
         <div class="col-xs-1 col-md-3"></div>
     </div>

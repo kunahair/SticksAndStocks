@@ -47,7 +47,7 @@
                         @endif
                     </ul>
                     <li><a href="#">
-                            Messages <span class="badge">4</span>
+                            Inbox <span class="badge">4</span>
                             </a>
                     </li>
                 </li>
