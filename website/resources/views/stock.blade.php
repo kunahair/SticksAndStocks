@@ -62,17 +62,19 @@
 
     @section('charter')
         <div class="stock">
-            <h2 style='float:left; font-family: "Raleway", sans-serif;'>{{ $stock->stock_name }}</h2>
-            <h4 style="font-family: 'Raleway', sans-serif; float:right;">{{ date('d/m/y') }}</h4>
-            <br/>
-            <br/>
-            <br/>
+            <div class="col-xs-12" style="padding-left: 0">
+                <h2 style='float:left; font-family: "Raleway", sans-serif;'>{{ $stock->stock_name }}</h2>
+                <h4 style="font-family: 'Raleway', sans-serif; float:right;">{{ date('d/m/y') }}</h4>
+            </div>
 
             <!--Current 1stock quick stats-->
-            <div id="current-stock-price" style="padding: 0px;  margin-bottom: 3%; width: 50%">
-                <text id="stock-current-price" style="font-size: 200%; font-weight: bold;">{{$currentDataArray["curr_price"]["price"]}}</text> <br />
-                <text id="stock-movement">{{$currentDataArray["curr_price"]["amount"]}}</text>
-                <text id="stock-movement-percentage">&nbsp;({{$currentDataArray["curr_price"]["percentage"]}})</text>
+            <div id="current-stock-price" style="padding: 0;  margin-bottom: 5%; width: 50%">
+                <br />
+                <div id="stock-current-price" class="col-xs-12s" style="font-size: 200%; font-weight: bold; ">{{$currentDataArray["curr_price"]["price"]}}</div>
+                <div class="col-xs-12" style="padding-left: 0">
+                    <text id="stock-movement">{{$currentDataArray["curr_price"]["amount"]}}</text>
+                    <text id="stock-movement-percentage">&nbsp;({{$currentDataArray["curr_price"]["percentage"]}})</text>
+                </div>
             </div>
 
             <!--Table to show quick stats about stock-->
@@ -90,18 +92,10 @@
                         </tr>
 
                     @endfor
-                    <tr>
-                        <td class="col-xs-6" style="padding: 0px"></td>
-                        <td class="col-xs-6" style="padding: 0px"></td>
-                    </tr>
 
                 </table>
 
                 <table class="col-xs-12 col-md-6 table-hover">
-                    <tr>
-                        <td class="col-xs-6" style="padding: 0px"></td>
-                        <td class="col-xs-6" style="padding: 0px"></td>
-                    </tr>
 
                     {{--Loop through the second half of the current data array and populate the right side of the table--}}
                     @for($i = count($currentDataArray["curr_price"]["extraData"])/2; $i < count($currentDataArray["curr_price"]["extraData"]); $i++)

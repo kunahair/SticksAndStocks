@@ -46,21 +46,26 @@
 
                         @endif
                     </ul>
-                    <li><a href="#">
-                            Inbox <span class="badge">4</span>
-                            </a>
-                    </li>
+                    @if(Auth::check())
+                        <li><a href="#">
+                                Inbox <span class="badge">4</span>
+                                </a>
+                        </li>
+                    @endif
+
                 </li>
                 </div>
                 <!-- user details-->
                 <ul class="nav navbar-nav navbar-right">
 
 
+                    @if(Auth::check())
                     <p>
                         <text style="font-weight: bold">Welcome,  </text>
                         <text id="name-view" class="account-info-edit" style="font-weight: bold">{{Auth::user()->name}}</text>
                         <input name="name" class="account-info-edit-field" value="{{Auth::user()->name}}" style="display: none" />
                     </p>
+
 
                     <p>
 
@@ -68,7 +73,7 @@
                         <input name="email" class="account-info-edit-field" value="{{Auth::user()->email}}" style="display: none" />
                     </p>
 
-
+                    @endif
 
                 </ul>
             </div><!-- /.navbar-collapse -->
