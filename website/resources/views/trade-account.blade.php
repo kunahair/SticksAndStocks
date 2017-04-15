@@ -63,33 +63,161 @@
 
             <div class="col-xs-1 col-md-2"></div>
 
-            <table class="table col-xs-9 ">
+            <h2>Held Stocks</h2>
+
+            <table class="table col-xs-10 ">
                 <thead>
                 <tr>
-                    <td class="col-xs-3" style="padding: 0px">Code</td>
-                    <td class="col-xs-3" style="padding: 0px">Name</td>
-                    <td class="col-xs-3" style="padding: 0px">Price</td>
-                    <td class="col-xs-3" style="padding: 0px">Growth</td>
-                    <td class="col-xs-3" style="padding: 0px">Buy/sell</td>
+                    <td class="col-xs-1" style="padding: 0px">Code</td>
+                    <td class="col-xs-4" style="padding: 0px">Name</td>
+                    <td class="col-xs-2" style="padding: 0px">Value</td>
+                    <td class="col-xs-2" style="padding: 0px">Growth</td>
+                    <td class="col-xs-2" style="padding: 0px">Owned</td>
+                    <td class="col-xs-1" style="padding: 0px">View</td>
                 </tr>
                 </thead>
                 <tbody>
-                <tr>
-                    <td class=col-xs-3" style="padding: 0px"> NAB</td>
-                    <td class=col-xs-3" style="padding: 0px"> National Australia Bank</td>
-                    <td class=col-xs-3" style="padding: 0px"> $$</td>
-                    <td class=col-xs-3" style="padding: 0px"> <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#Buy">Buy</button><button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#Sell">Sell</button></td>
-                </tr>
-                <tr>
-                    <td class="col-xs-1 " style="padding: 0px"> CBA</td>
-                    <td class=col-xs-3" style="padding: 0px"> CommonWealth Bank Australia</td>
-                    <td class=col-xs-3" style="padding: 0px"> $$</td>
-                    <td class=col-xs-3" style="padding: 0px"> <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#Buy">Buy</button><button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#Sell">Sell</button></td>
-                </tr>
+
+
+                @php
+                    //Holder for grouped transactions
+                    $transactions = array();
+
+                    //Loop through all the transactions the current trade account has
+                    //Group all the transactions into the transactions array
+                    foreach ($tradeAccount->transactions as $transaction)
+                    {
+                        //If the stock has not been assigned into transactions, add it
+                        if(!array_key_exists($transaction->stock_id, $transactions))
+                        {
+                            $transactions[$transaction->stock_id] = array();
+                        }
+                        //Add the current transaction to its transactions group
+                        array_push($transactions[$transaction->stock_id], $transaction);
+                    }
+
+                    //Loop through each transaction group
+                    //Inner loop the individual transactions for that group
+                    //For each individual transaction that is not in a waiting state, gather statistics
+                    foreach ($transactions as $transactionsGroup)
+                    {
+                        //Stock stats and info
+                        $stock_symbol = "";
+                        $stock_name = "";
+                        $stock_total_cost = 0.00;
+                        $stock_owned = 0;
+                        $stock_sold = 0;
+                        $stock_total_growth = 0.00;
+                        $stock_current_price = 0.00;
+
+                        $assignOnce = 0;
+
+                        foreach ($transactionsGroup as $transaction)
+                        {
+                            //If the current transaction is waiting, then move onto the next one
+                            if ($transaction->waiting)
+                            {
+                                continue;
+                            }
+
+                            //To save memory, just capture the name, symbol and current price of stock group once
+                            if ($assignOnce == 0)
+                            {
+                                $stock_symbol = $transaction->stock->stock_symbol;
+                                $stock_name = $transaction->stock->stock_name;
+
+                                $stock_current_price = $transaction->stock->current_price;
+
+                                $assignOnce++;
+                            }
+
+                            //Calculate the initial cost to the user for the stock, add it to total
+                            $stock_total_cost += ($transaction->price * ($transaction->bought - $transaction->sold));
+                            //Get the amount of stock owned for this transaction, add it to total
+                            $stock_owned += $transaction->bought;
+                            //Get the amount of stock sold for this transaction, add it to total
+                            $stock_sold += $transaction->sold;
+
+                            //$stock_total_growth += ($stock_total_cost * ($transaction->bought - $transaction->sold));
+
+                            //echo '<pre>';
+                            //print_r($transaction->price);
+                            //echo '</pre>';
+                        }
+
+                        //If the stock owned is less than 1 (it should never hit below 0)
+                        //Then stock is not needed as it is not working for account in current state
+                        if ($stock_owned <= 0)
+                        {
+                            continue;
+                        }
+
+                        //Calculate the total amount of growth that the account has for this stock (overall NOT average)
+                        $stock_total_growth = ($stock_total_cost / ($stock_owned - $stock_sold)) - $stock_current_price;
+                        $stock_total_growth *= ($stock_owned - $stock_sold) * -1;
+
+                        //Add stock information to the holding table
+                        echo '<tr>
+                                    <td class="col-xs-1 " style="padding: 0px">' . $stock_symbol . '</td>
+                                    <td class=col-xs-4" style="padding: 0px">' . $stock_name . '</td>
+                                    <td class=col-xs-3" style="padding: 0px">' . $stock_total_cost . '</td>
+                                    <td class=col-xs-3" style="padding: 0px">' . $stock_total_growth . '</td>
+                                    <td class=col-xs-3" style="padding: 0px">' . ($stock_owned - $stock_sold) . '</td>
+                                    <td class=col-xs-3" style="padding: 0px">' . '<a href="#">view</a>' . '</td>
+                                 </tr>';
+
+                        //var_dump($stock_sold);
+                    }
+
+
+
+                @endphp
+                {{--@endforeach--}}
+
                 </tbody>
             </table>
         </div>
         <div class="col-xs-1 col-md-3"></div>
+
+
+        <div class="col-xs-12">
+
+            <h2>Transactions</h2>
+
+            <table class="table col-xs-12 ">
+                <thead>
+                    <tr>
+                        <td class="col-xs-1" style="padding: 0px">Code</td>
+                        <td class="col-xs-4" style="padding: 0px">Name</td>
+                        <td class="col-xs-3" style="padding: 0px">Price</td>
+                        <td class="col-xs-3" style="padding: 0px">Purchased/Sold</td>
+                        {{--<td class="col-xs-3" style="padding: 0px">Buy/sell</td>--}}
+                    </tr>
+                </thead>
+
+                <tbody>
+
+                    {{--Loop through all the transactions that the user has and show in a table--}}
+                    @foreach($tradeAccount->transactions as $transaction)
+
+
+                        <tr>
+                            <td class=col-xs-3" style="padding: 0px"> {{$transaction->stock->stock_symbol}}</td>
+                            <td class=col-xs-3" style="padding: 0px"> {{$transaction->stock->stock_name}}</td>
+                            <td class=col-xs-3" style="padding: 0px"> {{$transaction->price}}</td>
+                            @if($transaction->sold > 0)
+                                <td class=col-xs-3" style="padding: 0px"> -{{$transaction->sold}}</td>
+                            @else
+                                <td class=col-xs-3" style="padding: 0px"> +{{$transaction->bought}}</td>
+                            @endif
+{{--                            <td class="col-xs-3" style="padding: 0"> {{$transaction->stock->current_price - $transaction->price}}</td>--}}
+                            {{--<td class=col-xs-3" style="padding: 0px"> <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#Buy">Buy</button><button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#Sell">Sell</button></td>--}}
+                        </tr>
+
+                    @endforeach
+                </tbody>
+            </div>
+        </div>
     </div>
 
 </body>
