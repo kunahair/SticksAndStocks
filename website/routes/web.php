@@ -52,8 +52,7 @@ Route::post('editTA', 'TradeAccountController@edit');
 Route::get('tradeaccount/{accountId}', 'TradeAccountController@view');
 
 //API call to add a new buy transaction for the current Trade Account
-//TODO: change to POST when done
-Route::get('api/tradeaccount/{accountId}/addBuyTransaction', 'TransactionController@addBuyTransaction');
+Route::post('api/addBuyTransaction', 'TransactionController@apiAddBuyTransaction');
 
 Route::post('api/broker/buy', 'BrokerController@buy');
 Route::post('api/broker/sell', 'BrokerController@sell');

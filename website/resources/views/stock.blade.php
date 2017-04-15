@@ -4,6 +4,7 @@
 
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.bundle.min.js"></script>
     <script
@@ -77,6 +78,128 @@
                 </div>
             </div>
 
+            {{--Only Users who are signed in can purchase stocks--}}
+            @if(Auth::check())
+            <div id="userBuyForm" style="margin-bottom: 5%">
+                <h3>Buy Stock</h3>
+                {{--User messages--}}
+                <div id="buyError" class="alert alert-danger" style="display: none">There was an error</div>
+                <div id="buySuccess" class="alert alert-success" style="display: none">Stock successfuly purchased</div>
+
+                {{--Get the list of Users Trade Accounts and put into a selection box--}}
+                <select>
+                    @foreach(Auth::user()->tradingAccounts as $tradeAccount)
+                        <option value="{{$tradeAccount->id}}" >{{$tradeAccount->name}} : ${{$tradeAccount->balance}}</option>
+                    @endforeach
+                </select>
+                {{----}}
+                <input id="stockQuantity" type="number" value="1000" name="quantity" />
+                <button id="buyButton" name="buyButton" >Buy</button>
+                <br />
+                <p>$<lable id="buyStockTotal">170.00</lable></p>
+
+                <script>
+                    //Needed to have user info calls on the server side
+                    $.ajaxSetup({
+                        headers: {
+                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                        }
+                    });
+
+                    //Constant that has the current value of the current stock
+                    var curr_value = {{$currentDataArray["curr_price"]["price"] }};
+                    //Get list of all the Users Trade Accounts
+                    var tradeAccounts = JSON.parse(htmlDecode("{{Auth::user()->tradingAccounts}}"));
+                    //Get the stock ID of the current stock
+                    var stock_id = parseInt("{{$stock->id}}");
+
+
+                    //When User updates the quantity, update the cost
+                    $('#stockQuantity').on('input', function() {
+                        //Get the quantity in the field
+                        var stockQTY = $('#stockQuantity').val();
+                        var stockQTY = parseInt(stockQTY);
+
+                        //If the stock is less than 1, set to 1 and return
+                        if (stockQTY < 1)
+                        {
+                            $('#stockQuantity').val(1);
+                            return;
+                        }
+
+                        //Update the cost for the user
+                        $('#buyStockTotal').text((curr_value * stockQTY).toFixed(2));
+
+                    });
+
+                    //When user buys, do some client side checking then send relevant info to the server for processing
+                    $('#buyButton').click(function() {
+                        //Data to be sent to server
+                        var postData = {};
+
+                        //The selected Trade account holder
+                        var selectedTradeAccount = {};
+
+                        //Get the id of the selected Trade Account
+                        var selectedValue = $('select').val();
+
+                        //Find the selected Trade Account to check and send relevant info in the POST data
+                        for (var i = 0; i < tradeAccounts.length; i++)
+                        {
+                            if (tradeAccounts[i]["id"] == selectedValue)
+                            {
+                                postData["TradeAccountId"] = tradeAccounts[i]["id"];
+                                selectedTradeAccount = tradeAccounts[i];
+                                break;
+                            }
+                        }
+
+                        //Make sure that the Trade account is valid (selected, not null)
+                        if (postData["TradeAccountId"] == undefined || postData["TradeAccountId"] == null)
+                        {
+                            $('#buyError').text("There is an error with the Trade Account that you selected");
+                            $('#buyError').css('display', 'block');
+                            return;
+                        }
+                        //Check that the Trade Account balance is enough to cover the purchase, show error if not
+                        else if (selectedTradeAccount["balance"] < parseFloat($('#buyStockTotal').text()))
+                        {
+                            $('#buyError').text("You don't have enough in your trading account balance to purchase this quantity");
+                            $('#buyError').css('display', 'block');
+                            return;
+                        }
+
+                        //Make sure there is no error being displayed
+                        $('#buyError').css('display', 'none');
+
+                        //Put stock ID into the Data bundle
+                        postData["stock_id"] = stock_id;
+                        //Put the quantity that is to be purchased in the Data bundle
+                        postData["quantity"] = parseFloat($('#buyStockTotal').text());
+
+                        //AJAX to the API to add the new purchase
+                        $.post("{{ url('api/addBuyTransaction') }}", postData)
+                        //If all went well, show success message
+                            .done(function(data) {
+                                $('#buySuccess').text(data);
+                                $('#buySuccess').css('display', 'block');
+                            })
+
+                            //If there are any errors, or the request fails, log it and show an error
+                            .fail(function(error){
+                                console.log(error);
+                                $('#buyError').text(error["responseText"]);
+                                $('#buyError').css('display', 'block');
+                            })
+                        ;
+
+                    });
+                </script>
+            </div>
+
+
+
+            @endif
             <!--Table to show quick stats about stock-->
             <!--In full screen mode the table is divided into two, side by side. when on mobile they are stacked-->
             <!--<div id="stock-stats-table" style="margin-bottom: 10%;">-->
