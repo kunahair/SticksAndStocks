@@ -1,6 +1,6 @@
-<div class="container ">
+<div class="">
 
-    <nav class="navbar navbar-inverse bg-primary">
+    <nav class="navbar navbar-inverse bg-primary" >
         <div class="container-fluid">
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header">
@@ -29,43 +29,38 @@
                 </form>
                 <!-- links-->
                 <div class="nav navbar-nav navbar-left">
-                <li > <a href="#">View Portfolio</a></li>
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Account <span class="caret"></span></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="#">View Profile</a></li>
-                        <li><a href="/dashboard">Account Dashboard</a></li>
-                        <li><a href="#"></a></li>
-                        <li><a href=""></a></li>
+                    <li > <a href="#">View Portfolio</a></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Account <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="/dashboard">View Profile</a></li>
+                            <li><a href="/dashboard">Account Dashboard</a></li>
+                            <li><a href="#"></a></li>
+                            <li><a href=""></a></li>
 
-                        <li role="separator" class="divider"></li>
-                        @if(Auth::check())
-                            <li><a href="{{url('/logout')}}">Logout</a></li>
-                        @else
-                            <li><a href="{{ url('/login') }}">Login</a></li>
+                            <li role="separator" class="divider"></li>
+                            @if(Auth::check())
+                                <li><a href="{{url('/logout')}}">Logout</a></li>
+                            @else
+                                <li><a href="{{ url('/login') }}">Login</a></li>
 
-                        @endif
-                    </ul>
-                    @if(Auth::check())
-                        <li><a href="#">
-                                Inbox <span class="badge">4</span>
-                                </a>
-                        </li>
-                    @endif
-
-                </li>
+                            @endif
+                        </ul>
+                    <li><a href="#">
+                            Inbox <span class="badge">4</span>
+                        </a>
+                    </li>
+                    </li>
                 </div>
                 <!-- user details-->
                 <ul class="nav navbar-nav navbar-right">
 
 
-                    @if(Auth::check())
                     <p>
                         <text style="font-weight: bold">Welcome,  </text>
                         <text id="name-view" class="account-info-edit" style="font-weight: bold">{{Auth::user()->name}}</text>
                         <input name="name" class="account-info-edit-field" value="{{Auth::user()->name}}" style="display: none" />
                     </p>
-
 
                     <p>
 
@@ -73,7 +68,7 @@
                         <input name="email" class="account-info-edit-field" value="{{Auth::user()->email}}" style="display: none" />
                     </p>
 
-                    @endif
+
 
                 </ul>
             </div><!-- /.navbar-collapse -->
@@ -81,8 +76,8 @@
     </nav>
 
     {{--<form>--}}
-        {{--<input type="text" class="form-control col-2" name="stockList" id="autocomplete"/>--}}
-        {{--<div id="stocksList" style="position: absolute; z-index: 300"></div>--}}
+    {{--<input type="text" class="form-control col-2" name="stockList" id="autocomplete"/>--}}
+    {{--<div id="stocksList" style="position: absolute; z-index: 300"></div>--}}
     {{--</form>--}}
 
     <script>

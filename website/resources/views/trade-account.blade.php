@@ -48,6 +48,13 @@
     {{ !date_default_timezone_set('Australia/Melbourne') }}
 </head>
 
+<!-- get example data-->
+<script>
+    function myFunction() {
+        document.getElementById("nab").innerHTML = "NAB"
+    }
+</script>
+
 <body>
 
 @include('layouts.navbar')
@@ -75,15 +82,17 @@
                 </thead>
                 <tbody>
                 <tr>
-                    <td class=col-xs-3" style="padding: 0px"> NAB</td>
+                    <td class=col-xs-3" id="1" style="padding: 0px"> NAB</td>
                     <td class=col-xs-3" style="padding: 0px"> National Australia Bank</td>
                     <td class=col-xs-3" style="padding: 0px"> $$</td>
-                    <td class=col-xs-3" style="padding: 0px"> <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#Buy">Buy</button><button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#Sell">Sell</button></td>
+                    <td class=col-xs-3" style="padding: 0px"> Growth</td>
+                    <td class=col-xs-3" style="padding: 0px"> <button type="button" class="btn btn-info btn-lg" onclick="myFunction()" data-toggle="modal" data-target="#Buy">Buy</button><button type="button" class="btn btn-info btn-lg" onclick="myFunction()" data-toggle="modal" data-target="#Sell">Sell</button></td>
                 </tr>
                 <tr>
                     <td class="col-xs-1 " style="padding: 0px"> CBA</td>
                     <td class=col-xs-3" style="padding: 0px"> CommonWealth Bank Australia</td>
                     <td class=col-xs-3" style="padding: 0px"> $$</td>
+                    <td class=col-xs-3" style="padding: 0px"> Growth</td>
                     <td class=col-xs-3" style="padding: 0px"> <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#Buy">Buy</button><button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#Sell">Sell</button></td>
                 </tr>
                 </tbody>

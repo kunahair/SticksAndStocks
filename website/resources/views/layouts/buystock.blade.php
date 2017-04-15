@@ -10,6 +10,7 @@
             </div>
             <div class="modal-body">
                 <!--purchase stock-->
+                <p id="nab"></p>
                 <form>
                         <div class="form-group">
                             <label for="inputsm">Stock Name</label>
@@ -43,6 +44,8 @@
             <div class="modal-body">
                 <!--purchase stock-->
                 <form>
+                    <!-- display row data -->
+                    <p id="nab"></p>
 
                     <div class="form-group">
                         <label for="inputsm">Stock Name</label>
