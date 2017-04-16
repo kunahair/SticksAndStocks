@@ -209,8 +209,9 @@
                     <tr>
                         <td class="col-xs-1" style="padding: 0px">Code</td>
                         <td class="col-xs-4" style="padding: 0px">Name</td>
-                        <td class="col-xs-3" style="padding: 0px">Price</td>
+                        <td class="col-xs-2" style="padding: 0px">Price</td>
                         <td class="col-xs-3" style="padding: 0px">Purchased/Sold</td>
+                        <td class="col-xs-3" style="padding: 0px">Date</td>
                         {{--<td class="col-xs-3" style="padding: 0px">Buy/sell</td>--}}
                     </tr>
                 </thead>
@@ -230,6 +231,7 @@
                             @else
                                 <td class=col-xs-3" style="padding: 0px"> +{{$transaction->bought}}</td>
                             @endif
+                            <td class=col-xs-3" style="padding: 0px"> {{$transaction->updated_at}}</td>
 {{--                            <td class="col-xs-3" style="padding: 0"> {{$transaction->stock->current_price - $transaction->price}}</td>--}}
                             {{--<td class=col-xs-3" style="padding: 0px"> <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#Buy">Buy</button><button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#Sell">Sell</button></td>--}}
                         </tr>

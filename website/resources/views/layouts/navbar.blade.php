@@ -22,7 +22,7 @@
                     {{--ASX company search with autocomplete--}}
                     <div class="form-group">
                         <input type="text" class="form-control" placeholder="Search" id="autocomplete">
-                        <div id="stocksList" style="position: absolute; z-index: 300"></div>
+                        <div id="stocksList" style="position: absolute; z-index: 300; background-color: #FFFFFF"></div>
                     </div>
 
                     {{--<button type="submit" class="btn btn-default">Search</button>--}}

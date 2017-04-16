@@ -100,6 +100,11 @@ class TransactionController extends Controller
             return response(json_encode($error), 403);
         }
 
+        //Update the Trade Account Balance
+        $newBalance = $balance - ($price * $request->quantity);
+        DB::table('trade_accounts')->where('id', $request->TradeAccountId)->update(['balance' => $newBalance]);
+
+
         //If all went well, send back a nice message and a 200 status code
         $returnData = array();
         $returnData["message"] = "Transaction added";
