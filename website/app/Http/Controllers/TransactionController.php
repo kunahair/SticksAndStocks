@@ -244,6 +244,8 @@ class TransactionController extends Controller
 
     public function getTransactionsInDateRange(Request $request)
     {
+        //TODO: Add auth check, move Route from API to web so we can check user has the auth to access this info
+
         //Extract the POST info from the request
         $start = intval($request->start);
         $end = intval($request->end);
