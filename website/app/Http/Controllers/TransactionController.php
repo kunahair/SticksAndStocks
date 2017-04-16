@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 
+
 class TransactionController extends Controller
 {
     /**
@@ -239,5 +240,23 @@ class TransactionController extends Controller
 
 
         return response($stocks, 200);
+    }
+
+    public function getTransactionsInDateRange(Request $request)
+    {
+        //Extract the POST info from the request
+        $start = intval($request->start);
+        $end = intval($request->end);
+        $tradeAccountId = intval($request->trade_account_id);
+
+        //Make a call to the transactions table to get the transactions within the specified dates and the correct Trade Account ID
+        //Also join the information from the stocks table
+        $transactions = DB::table('transactions')->where([
+            ['trade_account_id', '=', $tradeAccountId],
+            ['timestamp', '>=', $start],
+            ['timestamp', '<=', $end]
+        ])->join('stocks', 'transactions.stock_id', '=', 'stocks.id')->get();
+
+        return response($transactions, 200);
     }
 }

@@ -32,3 +32,5 @@ Route::get('/all-ords', 'AllOrdinariesController@getCurrentAllOrdinaries');
 
 Route::get('/all-stocks', 'DatabaseStockCodes@getAllStockCodesAndCompanyNames');
 
+Route::post('/getTransactionsInDateRange', 'TransactionController@getTransactionsInDateRange');
+
