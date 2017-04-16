@@ -175,13 +175,13 @@
                         //Put stock ID into the Data bundle
                         postData["stock_id"] = stock_id;
                         //Put the quantity that is to be purchased in the Data bundle
-                        postData["quantity"] = parseFloat($('#buyStockTotal').text());
+                        postData["quantity"] = parseInt($('#stockQuantity').val());
 
                         //AJAX to the API to add the new purchase
                         $.post("{{ url('api/addBuyTransaction') }}", postData)
                         //If all went well, show success message
                             .done(function(data) {
-                                $('#buySuccess').text(data);
+                                $('#buySuccess').text('Stock purchased!');
                                 $('#buySuccess').css('display', 'block');
                             })
 
