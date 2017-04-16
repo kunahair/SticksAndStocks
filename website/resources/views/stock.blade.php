@@ -263,6 +263,67 @@
                     //Load up the Stocks Held on the first item in the Selection Box
                     getStockCount(parseInt($('#sellTradeAccounts').val()));
 
+                    //When user clicks sell button, do some client side validation then post to the server to process
+                    $('#sellButton').click(function () {
+                        //Get the quantity the user want to sell from the input box
+                        var stockQuantityToSell = parseInt($('#sellStockQuantity').val());
+                        //Get the stock held by the currently selected trading account
+                        //TODO: might change this to the tradeAccountStockCounter holder
+                        var stockHeld = parseInt($('#sellStockHeld').text());
+
+                        //If the quantity to sell is not valid number or is below 1, show an error message and return
+                        if (isNaN(stockQuantityToSell) || stockHeld < 1)
+                        {
+                            $('#sellError').css('display', 'block').text("Sell quantity must be above 1");
+                            return;
+                        }
+
+                        //If the stock held is not a number, then display message and return
+                        if (isNaN(stockHeld) )
+                        {
+                            $('#sellError').css('display', 'block').text("Sell quantity must be above 1");
+                            return;
+                        }
+
+                        //If the quantity to sell is below the stock held, show an error and return
+                        if (stockHeld < stockQuantityToSell)
+                        {
+                            $('#sellError').css('display', 'block').text("Sell quantity must be equal or lower than Stock Held");
+                            return;
+                        }
+
+                        var postData = {};
+
+                        //Get the currently selected Trade Account and put into postData
+                        postData["trade_account_id"] = parseInt($('#sellTradeAccounts').val());
+                        //The current stock ID, put into postData
+                        postData["stock_id"] = stock_id;
+                        //Add the quantity to be sold to the postData
+                        postData["quantity"] = stockQuantityToSell;
+
+                        console.log(postData);
+
+                        //AJAX to the API to add the new sell
+                        $.post("{{ url('api/addSellTransaction') }}", postData)
+                        //If all good, hide the error message and show success message
+                            .done(function (data) {
+                                $('#sellSuccess').css('display', 'block').text('Sale Successful');
+                                $('#sellError').css('display', 'none');
+
+                                window.setTimeout(function () {
+                                    location.reload();
+                                }, 1500);
+                            })
+                            //If there is an error, display error message to user
+                            .fail(function (error) {
+                                console.log(error);
+                                $('#sellError').css('display', 'block').text(error["responseText"]);
+                                $('#sellSuccess').css('display', 'none');
+                            })
+                        ;
+
+                    });
+
                 </script>
 
             </div>

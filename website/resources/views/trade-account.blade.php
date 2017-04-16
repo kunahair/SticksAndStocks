@@ -154,7 +154,7 @@
 
                         //If the stock owned is less than 1 (it should never hit below 0)
                         //Then stock is not needed as it is not working for account in current state
-                        if ($stock_owned <= 0)
+                        if ($stock_owned <= 0 || $stock_sold == $stock_owned)
                         {
                             continue;
                         }
@@ -165,7 +165,7 @@
 
                         //Add stock information to the holding table
                         echo '<tr>
-                                    <td class="col-xs-1 " style="padding: 0px">' . $stock_symbol . '</td>
+                                    <td class="col-xs-1 " style="padding: 0px"><a href="' . "../stock/". $stock_symbol . '">' . $stock_symbol . '</a></td>
                                     <td class=col-xs-4" style="padding: 0px">' . $stock_name . '</td>
                                     <td class=col-xs-3" style="padding: 0px">' . $stock_total_cost . '</td>
                                     <td class=col-xs-3" style="padding: 0px">' . $stock_total_growth . '</td>
