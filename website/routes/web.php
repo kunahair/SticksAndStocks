@@ -54,5 +54,8 @@ Route::get('tradeaccount/{accountId}', 'TradeAccountController@view');
 //API call to add a new buy transaction for the current Trade Account
 Route::post('api/addBuyTransaction', 'TransactionController@apiAddBuyTransaction');
 
+//Get the Count of stock held for a particular Trade Account, via POST data
+Route::post('api/getTradeAccountStockQuantity', 'TransactionController@getSingleStockQuantity');
+
 Route::post('api/broker/buy', 'BrokerController@buy');
 Route::post('api/broker/sell', 'BrokerController@sell');

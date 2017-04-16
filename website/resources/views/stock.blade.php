@@ -78,13 +78,13 @@
                 </div>
             </div>
 
-            {{--Only Users who are signed in can purchase stocks--}}
+            {{--Only Users who are signed in can purchase and sell stocks--}}
             @if(Auth::check())
-            <div id="userBuyForm" style="margin-bottom: 5%">
+            <div id="userBuyForm" class="col-xs-12 col-md-6" style="margin-bottom: 5%">
                 <h3>Buy Stock</h3>
                 {{--User messages--}}
                 <div id="buyError" class="alert alert-danger" style="display: none">There was an error</div>
-                <div id="buySuccess" class="alert alert-success" style="display: none">Stock successfuly purchased</div>
+                <div id="buySuccess" class="alert alert-success" style="display: none">Stock successfully purchased</div>
 
                 {{--Get the list of Users Trade Accounts and put into a selection box--}}
                 <select>
@@ -93,10 +93,10 @@
                     @endforeach
                 </select>
                 {{----}}
-                <input id="stockQuantity" type="number" value="1000" name="quantity" />
+                <input id="stockQuantity" type="number" value="1" name="quantity" />
                 <button id="buyButton" name="buyButton" >Buy</button>
                 <br />
-                <p>$<lable id="buyStockTotal">170.00</lable></p>
+                <p>$<lable id="buyStockTotal">{{$stock->current_price}}</lable></p>
 
                 <script>
                     //Needed to have user info calls on the server side
@@ -121,9 +121,11 @@
                         var stockQTY = parseInt(stockQTY);
 
                         //If the stock is less than 1, set to 1 and return
-                        if (stockQTY < 1)
+                        if (stockQTY < 1 || isNaN(stockQTY))
                         {
                             $('#stockQuantity').val(1);
+                            //Update the cost for the user
+                            $('#buyStockTotal').text((curr_value * 1).toFixed(2));
                             return;
                         }
 
@@ -197,13 +199,81 @@
                 </script>
             </div>
 
+            {{--Sell User From--}}
+            <div id="userSellForm" class="col-xs-12 col-md-6" style="margin-bottom: 5%">
+                <h3>Sell Stock</h3>
+                {{--User messages--}}
+                <div id="sellError" class="alert alert-danger" style="display: none">There was an error</div>
+                <div id="sellSuccess" class="alert alert-success" style="display: none">Stock successfully sold</div>
+
+                {{--Get the list of Users Trade Accounts and put into a selection box--}}
+                <select id="sellTradeAccounts">
+                    @foreach(Auth::user()->tradingAccounts as $tradeAccount)
+                        <option value="{{$tradeAccount->id}}" >{{$tradeAccount->name}} : ${{$tradeAccount->balance}}</option>
+                    @endforeach
+                </select>
+                <input id="sellStockQuantity" type="number" value="1" name="quantity" />
+                <button id="sellButton" name="sellButton" >Sell</button>
+                <br />
+                <p>Stock Held: <text id="sellStockHeld"></text></p>
+
+                <script>
+
+                    //Cache for the Stock Held values to save constantly calling API, stored by Trade Account ID
+                    var tradeAccountStocks = {};
+
+                    //Listener on the Sell Trade Account Selector, gets the Stock Held count and displays it to user
+                    $('#sellTradeAccounts').change(function () {
+
+                        //Blank the Stock Held while loading
+                        $('#sellStockHeld').text('');
+
+                        //Get the newly selected Trade Account ID
+                        var tradeAccountId = parseInt($('#sellTradeAccounts').val());
+
+                        //If the Trade account has been selected before, if not get it from the API, otherwise pull from cache
+                        if (tradeAccountStocks[tradeAccountId] == undefined)
+                            getStockCount(parseInt($('#sellTradeAccounts').val()));
+                        else
+                            $('#sellStockHeld').text(tradeAccountStocks[tradeAccountId]);
+
+                    });
+
+                    //AJAX call to get the stock held count for the current stock view on the selected Trade Account
+                    function getStockCount(tradeAccountId) {
+                        var postData = {};
+
+                        //Put stock ID into the Data bundle
+                        postData["stock_id"] = stock_id;
+                        postData["trade_account_id"] = tradeAccountId;
+
+                        $.post("{{ url('api/getTradeAccountStockQuantity') }}", postData)
+                        //If all good, then change the Stock Held text and make sure the error message is gone
+                            .done(function (data) {
+                                $('#sellStockHeld').text(data);
+                                $('#sellError').css('display', 'none');
+                                tradeAccountStocks[tradeAccountId] = data;
+                            })
+                            //If there is an error, display error message to user
+                            .fail(function (error) {
+                                $('#sellError').css('display', 'block').text('An error occurred getting Trade Account details');
+                            })
+                        ;
+                    }
+                    //Load up the Stocks Held on the first item in the Selection Box
+                    getStockCount(parseInt($('#sellTradeAccounts').val()));
+
+                </script>
+
+            </div>
+
 
 
             @endif
             <!--Table to show quick stats about stock-->
             <!--In full screen mode the table is divided into two, side by side. when on mobile they are stacked-->
             <!--<div id="stock-stats-table" style="margin-bottom: 10%;">-->
-            <div class="table-responsive" style="margin-bottom: 3%; border: none">
+            <div class="table-responsive col-xs-12" style="margin-bottom: 3%; border: none">
                 <table class="col-xs-12 col-md-6 table-hover">
 
                     {{--Loop through the first half of the current data array and populate the left side of the table--}}

@@ -110,7 +110,45 @@ class TransactionController extends Controller
         $returnData["message"] = "Transaction added";
         $returnData["code"] = 200;
         return json_encode($data);
+    }
 
+    public function getSingleStockQuantity(Request $request)
+    {
+        $error = array();
 
+        //Check that the user is signed in
+        if (!Auth::check())
+        {
+            $error["message"] = "User not logged in";
+            $error["code"] = 403;
+            return response(json_encode($error), 403);
+        }
+
+        $stock_id = $request->stock_id;
+        $trade_account_id = $request->trade_account_id;
+
+        $transactions = DB::table('transactions')->where('trade_account_id', $trade_account_id)->get();
+
+//        $group = array();
+        $stocks = 0;
+        foreach ($transactions as $transaction)
+        {
+//            $key = $transaction->stock_id;
+//            if (!key_exists($key, $group))
+//                $group[$key] = array();
+
+            if($transaction->stock_id == $stock_id)
+            {
+                $stocks += $transaction->bought;
+                $stocks -= $transaction->sold;
+            }
+//                array_push($group, $transaction->);
+        }
+
+//        $transactions = Auth::user()->transactions;
+
+//        var_dump($stocks);
+
+        return response($stocks, 200);
     }
 }

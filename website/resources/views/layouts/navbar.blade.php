@@ -102,9 +102,16 @@
                 //Put the stock symbol value into the text field
                 $("#autocomplete").val(split[split.length - 1]);
 
+                //Get the stock code of the selected suggestion
+                var stockCode = split[split.length - 1];
+                //If the user clicked the company name, the code must be retrieved from the correct node
+                if (stockCode.length == 0)
+                    stockCode = event.target.parentNode.childNodes[0].childNodes[2].innerHTML;
+
+
                 //Direct User to the stock page of selected suggestion
                 //'http://pineapple-stocks.ddns.net/stock/'
-                location.href = "{{url('stock')}}" + "/" + split[split.length - 1];
+                location.href = "{{url('stock')}}" + "/" + stockCode;
             });
 
             var stocksList = null; //Set stocksList to null initially
@@ -141,7 +148,7 @@
                     {
                         {{--var link = "{{url('stock')}}" + "/" + item["stock_symbol"];--}}
                         $('#stocksList').append('' +
-                            '<a href="#"><p class="suggestion" style="margin: 0; padding: 10px;">' + item["stock_name"] + ' <br /><text class="stock_symbol">' + item["stock_symbol"] + '</text></p></a>'
+                            '<a href="#"><p class="suggestion" style="margin: 0; padding: 10px;">' + item["stock_name"] + ' <br /><text class="stock_symbol" >' + item["stock_symbol"] + '</text></p></a>'
                         );
                         j--;
                     }
