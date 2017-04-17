@@ -193,7 +193,8 @@
 
                     //Show the average Stock value of this Trade Account
                     echo '<div class="col-xs-12" style="padding-left: 0">';
-
+                    
+                    if ($allStocksTotalCount > 0)
                     echo '<h4>Stock Average Value: $' . number_format(($allStocksTotalValue / $allStocksTotalCount),2) . 'AUD</h4>';
 
                     echo '</div>';
