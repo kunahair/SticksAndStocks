@@ -23,6 +23,15 @@ Route::get('contact', function () {
 });
 
 Route::get('dashboard', function () {
+
+    //If the user is an admin, display the admin-dashboard
+    if (Auth::user()->admin)
+    {
+        $adminDashboardController = new \App\Http\Controllers\AdminDashboardController;
+        return $adminDashboardController->view();
+    }
+
+    //Otherwise, if non admin, display the User Dashboard
 	return view('dashboard');
 })->middleware('auth');
 
@@ -55,8 +64,6 @@ Route::get('tradeaccount/{accountId}', 'TradeAccountController@view');
 Route::post('api/addBuyTransaction', 'TransactionController@apiAddBuyTransaction');
 //API call to add a new sell transaction for the current Trade Account
 Route::post('api/addSellTransaction', 'TransactionController@apiAddSellTransaction');
-
-//Route::post('api/getTransactionsInDateRange', 'TransactionsController@getTransactionsInDateRange');
 
 //Get the Count of stock held for a particular Trade Account, via POST data
 Route::post('api/getTradeAccountStockQuantity', 'TransactionController@getSingleStockQuantity');
