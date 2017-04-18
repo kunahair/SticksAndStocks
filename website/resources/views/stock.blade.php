@@ -376,28 +376,68 @@
     @show
 
     <script>
-        //Array that stores data to be shown in Stock Daily Graph
-        var dataIn = [];
-        //Blade syntax to get the stocks element that was passed by the Laravel controller, get the history JSON string
-        var dataAsString = '{{!! $stock->history !!}}';
-        //Convert the history data from String to JSON
-        var dataAsJSON = JSON.parse(dataAsString.slice(1,-1));
 
-        var date = "{{date("d-m-y")}}";
-
-        if (!('{{date("d-m-y")}}' in dataAsJSON)) {
-            date = Object.keys(dataAsJSON)[0];
-            // date = '{{date("d-m-y",strtotime("-1 days"))}}';
+        //Convenience function to add a 0 to the front of an integer, used for date formatting
+        function addZero(i)
+        {
+            if (i < 10) {
+                i = '0' + i;
+            }
+            return i;
         }
 
-        //Loop through each json object that contains the stocks data
-        //Get the time and the average and plog on a graph
-        $.each(dataAsJSON[date], function(index, value) {
-            //Get the time value that is going to be shown on the chart
-            var time = "{{date('Y/m/d')}} " + value.time;
-            //Get the average of the stock value at time to plot on graph
-            var average = value.average;
-            //Add the collected time and average to the dataIn array that is to be displayed on the graph
+        //Convenience function to convert the year that a getYear function returns, converts it to 20xx
+        function fixYear(i)
+        {
+            return (i - 100) + 2000;
+        }
+
+        //Array that stores data to be shown in Stock Daily Graph
+        var dataIn = [];
+
+        //Blade syntax to get the stocks element that was passed by the Laravel controller, get the history JSON string
+        {{--var dataAsString = '{{!! $stock->history !!}}';--}}
+        {{--//Convert the history data from String to JSON--}}
+        {{--var dataAsJSON = JSON.parse(dataAsString.slice(1,-1));--}}
+
+        {{--var date = "{{date("d-m-y")}}";--}}
+
+        {{--if (!('{{date("d-m-y")}}' in dataAsJSON)) {--}}
+            {{--date = Object.keys(dataAsJSON)[0];--}}
+            {{--// date = '{{date("d-m-y",strtotime("-1 days"))}}';--}}
+        {{--}--}}
+
+        {{--//Loop through each json object that contains the stocks data--}}
+        {{--//Get the time and the average and plog on a graph--}}
+        {{--$.each(dataAsJSON[date], function(index, value) {--}}
+            {{--//Get the time value that is going to be shown on the chart--}}
+            {{--var time = "{{date('Y/m/d')}} " + value.time;--}}
+
+            {{--console.log(time);--}}
+            {{--//Get the average of the stock value at time to plot on graph--}}
+            {{--var average = value.average;--}}
+            {{--//Add the collected time and average to the dataIn array that is to be displayed on the graph--}}
+            {{--dataIn.push({x: time, y: average});--}}
+        {{--});--}}
+
+        {{--Get Stock History from DB and convert to JSON--}}
+        var stockHistoriesString = htmlDecode("{{$stock->getHistory}}");
+        var stockHistoriesJSON = JSON.parse(stockHistoriesString);
+
+//      Loop through the stockHistoriesJSON and convert time into ChartJS format, and add time and average to ChartJS data
+        $.each(stockHistoriesJSON, function (index, value) {
+            var date = new Date();
+            date.setTime(value["timestamp"] * 1000);
+
+            //2017/04/18 14:31:21
+            //Make string that ChartJS is expecting
+            var time = fixYear(date.getYear()) + '/' + addZero(date.getMonth() + 1) + '/' + addZero(date.getDay()) + ' ' +
+                    date.getHours() + ':' +  addZero(date.getMinutes()) + ':' + addZero(date.getSeconds());
+
+            //Pull the average stock value from the history row
+            var average = value["average"];
+
+            //Add data to ChartJS JSON array
             dataIn.push({x: time, y: average});
         });
 
@@ -433,8 +473,8 @@
                             displayFormats: {
                                 hour: 'hh:mm a'
                             },
-                            min: '{{date("Y/m/d")}} 10:00',
-                            max: '{{date("Y/m/d")}} 16:00'
+                            {{--min: '{{date("Y/m/d")}} 10:00',--}}
+//                            max: dateToday.getYear() ' 16:00'
                         },
                         gridLines : {
                             display : false

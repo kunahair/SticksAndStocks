@@ -68,7 +68,7 @@
     <div class=" container">
         <h2>{{$tradeAccount["name"]}}</h2>
         <hr />
-        <h3>${{$tradeAccount["balance"]}}</h3>
+        <h3>${{number_format($tradeAccount["balance"], 2)}}</h3>
 
         <div id="trade-account-info-box" class="col-xs-10 col-md-12" style="padding-top: 3%">
 
@@ -81,7 +81,8 @@
                 <tr>
                     <td class="col-xs-1" style="padding: 0px">Code</td>
                     <td class="col-xs-4" style="padding: 0px">Name</td>
-                    <td class="col-xs-2" style="padding: 0px">Value</td>
+                    <td class="col-xs-1" style="padding: 0px">Value</td>
+                    <td class="col-xs-1" style="padding: 0">Price</td>
                     <td class="col-xs-2" style="padding: 0px">Growth</td>
                     <td class="col-xs-2" style="padding: 0px">Owned</td>
                     <td class="col-xs-1" style="padding: 0px">View</td>
@@ -171,16 +172,21 @@
                         $stock_total_growth = ($stock_total_cost / ($stock_owned - $stock_sold)) - $stock_current_price;
 
                         if ($stock_total_growth > 0.00)
-                            $stock_total_growth *= ($stock_owned - $stock_sold) * -1.00;
+                            $stock_total_growth *= -1;
+                            //$stock_total_growth *= ($stock_owned - $stock_sold) * -1.00;
+
+                        //Get the growth as a percentage
+                        $stock_total_growth_percentage = ((($stock_current_price / ($stock_total_cost / ($stock_owned - $stock_sold))) * 100) - 100) * -1;
 
                         //Add stock information to the holding table
                         echo '<tr>
                                     <td class="col-xs-1 " style="padding: 0px"><a href="' . "../stock/". $stock_symbol . '">' . $stock_symbol . '</a></td>
                                     <td class=col-xs-4" style="padding: 0px">' . $stock_name . '</td>
-                                    <td class=col-xs-3" style="padding: 0px">$' . number_format($stock_total_cost, 2) . '</td>
-                                    <td class=col-xs-3" style="padding: 0px">$' . number_format($stock_total_growth, 2) . '</td>
-                                    <td class=col-xs-3" style="padding: 0px">' . ($stock_owned - $stock_sold) . '</td>
-                                    <td class=col-xs-3" style="padding: 0px">' . '<a href="#">view</a>' . '</td>
+                                    <td class=col-xs-1" style="padding: 0px">$' . number_format($stock_total_cost, 2) . '</td>
+                                    <td class=col-xs-1" style="padding: 0px">$' . number_format($stock_current_price, 2) . '</td>
+                                    <td class=col-xs-2" style="padding: 0px">$' . number_format($stock_total_growth, 2) . ' (' . number_format($stock_total_growth_percentage, 2) . '%)' . '</td>
+                                    <td class=col-xs-2" style="padding: 0px">' . ($stock_owned - $stock_sold) . '</td>
+                                    <td class=col-xs-1" style="padding: 0px">' . '<a href="#">view</a>' . '</td>
                                  </tr>';
 
                         $allStocksTotalValue += $stock_current_price * ($stock_owned - $stock_sold);
@@ -235,6 +241,48 @@
             <input name="daterange" type="text" style="width: 100%; margin-bottom: 5%" />
 
             <script>
+
+                //Function to update the transactions page with given information
+                function updateTransactionTable(postData) {
+                    //Call the server to give a list of transactions that are within the User selected date range
+                    $.post("{{url('api/getTransactionsInDateRange')}}", postData)
+                        .done(function (data) {
+//                                console.log(data);
+                            //Remove the contents of the transactions table body (remove all rows except heading)
+                            $('#transactionsTableBody tr').remove();
+
+                            //Loop through all the returned transaction (with stock info) objects and fill the table body
+                            for(var i = 0; i < data.length; i++)
+                            {
+//                                    console.log(data[i]["stock_symbol"]);
+                                //Add the next row after the last row that has been added
+                                $('#transactionsTableBody').append(
+                                    '<tr>' +
+                                    '<td class=col-xs-3" style="padding: 0px">' + data[i]["stock_symbol"] + '</td>' +
+                                    '<td class=col-xs-3" style="padding: 0px">'+ data[i]["stock_name"] + '</td>'   +
+                                    '<td class=col-xs-3" style="padding: 0px"> $' + data[i]["price"] +'</td>' +
+                                    '<td class=col-xs-3" style="padding: 0px">' + data[i]["updated_at"] + '</td>'
+                                    + '</tr>'
+                                );
+
+                                //Add the sold or bought attribute
+                                if (data[i]["sold"] > 0)
+                                    $('#transactionsTableBody tr:last td:nth-child(3)').after(
+                                        '<td class=col-xs-3" style="padding: 0px">-' + data[i]["sold"] + '</td>'
+                                    );
+                                else
+                                    $('#transactionsTableBody tr:last td:nth-child(3)').after(
+                                        '<td class=col-xs-3" style="padding: 0px">+' + data[i]["bought"] + '</td>'
+                                    );
+                            }
+                        })
+
+                        .fail(function (error) {
+                            console.log(error);
+                        })
+                    ;
+                }
+
                 var date = new Date();
 
                 //Date picker library: http://www.daterangepicker.com/
@@ -250,6 +298,7 @@
                         //Get the start date in epoch time to send to the server
                         var startDate = new Date();
                         startDate.setDate(start.format('DD'));
+                        startDate.setHours(0,0,0,0);
                         var startDateInt = parseInt(startDate.getTime() / 1000);
 //                        console.log(startDateInt);
 
@@ -267,46 +316,31 @@
                         postData["end"] = endDateInt;
                         postData["trade_account_id"] = {{$tradeAccount->id}};
 
-                        //Call the server to give a list of transactions that are within the User selected date range
-                        $.post("{{url('api/getTransactionsInDateRange')}}", postData)
-                            .done(function (data) {
-//                                console.log(data);
-                                //Remove the contents of the transactions table body (remove all rows except heading)
-                                $('#transactionsTableBody tr').remove();
+                        updateTransactionTable(postData);
 
-                                //Loop through all the returned transaction (with stock info) objects and fill the table body
-                                for(var i = 0; i < data.length; i++)
-                                {
-//                                    console.log(data[i]["stock_symbol"]);
-                                    //Add the next row after the last row that has been added
-                                    $('#transactionsTableBody').append(
-                                        '<tr>' +
-                                        '<td class=col-xs-3" style="padding: 0px">' + data[i]["stock_symbol"] + '</td>' +
-                                        '<td class=col-xs-3" style="padding: 0px">'+ data[i]["stock_name"] + '</td>'   +
-                                        '<td class=col-xs-3" style="padding: 0px"> $' + data[i]["price"] +'</td>' +
-                                        '<td class=col-xs-3" style="padding: 0px">' + data[i]["updated_at"] + '</td>'
-                                        + '</tr>'
-                                    );
-
-                                    //Add the sold or bought attribute
-                                    if (data[i]["sold"] > 0)
-                                        $('#transactionsTableBody tr:last td:nth-child(3)').after(
-                                            '<td class=col-xs-3" style="padding: 0px">-' + data[i]["sold"] + '</td>'
-                                        );
-                                    else
-                                        $('#transactionsTableBody tr:last td:nth-child(3)').after(
-                                            '<td class=col-xs-3" style="padding: 0px">+' + data[i]["bought"] + '</td>'
-                                        );
-                                }
-                            })
-
-                            .fail(function (error) {
-                                console.log(error);
-                            })
-                        ;
-
-//            alert("A new date range was chosen: " + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD'));
                     });
+
+                //When the page is loaded, show today's transactions
+                $(document).ready(function () {
+                    //Get the start date (current day, midnight time) in epoch time to send to the server
+                    var startDate = new Date();
+                    startDate.setHours(0,0,0,0);
+                    var startDateInt = parseInt(startDate.getTime() / 1000);
+
+                    //Get the end date (current) in epoch time to send to the server
+                    var endDate = new Date();
+                    var endDateInt = parseInt(endDate.getTime() / 1000);
+
+                    //Data holder that will be sent to the server
+                    var postData = {};
+
+                    //Assign data to the holder
+                    postData["start"] = startDateInt;
+                    postData["end"] = endDateInt;
+                    postData["trade_account_id"] = {{$tradeAccount->id}};
+
+                    updateTransactionTable(postData);
+                });
             </script>
 
             {{--Table to show list of transactions, searched above by date and filled with jQuery/Javascript--}}

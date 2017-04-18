@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
 class Stock extends Model
 {
@@ -48,6 +49,62 @@ class Stock extends Model
         }
         // Encode it back into String & save it into the database
         $this->save();
+    }
+
+    public function addHistory($value)
+    {
+        $stock_id = DB::table('stocks')->select('id')->where('stock_symbol', $value["code"])->first();
+
+        $lastTimestamp = DB::table('stock_histories')->where('stock_id', $stock_id->id)->max('timestamp');
+
+
+
+        if ($lastTimestamp == null)
+        {
+            foreach ($value[1] as $timeseries)
+            {
+
+                $history = new StockHistory;
+
+                $history->stock_id = $stock_id->id;
+//                $history->low = $timeseries["low"];
+//                $history->high = $timeseries["high"];
+//                $history->open = $timeseries["open"];
+//                $history->time = $timeseries["time"];
+                $history->timestamp = $timeseries["timestamp"];
+//                $history->close = $timeseries["close"];
+//                $history->volume = $timeseries["volume"];
+                $history->average = $timeseries["average"];
+
+//                var_dump($timeseries["time"]);
+
+                $history->save();
+            }
+        }
+        else
+        {
+            foreach ($value[1] as $timeseries)
+            {
+
+                if ($timeseries["timestamp"] <= $lastTimestamp)
+                    continue;
+
+                $history = new StockHistory;
+
+                $history->stock_id = $stock_id->id;
+                $history->timestamp = $timeseries["timestamp"];
+                $history->average = $timeseries["average"];
+
+                $history->save();
+            }
+        }
+
+        var_dump($value["code"]);
+
+    }
+
+    public function getHistory(){
+	    return $this->hasMany('App\StockHistory');
     }
 
 }

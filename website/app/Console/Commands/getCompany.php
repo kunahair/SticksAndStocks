@@ -48,6 +48,7 @@ class getCompany extends Command
         $currentStock = Stock::where('stock_symbol', $stock_code)->first();
         if ($this->historyHour($stock_code) != null) {
 		    $currentStock->appendHistory($this->historyHour($stock_code));
+		    $currentStock->addHistory($this->historyHour($stock_code));
         }
     }
 
@@ -133,6 +134,7 @@ class getCompany extends Command
             //Add all values to array with index of current position
             $hrArray[$index] = array(
                 "time" => $date->format("H:i:s"),
+                "timestamp" => $date->getTimestamp(),
                 "average" => $avg,
                 "close" => $detail["close"],
                 "high" => $detail["high"],
@@ -153,10 +155,11 @@ class getCompany extends Command
         //this puts the list of series in the hrArray into a JSON array (better for handling on front end)
         $data = array();
         $dataString = $dataTimestamp->format('d-m-y');
+        $code = str_replace(".AX", "", $code);
         $data = $hrArray;
         
         //Return the data
-        return [$dataString, $data];
+        return [$dataString, $data, "code" => strtoupper($code)];
 
     }
 
