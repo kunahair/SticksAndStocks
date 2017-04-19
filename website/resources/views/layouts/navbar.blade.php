@@ -46,8 +46,7 @@
 
                             @endif
                         </ul>
-                    <li><a href="#">
-                            Inbox <span class="badge">4</span>
+                    <li><a href="/inbox">Inbox <span class="badge">4</span>
                         </a>
                     </li>
                     </li>

@@ -102,7 +102,7 @@ html, body {
 footer > ul > li {
     text-decoration: none;
     display: inline-block;
-    padding: 20px;
+
 }
 
 footer > ul > li > a {
@@ -162,3 +162,4 @@ canvas {
     right:100px;
 
 }
+

@@ -21,7 +21,7 @@
     </div>
 
         <div class="move-right">
-            <h3> welcome </h3>
+
         </div>
     </div>
 </nav>

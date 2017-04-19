@@ -18,6 +18,8 @@ Route::get('/', function () {
 Route::get('stockinfo', function () {
     return view('stockinfo');
 });
+
+
 Route::get('contact', function () {
     return view('contact');
 });
