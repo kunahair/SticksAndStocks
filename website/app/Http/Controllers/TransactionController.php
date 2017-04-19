@@ -253,11 +253,15 @@ class TransactionController extends Controller
 
         //Make a call to the transactions table to get the transactions within the specified dates and the correct Trade Account ID
         //Also join the information from the stocks table
+        //Not that there has to be a select function attached when doing this join, as the updated_at and created_at columns
+        //created a conflict and Laravel/SQL where guessing which table to pick from, BE EXPLICIT!!
         $transactions = DB::table('transactions')->where([
             ['trade_account_id', '=', $tradeAccountId],
             ['timestamp', '>=', $start],
             ['timestamp', '<=', $end]
-        ])->join('stocks', 'transactions.stock_id', '=', 'stocks.id')->get();
+        ])->join('stocks', 'transactions.stock_id', '=', 'stocks.id')
+            ->select('transactions.*', 'stocks.stock_name', 'stocks.stock_symbol')
+            ->get();
 
         return response($transactions, 200);
     }
