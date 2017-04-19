@@ -9,6 +9,11 @@
             src="https://code.jquery.com/jquery-3.2.1.min.js"
             integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
             crossorigin="anonymous"></script>
+    <script
+            src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"
+            integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU="
+            crossorigin="anonymous"></script>
+    <script src="{{url('js/jQDateRangeSlider-min.js')}}"></script>
     <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
 
     <!--Bootstrap CSS-->
@@ -29,6 +34,7 @@
     <script type="text/javascript" src="//cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
     <script type="text/javascript" src="//cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.js"></script>
     <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.css" />
+    <link href="{{ url('css/iThing-min.css') }}" rel="stylesheet" type="text/css">
 
     <link href="{{ url('css/style.css') }}" rel="stylesheet" type="text/css">
 
@@ -238,9 +244,37 @@
 
             <h2>Transactions</h2>
 
-            <input name="daterange" type="text" style="width: 100%; margin-bottom: 5%" />
+            <div id="slider" style="margin: 40px;"></div>
+
+            {{--<input name="daterange" type="text" style="width: 100%; margin-bottom: 5%" />--}}
 
             <script>
+
+                var startD = new Date();
+                startD.setDate(startD.getDate() - 21);
+
+                var endD = new Date();
+                endD.setDate(endD.getDate() + 365 - 21);
+
+                var defaultStart = new Date();
+                defaultStart.setHours(0);
+                defaultStart.setMinutes(0);
+                defaultStart.setSeconds(0);
+                defaultStart.setMilliseconds(0);
+
+                var defaultEnd = new Date();
+                defaultEnd.setDate(defaultEnd.getDate() + 42);
+
+                $("#slider").dateRangeSlider({
+                    bounds: {
+                        min: startD,
+                        max: endD
+                    },
+                    defaultValues:{
+                        min: defaultStart,
+                        max: defaultEnd
+                    }
+                });
 
                 //Function to update the transactions page with given information
                 function updateTransactionTable(postData) {
@@ -283,60 +317,36 @@
                     ;
                 }
 
-                var date = new Date();
-
-                //Date picker library: http://www.daterangepicker.com/
-                $('input[name="daterange"]').daterangepicker(
-                    {
-                        locale: {
-                            format: 'DD-MM-YYYY'
-                        },
-                        startDate: date.getDate() + '/' + (date.getMonth() + 1) + '/' + ((date.getYear() - 100) + 2000),//'2013-01-01',
-                        endDate: date.getDate() + '/' + (date.getMonth() + 1) + '/' + ((date.getYear() - 100) + 2000)//'2013-12-31'
-                    },
-                    function(start, end, label) {
-                        //Get the start date in epoch time to send to the server
-                        var startDate = new Date();
-                        startDate.setDate(start.format('DD'));
-                        startDate.setHours(0,0,0,0);
-                        var startDateInt = parseInt(startDate.getTime() / 1000);
-//                        console.log(startDateInt);
-
-                        //Get the end date in epoch time to send to the server
-                        var endDate = new Date();
-                        endDate.setDate(end.format('DD'));
-                        var endDateInt = parseInt(endDate.getTime() / 1000);
-//                        console.log(endDateInt);
-
-                        //Data holder that will be sent to the server
-                        var postData = {};
-
-                        //Assign data to the holder
-                        postData["start"] = startDateInt;
-                        postData["end"] = endDateInt;
-                        postData["trade_account_id"] = {{$tradeAccount->id}};
-
-                        updateTransactionTable(postData);
-
-                    });
-
-                //When the page is loaded, show today's transactions
-                $(document).ready(function () {
-                    //Get the start date (current day, midnight time) in epoch time to send to the server
-                    var startDate = new Date();
-                    startDate.setHours(0,0,0,0);
-                    var startDateInt = parseInt(startDate.getTime() / 1000);
-
-                    //Get the end date (current) in epoch time to send to the server
-                    var endDate = new Date();
-                    var endDateInt = parseInt(endDate.getTime() / 1000);
+                $("#slider").bind("userValuesChanged", function(e, data){
+                    var minEpoch = moment(data.values.min).unix();
+                    var maxEpoch = moment(data.values.max).unix();
 
                     //Data holder that will be sent to the server
                     var postData = {};
 
                     //Assign data to the holder
-                    postData["start"] = startDateInt;
-                    postData["end"] = endDateInt;
+                    postData["start"] = minEpoch;
+                    postData["end"] = maxEpoch;
+                    postData["trade_account_id"] = {{$tradeAccount->id}};
+
+                    updateTransactionTable(postData);
+                });
+
+                //When the page is loaded, show today's transactions
+                $(document).ready(function () {
+                    var dateValues = $("#dateSlider").dateRangeSlider("values");
+
+                    var minEpoch = moment(defaultStart).unix();
+                    var maxEpoch = moment(defaultEnd).unix();
+
+                    console.log(minEpoch,maxEpoch);
+
+                    //Data holder that will be sent to the server
+                    var postData = {};
+
+                    //Assign data to the holder
+                    postData["start"] = minEpoch;
+                    postData["end"] = maxEpoch;
                     postData["trade_account_id"] = {{$tradeAccount->id}};
 
                     updateTransactionTable(postData);
