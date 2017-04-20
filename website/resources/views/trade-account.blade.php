@@ -82,7 +82,7 @@
 
             <h2>Held Stocks</h2>
 
-            <table class="table col-xs-10 ">
+            <table class="table table-hover col-xs-10 ">
                 <thead>
                 <tr>
                     <td class="col-xs-1" style="padding: 0px">Code</td>
@@ -182,6 +182,9 @@
                             //$stock_total_growth *= ($stock_owned - $stock_sold) * -1.00;
 
                         //Get the growth as a percentage
+                        if (($stock_total_cost / ($stock_owned - $stock_sold)) == 0.00 ||
+                            ($stock_total_cost / ($stock_owned - $stock_sold)) == 0.0 || ($stock_total_cost / ($stock_owned - $stock_sold)) == 0)
+                            continue;
                         $stock_total_growth_percentage = ((($stock_current_price / ($stock_total_cost / ($stock_owned - $stock_sold))) * 100) - 100) * -1;
 
                         //Add stock information to the holding table

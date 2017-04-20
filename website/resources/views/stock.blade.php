@@ -216,24 +216,33 @@
                 </div>
 
             {{--Sell User From--}}
-            <div id="userSellForm" class="col-xs-12 col-md-6" style="margin-bottom: 5%">
-                <h3>Sell Stock</h3>
-                {{--User messages--}}
+              <!-- added a model for the buying stocks button-->
+                  <button type="button" class="btn btn-info btn-lg col-xs-12 col-md-8" data-toggle="modal" data-target="#userSellForm">Sell Stock</button>
+                  <!-- model layout-->
+            <div id="userSellForm" class="col-xs-12 col-md-6" class="modal fade" role="dialog" style="margin-bottom: 5%">
+                <div  class=" modal-content modal-dialog" >
+                    <div class="modal-header">
+                       <h3>Sell Stock</h3>
 
-
+                    </div>
                 {{--Get the list of Users Trade Accounts and put into a selection box--}}
-                <select id="sellTradeAccounts">
+                    <div class="modal-body">
+                        <h4> Stock:</h4>
+                    <select id="sellTradeAccounts">
                     @foreach(Auth::user()->tradingAccounts as $tradeAccount)
                         <option value="{{$tradeAccount->id}}" >{{$tradeAccount->name}} : ${{$tradeAccount->balance}}</option>
                     @endforeach
                 </select>
-                <input id="sellStockQuantity" type="number" value="1" name="quantity" />
-                <button id="sellButton" name="sellButton" >Sell</button>
-                <br />
-                <p>Stock Held: <text id="sellStockHeld"></text></p>
-
-                <div id="sellError" class="alert alert-danger" style="display: none">There was an error</div>
-                <div id="sellSuccess" class="alert alert-success" style="display: none">Stock successfully sold</div>
+                        <br/>
+                <input id="sellStockQuantity" class="form-control" type="number" value="1" name="quantity" />
+                        <p>Stock Held: <text id="sellStockHeld"></text></p>
+                    </div>
+                    <div class="modal-footer">
+                        <button id="sellButton" name="sellButton" >Sell</button>
+                    </div>
+                    {{--User messages--}}
+                    <div id="sellError" class="alert alert-danger" style="display: none">There was an error</div>
+                    <div id="sellSuccess" class="alert alert-success" style="display: none">Stock successfully sold</div>
                 <script>
 
                     //Cache for the Stock Held values to save constantly calling API, stored by Trade Account ID
@@ -342,7 +351,7 @@
                     });
 
                 </script>
-
+                </div>
             </div>
 
 

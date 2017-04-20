@@ -2,7 +2,7 @@
 
 @section('title','Pineapple')
 
-<body>
+<body class="background ">
 
     <style>
         .panel {
@@ -11,7 +11,7 @@
         }
         .panel :hover{
             cursor: pointer;
-            background-color: #f0ad4e;
+            background-color: lightblue;
         }
 
         #account-info {
@@ -21,8 +21,11 @@
 
     @include('layouts.navbar')
 
-    <div id='content' class="container">
+    <div id='content' class="bg-color container">
+
+        <br/>
         <div class="alert alert-success" role="alert">Logged In</div>
+        <br/>
 
         <div id="create-ta-form" style="padding-bottom: 3%;">
             <label>Trade Account Name: </label>
@@ -60,11 +63,11 @@
             <div id="account-info" >
                 <h2>Account Information</h2>
                 <span id="account-info-view-mode">
-                    <a href="#" id="account-info-edit-button" style="text-align: right">edit</a>
+                    <a href="#" id="account-info-edit-button" class="btn btn-info" style="text-align: right">edit</a>
                 </span>
                 <span id="account-info-edit-mode" style="display: none">
-                    <a href="#" id="account-info-save-button">save</a>&nbsp;&nbsp;&nbsp;&nbsp;
-                    <a href="#" id="account-info-cancel-button">cancel</a>
+                    <a href="#" id="account-info-save-button" class="btn btn-info" >save</a>&nbsp;&nbsp;&nbsp;&nbsp;
+                    <a href="#" id="account-info-cancel-button" class="btn btn-info" >cancel</a>
                 </span>
                 <hr />
                 <div >
@@ -79,6 +82,8 @@
                     @endif
 
                     <div id="update-user-error" style="display: none; color: #FF0000">There was an error updating your information<br /><br /></div>
+                        <br/>
+                        <br/>
                     <p>
                         <text style="font-weight: bold">Name: </text>
                         <text id="name-view" class="account-info-edit">{{Auth::user()->name}}</text>
@@ -95,7 +100,8 @@
                         <text style="font-weight: bold">Member Since: </text>
                         <text>{{Auth::user()->created_at}}</text>
                     </p>
-
+                        <br/>
+                        <br/>
                 </div>
             </div>
         </div>
@@ -104,6 +110,10 @@
         <br/>
         <br/>
         <br/>
+        <br/>
+        <br/>
+        <br/>
+
 
     </div> <!--End body Container -->
 
