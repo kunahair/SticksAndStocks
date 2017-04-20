@@ -321,8 +321,22 @@
                 }
 
                 $("#slider").bind("userValuesChanged", function(e, data){
-                    var minEpoch = moment(data.values.min).unix();
-                    var maxEpoch = moment(data.values.max).unix();
+
+                    //Change the min time to midnight of the selected day
+                    var minEpoch = moment(data.values.min);
+                    minEpoch.minute(0);
+                    minEpoch.hour(0);
+                    minEpoch.second();
+
+                    minEpoch = minEpoch.unix();
+
+                    //Change the max time to just before midnight of the next day
+                    var maxEpoch = moment(data.values.max);
+                    maxEpoch.hour(23);
+                    maxEpoch.minute(59);
+                    maxEpoch.second(59);
+
+                    maxEpoch = maxEpoch.unix();
 
                     //Data holder that will be sent to the server
                     var postData = {};
