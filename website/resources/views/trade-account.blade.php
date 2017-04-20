@@ -273,6 +273,9 @@
                     defaultValues:{
                         min: defaultStart,
                         max: defaultEnd
+                    },
+                    formatter:function(val){
+                        return moment(val).format('DD/MM/YYYY');
                     }
                 });
 
