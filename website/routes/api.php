@@ -34,3 +34,10 @@ Route::get('/all-stocks', 'DatabaseStockCodes@getAllStockCodesAndCompanyNames');
 
 Route::post('/getTransactionsInDateRange', 'TransactionController@getTransactionsInDateRange');
 
+//API call to add a friend/send friend request
+//todo: make this use the middleware route
+Route::post('/sendFriendRequest', 'FriendController@sendFriendRequest');
+
+//API call to accept a friend/send friend request
+//todo: make this use the middleware route
+Route::post('/acceptFriendRequest', 'FriendController@acceptFriendRequest');
