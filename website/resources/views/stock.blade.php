@@ -81,7 +81,7 @@
             {{--Only Users who are signed in can purchase and sell stocks--}}
             @if(Auth::check())
               <!-- added a model for the buying stocks button-->
-                <button type="button" class="btn btn-info btn-lg col-xs-12 col-md-8" data-toggle="modal" data-target="#userBuyForm">Open Modal</button>
+                <button type="button" class="btn btn-info btn-lg " data-toggle="modal" data-target="#userBuyForm">Buy Stocks</button>
                 <!-- model layout-->
                 <div id="userBuyForm" class="modal fade" role="dialog">
                     <div  class=" modal-content modal-dialog" >
@@ -217,9 +217,9 @@
 
             {{--Sell User From--}}
               <!-- added a model for the buying stocks button-->
-                  <button type="button" class="btn btn-info btn-lg col-xs-12 col-md-8" data-toggle="modal" data-target="#userSellForm">Sell Stock</button>
+                  <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#userSellForm">Sell Stock</button>
                   <!-- model layout-->
-            <div id="userSellForm" class="col-xs-12 col-md-6" class="modal fade" role="dialog" style="margin-bottom: 5%">
+            <div id="userSellForm" class="modal fade" role="dialog">
                 <div  class=" modal-content modal-dialog" >
                     <div class="modal-header">
                        <h3>Sell Stock</h3>
@@ -228,13 +228,13 @@
                 {{--Get the list of Users Trade Accounts and put into a selection box--}}
                     <div class="modal-body">
                         <h4> Stock:</h4>
-                    <select id="sellTradeAccounts">
+                    <select id="sellTradeAccounts" class="form-control">
                     @foreach(Auth::user()->tradingAccounts as $tradeAccount)
                         <option value="{{$tradeAccount->id}}" >{{$tradeAccount->name}} : ${{$tradeAccount->balance}}</option>
                     @endforeach
                 </select>
                         <br/>
-                <input id="sellStockQuantity" class="form-control" type="number" value="1" name="quantity" />
+                <input id="sellStockQuantity" type="number" value="1" name="quantity" />
                         <p>Stock Held: <text id="sellStockHeld"></text></p>
                     </div>
                     <div class="modal-footer">

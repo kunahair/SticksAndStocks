@@ -1,4 +1,4 @@
-ASX listed companies as at Thu Apr 20 21:28:53 EST 2017
+ASX listed companies as at Fri Apr 21 08:56:02 EST 2017
 
 Company name,ASX code,GICS industry group
 "ISHARES S&P MID-CAP ETF",IJH,"Not Applic"
@@ -162,7 +162,6 @@ Company name,ASX code,GICS industry group
 "ARIADNE AUSTRALIA LIMITED",ARA,"Commercial & Professional Services"
 "ARISTOCRAT LEISURE LIMITED",ALL,"Consumer Services"
 "ARK MINES LIMITED",AHK,"Materials"
-"ARMIDALE INVESTMENT CORPORATION LIMITED",AIK,"Not Applic"
 "ARMOUR ENERGY LIMITED",AJQ,"Energy"
 "AROWANA AUSTRALASIAN VALUE OPPORTUNITIES FUND LIMITED",AWQ,"Not Applic"
 "AROWANA INTERNATIONAL LIMITED",AWN,"Capital Goods"
@@ -333,6 +332,7 @@ Company name,ASX code,GICS industry group
 "BIG UN LIMITED",BIG,"Software & Services"
 "BIGTINCAN HOLDINGS LIMITED",BTH,"Software & Services"
 "BILLABONG INTERNATIONAL LIMITED",BBG,"Consumer Durables & Apparel"
+"BINGO INDUSTRIES LIMITED",BIN,"Class Pend"
 "BIONOMICS LIMITED",BNO,"Pharmaceuticals, Biotechnology & Life Sciences"
 "BIOTECH CAPITAL LIMITED",BTC,"Diversified Financials"
 "BIOTRON LIMITED",BIT,"Pharmaceuticals, Biotechnology & Life Sciences"
@@ -535,6 +535,7 @@ Company name,ASX code,GICS industry group
 "CONICO LTD",CNJ,"Materials"
 "CONNECTED IO LIMITED",CIO,"Technology Hardware & Equipment"
 "CONNEXION MEDIA LIMITED",CXZ,"Commercial & Professional Services"
+"CONSOLIDATED OPERATIONS GROUP LIMITED",COG,"Not Applic"
 "CONSOLIDATED TIN MINES LIMITED",CSD,"Materials"
 "CONSOLIDATED ZINC LIMITED",CZL,"Materials"
 "CONTACT ENERGY LIMITED",CEN,"Utilities"
@@ -1986,7 +1987,7 @@ Company name,ASX code,GICS industry group
 "TIKFORCE LIMITED",TKF,"Software & Services"
 "TILT RENEWABLES LIMITED.",TLT,"Utilities"
 "TIMAH RESOURCES LIMITED",TML,"Utilities"
-"TINYBEANS GROUP PTY LTD",TNY,"Class Pend"
+"TINYBEANS GROUP PTY LTD",TNY,"Software & Services"
 "TITANIUM SANDS LIMITED",TSL,"Materials"
 "TLOU ENERGY LIMITED",TOU,"Energy"
 "TNG LIMITED",TNG,"Materials"
