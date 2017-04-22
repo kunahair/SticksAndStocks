@@ -29,7 +29,7 @@
                 </form>
                 <!-- links-->
                 <div class="nav navbar-nav navbar-left">
-                    <li > <a href="/tradeaccount">Trade Account</a></li>
+                    <li > <a href="/tradeaccount/">Trade Account</a></li>
                     <li><a href="/dashboard">Dashboard</a>
                     <li><a href="/inbox">Inbox <span class="badge" id="alarm-system">4</span>
                         </a>
@@ -60,7 +60,7 @@
                     </p>
 
 
-
+                    <div class="alert alert-success" role="alert">Logged In</div>
                 </ul>
             </div><!-- /.navbar-collapse -->
         </div><!-- /.container-fluid -->

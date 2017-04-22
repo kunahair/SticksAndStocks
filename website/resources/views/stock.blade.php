@@ -50,11 +50,11 @@
     {{ !date_default_timezone_set('Australia/Melbourne') }}
 </head>
 
-<body>
+<body class="background">
 
 @include('layouts.navbar')
 
-<div class="container">
+<div class="container edit-info">
 
     <div class="box">
     </div>
@@ -72,7 +72,7 @@
             <div id="current-stock-price" style="padding: 0;  margin-bottom: 5%; width: 50%">
                 <br />
                 <div id="stock-current-price" class="col-xs-12s" style="font-size: 200%; font-weight: bold; ">{{$currentDataArray["curr_price"]["price"]}}</div>
-                <div class="col-xs-12" style="padding-left: 0">
+                <div class="col-xs-12" style="padding-left: 0; color: green;">
                     <text id="stock-movement">{{$currentDataArray["curr_price"]["amount"]}}</text>
                     <text id="stock-movement-percentage">&nbsp;({{$currentDataArray["curr_price"]["percentage"]}})</text>
                 </div>
@@ -522,6 +522,8 @@
     </script>
 
 </div>
+<br/>
+@include('layouts.footer')
 </body>
 
 </html>

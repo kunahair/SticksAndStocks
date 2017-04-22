@@ -65,13 +65,13 @@
     }
 </script>
 
-<body>
+<body class="background">
 
 @include('layouts.navbar')
 <!-- Modal -->
 @include('layouts.buystock')
 
-    <div class=" container">
+    <div class=" container" style="background-color: snow;">
         <h2>{{$tradeAccount["name"]}}</h2>
         <hr />
         <h3>${{number_format($tradeAccount["balance"], 2)}}</h3>
@@ -408,9 +408,13 @@
 
                     {{--@endforeach--}}
                 </tbody>
+            </table>
             </div>
         </div>
     </div>
+    <br/>
+
+@include('layouts.footer')
 
 </body>
 

@@ -2,7 +2,7 @@
 
 @section('title','Pineapple')
 
-<body class="background ">
+<body class="background">
 
     <style>
         .panel {
@@ -21,21 +21,21 @@
 
     @include('layouts.navbar')
 
-    <div id='content' class="bg-color container">
+    <div id='content' class=" text-center">
+        <div class="block-foreground">
 
-        <br/>
-        <div class="alert alert-success" role="alert">Logged In</div>
-        <br/>
+        <h1 class="">Dashboard</h1>
 
-        <div id="create-ta-form" style="padding-bottom: 3%;">
+        <div id="create-ta-form" class="edit-trade-account"style="padding-bottom: 3%;">
             <label>Trade Account Name: </label>
             <input id="input-ta-name" type="text" value="" />
-            <button id="button-create-ta" type="button">Create Account</button>
-            <div id="create-ta-error" style="color: red; display: none">There was an error creating Trade Account</div>
+            <button id="button-create-ta" class="btn btn-lg btn-info" type="button">Create Account</button>
+            <div id="create-ta-error" style="color: darkred; display: none">There was an error creating Trade Account</div>
         </div>
 
         {{--User Trade Accounts cards--}}
-        <div id="accounts" class="col-xs-12">
+
+        <div id="accounts" class="col-md-6 col-md-offset-3 section">
 
             {{--Loop through all the trade accounts that the user has and list them as panels with name and stats--}}
             @foreach(Auth::user()->tradingAccounts as $ta)
@@ -58,19 +58,28 @@
             @endforeach
 
         </div>
+        </div>
 
             {{--Account information div--}}
-            <div id="account-info" >
-                <h2>Account Information</h2>
+            <div id="account-info" class="jumbotron">
+
+                <br/>
+                <h1>Account Information</h1>
+                <br/>
+
                 <span id="account-info-view-mode">
-                    <a href="#" id="account-info-edit-button" class="btn btn-info" style="text-align: right">edit</a>
+                    <a href="#" id="account-info-edit-button" class="btn btn-lg btn-info" style="text-align: right">edit</a>
                 </span>
+                <br/>
                 <span id="account-info-edit-mode" style="display: none">
-                    <a href="#" id="account-info-save-button" class="btn btn-info" >save</a>&nbsp;&nbsp;&nbsp;&nbsp;
-                    <a href="#" id="account-info-cancel-button" class="btn btn-info" >cancel</a>
+                    <a href="#" id="account-info-save-button" class="btn btn-lg btn-info" >save</a>&nbsp;&nbsp;&nbsp;&nbsp;
+                    <a href="#" id="account-info-cancel-button" class="btn btn-lg btn-info" >cancel</a>
                 </span>
                 <hr />
-                <div >
+            </div>
+    </div>
+                <div class="edit-info">
+                <div class=" container ">
                     @if (count($errors) > 0)
                         <div class="alert alert-danger">
                             <ul>
@@ -102,17 +111,13 @@
                     </p>
                         <br/>
                         <br/>
+                        <br/>
+                        <br/>
                 </div>
-            </div>
-        </div>
+                </div>
 
-        <br/>
-        <br/>
-        <br/>
-        <br/>
-        <br/>
-        <br/>
-        <br/>
+
+
 
 
     </div> <!--End body Container -->
