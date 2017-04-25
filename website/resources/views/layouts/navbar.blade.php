@@ -49,14 +49,12 @@
 
                     <p>
                         <text style="font-weight: bold">Welcome,  </text>
-                        <text id="name-view" class="account-info-edit" style="font-weight: bold">{{Auth::user()->name}}</text>
-                        <input name="name" class="account-info-edit-field" value="{{Auth::user()->name}}" style="display: none" />
+                        <text class="username-view" style="font-weight: bold">{{Auth::user()->name}}</text>
                     </p>
 
                     <p>
 
-                        <text id="email-view" class="account-info-edit" style="font-weight: bold">{{Auth::user()->email}}</text>
-                        <input name="email" class="account-info-edit-field" value="{{Auth::user()->email}}" style="display: none" />
+                        <text class="email-view" style="font-weight: bold">{{Auth::user()->email}}</text>
                     </p>
 
 
