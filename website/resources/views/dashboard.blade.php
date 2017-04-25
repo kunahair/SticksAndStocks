@@ -95,13 +95,13 @@
                         <br/>
                     <p>
                         <text style="font-weight: bold">Name: </text>
-                        <text id="name-view" class="account-info-edit">{{Auth::user()->name}}</text>
+                        <text id="name-view" class="account-info-edit username-view" >{{Auth::user()->name}}</text>
                         <input name="name" class="account-info-edit-field" value="{{Auth::user()->name}}" style="display: none" />
                     </p>
 
                     <p>
                         <text style="font-weight: bold">Email: </text>
-                        <text id="email-view" class="account-info-edit">{{Auth::user()->email}}</text>
+                        <text class="account-info-edit email-view">{{Auth::user()->email}}</text>
                         <input name="email" class="account-info-edit-field" value="{{Auth::user()->email}}" style="display: none" />
                     </p>
 
@@ -146,7 +146,9 @@
         //Holder for values of input fields if they need to be put back the way they where from error
         var account_fields = [];
 
-        $('#account-info-edit-button').click(function () {
+        $('#account-info-edit-button').click(function (event) {
+
+            event.preventDefault();
 
             //Change edit button to save and cancel
             $('#account-info-view-mode').css('display', 'none');
@@ -165,6 +167,8 @@
 
         $('#account-info-cancel-button').click(function () {
 
+            event.preventDefault();
+
             //Change save and cancel buttons to edit
             $('#account-info-view-mode').css('display', 'block');
             $('#account-info-edit-mode').css('display', 'none');
@@ -182,6 +186,8 @@
         });
 
         $('#account-info-save-button').click(function () {
+
+            event.preventDefault();
 
             //Post data holder
             var postData = {};
@@ -203,8 +209,8 @@
                 .done(function (data) {
                     var jsonData = JSON.parse(data);
                     $('#update-user-error').css('display', 'none');
-                    $('#name-view').text(postData['name']);
-                    $('#email-view').text(postData['email']);
+                    $('.username-view').text(postData['name']);
+                    $('.email-view').text(postData['email']);
 
                     //Change save and cancel buttons to edit
                     $('#account-info-view-mode').css('display', 'block');

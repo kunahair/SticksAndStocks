@@ -82,4 +82,10 @@ Route::get('profile/{id}', function ($id) {
         return view('/dashboard');
 
     return view('profile', ['growth' => $growth, 'user' => $user]);
-});
+})->middleware('auth');
+
+//When user loads the messages page for a user (by ID)
+Route::get('messages/{id}', 'MessagesController@view')->middleware('auth');
+
+//When a user sends a message to their friend
+Route::post('messages/{id}', 'MessagesController@sendMessage')->middleware('auth');

@@ -69,7 +69,6 @@ class User extends Authenticatable
             ->where([['to', $authid], ['from', $id]])
             ->orWhere([['from', $authid], ['to', $id]])
             ->first();
-//        $friendFrom = DB::table('friends')->where()->first();
 
         //If there is no friends row, they are not friends, return 0
         if ($friends == null)
@@ -100,7 +99,7 @@ class User extends Authenticatable
         try {
             //Get friend requests the user has pending
             $friendRequests = Friend::
-            where([['to', $id], ['pending', true]])
+            where([['to', $this->getAuthIdentifier()], ['pending', true]])
                 ->get();
         }
         catch (\Exception $exception)
@@ -156,5 +155,50 @@ class User extends Authenticatable
 
         //Return complete friends list
         return $friends;
+    }
+
+    public function checkIfFriends($id)
+    {
+        //Get the current User ID
+        $authid = $this->getAuthIdentifier();
+
+        //Check if there are any friend links in the friends table
+        $friends = DB::table('friends')
+            ->where([['to', $authid], ['from', $id]])
+            ->orWhere([['from', $authid], ['to', $id]])
+            ->first();
+
+        if ($friends != null)
+            return false;
+
+        return false;
+    }
+
+    /**
+     * Get all current users unread messages
+     * @return mixed
+     */
+    public function getUnreadMessages()
+    {
+        //Get user ID
+        $id = $this->getAuthIdentifier();
+
+        //Get unread messages from database
+        $unreadMessages = Message::where([['to', '=', $id], ['read', '=', false]])->get();
+
+        //Return list of messages
+        return $unreadMessages;
+    }
+
+    public function getNotifications()
+    {
+        $id = $this->getAuthIdentifier();
+
+        $unreadMessages = $this->getUnreadMessages();
+        $pendingFriendRequests = $this->getFriendRequests(null);
+
+        $data = $unreadMessages->merge($pendingFriendRequests);
+
+        return $data;
     }
 }
