@@ -47,8 +47,7 @@ class getCompany extends Command
 
         $currentStock = Stock::where('stock_symbol', $stock_code)->first();
         if ($this->historyHour($stock_code) != null) {
-		    $currentStock->appendHistory($this->historyHour($stock_code));
-		    $currentStock->addHistory($this->historyHour($stock_code));
+		        $currentStock->addHistory($this->historyHour($stock_code));
         }
     }
 
@@ -157,7 +156,7 @@ class getCompany extends Command
         $dataString = $dataTimestamp->format('d-m-y');
         $code = str_replace(".AX", "", $code);
         $data = $hrArray;
-        
+
         //Return the data
         return [$dataString, $data, "code" => strtoupper($code)];
 
