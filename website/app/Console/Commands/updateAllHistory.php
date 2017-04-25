@@ -49,5 +49,7 @@ class updateAllHistory extends Command
                 $number++;
             }
         });
+
+
     }
 }

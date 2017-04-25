@@ -57,8 +57,6 @@ class Stock extends Model
 
         $lastTimestamp = DB::table('stock_histories')->where('stock_id', $stock_id->id)->max('timestamp');
 
-
-
         if ($lastTimestamp == null)
         {
             foreach ($value[1] as $timeseries)
@@ -98,6 +96,10 @@ class Stock extends Model
                 $history->save();
             }
         }
+
+        // Last History Value = Current Price
+        $this->current_price = end($value[1])['average'];
+        $this->save();
 
         var_dump($value["code"]);
 

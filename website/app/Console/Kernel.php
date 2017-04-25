@@ -16,7 +16,8 @@ class Kernel extends ConsoleKernel
         Commands\getCompany::class,
         Commands\getCompanies::class,
         Commands\updateAllHistory::class,
-        Commands\updateTopLists::class
+        Commands\updateTopLists::class,
+        Commands\stockChangeCheck::class
     ];
 
     /**
@@ -29,7 +30,8 @@ class Kernel extends ConsoleKernel
     {
         $schedule->command('company:updateTopLists')->dailyAt('9:55')->timezone('Australia/Melbourne');
         $schedule->command('company:getAll')->dailyAt('10:00')->timezone('Australia/Melbourne');
-        $schedule->command('company:updateAllHistory')->everyMinute()->timezone('Australia/Melbourne')->between('10:05','16:30');
+        $schedule->command('company:updateAllHistory')->everyTenMinutes()->timezone('Australia/Melbourne')->between('10:05','16:30');
+        $schedule->command('stockChange:check')->hourly()->timezone('Australia/Melbourne')->between('10:05','16:30');
     }
 
     /**
