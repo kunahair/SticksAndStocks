@@ -31,7 +31,7 @@
                 <div class="nav navbar-nav navbar-left">
                     <li > <a href="/tradeaccount/">Trade Account</a></li>
                     <li><a href="/dashboard">Dashboard</a>
-                    <li><a href="/inbox">Inbox <span class="badge" id="alarm-system">4</span>
+                    <li><a href="/inbox">Inbox <span class="badge" id="alarm-system">{{count(Auth::user()->getNotifications())}}</span>
                         </a>
                             @if(Auth::check())
                                 <li><a href="{{url('/logout')}}">Logout</a></li>

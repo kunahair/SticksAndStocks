@@ -19,7 +19,7 @@
     @if($user->isFriend($user->id, Auth::user()->id) == 0)
         <button id="addFriendButton">Add Friend</button>
     @elseif($user->isFriend($user->id, Auth::user()->id) == 1)
-        <button id="sendMessageButton">Send Message</button>
+        <a href="{{url('messages') . '/' . $user->id}}"><button id="sendMessageButton">Send Message</button></a>
     @elseif($user->isFriend($user->id, Auth::user()->id) == 2)
         <p></p>
     @elseif($user->isFriend($user->id, Auth::user()->id) == 4)
