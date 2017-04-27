@@ -42,6 +42,10 @@
         .stock-table-data {
             width: 50%;
         }
+
+        .sort-header:hover {
+            cursor: pointer;
+        }
     </style>
 
     <!--<link rel="stylesheet" href="style.css"/>-->
@@ -253,6 +257,11 @@
 
             <script>
 
+                //Holder for Transaction Data, this is the data that get manipulated for sorting and API gets
+                var transactionData = {};
+                //Holder for the state of the Current Transaction Sort Column and Direction (asc or desc)
+                var transactionSort = 0;
+
                 var startD = new Date();
                 startD.setDate(startD.getDate() - 21);
 
@@ -282,39 +291,105 @@
                     }
                 });
 
-                //Function to update the transactions page with given information
-                function updateTransactionTable(postData) {
+                function updateTransactionsTable()
+                {
+                    //Remove the contents of the transactions table body (remove all rows except heading)
+                    $('#transactionsTableBody tr').remove();
+
+                    //Loop through all the returned transaction (with stock info) objects and fill the table body
+                    for(var i = 0; i < transactionData.length; i++)
+                    {
+
+                        //Add the sold or bought attribute as a positive or negative integer adding the prop quantity
+                        if (transactionData[i]["sold"] > 0)
+                            transactionData[i]["quantity"] = transactionData[i]["sold"] * -1;
+                        else
+                            transactionData[i]["quantity"] = transactionData[i]["bought"];
+
+                        //Add the next row after the last row that has been added
+                        $('#transactionsTableBody').append(
+                            '<tr>' +
+                            '<td class=col-xs-3" style="padding: 0px">' + transactionData[i]["stock_symbol"] + '</td>' +
+                            '<td class=col-xs-3" style="padding: 0px">'+ transactionData[i]["stock_name"] + '</td>'   +
+                            '<td class=col-xs-3" style="padding: 0px"> $' + transactionData[i]["price"] +'</td>' +
+                            '<td class=col-xs-3" style="padding: 0px">' + (transactionData[i]["quantity"]<0?'':'+') + transactionData[i]["quantity"] +'</td>' +
+                            '<td class=col-xs-3" style="padding: 0px">' + transactionData[i]["updated_at"] + '</td>'
+                            + '</tr>'
+                        );
+                    }
+                }
+
+                //Universal Sort Function, used for now only with Transactions table headings
+                function sortAbstract(a, b, prop) {
+                    //If it is greater than 0, sort asc
+                    if (transactionSort > 0)
+                    {
+                        return (a[prop] < b[prop]) ? 1 : ((a[prop] > b[prop]) ? -1 : 0);
+                    }
+                    //Otherwise sort desc
+                    return (a[prop] > b[prop]) ? 1 : ((a[prop] < b[prop]) ? -1 : 0);
+
+                }
+
+                function sortTransactionData(by)
+                {
+                    //Set the value of transactionSort as needed
+                    //Set TS to by with -1 if this is the first sort selection
+                    if (transactionSort == 0)
+                        transactionSort = by * -1;
+                    //If TS and BY are the same value, make TS negative to sort desc
+                    else if (transactionSort == by)
+                        transactionSort *= -1;
+                    //If TS is less than 0 (negative) set it to positive value BY
+                    else if (transactionSort < 0)
+                        transactionSort = by;
+                    //Default to BY multiplied by -1
+                    else
+                        transactionSort = by * -1;
+
+                    //JS sort function, uses Closure to iterate through all elements
+                    //Use sortAbstract to do sort, using by as selector
+                    transactionData = transactionData.sort(function (a, b) {
+                        //Sort by Stock Code
+                        if (by == 1)
+                            return sortAbstract(a, b, "stock_symbol");
+
+                        //Sort by Stock Name
+                        if (by == 2)
+                            return sortAbstract(a, b, "stock_name");
+
+                        //Sort by Stock Purchased/Sold Price
+                        if (by == 3)
+                            return sortAbstract(a, b, "price");
+
+                        //Sort by Quantity Bought/Sold (Sold first as it is negative)
+                        if (by == 4)
+                            return sortAbstract(a, b, "quantity");
+
+                        //Sort by Transaction Timestamp
+                        if (by == 5)
+                            return sortAbstract(a, b, "timestamp");
+
+
+                    });
+
+                    //Update the Transactions Table with new data
+                    updateTransactionsTable();
+
+                }
+
+                //Function to get data from api and update the transactions page with given information
+                function getTransactionsForTable(postData)
+                {
                     //Call the server to give a list of transactions that are within the User selected date range
                     $.post("{{url('api/getTransactionsInDateRange')}}", postData)
                         .done(function (data) {
-//                                console.log(data);
-                            //Remove the contents of the transactions table body (remove all rows except heading)
-                            $('#transactionsTableBody tr').remove();
 
-                            //Loop through all the returned transaction (with stock info) objects and fill the table body
-                            for(var i = 0; i < data.length; i++)
-                            {
-//                                    console.log(data[i]["stock_symbol"]);
-                                //Add the next row after the last row that has been added
-                                $('#transactionsTableBody').append(
-                                    '<tr>' +
-                                    '<td class=col-xs-3" style="padding: 0px">' + data[i]["stock_symbol"] + '</td>' +
-                                    '<td class=col-xs-3" style="padding: 0px">'+ data[i]["stock_name"] + '</td>'   +
-                                    '<td class=col-xs-3" style="padding: 0px"> $' + data[i]["price"] +'</td>' +
-                                    '<td class=col-xs-3" style="padding: 0px">' + data[i]["updated_at"] + '</td>'
-                                    + '</tr>'
-                                );
+                            //Set Transaction Data holder to the Data retrieved from API
+                            transactionData = data;
 
-                                //Add the sold or bought attribute
-                                if (data[i]["sold"] > 0)
-                                    $('#transactionsTableBody tr:last td:nth-child(3)').after(
-                                        '<td class=col-xs-3" style="padding: 0px">-' + data[i]["sold"] + '</td>'
-                                    );
-                                else
-                                    $('#transactionsTableBody tr:last td:nth-child(3)').after(
-                                        '<td class=col-xs-3" style="padding: 0px">+' + data[i]["bought"] + '</td>'
-                                    );
-                            }
+                            //Update Transaction Table with API data, defaults to date asc sort
+                            updateTransactionsTable();
                         })
 
                         .fail(function (error) {
@@ -349,7 +424,7 @@
                     postData["end"] = maxEpoch;
                     postData["trade_account_id"] = {{$tradeAccount->id}};
 
-                    updateTransactionTable(postData);
+                    getTransactionsForTable(postData);
                 });
 
                 //When the page is loaded, show today's transactions
@@ -369,7 +444,7 @@
                     postData["end"] = maxEpoch;
                     postData["trade_account_id"] = {{$tradeAccount->id}};
 
-                    updateTransactionTable(postData);
+                    getTransactionsForTable(postData);
                 });
             </script>
 
@@ -377,11 +452,11 @@
             <table class="table col-xs-12 ">
                 <thead>
                     <tr>
-                        <td class="col-xs-1" style="padding: 0px">Code</td>
-                        <td class="col-xs-4" style="padding: 0px">Name</td>
-                        <td class="col-xs-2" style="padding: 0px">Price</td>
-                        <td class="col-xs-3" style="padding: 0px">Purchased/Sold</td>
-                        <td class="col-xs-3" style="padding: 0px">Date</td>
+                        <td onclick="sortTransactionData(1)" class="col-xs-1 sort-header" style="padding: 0px">Code</td>
+                        <td onclick="sortTransactionData(2)" class="col-xs-4 sort-header" style="padding: 0px">Name</td>
+                        <td onclick="sortTransactionData(3)" class="col-xs-2 sort-header" style="padding: 0px">Price</td>
+                        <td onclick="sortTransactionData(4)" class="col-xs-3 sort-header" style="padding: 0px">Purchased/Sold</td>
+                        <td onclick="sortTransactionData(5)" class="col-xs-3 sort-header" style="padding: 0px">Date</td>
                         {{--<td class="col-xs-3" style="padding: 0px">Buy/sell</td>--}}
                     </tr>
                 </thead>
