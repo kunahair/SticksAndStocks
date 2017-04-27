@@ -35,9 +35,9 @@
 
     <h2>{{$user->name}}</h2>
     <h2>{{$user->email}}</h2>
-    @foreach($user->getFriendList(Auth::user()->id) as $friend)
-        {{$friend}}
-    @endforeach
+    {{--@foreach($user->getFriendList(Auth::user()->id) as $friend)--}}
+        {{--{{$friend}}--}}
+    {{--@endforeach--}}
 
     {{number_format(Growth::getTotalGrowth(Auth::user()->id),2)}}
 
