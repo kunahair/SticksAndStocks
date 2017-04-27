@@ -29,8 +29,8 @@
     @elseif($user->isFriend($user->id, Auth::user()->id) == 10)
         <p>Something went wrong, please reload page</p>
     @endif
-    <div class="alert-danger" id="friendError" style="display: none"></div>
-    <div class="alert-success" id="friendSuccess" style="display: none"></div>
+    <div class="alert alert-danger" id="friendError" style="display: none"></div>
+    <div class="alert alert-success" id="friendSuccess" style="display: none"></div>
 
 
     <h2>{{$user->name}}</h2>

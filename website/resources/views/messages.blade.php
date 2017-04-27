@@ -27,7 +27,7 @@
             <textarea id="message" name="message" type="text" class="form-control"></textarea>
             <input type="hidden" name="id" value="{{Auth::user()->id}}">
             <input type="hidden" name="_token" value="{{ csrf_token() }}">
-            <button type="submit" class="btn-primary" style="margin-top: 2%;">Send</button>
+            <button type="submit" class="btn btn-primary" style="margin-top: 2%; font-weight: bold">Send</button>
         </form>
 
         @if($data["error"] != null)
