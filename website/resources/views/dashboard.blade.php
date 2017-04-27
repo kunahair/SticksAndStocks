@@ -26,6 +26,20 @@
 
         <h1 class="">Dashboard</h1>
 
+            {{--Quick links to features--}}
+        <div class="col-xs-12" style="margin-bottom: 2%;">
+            <div class="col-xs-3"></div>
+
+            <div class="col-xs-2"><a href="/messages"><button class="btn btn-info">Messages</button></a></div>
+
+            <div class="col-xs-2"><a href="/friends"><button class="btn btn-info">Friends</button></a></div>
+
+            <div class="col-xs-2"><a href="/profiles"><button class="btn btn-info">Profiles</button></a></div>
+
+            <div class="col-xs-3"></div>
+
+        </div>
+
         <div id="create-ta-form" class="edit-trade-account"style="padding-bottom: 3%;">
             <label>Trade Account Name: </label>
             <input id="input-ta-name" type="text" value="" />

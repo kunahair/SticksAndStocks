@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Friend;
 use App\Message;
 use App\User;
 use Illuminate\Http\Request;
@@ -101,6 +102,32 @@ class MessagesController extends Controller
 
         //Send the user back to the messages page for this friend, will show new message up the top
         return $this->view($request, $id);
+
+    }
+
+    //Load the first user in the friends list and show their messages
+    public function first(Request $request)
+    {
+        //Get all the users friends
+        $friends = Auth::user()->getFriendList(Auth::user()->id);
+
+        //Declare null friend first
+        $friend = null;
+
+        //If there is at least one friend, then get the first one
+        if (count($friends) > 0)
+            $friend = $friends[0]->first();
+
+        //If the friend is not null, route user to their messages
+        if ($friend != null)
+        {
+            if ($friend["to"] != Auth::user()->getAuthIdentifier())
+                return $this->view($request, $friend["to"], null);
+            return $this->view($request, $friend["from"], null);
+        }
+
+        //Default, if they have no friends, route back to dashboard
+        return view('/dashboard');
 
     }
 }

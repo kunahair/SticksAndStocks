@@ -87,5 +87,19 @@ Route::get('profile/{id}', function ($id) {
 //When user loads the messages page for a user (by ID)
 Route::get('messages/{id}', 'MessagesController@view')->middleware('auth');
 
+//When user loads up messages, default ot the first friend
+Route::get('messages', 'MessagesController@first')->middleware('auth');
+
 //When a user sends a message to their friend
 Route::post('messages/{id}', 'MessagesController@sendMessage')->middleware('auth');
+
+//Show list of users friends
+Route::get('friends', 'FriendController@view')->middleware('auth');
+
+//Show page of all Users
+Route::get('profiles', function (){
+
+    $users = \App\User::where('admin', false)->get();
+
+   return view('profiles')->with('users', $users);
+});
