@@ -15,7 +15,7 @@
         }
 
         #account-info {
-            margin-top: 20%;
+            margin-top: 15%;
         }
     </style>
 
@@ -41,14 +41,19 @@
             @foreach(Auth::user()->tradingAccounts as $ta)
                 {{--Create Panel that links to its individual Trade Account Page--}}
                 <a href="{{url('/tradeaccount/' . $ta->id) }}">
-                    <div class="panel panel-default col-xs-12 col-md-3">
+                    <div class="panel panel-default col-xs-12 col-md-4">
                         {{--Name of Trade Account--}}
                         <div class="panel-heading">
                             <h3 class="panel-title">{{$ta->name}}</h3>
                         </div>
                         {{--Stats about Trade Account--}}
                         <div class="panel-body">
-                            Balance: ${{$ta->balance}}
+                            <h4>Balance: ${{number_format($ta->balance, 2)}}<br /></h4>
+                            <h4>Growth: {{number_format($ta->totalGrowth(), 2)}}</h4>
+                            @php
+                                $tradeAccountInfo = $ta->getCurrentStock()["stats"];
+                                echo '<h4>Number of Stocks: ' . $tradeAccountInfo["total_stock_count"] . '<br /></h4>';
+                            @endphp
                         </div>
 
                     </div>

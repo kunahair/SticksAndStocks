@@ -30,9 +30,29 @@
                 <!-- links-->
                 <div class="nav navbar-nav navbar-left">
                     <li > <a href="/tradeaccount/">Trade Account</a></li>
-                    <li><a href="/dashboard">Dashboard</a>
-                    <li><a href="/inbox">Inbox <span class="badge" id="alarm-system">{{count(Auth::user()->getNotifications())}}</span>
-                        </a>
+                    <li><a href="/dashboard">Dashboard</a></li>
+                    <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true">Inbox <span class="badge" id="alarm-system">{{count(Auth::user()->getNotifications())}}</span></a>
+                        <ul class="dropdown-menu">
+                            {{--Loop through all the pending notifications the user has and display as dropdown notification--}}
+                            @foreach(Auth::user()->getNotifications() as $notification)
+
+                                {{--If the notification is a message, show that it is a new message and who it is from--}}
+                                @if($notification instanceof App\Message)
+                                    <li>
+                                        <a href="{{url('messages')}}/{{$notification["from"]}}">New Message from {{$notification["name"]}}</a>
+                                    </li>
+                                    @continue
+                                @endif
+
+                                {{--Othewise, assume that it is a new friend request and show that it is a new friend request and who it is from--}}
+                                <li>
+                                    <a href="{{url('profile')}}/{{$notification["from"]}}">New Friend Request from {{$notification["name"]}}</a>
+                                </li>
+                            @endforeach
+                        </ul>
+
+                    </li>
+
                             @if(Auth::check())
                                 <li><a href="{{url('/logout')}}">Logout</a></li>
                             @else
@@ -58,7 +78,7 @@
                     </p>
 
 
-                    <div class="alert alert-success" role="alert">Logged In</div>
+                    {{--<div class="alert alert-success" role="alert">Logged In</div>--}}
                 </ul>
             </div><!-- /.navbar-collapse -->
         </div><!-- /.container-fluid -->

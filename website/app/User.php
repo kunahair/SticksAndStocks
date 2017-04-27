@@ -94,12 +94,14 @@ class User extends Authenticatable
         return 10;
     }
 
-    public function getFriendRequests($id)
+    public function getFriendRequests()
     {
         try {
-            //Get friend requests the user has pending
+            //Get friend requests the user has pending, add the name of the user who sent the request
             $friendRequests = Friend::
-            where([['to', $this->getAuthIdentifier()], ['pending', true]])
+                where([['to', $this->getAuthIdentifier()], ['pending', true]])
+                ->join('users', 'users.id', 'friends.from')
+                ->select('friends.*', 'users.name')
                 ->get();
         }
         catch (\Exception $exception)
@@ -183,22 +185,33 @@ class User extends Authenticatable
         //Get user ID
         $id = $this->getAuthIdentifier();
 
-        //Get unread messages from database
-        $unreadMessages = Message::where([['to', '=', $id], ['read', '=', false]])->get();
+        //Get unread messages from database, add the name of the user who sent the message
+        $unreadMessages = Message::
+            where([['to', '=', $id], ['read', '=', false]])
+            ->join('users', 'users.id', 'messages.from')
+            ->select('messages.*', 'users.name')
+            ->get();
 
         //Return list of messages
         return $unreadMessages;
     }
 
+    /**
+     * Wrapper function to get all the notifications the user has
+     * Returns unread messages and unaccepted friend requests
+     * @return mixed
+     */
     public function getNotifications()
     {
-        $id = $this->getAuthIdentifier();
-
+        //Get list of all unread messages for user
         $unreadMessages = $this->getUnreadMessages();
-        $pendingFriendRequests = $this->getFriendRequests(null);
+        //Get list of all pending friend requests
+        $pendingFriendRequests = $this->getFriendRequests();
 
+        //Merge the friend requests and the unread messages into one array
         $data = $unreadMessages->merge($pendingFriendRequests);
 
+        //Return the merged data
         return $data;
     }
 }
