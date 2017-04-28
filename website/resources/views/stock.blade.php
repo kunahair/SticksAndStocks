@@ -54,7 +54,7 @@
 
 @include('layouts.navbar')
 
-<div class="container edit-info">
+<div class="container box">
 
     <div class="box">
     </div>

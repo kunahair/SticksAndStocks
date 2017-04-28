@@ -75,7 +75,7 @@
 <!-- Modal -->
 @include('layouts.buystock')
 
-    <div class=" container" style="background-color: snow;">
+    <div class="box container" style="background-color: snow;">
         <h2>{{$tradeAccount["name"]}}</h2>
         <hr />
         <h3>${{number_format($tradeAccount["balance"], 2)}}</h3>

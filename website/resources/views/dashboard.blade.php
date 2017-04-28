@@ -30,11 +30,11 @@
         <div class="col-xs-12" style="margin-bottom: 2%;">
             <div class="col-xs-1 col-md-3"></div>
 
-            <div class="col-xs-3 col-md-2"><a href="/messages"><button class="btn btn-info">Messages</button></a></div>
+            <div class="col-xs-3 col-md-2"><a href="/messages"><button class="btn btn-success">Messages</button></a></div>
 
-            <div class="col-xs-4 col-md-2"><a href="/friends"><button class="btn btn-info">Friends</button></a></div>
+            <div class="col-xs-4 col-md-2"><a href="/friends"><button class="btn btn-success">Friends</button></a></div>
 
-            <div class="col-xs-3 col-md-2"><a href="/profiles"><button class="btn btn-info">Profiles</button></a></div>
+            <div class="col-xs-3 col-md-2"><a href="/profiles"><button class="btn btn-success">Profiles</button></a></div>
 
             <div class="col-xs-1 col-md-3"></div>
 
@@ -43,7 +43,7 @@
         <div id="create-ta-form" class="edit-trade-account"style="padding-bottom: 3%;">
             <label>Trade Account Name: </label>
             <input id="input-ta-name" type="text" value="" />
-            <button id="button-create-ta" class="btn btn-lg btn-info" type="button">Create Account</button>
+            <button id="button-create-ta" class="btn btn-lg btn-success" type="button">Create Account</button>
             <div id="create-ta-error" style="color: darkred; display: none">There was an error creating Trade Account</div>
         </div>
 
@@ -87,12 +87,12 @@
                 <br/>
 
                 <span id="account-info-view-mode">
-                    <a href="#" id="account-info-edit-button" class="btn btn-lg btn-info" style="text-align: right">edit</a>
+                    <a href="#" id="account-info-edit-button" class="btn btn-lg btn-success" style="text-align: right">edit</a>
                 </span>
                 <br/>
                 <span id="account-info-edit-mode" style="display: none">
-                    <a href="#" id="account-info-save-button" class="btn btn-lg btn-info" >save</a>&nbsp;&nbsp;&nbsp;&nbsp;
-                    <a href="#" id="account-info-cancel-button" class="btn btn-lg btn-info" >cancel</a>
+                    <a href="#" id="account-info-save-button" class="btn btn-lg btn-success" >save</a>&nbsp;&nbsp;&nbsp;&nbsp;
+                    <a href="#" id="account-info-cancel-button" class="btn btn-lg btn-success" >cancel</a>
                 </span>
                 <hr />
             </div>
@@ -250,6 +250,3 @@
 
     </script>
 
-</body>
-
-</html>
