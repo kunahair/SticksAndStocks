@@ -53,7 +53,7 @@
                         </div>
                         {{--Stats about Trade Account--}}
                         <div class="panel-body">
-                            <h4>Balance: ${{number_format($ta->balance, 2)}}<br /></h4>
+                            <h4>Value: ${{$ta->getCurrentStock()["stats"]["total_stock_value"]}}AUD</h4>
                             <h4>Growth: {{number_format($ta->totalGrowth(), 2)}}</h4>
                             @php
                                 $tradeAccountInfo = $ta->getCurrentStock()["stats"];
