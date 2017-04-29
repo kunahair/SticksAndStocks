@@ -1,4 +1,4 @@
-ASX listed companies as at Wed Apr 26 15:15:01 EST 2017
+ASX listed companies as at Fri Apr 28 12:35:02 EST 2017
 
 Company name,ASX code,GICS industry group
 "ISHARES S&P MID-CAP ETF",IJH,"Not Applic"
@@ -574,7 +574,6 @@ Company name,ASX code,GICS industry group
 "CRUSADE ABS SERIES 2016-1 TRUST",CU1,"Not Applic"
 "CRUSADE ABS SERIES 2017-1 TRUST",CU2,"Not Applic"
 "CRUSADE EURO TRUST NO.1E OF 2007",CSN,"Not Applic"
-"CRUSADE GLOBAL TRUST NO.1 OF 2007",CTH,"Not Applic"
 "CRUSADER RESOURCES LIMITED",CAS,"Materials"
 "CRYOSITE LIMITED",CTE,"Pharmaceuticals, Biotechnology & Life Sciences"
 "CSG LIMITED",CSV,"Software & Services"
@@ -683,6 +682,7 @@ Company name,ASX code,GICS industry group
 "ELLERSTON ASIAN INVESTMENTS LIMITED",EAI,"Not Applic"
 "ELLERSTON GLOBAL INVESTMENTS LIMITED",EGI,"Not Applic"
 "ELLEX MEDICAL LASERS LIMITED",ELX,"Health Care Equipment & Services"
+"ELSIGHT LIMITED",ELS,"Class Pend"
 "ELYSIUM RESOURCES LIMITED",EYM,"Materials"
 "EMBELTON LIMITED",EMB,"Capital Goods"
 "EMECO HOLDINGS LIMITED",EHL,"Capital Goods"
@@ -2064,7 +2064,7 @@ Company name,ASX code,GICS industry group
 "US SELECT PRIVATE OPPORTUNITIES FUND II",USG,"Not Applic"
 "US SELECT PRIVATE OPPORTUNITIES FUND III",USP,"Not Applic"
 "USCOM LIMITED",UCM,"Health Care Equipment & Services"
-"UUV AQUABOTIX LTD",UUV,"Class Pend"
+"UUV AQUABOTIX LTD",UUV,"Capital Goods"
 "VALENCE INDUSTRIES LIMITED",VXL,"Materials"
 "VALMEC LIMITED",VMX,"Energy"
 "VALOR RESOURCES LIMITED",VAL,"Materials"
@@ -2128,6 +2128,7 @@ Company name,ASX code,GICS industry group
 "WATTLE HEALTH AUSTRALIA LIMITED",WHA,"Food, Beverage & Tobacco"
 "WAVENET INTERNATIONAL LIMITED",WAL,"Materials"
 "WCP RESOURCES LIMITED",WCP,"Materials"
+"WEA FINANCE LLC",WEH,"Not Applic"
 "WEA FINANCE LLC AND WESTFIELD UK & EUROPE FINANCE PLC",WEF,"Not Applic"
 "WEALTH DEFENDER EQUITIES LIMITED",WDE,"Not Applic"
 "WEBJET LIMITED",WEB,"Retailing"

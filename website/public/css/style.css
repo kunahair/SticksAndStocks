@@ -46,9 +46,6 @@ html, body {
     margin-bottom: 30px;
 }
 
-.button{
-    float: right;
-}
 
 .input-group {
     float: inherit;
@@ -199,7 +196,7 @@ height: 100px;
 
 }
 h1{
-    margin: 0 0 35px;
+
     font-weight: 700;
     letter-spacing: 1px;
     text-transform: uppercase;
@@ -212,6 +209,8 @@ h1{
     /*background-color: darkcyan;*/
     color: black;
     height: 100%;
+    width: 100%;
+    background-color: snow;
 }
 .block-foreground{
 /*background-color: darkcyan;*/
@@ -223,6 +222,7 @@ h1{
     text-align: center;
     width: 100%;
     overflow: auto;
+    background-color: snow;
 }
 .jumbotron{
    margin-bottom: 0px;
@@ -239,4 +239,41 @@ h1{
 
 .input-style:focus{
     color: #1b6d85;
+}
+
+.panel{
+    width: 250px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    text-align: center;
+
+}
+.panel-primary{
+    color:black;
+}
+
+.button {
+    display: inline-block;
+    padding: 15px 25px;
+    font-size: 24px;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    outline: none;
+    color: #fff;
+    background-color: #4CAF50;
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 9px #777;
+}
+
+.button:hover {background-color: #3e8e41}
+
+.button:active {
+    background-color: #3e8e41;
+    box-shadow: 0 5px #444;
+    transform: translateY(4px);
+}
+
+.box{
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }

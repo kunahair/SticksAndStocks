@@ -50,6 +50,8 @@ class TransactionController extends Controller
             return response(json_encode($error), 403);
         }
 
+        $user = Auth::user();
+
         //For safety, all Database queries are surrounded by Try Catch, if there is an error, ohh yes, it will be caught
         try {
             //Get the latest price for the stock
@@ -57,8 +59,8 @@ class TransactionController extends Controller
             $price = $stock->current_price;
 
             //Get the balance of this Trade Account
-            $tradeAccount = DB::table('trade_accounts')->where('id', $request->TradeAccountId)->first();
-            $balance = intval($tradeAccount->balance);
+//            $tradeAccount = DB::table('trade_accounts')->where('id', $request->TradeAccountId)->first();
+            $balance = $user->balance;
         }
         catch (\Exception $exception)
         {
@@ -101,9 +103,10 @@ class TransactionController extends Controller
             return response(json_encode($error), 403);
         }
 
-        //Update the Trade Account Balance
+        //Update the User Balance
         $newBalance = $balance - ($price * $request->quantity);
-        DB::table('trade_accounts')->where('id', $request->TradeAccountId)->update(['balance' => $newBalance]);
+        $user->balance = $newBalance;
+        $user->save();
 
 
         //If all went well, send back a nice message and a 200 status code
@@ -135,6 +138,8 @@ class TransactionController extends Controller
             return response(json_encode($error), 403);
         }
 
+        $user = Auth::user();
+
         //For safety, all Database queries are surrounded by Try Catch, if there is an error, ohh yes, it will be caught
         try {
             //Get the latest price for the stock
@@ -143,7 +148,9 @@ class TransactionController extends Controller
 
             //Get the balance of this Trade Account
             $tradeAccount = DB::table('trade_accounts')->where('id', intval($request->trade_account_id))->first();
-            $balance = intval($tradeAccount->balance);
+//            $balance = intval($tradeAccount->balance);
+
+            $balance = $user->balance;
 
             //Get the quantity of selected stock this trading account has
             $transactions = DB::table('transactions')->where('trade_account_id', $tradeAccount->id)->get();
@@ -199,10 +206,10 @@ class TransactionController extends Controller
             return response(json_encode($error), 403);
         }
 
-        //Update the Trade Account Balance
+        //Update the User Balance
         $newBalance = $balance + ($price * $request->quantity);
-        DB::table('trade_accounts')->where('id', $request->TradeAccountId)->update(['balance' => $newBalance]);
-
+        $user->balance = $newBalance;
+        $user->save();
 
         //If all went well, send back a nice message and a 200 status code
         $returnData = array();

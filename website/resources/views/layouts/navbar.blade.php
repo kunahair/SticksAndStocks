@@ -29,7 +29,13 @@
                 </form>
                 <!-- links-->
                 <div class="nav navbar-nav navbar-left">
-                    <li > <a href="/tradeaccount/">Trade Account</a></li>
+                    <li > <a href="/tradeaccount/" class="dropdown-toggle" data-toggle="dropdown" role="button" >Social</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="/messages">Messages</a></li>
+                            <li ><a href="/friends">Friends</a></li>
+                            <li ><a href="/profiles">Profiles</a></li>
+                        </ul>
+                    </li>
                     <li><a href="/dashboard">Dashboard</a></li>
                     <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true">Inbox <span class="badge" id="alarm-system">{{count(Auth::user()->getNotifications())}}</span></a>
                         <ul class="dropdown-menu">
@@ -48,7 +54,9 @@
                                 <li>
                                     <a href="{{url('profile')}}/{{$notification["from"]}}">New Friend Request from {{$notification["name"]}}</a>
                                 </li>
+
                             @endforeach
+
                         </ul>
 
                     </li>
@@ -64,17 +72,17 @@
 
                 </div>
                 <!-- user details-->
-                <ul class="nav navbar-nav navbar-right">
+                <ul class="nav navbar-nav navbar-inverse navbar-right container-fluid">
 
 
                     <p>
-                        <text style="font-weight: bold">Welcome,  </text>
-                        <text class="username-view" style="font-weight: bold">{{Auth::user()->name}}</text>
+                        <text>Welcome,  </text>
+                        <text class="username-view" >{{Auth::user()->name}}</text>
                     </p>
 
                     <p>
 
-                        <text class="email-view" style="font-weight: bold">{{Auth::user()->email}}</text>
+                        <text class="email-view" >{{Auth::user()->email}}</text>
                     </p>
 
 
