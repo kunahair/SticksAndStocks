@@ -31,8 +31,9 @@
                 <div class="nav navbar-nav navbar-left">
                     <li > <a href="/tradeaccount/" class="dropdown-toggle" data-toggle="dropdown" role="button" >Social</a>
                         <ul class="dropdown-menu">
-                            <li><a href="#"> message</a></li>
-                            <li ><a href="#"> Friends</a></li>
+                            <li><a href="/messages">Messages</a></li>
+                            <li ><a href="/friends">Friends</a></li>
+                            <li ><a href="/profiles">Profiles</a></li>
                         </ul>
                     </li>
                     <li><a href="/dashboard">Dashboard</a></li>

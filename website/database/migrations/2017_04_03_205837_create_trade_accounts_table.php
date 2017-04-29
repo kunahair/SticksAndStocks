@@ -17,7 +17,7 @@ class CreateTradeAccountsTable extends Migration
             $table->increments('id');
 
             $table->string('name');
-            $table->float('balance',20,2);
+//            $table->float('balance',20,2);
             $table->integer('user_id')->unsigned();
 
             $table->timestamps();

@@ -97,7 +97,7 @@
                             <h4> Account:</h4>
                             <select class="form-control">
                                 @foreach(Auth::user()->tradingAccounts as $tradeAccount)
-                                    <option value="{{$tradeAccount->id}}" >{{$tradeAccount->name}} : ${{$tradeAccount->balance}}</option>
+                                    <option value="{{$tradeAccount->id}}" >{{$tradeAccount->name}}</option>
                                 @endforeach
                             </select><br/>
 
@@ -177,10 +177,10 @@
                                     $('#buyError').css('display', 'block');
                                     return;
                                 }
-                                //Check that the Trade Account balance is enough to cover the purchase, show error if not
-                                else if (selectedTradeAccount["balance"] < parseFloat($('#buyStockTotal').text()))
+                                //Check that the User balance is enough to cover the purchase, show error if not
+                                else if ({{Auth::user()->balance}} < parseFloat($('#buyStockTotal').text()))
                                 {
-                                    $('#buyError').text("You don't have enough in your trading account balance to purchase this quantity");
+                                    $('#buyError').text("You don't have enough balance to purchase this quantity");
                                     $('#buyError').css('display', 'block');
                                     return;
                                 }
@@ -230,7 +230,7 @@
                         <h4> Stock:</h4>
                     <select id="sellTradeAccounts" class="form-control">
                     @foreach(Auth::user()->tradingAccounts as $tradeAccount)
-                        <option value="{{$tradeAccount->id}}" >{{$tradeAccount->name}} : ${{$tradeAccount->balance}}</option>
+                        <option value="{{$tradeAccount->id}}" >{{$tradeAccount->name}}</option>
                     @endforeach
                 </select>
                         <br/>

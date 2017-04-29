@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class TradeAccount extends Model
 {
     
-    protected $fillable = ['name', 'balance'];
+    protected $fillable = ['name'];
 
     public function user() {
         return $this->belongsTo('App\User');

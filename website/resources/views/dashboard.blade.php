@@ -26,19 +26,10 @@
 
         <h1 class="">Dashboard</h1>
 
-            {{--Quick links to features--}}
-        <div class="col-xs-12" style="margin-bottom: 2%;">
-            <div class="col-xs-1 col-md-3"></div>
-
-            <div class="col-xs-3 col-md-2"><a href="/messages"><button class="btn btn-success">Messages</button></a></div>
-
-            <div class="col-xs-4 col-md-2"><a href="/friends"><button class="btn btn-success">Friends</button></a></div>
-
-            <div class="col-xs-3 col-md-2"><a href="/profiles"><button class="btn btn-success">Profiles</button></a></div>
-
-            <div class="col-xs-1 col-md-3"></div>
-
-        </div>
+            {{--Show current User Balance--}}
+            <div class="col-xs-12">
+                <h3>Balance: ${{number_format(Auth::user()->balance,2)}}AUD</h3>
+            </div>
 
         <div id="create-ta-form" class="edit-trade-account"style="padding-bottom: 3%;">
             <label>Trade Account Name: </label>
