@@ -5,7 +5,7 @@ html, body {
     font-weight: 100;
     height: auto;
     margin: 0;
-    /*overflow-y: hidden;*/
+    overflow-x: hidden;
 }
 
 .top-center {
@@ -195,21 +195,30 @@ height: 100px;
     color: black;
 
 }
-h1{
+.subheading{
 
-    font-weight: 700;
-    letter-spacing: 1px;
+    letter-spacing: 3px;
     text-transform: uppercase;
-    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-    font-size: 70px;
-    text-align: center;
+    font-family:'Raleway', sans-serif;
     color: black;
+    padding: 16px;
+    text-decoration: none;
+    border-bottom: 3px solid transparent;
+    width: 0px;
+    transition: 0.5s ease;
+
+
+}
+
+
+.subheading:hover{
+    border-bottom: 5px solid grey;
+    width: 296px;
 }
 .background{
     /*background-color: darkcyan;*/
     color: black;
-    height: 100%;
-    width: 100%;
+
     background-color: snow;
 }
 .block-foreground{
@@ -226,7 +235,8 @@ h1{
 }
 .jumbotron{
    margin-bottom: 0px;
-   color:lightslategrey;
+   color: lightslategrey;
+    padding-top: 0px;
 }
 .buy-container{
 

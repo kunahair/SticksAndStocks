@@ -24,7 +24,7 @@
     <div id='content' class=" text-center">
         <div class="block-foreground">
 
-        <h1 class="">Dashboard</h1>
+        <h1 class="subheading">Dashboard.</h1>
 
             {{--Show current User Balance--}}
             <div class="col-xs-12">
@@ -74,7 +74,7 @@
             <div id="account-info" class="jumbotron">
 
                 <br/>
-                <h1>Account Information</h1>
+                <h2 class="subheading">Account Information</h2>
                 <br/>
 
                 <span id="account-info-view-mode">
