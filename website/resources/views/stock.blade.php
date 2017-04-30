@@ -87,13 +87,19 @@
                     <div  class=" modal-content modal-dialog" >
                         <div class="modal-header">
                             <h3>Buy Stock</h3>
-                            <div class="move-right">
-                                <h4>Total Price: $<lable id="buyStockTotal">{{$stock->current_price}}</lable></h4></div>
+                            <div class="text-right">
+                                <h4>{{$stock->stock_symbol}}</h4>
+                            </div>
                         </div>
 
 
                         {{--Get the list of Users Trade Accounts and put into a selection box--}}
-                        <div class="modal-body">
+                        <div class="modal-body" style="padding-top: 30px">
+                            <div style="margin-bottom: 10%">
+                                <h4>Stock Price: {{$stock->current_price}}</h4>
+                                <h4>Broker Cost: $50.00</h4>
+                                <h4>Fee: <lable id="buyPercentageFee">1.00</lable>%</h4>
+                            </div>
                             <h4> Account:</h4>
                             <select class="form-control">
                                 @foreach(Auth::user()->tradingAccounts as $tradeAccount)
@@ -105,7 +111,8 @@
                             <input class="form-control" id="stockQuantity" type="number" value="1" name="quantity" />
                         </div>
                         <div class="modal-footer">
-                            <button id="buyButton" name="buyButton" >Buy</button>
+                            <h4 class="text-left">Total Price: $<lable id="buyStockTotal">{{$stock->current_price}}</lable></h4>
+                            <button id="buyButton" name="buyButton" class="btn btn-primary" >Buy</button>
                         </div>
                         {{--User messages--}}
                         <div id="buyError" class="alert alert-danger" style="display: none">There was an error</div>
@@ -122,10 +129,27 @@
 
                             //Constant that has the current value of the current stock
                             var curr_value = {{$currentDataArray["curr_price"]["price"] }};
+
+                            //Set Broker Fee
+                            const brokerFee = 50.00;
+
+                            //Set Buy percentage Fee
+                            const buyFee = 1.00;
+                            //Set Buy Percentage Fee Mass (after threshold
+                            const buyFeeMass = 0.75;
+
+                            //Set Fee Threshold
+                            const buyThreshold = 1000;
+
                             //Get list of all the Users Trade Accounts
                             var tradeAccounts = JSON.parse(htmlDecode("{{Auth::user()->tradingAccounts}}"));
                             //Get the stock ID of the current stock
                             var stock_id = parseInt("{{$stock->id}}");
+
+                            function calculateBuyTotal()
+                            {
+
+                            }
 
 
                             //When User updates the quantity, update the cost
@@ -137,14 +161,47 @@
                                 //If the stock is less than 1, set to 1 and return
                                 if (stockQTY < 1 || isNaN(stockQTY))
                                 {
-                                    $('#stockQuantity').val(1);
+//                                    $('#stockQuantity').val(1);
                                     //Update the cost for the user
-                                    $('#buyStockTotal').text((curr_value * 1).toFixed(2));
+                                    $('#buyStockTotal').text((curr_value * stockQTY).toFixed(2));
+
+                                    //Disable the Buy Button
+                                    $('#buyButton').addClass('disabled');
+
                                     return;
                                 }
 
+                                //Start with just the cost of purchasing the Stock with Quantity
+                                var buyTotalCost = (curr_value * stockQTY);
+
+                                //Determine Purchase threshold and adjust fee accordingly
+                                if (stockQTY < buyThreshold)
+                                {
+                                    buyTotalCost += buyTotalCost * (buyFee / 100);
+                                    $('#buyPercentageFee').text(buyFee.toFixed(2));
+                                }
+                                else
+                                {
+                                    buyTotalCost += buyTotalCost * (buyFeeMass / 100);
+                                    $('#buyPercentageFee').text(buyFeeMass.toFixed(2));
+                                }
+
+                                //Add Broker Fee
+                                buyTotalCost += brokerFee;
+
                                 //Update the cost for the user
-                                $('#buyStockTotal').text((curr_value * stockQTY).toFixed(2));
+                                $('#buyStockTotal').text(parseFloat(buyTotalCost).toFixed(2));
+
+                                //Check if the total cost including fees is affordable by user
+                                //if not then disable the buy button
+                                //Otherwise enable it
+                                if (parseFloat(buyTotalCost) > {{Auth::user()->balance}})
+                                {
+                                    $('#buyButton').addClass('disabled');
+                                }
+                                else
+                                    $('#buyButton').removeClass('disabled');
+
 
                             });
 
@@ -197,7 +254,7 @@
                                 $.post("{{ url('api/addBuyTransaction') }}", postData)
                                 //If all went well, show success message
                                     .done(function(data) {
-                                        $('#buySuccess').text('Stock purchased!');
+//                                        $('#buySuccess').text(data["message"]);
                                         $('#buySuccess').css('display', 'block');
                                     })
 
@@ -223,10 +280,15 @@
                 <div  class=" modal-content modal-dialog" >
                     <div class="modal-header">
                        <h3>Sell Stock</h3>
-
+                        <div class="text-right">
+                            <h4>{{$stock->stock_symbol}}</h4>
+                        </div>
                     </div>
                 {{--Get the list of Users Trade Accounts and put into a selection box--}}
-                    <div class="modal-body">
+                    <div class="modal-body" style="padding-top: 30px">
+                        <h4>Stock Price: {{$stock->current_price}}</h4>
+                        <h4>Broker Cost: $50.00</h4>
+                        <h4>Fee: <lable id="sellPercentageFee">0.25</lable>%</h4>
                         <h4> Stock:</h4>
                     <select id="sellTradeAccounts" class="form-control">
                     @foreach(Auth::user()->tradingAccounts as $tradeAccount)
@@ -238,15 +300,30 @@
                         <p>Stock Held: <text id="sellStockHeld"></text></p>
                     </div>
                     <div class="modal-footer">
-                        <button id="sellButton" name="sellButton" >Sell</button>
+                        <h4 class="text-left">Sell Total: $<lable id="sellStockTotal">{{$stock->current_price}}</lable></h4>
+                        <button id="sellButton" name="sellButton" class="btn btn-primary" >Sell</button>
                     </div>
                     {{--User messages--}}
                     <div id="sellError" class="alert alert-danger" style="display: none">There was an error</div>
-                    <div id="sellSuccess" class="alert alert-success" style="display: none">Stock successfully sold</div>
+                    <div id="sellSuccess" class="alert alert-success" style="display: none"><label id="sellSuccessMessage">Stock successfully sold</label></div>
                 <script>
+
+                    $(document).ready(function() {
+                        calculateSellTotal();
+                    });
 
                     //Cache for the Stock Held values to save constantly calling API, stored by Trade Account ID
                     var tradeAccountStocks = {};
+
+                    //Sell Fee Threshold
+                    const sellThreshold = 1000;
+
+                    //Standard Sell Percentage Fee
+                    const sellFee = (0.25 / 100);
+
+                    //Threshold Sell Percentage
+                    const sellFeeMass = (0.1875 / 100);
+
 
                     //Listener on the Sell Trade Account Selector, gets the Stock Held count and displays it to user
                     $('#sellTradeAccounts').change(function () {
@@ -262,6 +339,58 @@
                             getStockCount(parseInt($('#sellTradeAccounts').val()));
                         else
                             $('#sellStockHeld').text(tradeAccountStocks[tradeAccountId]);
+
+                    });
+
+                    //Update the values shown to the user based on the value in the sell quantity input
+                    function calculateSellTotal() {
+                        var stockQTY = parseFloat($('#sellStockQuantity').val());
+                        var stockHeld = parseFloat($('#sellStockHeld').text());
+
+                        //If the selected stock quantity is greater than that of stock held
+                        //disable sell button and return
+                        if (stockQTY > stockHeld)
+                        {
+                            $('#sellButton').addClass('disabled');
+                            return;
+                        }
+
+                        //Enable sell button
+                        $('#sellButton').removeClass('disabled');
+
+                        //Get the total value of the sale, without the Fee and Broker Fee
+                        var totalSell = {{$stock->current_price}} * stockQTY;
+
+                        //Set Fee
+                        if (stockQTY < sellThreshold)
+                        {
+                            totalSell -= totalSell * sellFee;
+                        }
+                        else
+                        {
+                            totalSell -= totalSell * sellFeeMass;
+                        }
+
+
+
+                        //Subtract Broker Fee
+                        totalSell -= brokerFee;
+
+                        //Set the Sell Total Stock lable to the total Sell Value
+                        $('#sellStockTotal').text(parseFloat(totalSell).toFixed(2));
+
+                        //If the sale would be in the positive, total colour to Green
+                        //Otherwise set to red
+                        if (totalSell > 0)
+                            $('#sellStockTotal').css('color', 'green');
+                        else
+                            $('#sellStockTotal').css('color', 'red');
+                    }
+
+                    //When User updates the quantity, update the cost
+                    $('#sellStockQuantity').on('input', function() {
+
+                        calculateSellTotal();
 
                     });
 
