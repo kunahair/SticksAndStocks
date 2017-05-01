@@ -45,19 +45,23 @@ class CurrentCompanyStockInformation {
         //Get the contents of the bar
         $contents = $dom->find('#quote-header-info [data-reactid=240]');
 
+
         //Try to get the current price, if this fails if means that the stock did not load, so return an error
         try
         {
             //Extract price from span
-            $price = $contents->find('[data-reactid=241]')->text();
+            $price = $dom->find('span[data-reactid=36]')->text();
+
         }catch (\Exception $errorException)
         {
             //If an error occures, return a fatal error back to the user
-            return $this->fatalError();
+            return $this->fatalError("Cant get price for");
         }
 
         //Get stock movement information
-        $stockMovement = $contents->find('[data-reactid=242]')->text();
+        $stockMovement = $dom->find('span[data-reactid=37]')->text();
+
+
         //Put into array that has the amount moved and the percentage
         $stockMovementArray = explode(" ", $stockMovement);
 
@@ -76,7 +80,7 @@ class CurrentCompanyStockInformation {
         //Additional information from the two tables in Yahoo! Finance
 
         //Load all the rows in the left table into extraData array
-        $tableLeft = $dom->find('[data-test=left-summary-table] table');
+        $tableLeft = $dom->find('div[data-test=left-summary-table] table');
         $this->scrapeTableRow($extraData, $tableLeft);
 
         //Load all the rows in the right table into extraData array
@@ -114,8 +118,18 @@ class CurrentCompanyStockInformation {
 
             //Set the title in the holder
             $row["title"] = $heading;
-            //Extract the value and set the value in the holder
-            $row["value"] = $tr->find('td', 1)->text();
+
+            try
+            {
+                //Extract the value and set the value in the holder
+                $row["value"] = $tr->find('td', 1)->find('span')->text();
+            }
+            catch (\Exception $exception)
+            {
+                //Extract the value and set the value in the holder
+                $row["value"] = $tr->find('td', 1)->text();
+            }
+
 
             //Add the holder with values to the dataArray reference
             array_push($dataArray, $row);
