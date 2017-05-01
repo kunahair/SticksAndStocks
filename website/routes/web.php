@@ -103,3 +103,5 @@ Route::get('profiles', function (){
 
    return view('profiles')->with('users', $users);
 });
+
+Route::get('leaderboard', 'LeaderboardController@index');

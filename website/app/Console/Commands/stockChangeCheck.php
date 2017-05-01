@@ -55,6 +55,10 @@ class stockChangeCheck extends Command
             $buySell = Array();
             $emailArray = Array();
 
+            // Portfolio Value will be the ranking
+            $user->portfolio = $user->balance;
+            $user->save();
+
             foreach ($user->tradingAccounts()->get() as $tradeAccount) {
                 foreach ($tradeAccount->transactions()->get() as $transaction) {
                     $buySell[$transaction->stock()->first()->id] = 0;
@@ -70,6 +74,11 @@ class stockChangeCheck extends Command
                         $stock_symbol = Stock::where('id', $key)->first()->stock_symbol;
                         // Current Value
                         $currentPrice = Stock::where('id', $key)->first()->current_price;
+
+                        // Append to the Portfolio Value
+                        $user->portfolio += $currentPrice * $value;
+                        $user->save();
+
                         // Buy Value
                         $buyPrice = Transaction::where('stock_id', $key)->where('trade_account_id', $tradeAccount->id)->orderBy('id', 'desc')->first()->price;
                         // Growth Percentage
