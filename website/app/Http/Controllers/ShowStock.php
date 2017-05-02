@@ -12,7 +12,7 @@ class ShowStock extends Controller
 		$data = Stock::where('stock_symbol', $code)->get();
 
 		//Get the current information for company
-		$currentDataClass = new \CurrentCompanyStockInformation();
+		$currentDataClass = new \CurrentCompanyStockInformation;
 		$currentDataArray = $currentDataClass->currentDetails($code);
 		$currentData = \GuzzleHttp\json_encode($currentDataArray);
 

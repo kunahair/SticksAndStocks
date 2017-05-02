@@ -190,9 +190,34 @@ height: 100px;
 .edit-trade-account{
     color: black;
     font-size: 20px;
+    padding-top: 3%;
 }
 .edit-trade-account> input{
     color: black;
+}
+.balance{
+
+    letter-spacing: 3px;
+    font-size:9px;
+    text-transform: uppercase;
+    font-family:'Raleway', sans-serif;
+    color: white;
+    padding: 16px;
+    text-decoration: none;
+    border-bottom: 3px solid transparent;
+    padding-top: 0.5px;
+    transition: 0.5s ease;
+    background-color: #2ab27b;
+    text-align: right;
+
+
+}
+
+.balance:hover{
+    background-color: white;
+    color:black;
+    border-bottom: 5px solid #2ab27b;
+
 
 }
 .subheading{
@@ -200,27 +225,33 @@ height: 100px;
     letter-spacing: 3px;
     text-transform: uppercase;
     font-family:'Raleway', sans-serif;
-    color: black;
+    color: white;
     padding: 16px;
     text-decoration: none;
     border-bottom: 3px solid transparent;
-    width: 0px;
+    width:250px;
+    margin: auto;
     transition: 0.5s ease;
 
 
 }
-
-
-.subheading:hover{
-    border-bottom: 5px solid grey;
-    width: 296px;
+.top-title-bg{
+    background-color: #2ab27b;
 }
+.subheading:hover{
+    border-bottom: 5px solid white;
+    width:270px;
+    margin: auto;
+    color:black;
+
+}
+
 .background{
     /*background-color: darkcyan;*/
     color: black;
-
-    background-color: snow;
+    background-color: white;
 }
+
 .block-foreground{
 /*background-color: darkcyan;*/
     color: black;
@@ -229,9 +260,9 @@ height: 100px;
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-size: 10px;
     text-align: center;
-    width: 100%;
+    width: 80%;
     overflow: auto;
-    background-color: snow;
+    background-color: white;
 }
 .jumbotron{
    margin-bottom: 0px;
@@ -262,27 +293,18 @@ height: 100px;
 }
 
 .button {
-    display: inline-block;
-    padding: 15px 25px;
-    font-size: 24px;
+
     cursor: pointer;
     text-align: center;
     text-decoration: none;
     outline: none;
     color: #fff;
-    background-color: #4CAF50;
+    background-color: #2ab27b;
     border: none;
-    border-radius: 15px;
-    box-shadow: 0 9px #777;
+    border-radius: 7px;
+
 }
 
-.button:hover {background-color: #3e8e41}
-
-.button:active {
-    background-color: #3e8e41;
-    box-shadow: 0 5px #444;
-    transform: translateY(4px);
-}
 
 .box{
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
