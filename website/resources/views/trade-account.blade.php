@@ -76,7 +76,7 @@
 @include('layouts.buystock')
 
     <div class="box container">
-        <div class="">
+        <div class="top-title-bg">
         <h2 class="subheading">{{$tradeAccount["name"]}}</h2>
         <hr />
         {{--<h3>${{number_format($tradeAccount["balance"], 2)}}</h3>--}}
@@ -531,4 +531,4 @@
 
 </body>
 
-</html>
+
