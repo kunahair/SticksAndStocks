@@ -105,3 +105,7 @@ Route::get('profiles', function (){
 });
 
 Route::get('leaderboard', 'LeaderboardController@index');
+
+
+//Accept Money Route
+Route::post('messages/accept-money/{id}', 'MessagesController@acceptMoney')->middleware('auth');
