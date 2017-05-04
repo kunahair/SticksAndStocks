@@ -3,11 +3,19 @@
 
 @section('title','Pineapple')
 
+    <style>
+
+        thead{
+            background-color: black;
+        }
+
+    </style>
+
     <h1>All Users</h1>
     {{--Padding--}}
     <div class="col-xs-1 col-md-3"></div>
 
-    <table class="table-hover">
+    <table class="table-hover table-bordered">
         <thead>
             <tr>
                 <th>Name</th>
