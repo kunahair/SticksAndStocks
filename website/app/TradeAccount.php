@@ -101,8 +101,8 @@ class TradeAccount extends Model
             //Calculate the total amount of growth that the account has for this stock (overall NOT average)
             $stock_total_growth = ($stock_total_cost / ($stock_owned - $stock_sold)) - $stock_current_price;
 
-            if ($stock_total_growth > 0.00)
-                $stock_total_growth *= -1;
+//            if ($stock_total_growth > 0.00)
+//                $stock_total_growth *= -1;
             //$stock_total_growth *= ($stock_owned - $stock_sold) * -1.00;
 
             //Get the growth as a percentage
@@ -223,7 +223,7 @@ class TradeAccount extends Model
                 ($stock_total_cost / ($stock_owned - $stock_sold)) == 0.0 || ($stock_total_cost / ($stock_owned - $stock_sold)) == 0)
                 continue;
 
-            $stock_total_growth_percentage = ((($stock_current_price / ($stock_total_cost / ($stock_owned - $stock_sold))) * 100) - 100) * -1;
+            $stock_total_growth_percentage = ((($stock_current_price / ($stock_total_cost / ($stock_owned - $stock_sold))) * 100)) - 100;
 
             $groupedStocks[$stock_symbol]["name"] = $stock_name;
             $groupedStocks[$stock_symbol]["symbol"] = $stock_symbol;
