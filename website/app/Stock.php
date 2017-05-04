@@ -109,4 +109,41 @@ class Stock extends Model
 	    return $this->hasMany('App\StockHistory');
     }
 
+    //Get the Latest Day's History for this Stock
+    public function getLatestHistory()
+    {
+        //Try to get the latest Timestamp of data
+        //If there is no data for this stock company in the Histories Table, then return empty array
+        try {
+            $timestamp = $this->getHistory()->orderBy('timestamp', 'desc')->first()->timestamp;
+        }
+        catch (\Exception $exception)
+        {
+            return json_encode(array(), JSON_FORCE_OBJECT);
+        }
+
+        //Get all the history for this stock
+        $allHistories = $this->getHistory()->orderBy('timestamp', 'desc')->get();
+
+        //History holder for only the latest day, to be returned to caller
+        $latestHistoryArray = array();
+
+        //Loop through all the histories, starting at the latest day
+        //If the next row of data is in the same day, add it to be returned
+        //Otherwise move onto the next row
+        foreach ($allHistories as $history)
+        {
+            if (( $timestamp - $history->timestamp) < 5000 )
+            {
+                $timestamp = $history->timestamp;
+                array_push($latestHistoryArray, $history);
+            }
+
+        }
+
+        //Return Latest History data to the caller in JSON format for use in Javascript
+        return json_encode($latestHistoryArray, JSON_FORCE_OBJECT);
+
+    }
+
 }
