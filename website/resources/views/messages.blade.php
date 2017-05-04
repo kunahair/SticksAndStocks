@@ -32,7 +32,7 @@
             <tbody>
                 @foreach(Auth::user()->getFriendList(Auth::user()->id) as $friend)
                     {{--Make row clickable to go to that friends message page--}}
-                    <tr onclick="window.document.location=' {{url("messages") . "/" . $friend->id}}'">
+                    <tr onclick="window.document.location=' {{url("messages") . "/" . $friend->id}}'" class="clickable-table-item">
                         <td>{{$friend->name}} </td>
                     </tr>
                 @endforeach

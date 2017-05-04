@@ -148,12 +148,6 @@
 
                             function calculateBuyTotal()
                             {
-
-                            }
-
-
-                            //When User updates the quantity, update the cost
-                            $('#stockQuantity').on('input', function() {
                                 //Get the quantity in the field
                                 var stockQTY = $('#stockQuantity').val();
                                 var stockQTY = parseInt(stockQTY);
@@ -201,6 +195,13 @@
                                 }
                                 else
                                     $('#buyButton').removeClass('disabled');
+                            }
+
+
+                            //When User updates the quantity, update the cost
+                            $('#stockQuantity').on('input', function() {
+
+                                calculateBuyTotal();
 
 
                             });
@@ -309,6 +310,8 @@
                 <script>
 
                     $(document).ready(function() {
+
+                        calculateBuyTotal();
                         calculateSellTotal();
                     });
 
