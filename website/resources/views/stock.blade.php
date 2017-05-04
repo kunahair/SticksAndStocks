@@ -205,9 +205,10 @@
                             //When User updates the quantity, update the cost
                             $('#stockQuantity').on('input', function() {
 
+                                $('#buyError').css('display', 'none');
+                                $('#buySuccess').css('display', 'none');
+
                                 calculateBuyTotal();
-
-
                             });
 
                             //When user buys, do some client side checking then send relevant info to the server for processing
@@ -400,6 +401,10 @@
 
                     //When User updates the quantity, update the cost
                     $('#sellStockQuantity').on('input', function() {
+
+                        $('#sellError').css('display', 'none');
+                        $('sellSuccess').css('display', 'none');
+
 
                         calculateSellTotal();
 
