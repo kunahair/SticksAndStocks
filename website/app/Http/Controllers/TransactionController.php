@@ -43,10 +43,14 @@ class TransactionController extends Controller
             return response(json_encode($error), 403);
         }
 
+        $quantity = $request->quantity;
+
         //If the quantity is not an integer, return an error
-        if (!is_int($request->quantity))
+        if (!ctype_digit($quantity))
             return response("Stock Quantity must be an integer", 412);
 
+        else if ($quantity >! 0)
+            return response("Stock Quantity must be greater than 0", 412);
 
         $user = Auth::user();
 

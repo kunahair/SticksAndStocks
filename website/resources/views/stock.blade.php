@@ -86,7 +86,11 @@
                 <div id="userBuyForm" class="modal fade" role="dialog">
                     <div  class=" modal-content modal-dialog" >
                         <div class="modal-header">
-                            <h3>Buy Stock</h3>
+                            <h3>Buy Stock
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="margin-top: -20px">
+                                    <span aria-hidden="true" style="font-size: 200%">&times;</span>
+                                </button>
+                            </h3>
                             <div class="text-right">
                                 <h4>{{$stock->stock_symbol}}</h4>
                             </div>
@@ -201,9 +205,10 @@
                             //When User updates the quantity, update the cost
                             $('#stockQuantity').on('input', function() {
 
+                                $('#buyError').css('display', 'none');
+                                $('#buySuccess').css('display', 'none');
+
                                 calculateBuyTotal();
-
-
                             });
 
                             //When user buys, do some client side checking then send relevant info to the server for processing
@@ -280,7 +285,11 @@
             <div id="userSellForm" class="modal fade" role="dialog">
                 <div  class=" modal-content modal-dialog" >
                     <div class="modal-header">
-                       <h3>Sell Stock</h3>
+                        <h3>Sell Stock
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="margin-top: -20px">
+                                <span aria-hidden="true" style="font-size: 200%">&times;</span>
+                            </button>
+                        </h3>
                         <div class="text-right">
                             <h4>{{$stock->stock_symbol}}</h4>
                         </div>
@@ -392,6 +401,10 @@
 
                     //When User updates the quantity, update the cost
                     $('#sellStockQuantity').on('input', function() {
+
+                        $('#sellError').css('display', 'none');
+                        $('sellSuccess').css('display', 'none');
+
 
                         calculateSellTotal();
 
@@ -533,6 +546,8 @@
         </div>
     @show
 
+
+
     <script>
 
         //Convenience function to add a 0 to the front of an integer, used for date formatting
@@ -578,12 +593,13 @@
             {{--dataIn.push({x: time, y: average});--}}
         {{--});--}}
 
-        {{--Get Stock History from DB and convert to JSON--}}
-        var stockHistoriesString = htmlDecode("{{$stock->getHistory}}");
+        {{--Get Stock Lastest History from DB and convert to JSON--}}
+        var stockHistoriesString = htmlDecode("{{$stock->getLatestHistory()}}");
         var stockHistoriesJSON = JSON.parse(stockHistoriesString);
 
 //      Loop through the stockHistoriesJSON and convert time into ChartJS format, and add time and average to ChartJS data
         $.each(stockHistoriesJSON, function (index, value) {
+
             var date = new Date();
             date.setTime(value["timestamp"] * 1000);
 
