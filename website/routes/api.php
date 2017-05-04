@@ -41,3 +41,7 @@ Route::post('/sendFriendRequest', 'FriendController@sendFriendRequest');
 //API call to accept a friend/send friend request
 //todo: make this use the middleware route
 Route::post('/acceptFriendRequest', 'FriendController@acceptFriendRequest');
+
+Route::post('/deleteUser', 'AdminDashboardController@deleteUser');
+Route::post('/modifyRole', 'AdminDashboardController@modifyRole');
+Route::post('/emailUsers', 'AdminDashboardController@emailUsers');
