@@ -158,13 +158,13 @@ class MessagesController extends Controller
                     $user->save();
                 }
 
-                return $this->view($request, $id);
+                return redirect()->action('MessagesController@view', ['id' => $id]);
             }
         }
 
 
         //Send the user back to the messages page for this friend, will show new message up the top
-        return $this->view($request, $id);
+        return redirect()->action('MessagesController@view', ['id' => $id]);
 
     }
 
@@ -207,8 +207,8 @@ class MessagesController extends Controller
         if ($friend != null)
         {
             if ($friend["to"] != Auth::user()->getAuthIdentifier())
-                return $this->view($request, $friend["to"], null);
-            return $this->view($request, $friend["from"], null);
+                return redirect()->action('MessagesController@view', ['id' => $friend["to"]]);
+            return redirect()->action('MessagesController@view', ['id' => $friend["from"]]);
         }
 
         //Default, if they have no friends, route back to dashboard
@@ -248,7 +248,7 @@ class MessagesController extends Controller
         $money->taken = $acceptAmount;
         $money->save();
 
-        return $this->view($request, $id);
+        return redirect()->action('MessagesController@view', ['id' => $id]);
 
     }
 }

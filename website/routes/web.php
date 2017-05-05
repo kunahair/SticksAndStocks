@@ -79,7 +79,7 @@ Route::get('profile/{id}', function ($id) {
     $user = App\User::find($id);
 
     if ($user == null)
-        return view('/dashboard');
+        return redirect('/dashboard');
 
     return view('profile', ['growth' => $growth, 'user' => $user]);
 })->middleware('auth');
