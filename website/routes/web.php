@@ -109,3 +109,12 @@ Route::get('leaderboard', 'LeaderboardController@index');
 
 //Accept Money Route
 Route::post('messages/accept-money/{id}', 'MessagesController@acceptMoney')->middleware('auth');
+
+//404 error page
+Route::get('404', function () {
+    return view('404');
+});
+
+Route::get('privacy-and-policy', function () {
+    return view('privacy-and-policy');
+});

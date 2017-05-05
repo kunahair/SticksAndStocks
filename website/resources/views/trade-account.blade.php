@@ -75,13 +75,14 @@
 <!-- Modal -->
 @include('layouts.buystock')
 
-    <div class="box container">
-        <div class="top-title-bg">
+
+        <div class="bg">
         <h2 class="subheading">{{$tradeAccount["name"]}}</h2>
         <hr />
         {{--<h3>${{number_format($tradeAccount["balance"], 2)}}</h3>--}}
         </div>
-        <div id="trade-account-info-box" class="col-xs-10 col-md-12" style="padding-top: 3%">
+<div class=" container">
+        <div id="trade-account-info-box" class="col-xs-10 col-md-12 " style="padding-top: 3%">
 
             <div class="col-xs-1 col-md-2"></div>
 
@@ -285,7 +286,7 @@
         <div class="col-xs-1 col-md-3"></div>
 
 
-        <div class="col-xs-12">
+        <div class="col-xs-12 ">
 
             <h2>Transactions</h2>
 

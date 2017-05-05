@@ -54,9 +54,9 @@
 
 @include('layouts.navbar')
 
-<div class="container box">
+<div class="container ">
 
-    <div class="box">
+    <div class="">
     </div>
 
 
@@ -81,16 +81,16 @@
             {{--Only Users who are signed in can purchase and sell stocks--}}
             @if(Auth::check())
               <!-- added a model for the buying stocks button-->
-                <button type="button" class="btn btn-info btn-lg " data-toggle="modal" data-target="#userBuyForm">Buy Stocks</button>
+                <button type="button" class="btn button btn-lg " data-toggle="modal" data-target="#userBuyForm">Buy Stocks</button>
                 <!-- model layout-->
                 <div id="userBuyForm" class="modal fade" role="dialog">
                     <div  class=" modal-content modal-dialog" >
-                        <div class="modal-header">
-                            <h3>Buy Stock
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="margin-top: -20px">
+                        <div class="modal-header bg">
+                            <div class="subheading"> <h3>Buy Stock</h3></div>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="margin-top: -80px">
                                     <span aria-hidden="true" style="font-size: 200%">&times;</span>
                                 </button>
-                            </h3>
+
                             <div class="text-right">
                                 <h4>{{$stock->stock_symbol}}</h4>
                             </div>
@@ -116,7 +116,7 @@
                         </div>
                         <div class="modal-footer">
                             <h4 class="text-left">Total Price: $<lable id="buyStockTotal">{{$stock->current_price}}</lable></h4>
-                            <button id="buyButton" name="buyButton" class="btn btn-primary" >Buy</button>
+                            <button id="buyButton" name="buyButton" class="btn btn-md button" >Buy</button>
                         </div>
                         {{--User messages--}}
                         <div id="buyError" class="alert alert-danger" style="display: none">There was an error</div>
@@ -280,16 +280,16 @@
 
             {{--Sell User From--}}
               <!-- added a model for the buying stocks button-->
-                  <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#userSellForm">Sell Stock</button>
+                  <button type="button" class="btn button btn-lg" data-toggle="modal" data-target="#userSellForm">Sell Stock</button>
                   <!-- model layout-->
             <div id="userSellForm" class="modal fade" role="dialog">
                 <div  class=" modal-content modal-dialog" >
-                    <div class="modal-header">
-                        <h3>Sell Stock
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="margin-top: -20px">
+                    <div class="modal-header bg">
+                        <div class="subheading"> <h3>Sell Stock</h3></div>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="margin-top: -68px">
                                 <span aria-hidden="true" style="font-size: 200%">&times;</span>
                             </button>
-                        </h3>
+
                         <div class="text-right">
                             <h4>{{$stock->stock_symbol}}</h4>
                         </div>
@@ -311,7 +311,7 @@
                     </div>
                     <div class="modal-footer">
                         <h4 class="text-left">Sell Total: $<lable id="sellStockTotal">{{$stock->current_price}}</lable></h4>
-                        <button id="sellButton" name="sellButton" class="btn btn-primary" >Sell</button>
+                        <button id="sellButton" name="sellButton" class="btn btn-md button" >Sell</button>
                     </div>
                     {{--User messages--}}
                     <div id="sellError" class="alert alert-danger" style="display: none">There was an error</div>

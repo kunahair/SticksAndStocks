@@ -15,20 +15,21 @@
         }
 
         #account-info {
-            margin-top: 15%;
+            margin-top: 10%;
         }
     </style>
 
     @include('layouts.navbar')
 
 
-        <div class="block-foreground box container">
+        <div class="block-foreground">
+            <div class="bg">
 <div class="col-sm-4">
-        <h1 class="subheading">Dashboard</h1>
+        <h1 class="  subheading">Dashboard</h1>
 </div >
-
-            <div class="balance ">
+            <div class="balance">
                 <h2>Balance: ${{number_format(Auth::user()->balance,2)}}AUD</h2>
+            </div>
             </div>
         <div id="create-ta-form" class="edit-trade-account " style="padding-bottom: 3%;">
 
@@ -41,7 +42,7 @@
 
         {{--User Trade Accounts cards--}}
 
-        <div id="accounts" class="col-md-6 col-md-offset-3 section">
+        <div id="accounts" class=" " style="padding: 10px;">
 
             {{--Loop through all the trade accounts that the user has and list them as panels with name and stats--}}
             @foreach(Auth::user()->tradingAccounts as $ta)
@@ -65,17 +66,18 @@
                     </div>
                 </a>
                 {{--Spacer for panels--}}
-                <div class="col-md-1"></div>
+                <div class="col-md-1" style="padding-right: 30px">  </div>
             @endforeach
 
         </div>
         </div>
-        <div id='content' class=" text-center">
+    <br/>
+        <div id='content' class=" text-center col-sm-4 account-info ">
             {{--Account information div--}}
-            <div id="account-info" class="jumbotron">
+            <div id="account-info" class="bg ">
 
                 <br/>
-                <h2 class="">Account Information</h2>
+                <h2 class="subheading">Account Information</h2>
                 <br/>
 
                 <span id="account-info-view-mode">
@@ -86,10 +88,10 @@
                     <a href="#" id="account-info-save-button" class="btn btn-lg button" >save</a>&nbsp;&nbsp;&nbsp;&nbsp;
                     <a href="#" id="account-info-cancel-button" class="btn btn-lg button" >cancel</a>
                 </span>
-                <hr />
+
             </div>
          </div>
-                <div class="edit-info">
+    <div class="edit-info ">
                 <div class=" container ">
                     @if (count($errors) > 0)
                         <div class="alert alert-danger">

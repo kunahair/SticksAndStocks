@@ -38,7 +38,7 @@
                     </li>
                     <li><a href="/dashboard">Dashboard</a></li>
                     <li><a href="/leaderboard">Leaderboard</a></li>
-                    <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true">Inbox <span class="badge" id="alarm-system">{{count(Auth::user()->getNotifications())}}</span></a>
+                    <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true">Inbox <span class="badge bg" id="alarm-system">{{count(Auth::user()->getNotifications())}}</span></a>
                         <ul class="dropdown-menu">
                             {{--Loop through all the pending notifications the user has and display as dropdown notification--}}
                             @foreach(Auth::user()->getNotifications() as $notification)
