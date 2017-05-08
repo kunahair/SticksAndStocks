@@ -42,6 +42,10 @@
         .stock-table-data {
             width: 50%;
         }
+
+        .sort-header:hover {
+            cursor: pointer;
+        }
     </style>
 
     <!--<link rel="stylesheet" href="style.css"/>-->
@@ -71,156 +75,195 @@
 <!-- Modal -->
 @include('layouts.buystock')
 
-    <div class=" container" style="background-color: snow;">
-        <h2>{{$tradeAccount["name"]}}</h2>
-        <hr />
-        <h3>${{number_format($tradeAccount["balance"], 2)}}</h3>
 
-        <div id="trade-account-info-box" class="col-xs-10 col-md-12" style="padding-top: 3%">
+        <div class="bg">
+        <h2 class="subheading">{{$tradeAccount["name"]}}</h2>
+        <hr />
+        {{--<h3>${{number_format($tradeAccount["balance"], 2)}}</h3>--}}
+        </div>
+<div class=" container">
+        <div id="trade-account-info-box" class="col-xs-10 col-md-12 " style="padding-top: 3%">
 
             <div class="col-xs-1 col-md-2"></div>
 
-            <h2>Held Stocks</h2>
+            <h2 >Held Stocks</h2>
 
             <table class="table table-hover col-xs-10 ">
                 <thead>
-                <tr>
-                    <td class="col-xs-1" style="padding: 0px">Code</td>
-                    <td class="col-xs-4" style="padding: 0px">Name</td>
-                    <td class="col-xs-1" style="padding: 0px">Value</td>
-                    <td class="col-xs-1" style="padding: 0">Price</td>
-                    <td class="col-xs-2" style="padding: 0px">Growth</td>
-                    <td class="col-xs-2" style="padding: 0px">Owned</td>
-                    <td class="col-xs-1" style="padding: 0px">View</td>
-                </tr>
+                    <tr>
+                        <td class="col-xs-1" style="padding: 0px">Code</td>
+                        <td class="col-xs-4" style="padding: 0px">Name</td>
+                        <td class="col-xs-1" style="padding: 0px">Value</td>
+                        <td class="col-xs-1" style="padding: 0">Price</td>
+                        <td class="col-xs-2" style="padding: 0px">Growth</td>
+                        <td class="col-xs-2" style="padding: 0px">Owned</td>
+                        <td class="col-xs-1" style="padding: 0px">View</td>
+                    </tr>
                 </thead>
                 <tbody>
 
+                {{--Loop through all the Stocks currently held and display information in table--}}
+                    @foreach($tradeAccount->getCurrentStock() as $stock)
 
-                @php
-                    //Holder for grouped transactions
-                    $transactions = array();
+                        {{--If the key of name does not exist, it is not a stock so continue--}}
+                        @if(!key_exists("name", $stock))
+                            @continue
+                        @endif
 
-                    //Loop through all the transactions the current trade account has
-                    //Group all the transactions into the transactions array
-                    foreach ($tradeAccount->transactions as $transaction)
-                    {
-                        //If the stock has not been assigned into transactions, add it
-                        if(!array_key_exists($transaction->stock_id, $transactions))
-                        {
-                            $transactions[$transaction->stock_id] = array();
-                        }
-                        //Add the current transaction to its transactions group
-                        array_push($transactions[$transaction->stock_id], $transaction);
-                    }
+                        <tr>
+                            <td class="col-xs-1 " style="padding: 0px"><a href="{{url('/stock')}}/{{$stock["symbol"]}}"> {{$stock["symbol"]}} </a></td>
+                            <td class=col-xs-4" style="padding: 0px">{{$stock["name"]}}</td>
+                            <td class=col-xs-1" style="padding: 0px">${{$stock["total_cost"]}}</td>
+                            <td class=col-xs-1" style="padding: 0px">${{$stock["current_price"]}}</td>
+                            <td class=col-xs-2" style="padding: 0px">${{$stock["total_growth"]}} ({{$stock["total_growth_percentage"]}}%)</td>
+                            <td class=col-xs-2" style="padding: 0px">{{$stock["owns"]}}</td>
+                            <td class=col-xs-1" style="padding: 0px"><a href="#">view</a></td>
+                        </tr>
 
-                    $allStocksTotalValue = 0.00;
-                    $allStocksTotalCount = 0;
-                    $stockCount = 0;
+                    @endforeach
 
-                    //Loop through each transaction group
-                    //Inner loop the individual transactions for that group
-                    //For each individual transaction that is not in a waiting state, gather statistics
-                    foreach ($transactions as $transactionsGroup)
-                    {
-                        //Stock stats and info
-                        $stock_symbol = "";
-                        $stock_name = "";
-                        $stock_total_cost = 0.00;
-                        $stock_owned = 0;
-                        $stock_sold = 0;
-                        $stock_total_growth = 0.00;
-                        $stock_current_price = 0.00;
+                </tbody>
+            </table>
 
-                        $assignOnce = 0;
+            {{--Show Stock Average value (as per the original spec)--}}
+            <div class="col-xs-12" style="padding-left: 0">
+                <h4>Stock Average Value: ${{$tradeAccount->getCurrentStock()["stats"]["average_stock_value"]}}AUD</h4>
+            </div>
 
-                        foreach ($transactionsGroup as $transaction)
-                        {
-                            //If the current transaction is waiting, then move onto the next one
-                            if ($transaction->waiting)
-                            {
-                                continue;
-                            }
+            {{--Show the total stock value--}}
+            <div class="col-xs-12" style="padding-left: 0">
+                <h4>Stock Total Value: ${{$tradeAccount->getCurrentStock()["stats"]["total_stock_value"]}}AUD</h4>
+            </div>
 
-                            //To save memory, just capture the name, symbol and current price of stock group once
-                            if ($assignOnce == 0)
-                            {
-                                $stock_symbol = $transaction->stock->stock_symbol;
-                                $stock_name = $transaction->stock->stock_name;
 
-                                $stock_current_price = $transaction->stock->current_price;
 
-                                $assignOnce++;
-                            }
+                {{--@php--}}
+                    {{--//Holder for grouped transactions--}}
+                    {{--$transactions = array();--}}
 
-                            //Calculate the initial cost to the user for the stock, add it to total
-                            $stock_total_cost += ($transaction->price * ($transaction->bought - $transaction->sold));
-                            //Get the amount of stock owned for this transaction, add it to total
-                            $stock_owned += $transaction->bought;
-                            //Get the amount of stock sold for this transaction, add it to total
-                            $stock_sold += $transaction->sold;
+                    {{--//Loop through all the transactions the current trade account has--}}
+                    {{--//Group all the transactions into the transactions array--}}
+                    {{--foreach ($tradeAccount->transactions as $transaction)--}}
+                    {{--{--}}
+                        {{--//If the stock has not been assigned into transactions, add it--}}
+                        {{--if(!array_key_exists($transaction->stock_id, $transactions))--}}
+                        {{--{--}}
+                            {{--$transactions[$transaction->stock_id] = array();--}}
+                        {{--}--}}
+                        {{--//Add the current transaction to its transactions group--}}
+                        {{--array_push($transactions[$transaction->stock_id], $transaction);--}}
+                    {{--}--}}
 
-                            //$stock_total_growth += ($stock_total_cost * ($transaction->bought - $transaction->sold));
+                    {{--$allStocksTotalValue = 0.00;--}}
+                    {{--$allStocksTotalCount = 0;--}}
+                    {{--$stockCount = 0;--}}
 
-                            //echo '<pre>';
-                            //print_r($transaction->price);
-                            //echo '</pre>';
-                        }
+                    {{--//Loop through each transaction group--}}
+                    {{--//Inner loop the individual transactions for that group--}}
+                    {{--//For each individual transaction that is not in a waiting state, gather statistics--}}
+                    {{--foreach ($transactions as $transactionsGroup)--}}
+                    {{--{--}}
+                        {{--//Stock stats and info--}}
+                        {{--$stock_symbol = "";--}}
+                        {{--$stock_name = "";--}}
+                        {{--$stock_total_cost = 0.00;--}}
+                        {{--$stock_owned = 0;--}}
+                        {{--$stock_sold = 0;--}}
+                        {{--$stock_total_growth = 0.00;--}}
+                        {{--$stock_current_price = 0.00;--}}
 
-                        //If the stock owned is less than 1 (it should never hit below 0)
-                        //Then stock is not needed as it is not working for account in current state
-                        if ($stock_owned <= 0 || $stock_sold == $stock_owned)
-                        {
-                            continue;
-                        }
+                        {{--$assignOnce = 0;--}}
 
-                        //Calculate the total amount of growth that the account has for this stock (overall NOT average)
-                        $stock_total_growth = ($stock_total_cost / ($stock_owned - $stock_sold)) - $stock_current_price;
+                        {{--foreach ($transactionsGroup as $transaction)--}}
+                        {{--{--}}
+                            {{--//If the current transaction is waiting, then move onto the next one--}}
+                            {{--if ($transaction->waiting)--}}
+                            {{--{--}}
+                                {{--continue;--}}
+                            {{--}--}}
 
-                        if ($stock_total_growth > 0.00)
-                            $stock_total_growth *= -1;
-                            //$stock_total_growth *= ($stock_owned - $stock_sold) * -1.00;
+                            {{--//To save memory, just capture the name, symbol and current price of stock group once--}}
+                            {{--if ($assignOnce == 0)--}}
+                            {{--{--}}
+                                {{--$stock_symbol = $transaction->stock->stock_symbol;--}}
+                                {{--$stock_name = $transaction->stock->stock_name;--}}
 
-                        //Get the growth as a percentage
-                        if (($stock_total_cost / ($stock_owned - $stock_sold)) == 0.00 ||
-                            ($stock_total_cost / ($stock_owned - $stock_sold)) == 0.0 || ($stock_total_cost / ($stock_owned - $stock_sold)) == 0)
-                            continue;
-                        $stock_total_growth_percentage = ((($stock_current_price / ($stock_total_cost / ($stock_owned - $stock_sold))) * 100) - 100) * -1;
+                                {{--$stock_current_price = $transaction->stock->current_price;--}}
 
-                        //Add stock information to the holding table
-                        echo '<tr>
-                                    <td class="col-xs-1 " style="padding: 0px"><a href="' . "../stock/". $stock_symbol . '">' . $stock_symbol . '</a></td>
-                                    <td class=col-xs-4" style="padding: 0px">' . $stock_name . '</td>
-                                    <td class=col-xs-1" style="padding: 0px">$' . number_format($stock_total_cost, 2) . '</td>
-                                    <td class=col-xs-1" style="padding: 0px">$' . number_format($stock_current_price, 2) . '</td>
-                                    <td class=col-xs-2" style="padding: 0px">$' . number_format($stock_total_growth, 2) . ' (' . number_format($stock_total_growth_percentage, 2) . '%)' . '</td>
-                                    <td class=col-xs-2" style="padding: 0px">' . ($stock_owned - $stock_sold) . '</td>
-                                    <td class=col-xs-1" style="padding: 0px">' . '<a href="#">view</a>' . '</td>
-                                 </tr>';
+                                {{--$assignOnce++;--}}
+                            {{--}--}}
 
-                        $allStocksTotalValue += $stock_current_price * ($stock_owned - $stock_sold);
-                        $allStocksTotalCount += ($stock_owned - $stock_sold);
-                        $stockCount++;
+                            {{--//Calculate the initial cost to the user for the stock, add it to total--}}
+                            {{--$stock_total_cost += ($transaction->price * ($transaction->bought - $transaction->sold));--}}
+                            {{--//Get the amount of stock owned for this transaction, add it to total--}}
+                            {{--$stock_owned += $transaction->bought;--}}
+                            {{--//Get the amount of stock sold for this transaction, add it to total--}}
+                            {{--$stock_sold += $transaction->sold;--}}
 
-                    }
+                            {{--//$stock_total_growth += ($stock_total_cost * ($transaction->bought - $transaction->sold));--}}
 
-                    echo '</tbody></table>';
+                            {{--//echo '<pre>';--}}
+                            {{--//print_r($transaction->price);--}}
+                            {{--//echo '</pre>';--}}
+                        {{--}--}}
 
-                    //Show the average Stock value of this Trade Account
-                    echo '<div class="col-xs-12" style="padding-left: 0">';
-                    
-                    if ($allStocksTotalCount > 0)
-                    echo '<h4>Stock Average Value: $' . number_format(($allStocksTotalValue / $allStocksTotalCount),2) . 'AUD</h4>';
+                        {{--//If the stock owned is less than 1 (it should never hit below 0)--}}
+                        {{--//Then stock is not needed as it is not working for account in current state--}}
+                        {{--if ($stock_owned <= 0 || $stock_sold == $stock_owned)--}}
+                        {{--{--}}
+                            {{--continue;--}}
+                        {{--}--}}
 
-                    echo '</div>';
+                        {{--//Calculate the total amount of growth that the account has for this stock (overall NOT average)--}}
+                        {{--$stock_total_growth = ($stock_total_cost / ($stock_owned - $stock_sold)) - $stock_current_price;--}}
 
-                    //Show the total Stock value of this Trade Account
-                    echo '<div class="col-xs-12" style="padding-left: 0">';
+                        {{--if ($stock_total_growth > 0.00)--}}
+                            {{--$stock_total_growth *= -1;--}}
+                            {{--//$stock_total_growth *= ($stock_owned - $stock_sold) * -1.00;--}}
 
-                    echo '<h4>Stock Total Value: $' . number_format($allStocksTotalValue, 2) . 'AUD</h4>';
+                        {{--//Get the growth as a percentage--}}
+                        {{--if (($stock_total_cost / ($stock_owned - $stock_sold)) == 0.00 ||--}}
+                            {{--($stock_total_cost / ($stock_owned - $stock_sold)) == 0.0 || ($stock_total_cost / ($stock_owned - $stock_sold)) == 0)--}}
+                            {{--continue;--}}
+                        {{--$stock_total_growth_percentage = ((($stock_current_price / ($stock_total_cost / ($stock_owned - $stock_sold))) * 100) - 100) * -1;--}}
 
-                    echo '</div>';
-                @endphp
+                        {{--//Add stock information to the holding table--}}
+                        {{--echo '<tr>--}}
+                                    {{--<td class="col-xs-1 " style="padding: 0px"><a href="' . "../stock/". $stock_symbol . '">' . $stock_symbol . '</a></td>--}}
+                                    {{--<td class=col-xs-4" style="padding: 0px">' . $stock_name . '</td>--}}
+                                    {{--<td class=col-xs-1" style="padding: 0px">$' . number_format($stock_total_cost, 2) . '</td>--}}
+                                    {{--<td class=col-xs-1" style="padding: 0px">$' . number_format($stock_current_price, 2) . '</td>--}}
+                                    {{--<td class=col-xs-2" style="padding: 0px">$' . number_format($stock_total_growth, 2) . ' (' . number_format($stock_total_growth_percentage, 2) . '%)' . '</td>--}}
+                                    {{--<td class=col-xs-2" style="padding: 0px">' . ($stock_owned - $stock_sold) . '</td>--}}
+                                    {{--<td class=col-xs-1" style="padding: 0px">' . '<a href="#">view</a>' . '</td>--}}
+                                 {{--</tr>';--}}
+
+                        {{--$allStocksTotalValue += $stock_current_price * ($stock_owned - $stock_sold);--}}
+                        {{--$allStocksTotalCount += ($stock_owned - $stock_sold);--}}
+                        {{--$stockCount++;--}}
+
+                    {{--}--}}
+
+                    {{--echo '</tbody></table>';--}}
+
+                    {{--//Show the average Stock value of this Trade Account--}}
+                    {{--echo '<div class="col-xs-12" style="padding-left: 0">';--}}
+                    {{----}}
+                    {{--if ($allStocksTotalCount > 0)--}}
+                    {{--echo '<h4>Stock Average Value: $' . number_format(($allStocksTotalValue / $allStocksTotalCount),2) . 'AUD</h4>';--}}
+
+                    {{--echo '</div>';--}}
+
+                    {{--//Show the total Stock value of this Trade Account--}}
+                    {{--echo '<div class="col-xs-12" style="padding-left: 0">';--}}
+
+                    {{--echo '<h4>Stock Total Value: $' . number_format($allStocksTotalValue, 2) . 'AUD</h4>';--}}
+
+                    {{--echo '</div>';--}}
+                {{--@endphp--}}
+
+
+
 
                 {{--<tr>--}}
                     {{--<td class=col-xs-3" id="1" style="padding: 0px"> NAB</td>--}}
@@ -243,7 +286,7 @@
         <div class="col-xs-1 col-md-3"></div>
 
 
-        <div class="col-xs-12">
+        <div class="col-xs-12 ">
 
             <h2>Transactions</h2>
 
@@ -252,6 +295,11 @@
             {{--<input name="daterange" type="text" style="width: 100%; margin-bottom: 5%" />--}}
 
             <script>
+
+                //Holder for Transaction Data, this is the data that get manipulated for sorting and API gets
+                var transactionData = {};
+                //Holder for the state of the Current Transaction Sort Column and Direction (asc or desc)
+                var transactionSort = 0;
 
                 var startD = new Date();
                 startD.setDate(startD.getDate() - 21);
@@ -282,39 +330,105 @@
                     }
                 });
 
-                //Function to update the transactions page with given information
-                function updateTransactionTable(postData) {
+                function updateTransactionsTable()
+                {
+                    //Remove the contents of the transactions table body (remove all rows except heading)
+                    $('#transactionsTableBody tr').remove();
+
+                    //Loop through all the returned transaction (with stock info) objects and fill the table body
+                    for(var i = 0; i < transactionData.length; i++)
+                    {
+
+                        //Add the sold or bought attribute as a positive or negative integer adding the prop quantity
+                        if (transactionData[i]["sold"] > 0)
+                            transactionData[i]["quantity"] = transactionData[i]["sold"] * -1;
+                        else
+                            transactionData[i]["quantity"] = transactionData[i]["bought"];
+
+                        //Add the next row after the last row that has been added
+                        $('#transactionsTableBody').append(
+                            '<tr>' +
+                            '<td class=col-xs-3" style="padding: 0px">' + transactionData[i]["stock_symbol"] + '</td>' +
+                            '<td class=col-xs-3" style="padding: 0px">'+ transactionData[i]["stock_name"] + '</td>'   +
+                            '<td class=col-xs-3" style="padding: 0px"> $' + transactionData[i]["price"] +'</td>' +
+                            '<td class=col-xs-3" style="padding: 0px">' + (transactionData[i]["quantity"]<0?'':'+') + transactionData[i]["quantity"] +'</td>' +
+                            '<td class=col-xs-3" style="padding: 0px">' + transactionData[i]["updated_at"] + '</td>'
+                            + '</tr>'
+                        );
+                    }
+                }
+
+                //Universal Sort Function, used for now only with Transactions table headings
+                function sortAbstract(a, b, prop) {
+                    //If it is greater than 0, sort asc
+                    if (transactionSort > 0)
+                    {
+                        return (a[prop] < b[prop]) ? 1 : ((a[prop] > b[prop]) ? -1 : 0);
+                    }
+                    //Otherwise sort desc
+                    return (a[prop] > b[prop]) ? 1 : ((a[prop] < b[prop]) ? -1 : 0);
+
+                }
+
+                function sortTransactionData(by)
+                {
+                    //Set the value of transactionSort as needed
+                    //Set TS to by with -1 if this is the first sort selection
+                    if (transactionSort == 0)
+                        transactionSort = by * -1;
+                    //If TS and BY are the same value, make TS negative to sort desc
+                    else if (transactionSort == by)
+                        transactionSort *= -1;
+                    //If TS is less than 0 (negative) set it to positive value BY
+                    else if (transactionSort < 0)
+                        transactionSort = by;
+                    //Default to BY multiplied by -1
+                    else
+                        transactionSort = by * -1;
+
+                    //JS sort function, uses Closure to iterate through all elements
+                    //Use sortAbstract to do sort, using by as selector
+                    transactionData = transactionData.sort(function (a, b) {
+                        //Sort by Stock Code
+                        if (by == 1)
+                            return sortAbstract(a, b, "stock_symbol");
+
+                        //Sort by Stock Name
+                        if (by == 2)
+                            return sortAbstract(a, b, "stock_name");
+
+                        //Sort by Stock Purchased/Sold Price
+                        if (by == 3)
+                            return sortAbstract(a, b, "price");
+
+                        //Sort by Quantity Bought/Sold (Sold first as it is negative)
+                        if (by == 4)
+                            return sortAbstract(a, b, "quantity");
+
+                        //Sort by Transaction Timestamp
+                        if (by == 5)
+                            return sortAbstract(a, b, "timestamp");
+
+
+                    });
+
+                    //Update the Transactions Table with new data
+                    updateTransactionsTable();
+
+                }
+
+                //Function to get data from api and update the transactions page with given information
+                function getTransactionsForTable(postData)
+                {
                     //Call the server to give a list of transactions that are within the User selected date range
                     $.post("{{url('api/getTransactionsInDateRange')}}", postData)
                         .done(function (data) {
-//                                console.log(data);
-                            //Remove the contents of the transactions table body (remove all rows except heading)
-                            $('#transactionsTableBody tr').remove();
 
-                            //Loop through all the returned transaction (with stock info) objects and fill the table body
-                            for(var i = 0; i < data.length; i++)
-                            {
-//                                    console.log(data[i]["stock_symbol"]);
-                                //Add the next row after the last row that has been added
-                                $('#transactionsTableBody').append(
-                                    '<tr>' +
-                                    '<td class=col-xs-3" style="padding: 0px">' + data[i]["stock_symbol"] + '</td>' +
-                                    '<td class=col-xs-3" style="padding: 0px">'+ data[i]["stock_name"] + '</td>'   +
-                                    '<td class=col-xs-3" style="padding: 0px"> $' + data[i]["price"] +'</td>' +
-                                    '<td class=col-xs-3" style="padding: 0px">' + data[i]["updated_at"] + '</td>'
-                                    + '</tr>'
-                                );
+                            //Set Transaction Data holder to the Data retrieved from API
+                            transactionData = data;
 
-                                //Add the sold or bought attribute
-                                if (data[i]["sold"] > 0)
-                                    $('#transactionsTableBody tr:last td:nth-child(3)').after(
-                                        '<td class=col-xs-3" style="padding: 0px">-' + data[i]["sold"] + '</td>'
-                                    );
-                                else
-                                    $('#transactionsTableBody tr:last td:nth-child(3)').after(
-                                        '<td class=col-xs-3" style="padding: 0px">+' + data[i]["bought"] + '</td>'
-                                    );
-                            }
+                            //Update Transaction Table with API data, defaults to date asc sort
+                            updateTransactionsTable();
                         })
 
                         .fail(function (error) {
@@ -349,7 +463,7 @@
                     postData["end"] = maxEpoch;
                     postData["trade_account_id"] = {{$tradeAccount->id}};
 
-                    updateTransactionTable(postData);
+                    getTransactionsForTable(postData);
                 });
 
                 //When the page is loaded, show today's transactions
@@ -369,7 +483,7 @@
                     postData["end"] = maxEpoch;
                     postData["trade_account_id"] = {{$tradeAccount->id}};
 
-                    updateTransactionTable(postData);
+                    getTransactionsForTable(postData);
                 });
             </script>
 
@@ -377,11 +491,11 @@
             <table class="table col-xs-12 ">
                 <thead>
                     <tr>
-                        <td class="col-xs-1" style="padding: 0px">Code</td>
-                        <td class="col-xs-4" style="padding: 0px">Name</td>
-                        <td class="col-xs-2" style="padding: 0px">Price</td>
-                        <td class="col-xs-3" style="padding: 0px">Purchased/Sold</td>
-                        <td class="col-xs-3" style="padding: 0px">Date</td>
+                        <td onclick="sortTransactionData(1)" class="col-xs-1 sort-header" style="padding: 0px">Code</td>
+                        <td onclick="sortTransactionData(2)" class="col-xs-4 sort-header" style="padding: 0px">Name</td>
+                        <td onclick="sortTransactionData(3)" class="col-xs-2 sort-header" style="padding: 0px">Price</td>
+                        <td onclick="sortTransactionData(4)" class="col-xs-3 sort-header" style="padding: 0px">Purchased/Sold</td>
+                        <td onclick="sortTransactionData(5)" class="col-xs-3 sort-header" style="padding: 0px">Date</td>
                         {{--<td class="col-xs-3" style="padding: 0px">Buy/sell</td>--}}
                     </tr>
                 </thead>
@@ -418,4 +532,4 @@
 
 </body>
 
-</html>
+

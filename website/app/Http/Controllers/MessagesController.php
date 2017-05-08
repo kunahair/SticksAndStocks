@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Friend;
 use App\Message;
+use App\Money;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -38,7 +40,7 @@ class MessagesController extends Controller
         catch (\Exception $exception)
         {
             $data["messages"] = array();
-            $data["error"] = "Unable to get Messages from User";
+            $data["error"] = $exception;//"Unable to get Messages from User";
 
             //Return all the data needed for view
             return view('messages', ['user' => $user], ['id' => $id])->with('data', $data);
@@ -58,6 +60,31 @@ class MessagesController extends Controller
             return view('messages', ['user' => $user], ['id' => $id])->with('data', $data);
         }
 
+        $data["moneyTransfers"] = null;
+
+        try
+        {
+            //Get all money Transfers between User and Friend
+            $moneyTransfers = Money::where([['from', $id], ['to', Auth::user()->id]])
+                ->orWhere(([['to', $id], ['from', Auth::user()->id]]))
+                ->get();
+
+            $moneyTransfersArray = array();
+
+            //Get all the Money Transfers and add to array to return
+            foreach ($moneyTransfers as $moneyTransfer)
+            {
+                $moneyTransfersArray[$moneyTransfer->message_id] = $moneyTransfer;
+            }
+
+            //Add Money Transfers to the data to send back
+            $data["moneyTransfers"] = $moneyTransfersArray;
+        }
+        catch (\Exception $exception)
+        {
+            //TODO: If there is an error, pass it back to the User, will also have to remove the last message from DB
+        }
+
         //Bundle return data into array
         $data["messages"] = $messages;
         $data["error"] = $error;
@@ -72,35 +99,156 @@ class MessagesController extends Controller
         if ($id == null)
             return view('/dashboard');
 
+        //Make sure that the person sending the message and the reciever are Friends
         if (Auth::user()->checkIfFriends($id) && $id != Auth::user()->id)
             return $this->view($request, $id, "You are no Friends, so you cant send messages");
+
+        //Check that the message is not empty
+        if ($request->message == null)
+        {
+            return $this->view($request, $id, "Message cannot be empty");
+        }
 
         //If the message and ID are set, add it to database that "sends" the message
         if ($request->message != null && $request->id != null)
         {
-            //Get the contents of the Message
-            $message = $request->message;
-
-            //Create a new Message Model
-            $newMessage = new Message;
-
-            //Set the to and from IDs
-            $newMessage->to = $id;
-            $newMessage->from = $request->id;
-
-            //Set the message contents
-            $newMessage->message = $message;
-
-            //Set the time on the message
-            $newMessage->timestamp = time();
-
-            //Save to the database
-            $newMessage->save();
-
+            try
+            {
+                $this->saveMessage($request->message, $id);
+            }
+            catch (\Exception $exception)
+            {
+                return $this->view($request, $id, "Unable to send message, please try again");
+            }
         }
 
+        //If there is money, add it
+        if (is_numeric($request->money))
+        {
+            if (floatval($request->money) != 0)
+            {
+                $moneySent = floatval($request->money);
+                if ($moneySent <= Auth::user()->balance && $moneySent > 0)
+                {
+                    //Get the last message from the User, as that will be the message attached to the sending money
+                    $latestMessage = Message::where('from', Auth::user()->id)
+                        ->orderBy('timestamp', 'desc')
+                        ->first();
+
+                    //Create new Money Object, to load and save to the database
+                    $money = new Money;
+
+                    $money->to = $id;
+                    $money->from = $request->id;
+
+                    $money->to_message = $request->message;
+
+                    $money->timestamp = time();
+
+                    $money->message_id = $latestMessage->id;
+
+                    $money->amount = $request->money;
+
+                    $money->save();
+
+                    //Update the Balance of the User who sent the money
+                    $user = Auth::user();
+                    $user->balance -= $moneySent;
+
+                    $user->save();
+                }
+
+                return redirect()->action('MessagesController@view', ['id' => $id]);
+            }
+        }
+
+
         //Send the user back to the messages page for this friend, will show new message up the top
-        return $this->view($request, $id);
+        return redirect()->action('MessagesController@view', ['id' => $id]);
+
+    }
+
+    //Save a new sent message to the database
+    private function saveMessage($message, $id)
+    {
+
+        //Create a new Message Model
+        $newMessage = new Message;
+
+        //Set the to and from IDs
+        $newMessage->to = $id;
+        $newMessage->from = Auth::user()->id;
+
+        //Set the message contents
+        $newMessage->message = $message;
+
+        //Set the time on the message
+        $newMessage->timestamp = time();
+
+        //Save to the database
+        return $newMessage->save();
+
+    }
+
+    //Load the first user in the friends list and show their messages
+    public function first(Request $request)
+    {
+        //Get all the users friends
+        $friends = Auth::user()->getFriendList(Auth::user()->id);
+
+        //Declare null friend first
+        $friend = null;
+
+        //If there is at least one friend, then get the first one
+        if (count($friends) > 0)
+            $friend = $friends[0]->first();
+
+        //If the friend is not null, route user to their messages
+        if ($friend != null)
+        {
+            if ($friend["to"] != Auth::user()->getAuthIdentifier())
+                return redirect()->action('MessagesController@view', ['id' => $friend["to"]]);
+            return redirect()->action('MessagesController@view', ['id' => $friend["from"]]);
+        }
+
+        //Default, if they have no friends, route back to dashboard
+        return view('/dashboard');
+
+    }
+
+
+    public function acceptMoney(Request $request, $id = null)
+    {
+        if (!is_numeric($request->moneyAccept))
+            return $this->view($request, $request->friend_id, "Amount must be numberic");
+
+        //Get amount accepted as a float
+        $acceptAmount = floatval($request->moneyAccept);
+
+        //Get the money transfer row from database
+        $money = Money::where('id', $request->money_id)->first();
+
+        //If the accepted amount is less than 0 or greater than the amount sent, return an error
+        if ($acceptAmount < 0 || $acceptAmount > $money->amount)
+            return $this->view($request, $request->friend_id, "Amount must not be negative and up to amount offered");
+
+        $user = Auth::user();
+        $friend = User::where('id', $id)->first();
+
+        //Update User balance
+        $user->balance += $acceptAmount;
+        $user->save();
+
+        //Update Friends Balance
+        $friend->balance += $money->amount - $acceptAmount;
+        $friend->save();
+
+        //Update the money message to be saved
+        $money->to_read = true;
+        $money->taken = $acceptAmount;
+        $money->save();
+
+        return redirect()->action('MessagesController@view', ['id' => $id]);
 
     }
 }

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Friend;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class FriendController extends Controller
 {
@@ -79,5 +80,12 @@ class FriendController extends Controller
 
         //Send 200 code back to the user, with a message
         return response("Friend Request Accepted", 200);
+    }
+
+    public function view(Request $request)
+    {
+        $friends = Auth::user()->getFriendList(Auth::user()->id);
+
+        return view('friends')->with('friends', $friends);
     }
 }

@@ -79,7 +79,7 @@ Route::get('profile/{id}', function ($id) {
     $user = App\User::find($id);
 
     if ($user == null)
-        return view('/dashboard');
+        return redirect('/dashboard');
 
     return view('profile', ['growth' => $growth, 'user' => $user]);
 })->middleware('auth');
@@ -87,5 +87,34 @@ Route::get('profile/{id}', function ($id) {
 //When user loads the messages page for a user (by ID)
 Route::get('messages/{id}', 'MessagesController@view')->middleware('auth');
 
+//When user loads up messages, default ot the first friend
+Route::get('messages', 'MessagesController@first')->middleware('auth');
+
 //When a user sends a message to their friend
 Route::post('messages/{id}', 'MessagesController@sendMessage')->middleware('auth');
+
+//Show list of users friends
+Route::get('friends', 'FriendController@view')->middleware('auth');
+
+//Show page of all Users
+Route::get('profiles', function (){
+
+    $users = \App\User::where('admin', false)->get();
+
+   return view('profiles')->with('users', $users);
+});
+
+Route::get('leaderboard', 'LeaderboardController@index');
+
+
+//Accept Money Route
+Route::post('messages/accept-money/{id}', 'MessagesController@acceptMoney')->middleware('auth');
+
+//404 error page
+Route::get('404', function () {
+    return view('404');
+});
+
+Route::get('privacy-and-policy', function () {
+    return view('privacy-and-policy');
+});

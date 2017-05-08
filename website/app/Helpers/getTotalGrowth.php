@@ -25,12 +25,19 @@ class Growth {
                 }
             }
 
+            else
+            {
+                $error["message"] = "Not a valid User";
+                $error["code"] = 404;
+                return $error;
+            }
+
         }
         catch (Exception $exception)
         {
             $error["message"] = "Could not get Total Growth for Users Trade Accounts";
             $error["code"] = 404;
-            return $exception;
+            return $error;
         }
 
         //Try to divide the trade account total growth by the number of trade accounts the user has

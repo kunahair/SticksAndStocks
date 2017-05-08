@@ -10,25 +10,18 @@ use Illuminate\Support\Facades\Auth;
 
 class TransactionController extends Controller
 {
-    /**
- * Transaction BUY call to add a new transaction that is buying stock
- * @param Request $request
- */
-    public function addBuyTransaction(Request $request)
-    {
-        $data = new Transaction;
-        $data->timestamp = time();
-        $data->bought = 0;
-        $data->sold = 100;
-        $data->price = 13.01;
-        $data->waiting = false;
 
-        $data->stock_id = 100;
-        $data->trade_account_id = 2;
+    private $brokerFee = 50.00;
 
-        $data->save();
+    private $buyPercentage = (1.00 / 100);
+    private $sellPercentage = (0.25 / 100);
 
-    }
+    private $buyPercentageMass = (0.75 / 100);
+    private $sellPercentageMass = (0.1875 / 100);
+
+    private $buyPercentageMassThreshold = 1000;
+    private $sellPercentageMassThreshold = 500;
+
 
     public function apiAddBuyTransaction(Request $request)
     {
@@ -50,6 +43,17 @@ class TransactionController extends Controller
             return response(json_encode($error), 403);
         }
 
+        $quantity = $request->quantity;
+
+        //If the quantity is not an integer, return an error
+        if (!ctype_digit($quantity))
+            return response("Stock Quantity must be an integer", 412);
+
+        else if ($quantity >! 0)
+            return response("Stock Quantity must be greater than 0", 412);
+
+        $user = Auth::user();
+
         //For safety, all Database queries are surrounded by Try Catch, if there is an error, ohh yes, it will be caught
         try {
             //Get the latest price for the stock
@@ -57,8 +61,8 @@ class TransactionController extends Controller
             $price = $stock->current_price;
 
             //Get the balance of this Trade Account
-            $tradeAccount = DB::table('trade_accounts')->where('id', $request->TradeAccountId)->first();
-            $balance = intval($tradeAccount->balance);
+//            $tradeAccount = DB::table('trade_accounts')->where('id', $request->TradeAccountId)->first();
+            $balance = $user->balance;
         }
         catch (\Exception $exception)
         {
@@ -67,8 +71,20 @@ class TransactionController extends Controller
             return response(json_encode($error), 404);
         }
 
-        //If the Trade Account does not have enough to cover the cost, send back error
-        if (($price * $request->quantity) > $balance)
+        //Get the total cost of Stock Purchase without the percentage or Broker Fee
+        $totalCost = ($price * $request->quantity);
+
+        //Add percentage based on threshold
+        if ($request->quantity < $this->buyPercentageMassThreshold)
+            $totalCost += $totalCost * $this->buyPercentage;
+        else
+            $totalCost += $totalCost * $this->buyPercentageMass;
+
+        //Add the Broker Fee
+        $totalCost += $this->brokerFee;
+
+        //If the Trade User does not have enough to cover the cost, send back error
+        if ($totalCost > $balance)
         {
             $error["message"] = "Not enough funds for transaction";
             $error["code"] = 404;
@@ -101,16 +117,17 @@ class TransactionController extends Controller
             return response(json_encode($error), 403);
         }
 
-        //Update the Trade Account Balance
-        $newBalance = $balance - ($price * $request->quantity);
-        DB::table('trade_accounts')->where('id', $request->TradeAccountId)->update(['balance' => $newBalance]);
+        //Update the User Balance
+        $newBalance = $balance - $totalCost;
+        $user->balance = $newBalance;
+        $user->save();
 
 
         //If all went well, send back a nice message and a 200 status code
         $returnData = array();
-        $returnData["message"] = "Transaction added";
+        $returnData["message"] = $totalCost;
         $returnData["code"] = 200;
-        return json_encode($data);
+        return json_encode($returnData);
     }
 
     public function apiAddSellTransaction(Request $request)
@@ -135,6 +152,8 @@ class TransactionController extends Controller
             return response(json_encode($error), 403);
         }
 
+        $user = Auth::user();
+
         //For safety, all Database queries are surrounded by Try Catch, if there is an error, ohh yes, it will be caught
         try {
             //Get the latest price for the stock
@@ -143,7 +162,9 @@ class TransactionController extends Controller
 
             //Get the balance of this Trade Account
             $tradeAccount = DB::table('trade_accounts')->where('id', intval($request->trade_account_id))->first();
-            $balance = intval($tradeAccount->balance);
+//            $balance = intval($tradeAccount->balance);
+
+            $balance = $user->balance;
 
             //Get the quantity of selected stock this trading account has
             $transactions = DB::table('transactions')->where('trade_account_id', $tradeAccount->id)->get();
@@ -199,14 +220,26 @@ class TransactionController extends Controller
             return response(json_encode($error), 403);
         }
 
-        //Update the Trade Account Balance
-        $newBalance = $balance + ($price * $request->quantity);
-        DB::table('trade_accounts')->where('id', $request->TradeAccountId)->update(['balance' => $newBalance]);
+        //Get total Sell Profit, without Broker Fee and Fee
+        $totalSell = ($price * $request->quantity);
 
+        //Subtract percentage based on threshold
+        if ($request->quantity < $this->sellPercentageMassThreshold)
+            $totalSell -= $totalSell * $this->sellPercentage;
+        else
+            $totalSell -= $totalSell * $this->sellPercentageMass;
+
+        //Subtract the Broker's Fee
+        $totalSell -= $this->brokerFee;
+
+        //Update the User Balance
+        $newBalance = $balance + $totalSell;
+        $user->balance = $newBalance;
+        $user->save();
 
         //If all went well, send back a nice message and a 200 status code
         $returnData = array();
-        $returnData["message"] = "Transaction added";
+        $returnData["message"] = $totalSell;
         $returnData["code"] = 200;
         return json_encode($data);
     }

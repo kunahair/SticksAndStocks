@@ -15,70 +15,83 @@
         }
 
         #account-info {
-            margin-top: 20%;
+            margin-top: 10%;
         }
     </style>
 
     @include('layouts.navbar')
 
-    <div id='content' class=" text-center">
+
         <div class="block-foreground">
+            <div class="bg">
+<div class="col-sm-4">
+        <h1 class="  subheading">Dashboard</h1>
+</div >
+            <div class="balance">
+                <h2>Balance: ${{number_format(Auth::user()->balance,2)}}AUD</h2>
+            </div>
+            </div>
+        <div id="create-ta-form" class="edit-trade-account " style="padding-bottom: 3%;">
 
-        <h1 class="">Dashboard</h1>
-
-        <div id="create-ta-form" class="edit-trade-account"style="padding-bottom: 3%;">
             <label>Trade Account Name: </label>
             <input id="input-ta-name" type="text" value="" />
-            <button id="button-create-ta" class="btn btn-lg btn-info" type="button">Create Account</button>
+            <button id="button-create-ta" class="btn btn-lg button" type="button">Create Account</button>
             <div id="create-ta-error" style="color: darkred; display: none">There was an error creating Trade Account</div>
+
         </div>
 
         {{--User Trade Accounts cards--}}
 
-        <div id="accounts" class="col-md-6 col-md-offset-3 section">
+        <div id="accounts" class=" " style="padding: 10px;">
 
             {{--Loop through all the trade accounts that the user has and list them as panels with name and stats--}}
             @foreach(Auth::user()->tradingAccounts as $ta)
                 {{--Create Panel that links to its individual Trade Account Page--}}
                 <a href="{{url('/tradeaccount/' . $ta->id) }}">
-                    <div class="panel panel-default col-xs-12 col-md-3">
+                    <div class="panel panel-default col-xs-12 col-md-4">
                         {{--Name of Trade Account--}}
                         <div class="panel-heading">
                             <h3 class="panel-title">{{$ta->name}}</h3>
                         </div>
                         {{--Stats about Trade Account--}}
                         <div class="panel-body">
-                            Balance: ${{$ta->balance}}
+                            <h4>Value: ${{$ta->getCurrentStock()["stats"]["total_stock_value"]}}AUD</h4>
+                            <h4>Growth: {{number_format($ta->totalGrowth(), 2)}}</h4>
+                            @php
+                                $tradeAccountInfo = $ta->getCurrentStock()["stats"];
+                                echo '<h4>Number of Stocks: ' . $tradeAccountInfo["total_stock_count"] . '<br /></h4>';
+                            @endphp
                         </div>
 
                     </div>
                 </a>
                 {{--Spacer for panels--}}
-                <div class="col-md-1"></div>
+                <div class="col-md-1" style="padding-right: 30px">  </div>
             @endforeach
 
         </div>
         </div>
-
+    <br/>
+        <div id='content' class=" text-center col-sm-4 account-info ">
             {{--Account information div--}}
-            <div id="account-info" class="jumbotron">
+            <div id="account-info" class="bg ">
 
                 <br/>
-                <h1>Account Information</h1>
+                <h2 class="subheading">Account Information</h2>
                 <br/>
 
                 <span id="account-info-view-mode">
-                    <a href="#" id="account-info-edit-button" class="btn btn-lg btn-info" style="text-align: right">edit</a>
+                    <a href="#" id="account-info-edit-button" class="btn btn-lg button" style="text-align: right">edit</a>
                 </span>
                 <br/>
                 <span id="account-info-edit-mode" style="display: none">
-                    <a href="#" id="account-info-save-button" class="btn btn-lg btn-info" >save</a>&nbsp;&nbsp;&nbsp;&nbsp;
-                    <a href="#" id="account-info-cancel-button" class="btn btn-lg btn-info" >cancel</a>
+                    <a href="#" id="account-info-save-button" class="btn btn-lg button" >save</a>&nbsp;&nbsp;&nbsp;&nbsp;
+                    <a href="#" id="account-info-cancel-button" class="btn btn-lg button" >cancel</a>
                 </span>
-                <hr />
+
             </div>
-    </div>
-                <div class="edit-info">
+         </div>
+    <div class="edit-info ">
                 <div class=" container ">
                     @if (count($errors) > 0)
                         <div class="alert alert-danger">
@@ -232,5 +245,3 @@
     </script>
 
 </body>
-
-</html>

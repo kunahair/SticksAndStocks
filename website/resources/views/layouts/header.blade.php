@@ -55,5 +55,9 @@
         p.suggestion>text:hover{
 
         }
+
+        .btn {
+            font-weight: bold !important;
+        }
     </style>
 </head>

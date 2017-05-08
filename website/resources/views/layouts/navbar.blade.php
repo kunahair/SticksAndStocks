@@ -29,10 +29,39 @@
                 </form>
                 <!-- links-->
                 <div class="nav navbar-nav navbar-left">
-                    <li > <a href="/tradeaccount/">Trade Account</a></li>
-                    <li><a href="/dashboard">Dashboard</a>
-                    <li><a href="/inbox">Inbox <span class="badge" id="alarm-system">{{count(Auth::user()->getNotifications())}}</span>
-                        </a>
+                    <li > <a href="/tradeaccount/" class="dropdown-toggle" data-toggle="dropdown" role="button" >Social</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="/messages">Messages</a></li>
+                            <li ><a href="/friends">Friends</a></li>
+                            <li ><a href="/profiles">Profiles</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="/dashboard">Dashboard</a></li>
+                    <li><a href="/leaderboard">Leaderboard</a></li>
+                    <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true">Inbox <span class="badge bg" id="alarm-system">{{count(Auth::user()->getNotifications())}}</span></a>
+                        <ul class="dropdown-menu">
+                            {{--Loop through all the pending notifications the user has and display as dropdown notification--}}
+                            @foreach(Auth::user()->getNotifications() as $notification)
+
+                                {{--If the notification is a message, show that it is a new message and who it is from--}}
+                                @if($notification instanceof App\Message)
+                                    <li>
+                                        <a href="{{url('messages')}}/{{$notification["from"]}}">New Message from {{$notification["name"]}}</a>
+                                    </li>
+                                    @continue
+                                @endif
+
+                                {{--Othewise, assume that it is a new friend request and show that it is a new friend request and who it is from--}}
+                                <li>
+                                    <a href="{{url('profile')}}/{{$notification["from"]}}">New Friend Request from {{$notification["name"]}}</a>
+                                </li>
+
+                            @endforeach
+
+                        </ul>
+
+                    </li>
+
                             @if(Auth::check())
                                 <li><a href="{{url('/logout')}}">Logout</a></li>
                             @else
@@ -44,21 +73,21 @@
 
                 </div>
                 <!-- user details-->
-                <ul class="nav navbar-nav navbar-right">
+                <ul class="nav navbar-nav navbar-inverse navbar-right container-fluid">
 
 
                     <p>
-                        <text style="font-weight: bold">Welcome,  </text>
-                        <text class="username-view" style="font-weight: bold">{{Auth::user()->name}}</text>
+                        <text>Welcome,  </text>
+                        <text class="username-view" >{{Auth::user()->name}}</text>
                     </p>
 
                     <p>
 
-                        <text class="email-view" style="font-weight: bold">{{Auth::user()->email}}</text>
+                        <text class="email-view" >{{Auth::user()->email}}</text>
                     </p>
 
 
-                    <div class="alert alert-success" role="alert">Logged In</div>
+                    {{--<div class="alert alert-success" role="alert">Logged In</div>--}}
                 </ul>
             </div><!-- /.navbar-collapse -->
         </div><!-- /.container-fluid -->
