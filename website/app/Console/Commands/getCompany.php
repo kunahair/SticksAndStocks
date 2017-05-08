@@ -47,7 +47,7 @@ class getCompany extends Command
 
         $currentStock = Stock::where('stock_symbol', $stock_code)->first();
 
-        $currentHistory = $this->historyHour($stock_code);
+        $currentHistory = $this->historyHour($stock_code, $currentStock->market);
         if ($currentHistory != null) {
             $currentStock->addHistory($currentHistory);
         }
@@ -59,10 +59,10 @@ class getCompany extends Command
      * @param  int  $code
      * @return Response
      */
-    public function historyHour($code)
+    public function historyHour($code, $market)
     {
         // return response($this->hourly($code), 200);
-        return $this->hourly($code);
+        return $this->hourly($code, $market);
     }
 
     /**
@@ -70,7 +70,7 @@ class getCompany extends Command
      * @param null $code
      * @return array|string
      */
-    private function hourly($code = null)
+    private function hourly($code = null, $market)
     {
         //http://chartapi.finance.yahoo.com/instrument/1.0/NAB.AX/chartdata;type=quote;range=1d/json
 
@@ -79,10 +79,13 @@ class getCompany extends Command
 
         //Check if the input code is null, if it has not been set default to NAB for testing
         //todo: call fatal error on no $code set
-        if ($code != null)
-            $code = $code . ".AX";
-        else
+        if ($code != null) {
+            if ($market == "ASX") {
+              $code = $code . ".AX";
+            }
+        } else {
             $code = "NAB.AX";
+        }
 
         //Base url with input from code to get retrieve data
         $url = "http://chartapi.finance.yahoo.com/instrument/1.0/" . $code . "/chartdata;type=quote;range=1d/json";
@@ -156,7 +159,9 @@ class getCompany extends Command
         //this puts the list of series in the hrArray into a JSON array (better for handling on front end)
         $data = array();
         $dataString = $dataTimestamp->format('d-m-y');
-        $code = str_replace(".AX", "", $code);
+        if ($market == 'ASX') {
+          $code = str_replace(".AX", "", $code);
+        }
         $data = $hrArray;
 
         //Return the data

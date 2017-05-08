@@ -10,7 +10,7 @@ class Stock extends Model
 	//protected $primaryKey = "stock_symbol";
 	//public $incrementing = false;
 
-	protected $fillable = ["stock_symbol",'stock_name', 'current_price','history','group','top_lists'];
+	protected $fillable = ["stock_symbol",'stock_name', 'current_price','history','group','top_lists', 'market'];
 	// Add function to insert stock price -- Useless by me.
 	public function appendHistory($value) {
 		if ($value != null) {

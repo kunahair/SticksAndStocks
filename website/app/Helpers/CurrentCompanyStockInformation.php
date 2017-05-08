@@ -26,7 +26,11 @@ class CurrentCompanyStockInformation {
         $dom = new Dom;
         //Load the company Yahoo! Finance listing
         //https://au.finance.yahoo.com/quote/NAB.AX
+        // if ($market == "ASX") {
         $dom->load($base_link . '/quote/' . $code . '.AX');
+        // } else {
+        //   $dom->load($base_link . '/quote/' . $code);
+        // }
 
         //Get the current information on selected company
         $data["curr_price"] = $this->getPrice($dom);

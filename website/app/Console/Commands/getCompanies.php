@@ -41,12 +41,54 @@ class getCompanies extends Command
      */
     public function handle()
     {
-        $companies = $this->getAllListedCompanies()["companies"];
+        // Delete all stocks
+        Stock::getQuery()->delete();
 
-        // Stock::getQuery()->delete();
+        $companies_asx = $this->getAllListedCompanies('http://www.asx.com.au/asx/research/ASXListedCompanies.csv',true)["companies"];
+        $companies_nasdaq = $this->getAllListedCompanies('http://www.nasdaq.com/screening/companies-by-name.aspx?letter=0&exchange=nasdaq&render=download',false)["companies"];
+        $companies_nyse = $this->getAllListedCompanies('http://www.nasdaq.com/screening/companies-by-name.aspx?letter=0&exchange=nyse&render=download',false)["companies"];
+        $companies_amex = $this->getAllListedCompanies('http://www.nasdaq.com/screening/companies-by-name.aspx?letter=0&exchange=amex&render=download',false)["companies"];
 
-        foreach ($companies as $value) {
-            $stock = Stock::updateOrCreate(['stock_symbol' => str_replace(array("."," "), "", $value['ASX code']), 'stock_name' => $value['Company name'], 'group' => $value['GICS industry group']]);
+        $market = "ASX";
+        $stockCount = 0;
+        foreach ($companies_asx as $value) {
+            $stockCount = ++$stockCount;
+            print($stockCount . "\t[ " . $market . " ]\t" . $value['ASX code'] . "\t" . $value['Company name'] . "\n");
+            $stock = Stock::updateOrCreate(['stock_symbol' => str_replace(array("."," "), "", $value['ASX code']), 'stock_name' => $value['Company name'], 'group' => $value['GICS industry group'], 'market' => $market]);
+        }
+
+        $i = 0;
+        foreach ([$companies_nasdaq, $companies_nyse, $companies_amex] as $companies) {
+          $i = ++$i;
+          $stockCount = ++$stockCount;
+          switch ($i) {
+            case 1:
+              $market = "NASDAQ";
+              break;
+            case 2:
+              $market = "NYSE";
+              break;
+            case 3:
+              $market = "AMEX";
+              break;
+          }
+          foreach ($companies as $value) {
+              $stockCount = ++$stockCount;
+              print($stockCount . "\t[ " . $market . " ]\t" . $value['Symbol'] . "\t" . $value['Name'] . "\n");
+              $stock = Stock::updateOrCreate(['stock_symbol' => str_replace(array("."," "), "", $value['Symbol']), 'stock_name' => $value['Name'], 'group' => $value['Sector'], 'market' => $market]);
+          }
+          switch ($i) {
+            case 1:
+              print("Nasdaq done!\n");
+              break;
+            case 2:
+              print("Nyse done!\n");
+              break;
+            case 3:
+              print("Amex done!\n");
+              print("Total Stock Count: " . $stockCount);
+              break;
+          }
         }
 
         $stock->save();
@@ -56,28 +98,30 @@ class getCompanies extends Command
      * Get a list of all companies listed on the ASX.
      * Updated Daily
      */
-    function getAllListedCompanies()
+    function getAllListedCompanies($address, $firstLines)
     {
         //Load CSV file from asx.com.au
         $data = "";
-        $data = file_get_contents('http://www.asx.com.au/asx/research/ASXListedCompanies.csv');
+        $data = file_get_contents($address);
 
         //If the list is not retrievable from ASX, then use the local CSV file
         //If the list is available, overwrite the existing csv file.
-        if ($data == false) {
-            print("Using backup, because ASX is offline. \n");
-            //Use local backup
-            $data = file_get_contents('ASXListedCompanies.csv', true);
-        } else {
-            print("Making Backup, ASX must be online. \n");
-            //Make a backup of the file with the new companies list
-            $fp = fopen('ASXListedCompanies.csv', 'w');
-            fwrite($fp, $data);
-            fclose($fp);
-        }
+        // if ($data == false) {
+        //     print("Using backup, because ASX is offline. \n");
+        //     //Use local backup
+        //     $data = file_get_contents('ASXListedCompanies.csv', true);
+        // } else {
+        //     print("Making Backup, ASX must be online. \n");
+        //     //Make a backup of the file with the new companies list
+        //     $fp = fopen('ASXListedCompanies.csv', 'w');
+        //     fwrite($fp, $data);
+        //     fclose($fp);
+        // }
 
-        //Remove the first 2 lines in the CSV file (file info and blank space)
-        $data = substr($data, strpos($data, "\n") + 2);
+        if ($firstLines) {
+          //Remove the first 2 lines in the CSV file (file info and blank space)
+          $data = substr($data, strpos($data, "\n") + 2);
+        }
         //Make sure the start of the CSV file is not a new line
         $dataCSV = str_replace("\nCompany name,", "Company name", $data);
         //Get rid of any quotation marks

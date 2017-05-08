@@ -8,7 +8,7 @@ use App\Stock as Stock;
 class ShowStock extends Controller
 {
 	public function __invoke($code) {
-	    //Get data from database for company
+    //Get data from database for company
 		$data = Stock::where('stock_symbol', $code)->get();
 
 		//Get the current information for company
