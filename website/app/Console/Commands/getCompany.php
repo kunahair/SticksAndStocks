@@ -119,9 +119,22 @@ class getCompany extends Command
         //"Timestamp" :1488928197,"close" :32.3400,"high" :32.3700,"low" :32.3200,"open" :32.3600,"volume" :59700
         $dataTimestamp = '';
 
+        $currencyClass = new \CurrencyConverter;
+
         $index = 0;
+        print("Size Of History:\t" . count($series) . "\n");
         foreach ($series as $detail)
         {
+            // Convert to AUD if foreign
+            print($index+1 . "\n");
+            if ($market != "ASX") {
+              $detail["high"] = $currencyClass->USDtoAUD(floatval($detail["high"]));
+              $detail["low"] = $currencyClass->USDtoAUD(floatval($detail["low"]));
+              $detail["close"] = $currencyClass->USDtoAUD(floatval($detail["close"]));
+              $detail["open"] = $currencyClass->USDtoAUD(floatval($detail["open"]));
+            }
+            var_dump("fuck");
+
             //Get the Average and convert to String (for max 2 places )
             $avg = ($detail["high"] + $detail["low"]) / 2.00;
             $avg = round($avg, 2);

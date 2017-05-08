@@ -13,11 +13,11 @@ class ShowStock extends Controller
 
 		if ($data == null) {
 		    return view('404');
-        }
+    }
 
 		//Get the current information for company
 		$currentDataClass = new \CurrentCompanyStockInformation;
-		$currentDataArray = $currentDataClass->currentDetails($code);
+		$currentDataArray = $currentDataClass->currentDetails($code, $data[0]->market);
 		$currentData = \GuzzleHttp\json_encode($currentDataArray);
 
 //		$currentDataCollection = collect($currentDataArray);

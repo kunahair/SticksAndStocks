@@ -9,7 +9,7 @@ class CurrentCompanyStockInformation {
      * @param null $code - Code that the company is listed under
      * @return array
      */
-    public function currentDetails($code = null)
+    public function currentDetails($code = null, $market)
     {
         //Base URL for code readability
         $base_link = 'https://au.finance.yahoo.com';
@@ -26,11 +26,11 @@ class CurrentCompanyStockInformation {
         $dom = new Dom;
         //Load the company Yahoo! Finance listing
         //https://au.finance.yahoo.com/quote/NAB.AX
-        // if ($market == "ASX") {
-        $dom->load($base_link . '/quote/' . $code . '.AX');
-        // } else {
-        //   $dom->load($base_link . '/quote/' . $code);
-        // }
+        if ($market == "ASX") {
+          $dom->load($base_link . '/quote/' . $code . '.AX');
+        } else {
+          $dom->load($base_link . '/quote/' . $code);
+        }
 
         //Get the current information on selected company
         $data["curr_price"] = $this->getPrice($dom);
@@ -91,11 +91,13 @@ class CurrentCompanyStockInformation {
         $tableRight = $dom->find('[data-test=right-summary-table] table');
         $this->scrapeTableRow($extraData, $tableRight);
 
+        $currencyClass = new \CurrencyConverter;
+
         //Load return data into structured array
         $data = array();
-        $data["price"] = $price;
+        $data["price"] = $currencyClass->USDtoAUD(floatval($price));
 //        $data["direction"] = $stockMovement;
-        $data["amount"] = $stockMovementAmount;
+        $data["amount"] = $currencyClass->USDtoAUD(floatval($stockMovementAmount));
         $data["percentage"] = $stockMovementPercentage;
         $data["extraData"] = $extraData;
 

@@ -66,6 +66,6 @@ class CurrencyConverter
             throw new MoneyConversionException();
 
         //Return the AUD amount multiplied by the USD argument amount
-        return $aud * $amount;
+        return round($aud * $amount, 2);
     }
 }
