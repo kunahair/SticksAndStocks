@@ -44,13 +44,19 @@ class getCompanies extends Command
         // Delete all stocks
         Stock::getQuery()->delete();
 
+        //Get ASX stock companies
         $companies_asx = $this->getAllListedCompanies('http://www.asx.com.au/asx/research/ASXListedCompanies.csv',true)["companies"];
+        //Get NASDAQ companies
         $companies_nasdaq = $this->getAllListedCompanies('http://www.nasdaq.com/screening/companies-by-name.aspx?letter=0&exchange=nasdaq&render=download',false)["companies"];
+        //Get NYSE companies
         $companies_nyse = $this->getAllListedCompanies('http://www.nasdaq.com/screening/companies-by-name.aspx?letter=0&exchange=nyse&render=download',false)["companies"];
+        //Get AMEX companies
         $companies_amex = $this->getAllListedCompanies('http://www.nasdaq.com/screening/companies-by-name.aspx?letter=0&exchange=amex&render=download',false)["companies"];
 
+        //Default market to ASX
         $market = "ASX";
         $stockCount = 0;
+        //Put all ASX Companies into Database
         foreach ($companies_asx as $value) {
             $stockCount = ++$stockCount;
             print($stockCount . "\t[ " . $market . " ]\t" . $value['ASX code'] . "\t" . $value['Company name'] . "\n");
@@ -58,9 +64,12 @@ class getCompanies extends Command
         }
 
         $i = 0;
+        //Loop through all companies in US stock exchanges
+        //Group all the US stock exchanges into an array, then for each one, go through each company and insert into DB
         foreach ([$companies_nasdaq, $companies_nyse, $companies_amex] as $companies) {
           $i = ++$i;
           $stockCount = ++$stockCount;
+          //Get the current Stock Exchange list to be inserted into DB
           switch ($i) {
             case 1:
               $market = "NASDAQ";
@@ -72,11 +81,13 @@ class getCompanies extends Command
               $market = "AMEX";
               break;
           }
+          //Insert the companies for current Stock Exchange into Database
           foreach ($companies as $value) {
               $stockCount = ++$stockCount;
               print($stockCount . "\t[ " . $market . " ]\t" . $value['Symbol'] . "\t" . $value['Name'] . "\n");
               $stock = Stock::updateOrCreate(['stock_symbol' => str_replace(array("."," "), "", $value['Symbol']), 'stock_name' => $value['Name'], 'group' => $value['Sector'], 'market' => $market]);
           }
+          //When each Stock Exchange has finished, display message
           switch ($i) {
             case 1:
               print("Nasdaq done!\n");
@@ -90,7 +101,7 @@ class getCompanies extends Command
               break;
           }
         }
-
+        //Commit all Stocks created to the Databse
         $stock->save();
     }
 

@@ -166,7 +166,7 @@
                     {
                         {{--var link = "{{url('stock')}}" + "/" + item["stock_symbol"];--}}
                         $('#stocksList').append('' +
-                            '<a href="#"><p class="suggestion" style="margin: 0; padding: 10px;">' + item["stock_name"] + ' <br /><text class="stock_symbol" >' + item["stock_symbol"] + '</text></p></a>'
+                            '<a href="#"><p class="suggestion" style="margin: 0; padding: 10px;">' + item["stock_name"] + ' <br /><text class="stock_symbol" >' + item["stock_symbol"] + '</text><text>.' + item["market"] + '</text></p></a>'
                         );
                         j--;
                     }

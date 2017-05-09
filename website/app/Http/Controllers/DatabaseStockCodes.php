@@ -17,8 +17,8 @@ class DatabaseStockCodes extends Controller
      */
     public function getAllStockCodesAndCompanyNames()
     {
-        //Call the stocks table and get all stock names and symbold
-        $stockListing = DB::table('stocks')->select('stock_name', 'stock_symbol')->get();
+        //Call the stocks table and get all stock names and symbol and market
+        $stockListing = DB::table('stocks')->select('stock_name', 'stock_symbol', 'market')->get();
         //Return JSON array of data with status code 200
         return response($stockListing, 200);
     }

@@ -119,7 +119,9 @@ class getCompany extends Command
         //"Timestamp" :1488928197,"close" :32.3400,"high" :32.3700,"low" :32.3200,"open" :32.3600,"volume" :59700
         $dataTimestamp = '';
 
+        //Get the current exchange rate
         $currencyClass = new \CurrencyConverter;
+        $currentRate = $currencyClass->USDtoAUD(1.00);
 
         $index = 0;
         print("Size Of History:\t" . count($series) . "\n");
@@ -127,13 +129,13 @@ class getCompany extends Command
         {
             // Convert to AUD if foreign
             print($index+1 . "\n");
+            //If the stock is not ASX, then assume USD and convert to AUD
             if ($market != "ASX") {
-              $detail["high"] = $currencyClass->USDtoAUD(floatval($detail["high"]));
-              $detail["low"] = $currencyClass->USDtoAUD(floatval($detail["low"]));
-              $detail["close"] = $currencyClass->USDtoAUD(floatval($detail["close"]));
-              $detail["open"] = $currencyClass->USDtoAUD(floatval($detail["open"]));
+              $detail["high"] = number_format($detail["high"] * $currentRate, 2);
+              $detail["low"] = number_format($detail["low"] * $currentRate, 2);
+              $detail["close"] = number_format($detail["close"] * $currentRate, 2);
+              $detail["open"] = number_format($detail["open"] * $currentRate, 2);
             }
-            var_dump("fuck");
 
             //Get the Average and convert to String (for max 2 places )
             $avg = ($detail["high"] + $detail["low"]) / 2.00;

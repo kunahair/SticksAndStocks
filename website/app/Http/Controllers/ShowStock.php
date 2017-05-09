@@ -13,14 +13,27 @@ class ShowStock extends Controller
 
 		if ($data == null) {
 		    return view('404');
-    }
+        }
 
 		//Get the current information for company
 		$currentDataClass = new \CurrentCompanyStockInformation;
 		$currentDataArray = $currentDataClass->currentDetails($code, $data[0]->market);
 		$currentData = \GuzzleHttp\json_encode($currentDataArray);
 
-//		$currentDataCollection = collect($currentDataArray);
+        //Update the current price in the database
+		if ($data[0]->market != "ASX")
+        {
+            $currencyConverter = new \CurrencyConverter;
+            $data[0]->current_price = $currencyConverter->USDtoAUD($currentDataArray["curr_price"]["price"]);
+        }
+        else
+        {
+            $data[0]->current_price = $currentDataArray["curr_price"]["price"];
+        }
+
+        //Save new current price to database
+        $data[0]->save();
+
 
 		//Load Blade view with database and current info
 		return view('stock', ['stock' => $data[0], 'current' => $currentData])->with('currentDataArray', $currentDataArray);

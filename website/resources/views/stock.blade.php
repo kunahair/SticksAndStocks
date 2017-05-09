@@ -64,16 +64,16 @@
     @section('charter')
         <div class="stock">
             <div class="col-xs-12" style="padding-left: 0">
-                <h2 style='float:left; font-family: "Raleway", sans-serif;'>{{ $stock->stock_name }}</h2>
+                <h2 style='float:left; font-family: "Raleway", sans-serif;'>{{ $stock->stock_name }} &nbsp; ({{$stock->market}})</h2>
                 <h4 style="font-family: 'Raleway', sans-serif; float:right;">{{ date('d/m/y') }}</h4>
             </div>
 
             <!--Current 1stock quick stats-->
             <div id="current-stock-price" style="padding: 0;  margin-bottom: 5%; width: 50%">
                 <br />
-                <div id="stock-current-price" class="col-xs-12s" style="font-size: 200%; font-weight: bold; ">{{$currentDataArray["curr_price"]["price"]}}</div>
+                <div id="stock-current-price" class="col-xs-12s" style="font-size: 200%; font-weight: bold; ">${{number_format($currentDataArray["curr_price"]["price"],2)}}AUD</div>
                 <div class="col-xs-12" style="padding-left: 0; color: green;">
-                    <text id="stock-movement">{{$currentDataArray["curr_price"]["amount"]}}</text>
+                    <text id="stock-movement">{{number_format($currentDataArray["curr_price"]["amount"],2)}}</text>
                     <text id="stock-movement-percentage">&nbsp;({{$currentDataArray["curr_price"]["percentage"]}})</text>
                 </div>
             </div>
