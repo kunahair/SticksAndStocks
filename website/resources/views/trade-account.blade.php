@@ -112,7 +112,7 @@
 
                         <tr>
                             <td class="col-xs-1 " style="padding: 0px"><a href="{{url('/stock')}}/{{$stock["symbol"]}}"> {{$stock["symbol"]}} </a></td>
-                            <td class=col-xs-4" style="padding: 0px">{{$stock["name"]}}</td>
+                            <td class=col-xs-4" style="padding: 0px">{{$stock["name"]}} ({{$stock["market"]}})</td>
                             <td class=col-xs-1" style="padding: 0px">${{$stock["total_cost"]}}</td>
                             <td class=col-xs-1" style="padding: 0px">${{$stock["current_price"]}}</td>
                             <td class=col-xs-2" style="padding: 0px">${{$stock["total_growth"]}} ({{$stock["total_growth_percentage"]}}%)</td>
@@ -349,7 +349,7 @@
                         $('#transactionsTableBody').append(
                             '<tr>' +
                             '<td class=col-xs-3" style="padding: 0px">' + transactionData[i]["stock_symbol"] + '</td>' +
-                            '<td class=col-xs-3" style="padding: 0px">'+ transactionData[i]["stock_name"] + '</td>'   +
+                            '<td class=col-xs-3" style="padding: 0px">'+ transactionData[i]["stock_name"] + ' (' + transactionData[i]["market"] + ')' + '</td>'   +
                             '<td class=col-xs-3" style="padding: 0px"> $' + transactionData[i]["price"] +'</td>' +
                             '<td class=col-xs-3" style="padding: 0px">' + (transactionData[i]["quantity"]<0?'':'+') + transactionData[i]["quantity"] +'</td>' +
                             '<td class=col-xs-3" style="padding: 0px">' + transactionData[i]["updated_at"] + '</td>'

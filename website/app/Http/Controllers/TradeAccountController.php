@@ -63,7 +63,7 @@ class TradeAccountController extends Controller
 
         //If the trade account retrieved is not owned by the user who called for it, then return them to the Dashboard
         if ($tradeAccount[0]->user_id != Auth::user()->id)
-            return view('/dashboard');
+            return redirect('/dashboard');
 
         //Return, loading the view into memory and passing the tradeAccount as an array (for Blade)
         return view('trade-account')->with('tradeAccount', $tradeAccount[0]);

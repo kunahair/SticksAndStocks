@@ -163,6 +163,7 @@ class TradeAccount extends Model
             //Stock stats and info
             $stock_symbol = "";
             $stock_name = "";
+            $stock_market = "";
             $stock_total_cost = 0.00;
             $stock_owned = 0;
             $stock_sold = 0;
@@ -184,6 +185,7 @@ class TradeAccount extends Model
                 {
                     $stock_symbol = $transaction->stock->stock_symbol;
                     $stock_name = $transaction->stock->stock_name;
+                    $stock_market = $transaction->stock->market;
 
                     $stock_current_price = $transaction->stock->current_price;
 
@@ -227,6 +229,7 @@ class TradeAccount extends Model
 
             $groupedStocks[$stock_symbol]["name"] = $stock_name;
             $groupedStocks[$stock_symbol]["symbol"] = $stock_symbol;
+            $groupedStocks[$stock_symbol]["market"] = $stock_market;
             $groupedStocks[$stock_symbol]["total_cost"] = number_format($stock_total_cost, 2);
             $groupedStocks[$stock_symbol]["current_price"] = number_format($stock_current_price, 2);
             $groupedStocks[$stock_symbol]["total_growth"] = number_format($stock_total_growth, 2);

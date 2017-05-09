@@ -122,6 +122,7 @@
 
                 //Get the stock code of the selected suggestion
                 var stockCode = split[split.length - 1];
+                stockCode = stockCode.substring(0, stockCode.indexOf("."));
                 //If the user clicked the company name, the code must be retrieved from the correct node
                 if (stockCode.length == 0)
                     stockCode = event.target.parentNode.childNodes[0].childNodes[2].innerHTML;

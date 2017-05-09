@@ -293,7 +293,7 @@ class TransactionController extends Controller
             ['timestamp', '>=', $start],
             ['timestamp', '<=', $end]
         ])->join('stocks', 'transactions.stock_id', '=', 'stocks.id')
-            ->select('transactions.*', 'stocks.stock_name', 'stocks.stock_symbol')
+            ->select('transactions.*', 'stocks.stock_name', 'stocks.stock_symbol', 'stocks.market')
             ->get();
 
         return response($transactions, 200);
