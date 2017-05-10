@@ -5,18 +5,7 @@
 <body class="background">
 
     <style>
-        .panel {
-            padding: 0;
-            /*margin: 48px 60px;*/
-        }
-        .panel :hover{
-            cursor: pointer;
-            background-color: lightblue;
-        }
 
-        #account-info {
-            margin-top: 10%;
-        }
     </style>
 
     @include('layouts.navbar')
@@ -46,7 +35,7 @@
 
         {{--User Trade Accounts cards--}}
 
-        <div id="accounts" class="" style="padding-top: 3%; ">
+        <div id="accounts" class="trade-account">
           <div class="row">
             {{--Loop through all the trade accounts that the user has and list them as panels with name and stats--}}
             @foreach(Auth::user()->tradingAccounts as $ta)

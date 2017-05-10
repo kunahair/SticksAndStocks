@@ -1,12 +1,14 @@
-
 @include('layouts.header')
+
+@section('title','Pineapple')
+
 <body>
 
     @include('layouts.header-navbar')
 
     <link href="{{ url('css/broken_css_pages.css') }}" rel="stylesheet" type="text/css">
 
-    <div class="body-content  font-color">
+    <div class=" font-color">
         <div class="col-md-3 col-md-offset-4" ><h1>Contact Us</h1>
             <ul class="list-group">
                 <li class="list-group-item">SticksAndStocks Ltd Pty</li>
@@ -34,4 +36,3 @@
         </div>
     </div>
     @include('layouts.footer')
-</body>

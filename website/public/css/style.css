@@ -1,30 +1,45 @@
+/* Global styling*/
 html, body {
-
-    color: black;
-    font-family: 'Raleway', sans-serif;
     font-weight: 100;
     height: auto;
-    margin: 0;
     overflow-x: hidden;
 }
 
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+body {
+    margin-bottom: 60px;
+}
+
+.background{
+    /*background-color: darkcyan;*/
+    color: black;
+    background-color: white;
+}
+.bg{
+    background-color: #2ab27b;
+}
 .top-center {
     position: absolute;
     top: 0%;
 }
 
+/* navigation styling */
 .top-right {
     position: absolute;
     text-align: center;
     top: 18px;
 }
 
-
 .title {
     font-size: 70px;
     padding: 10px;
     position: relative;
     color: white;
+    padding-top: 6%;
 }
 
 .links > a {
@@ -36,20 +51,13 @@ html, body {
     text-decoration: none;
     text-transform: uppercase;
 }
+footer > li > a {
+    color: white;
 
+}
 .links > a:hover{
     background-color: yellowgreen;
     padding: 25px;
-}
-
-.m-b-md {
-    margin-bottom: 30px;
-}
-
-
-.input-group {
-    float: inherit;
-    width: 100%;
 }
 .navbar-left{
     padding: 10px;
@@ -62,49 +70,9 @@ html, body {
     display: inline-block;
     right: 20px;
 }
-
-.modal-body{
-    padding: 80px;
-}
-
-html {
-    position: relative;
-    min-height: 100%;
-}
-
-body {
-    margin-bottom: 60px;
-}
-
-.footer{
-    border:25px;
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-    height: 60px;
-    background-color: #123;
-}
-
-.footer > .container {
-    background-color: #123;
-    color: #e7e7e7;
-}
-
-.container > ul > li {
-    text-decoration: none;
-    display: inline-block;
-    padding: 20px 20px 10px 20px;
-    color:white;
-}
-
-footer > ul > li {
-    text-decoration: none;
-    display: inline-block;
-
-}
-
-footer > ul > li > a {
-    color: #aaa;
+.logo{
+    height: 100px;
+    width: 100px;
 }
 
 
@@ -112,7 +80,53 @@ footer > ul > li > a {
     font-family: 'Rockwell Extra Bold', sans-serif;
     font-weight: 100;
     margin-bottom: 0.5px;
+    background-color: #123;
 }
+
+
+/* Dashboard page styling */
+
+/* -- creating trade accounts panels styling--*/
+.panel {
+    padding: 0;
+    /*margin: 48px 60px;*/
+}
+.panel :hover{
+    cursor: pointer;
+    background-color: lightblue;
+}
+
+#account-info {
+    margin-top: 10%;
+}
+
+.m-b-md {
+    margin-bottom: 30px;
+}
+
+.block-foreground{
+    /*background-color: darkcyan;*/
+    color: white;
+    font-weight: 700;
+    /*text-transform: uppercase;*/
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 10px;
+    text-align: center;
+    width: 100%;
+    background-color: white;
+}
+.input-group {
+    float: inherit;
+    width: 100%;
+}
+
+
+.modal-body{
+    padding: 80px;
+}
+
+
+
 
 .tops{
     opacity: 0.85;
@@ -130,7 +144,6 @@ footer > ul > li > a {
     height:100%;
     position:absolute;
     top:25%;
-    padding: 10px;
 
 }
 .body-middle{
@@ -221,9 +234,9 @@ height: 100px;
 
 }
 
-.balance:hover{
-
-
+.trade-account{
+    padding-top: 3%;
+    padding-bottom: 8%;
 
 }
 .subheading{
@@ -241,11 +254,7 @@ height: 100px;
 
 
 }
-.bg{
-    background-color: #2ab27b;
 
-
-}
 .subheading:hover{
     border-bottom: 5px solid white;
     width:270px;
@@ -259,24 +268,8 @@ height: 100px;
     padding-right: 0px;
 }
 
-.background{
-    /*background-color: darkcyan;*/
-    color: black;
-    background-color: white;
-}
 
-.block-foreground{
-/*background-color: darkcyan;*/
-    color: white;
-    font-weight: 700;
-    /*text-transform: uppercase;*/
-    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-    font-size: 10px;
-    text-align: center;
-    width: 100%;
-    
-    background-color: white;
-}
+
 .jumbotron{
    margin-bottom: 0px;
    color: lightslategrey;
@@ -328,4 +321,60 @@ height: 100px;
 
 .clickable-table-item :hover {
     cursor: pointer;
+}
+
+
+/* privacy and policy styling */
+#ppBody
+{
+    font-size:11pt;
+    width:100%;
+    margin:0 auto;
+    text-align:justify;
+}
+
+#ppHeader
+{
+
+    font-size:21pt;
+    width:100%;
+    margin:0 auto;
+}
+
+.ppConsistencies
+{
+    display:none;
+}
+
+
+/* Footer styling*/
+.footer{
+    border:25px;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 60px;
+    background-color: #123;
+}
+
+.footer > .container {
+    background-color: #123;
+    color: #e7e7e7;
+}
+
+.container > ul > li {
+    text-decoration: none;
+    display: inline-block;
+    padding: 20px 20px 10px 20px;
+    color:white;
+}
+
+footer > ul > li {
+    text-decoration: none;
+    display: inline-block;
+
+}
+
+footer > ul > li > a {
+    color: white;
 }

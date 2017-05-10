@@ -10,7 +10,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a href="/"><img src="/img/PineappleWC (1).gif" alt="logo" hight="100px" width="100px" align=""></a>
+                <a href="/"><img src="/img/PineappleWC (1).gif" class="logo" alt="logo" align=""></a>
                 <text style="font-size: 300%;">Pineapple</text>
 
             </div>
@@ -73,7 +73,7 @@
 
                 </div>
                 <!-- user details-->
-                <ul class="nav navbar-nav navbar-inverse navbar-right container-fluid">
+                <ul class="nav navbar-nav navbar-right container-fluid">
 
 
                     <p>

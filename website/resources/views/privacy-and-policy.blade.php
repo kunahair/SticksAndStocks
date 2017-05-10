@@ -1,25 +1,14 @@
+@include('layouts.header')
+
+@section('title','Pineapple')
+
 <style>
-#ppBody
-{
-    font-size:11pt;
-    width:100%;
-    margin:0 auto;
-    text-align:justify;
-}
 
-#ppHeader
-{
-    font-family:verdana;
-    font-size:21pt;
-    width:100%;
-    margin:0 auto;
-}
-
-.ppConsistencies
-{
-    display:none;
-}
-</style><div id='ppHeader'>http://pineapple-stocks.ddns.net/ Privacy Policy</div><div id='ppBody'><div class='ppConsistencies'><div class='col-2'>
+</style>
+<body >
+@include('layouts.header-navbar')
+<div class=" container col-lg-11">
+<div id='ppHeader'>http://pineapple-stocks.ddns.net/ Privacy Policy</div><div id='ppBody'><div class='ppConsistencies'><div class='col-2'>
             <div class="quick-links text-center">Information Collection</div>
         </div><div class='col-2'>
             <div class="quick-links text-center">Information Usage</div>
@@ -77,3 +66,5 @@
 <div class='innerText'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <strong>&bull;</strong> Allow users to unsubscribe by using the link at the bottom of each email.</div><div class='innerText'><strong><br>If at any time you would like to unsubscribe from receiving future emails, you can email us at</strong></div><div class='innerText'>pineapple.stocks@gmail.com and we will promptly remove you from <strong>ALL</strong> correspondence.</div>
 <br><span id='ourCon'></span><br><div class='blueText'><strong>Contacting Us</strong></div><br /><div class='innerText'>If there are any questions regarding this privacy policy, you may contact us using the information below.<br><br></div><div class='innerText'>http://pineapple-stocks.ddns.net/</div><div class='innerText'>435-457 Swanston St, Melbourne VIC 3000</div>melbourne, vic 3000 <div class='innerText'>australia</div><div class='innerText'>pineapple.stocks@gmail.com</div>
 <div class='innerText'><br>Last Edited on 2017-05-03</div></div>
+</div>
+@include('layouts.footer')

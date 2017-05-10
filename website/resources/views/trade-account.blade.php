@@ -73,7 +73,7 @@
 
 @include('layouts.navbar')
 <!-- Modal -->
-@include('layouts.buystock')
+
 
 
         <div class="bg">
