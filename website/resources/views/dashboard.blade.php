@@ -23,32 +23,39 @@
 
 
         <div class="block-foreground">
-            <div class="bg">
-<div class="col-sm-4">
-        <h1 class="  subheading">Dashboard</h1>
-</div >
-            <div class="balance">
+          <div class="row bg">
+
+             <div class="col-md-2 ">
+               <h1 class="  subheading">Dashboard</h1>
+             </div >
+             <div class="col-md-10">
+             <div class="balance">
                 <h2>Balance: ${{number_format(Auth::user()->balance,2)}}AUD</h2>
-            </div>
-            </div>
-        <div id="create-ta-form" class="edit-trade-account " style="padding-bottom: 3%;">
+             </div>
+             </div>
 
-            <label>Trade Account Name: </label>
-            <input id="input-ta-name" type="text" value="" />
-            <button id="button-create-ta" class="btn btn-lg button" type="button">Create Account</button>
-            <div id="create-ta-error" style="color: darkred; display: none">There was an error creating Trade Account</div>
-
-        </div>
+               <div id="create-ta-form" class="  " style="padding-bottom: 3%;">
+               </div>
+          </div>
+             <div class="row edit-trade-account">
+                <label>Trade Account Name: </label>
+                <input id="input-ta-name" type="text" value="" />
+                <button id="button-create-ta" class="btn btn-lg button" type="button">Create Account</button>
+                <div id="create-ta-error" style="color: darkred; display: none">There was an error creating Trade Account</div>
+             </div>
 
         {{--User Trade Accounts cards--}}
 
-        <div id="accounts" class=" " style="padding: 10px;">
-
+        <div id="accounts" class="" style="padding-top: 3%; ">
+          <div class="row">
             {{--Loop through all the trade accounts that the user has and list them as panels with name and stats--}}
             @foreach(Auth::user()->tradingAccounts as $ta)
-                {{--Create Panel that links to its individual Trade Account Page--}}
+
+                  <div >
+                      {{--Create Panel that links to its individual Trade Account Page--}}
                 <a href="{{url('/tradeaccount/' . $ta->id) }}">
-                    <div class="panel panel-default col-xs-12 col-md-4">
+
+                    <div class="panel panel-default  col-md-2 col-sm-1 col-xs-offset-1" >
                         {{--Name of Trade Account--}}
                         <div class="panel-heading">
                             <h3 class="panel-title">{{$ta->name}}</h3>
@@ -64,14 +71,16 @@
                         </div>
 
                     </div>
-                </a>
-                {{--Spacer for panels--}}
-                <div class="col-md-1" style="padding-right: 30px">  </div>
-            @endforeach
 
-        </div>
+                </a>
+               </div>
+                {{--Spacer for panels--}}
+                {{--<div class="col-md-1" style="padding-right: 30px">  </div>--}}
+             @endforeach
+          </div>
         </div>
     <br/>
+        </div>
         <div id='content' class=" text-center col-sm-4 account-info ">
             {{--Account information div--}}
             <div id="account-info" class="bg ">
@@ -91,7 +100,7 @@
 
             </div>
          </div>
-    <div class="edit-info ">
+     <div class="edit-info ">
                 <div class=" container ">
                     @if (count($errors) > 0)
                         <div class="alert alert-danger">
@@ -127,13 +136,13 @@
                         <br/>
                         <br/>
                 </div>
-                </div>
+     </div>
 
 
 
 
 
-    </div> <!--End body Container -->
+     <!--End body Container -->
 
 @include('layouts.footer')
 

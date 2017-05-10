@@ -61,7 +61,6 @@ html, body {
 #logo {
     display: inline-block;
     right: 20px;
-
 }
 
 .modal-body{
@@ -143,7 +142,9 @@ footer > ul > li > a {
     padding: 10px;
 
 }
-
+.text-col{
+    color: gray ;
+}
 .content{
     min-height: calc(40vh - 70px);
     padding: 40px 40px 0 40px;
@@ -184,7 +185,7 @@ height: 100px;
     background-color: ghostwhite ;
 }
 .edit-info{
-    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-family: 'Raleway', sans-serif;
     font-size: 16px;
     color: white;
     background-color: #2ab27b;
@@ -193,7 +194,8 @@ height: 100px;
 }
 .edit-trade-account{
     color: white;
-    font-size: 20px;
+    font-family: 'Raleway', sans-serif;
+    font-size: 17px;
     padding-top: 3%;
 }
 .edit-trade-account> input{
@@ -242,6 +244,7 @@ height: 100px;
 .bg{
     background-color: #2ab27b;
 
+
 }
 .subheading:hover{
     border-bottom: 5px solid white;
@@ -264,14 +267,14 @@ height: 100px;
 
 .block-foreground{
 /*background-color: darkcyan;*/
-    color: black;
+    color: white;
     font-weight: 700;
     /*text-transform: uppercase;*/
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-size: 10px;
     text-align: center;
     width: 100%;
-    overflow: auto;
+    
     background-color: white;
 }
 .jumbotron{
