@@ -38,7 +38,7 @@
                 <p>Contact us and we'll get back to you within 24 hours.</p>
                 <p><span class="glyphicon glyphicon-map-marker"></span> Melbourne, Australia</p>
                 <p><span class="glyphicon glyphicon-phone"></span> +00 1515190097</p>
-                <p><span class="glyphicon glyphicon-envelope"></span> uniquedrives@something.com</p>
+                <p><span class="glyphicon glyphicon-envelope"></span> Pineapple@something.com</p>
             </div>
             <div class="col-sm-7">
                 <div class="row">
