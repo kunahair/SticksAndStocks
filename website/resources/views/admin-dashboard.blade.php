@@ -19,6 +19,10 @@
                 margin-top: 20%;
             }
 
+            .dropdown-menu :hover {
+                cursor: pointer;
+            }
+
             .options input{
                 margin:0;
                 padding:0;
@@ -235,11 +239,15 @@
                     });
 
                     $('#killer').click(function () {
-                        $.post("{{ url('api/deleteUser') }}",{userid: parseInt(id)}).done(function (data) {
+                        var postData = {};
+                        postData["userid"] = parseInt(id);
+                        $.post("{{ url('api/deleteUser') }}",postData)
+                            .done(function (data) {
                             $('#deleteWarning').modal('hide');
-                        }).fail(function (error) {
+                            })
+                            .fail(function (error) {
                             $('#delete-error').show();
-                            $('#delete-error').text(error.statusMessage);
+                            $('#delete-error').text(error["message"]);
                             console.log(error);
                         }).done(function (error) {
                             location.reload();
@@ -256,7 +264,7 @@
                             $('#role-error').text(error.statusMessage);
                             console.log(error);
                         }).done(function (error) {
-//                            location.reload();
+                            location.reload();
                             $('#role-error').text(error.statusMessage);
                         });
                     });

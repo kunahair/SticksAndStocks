@@ -609,7 +609,7 @@
                     date.getHours() + ':' +  addZero(date.getMinutes()) + ':' + addZero(date.getSeconds());
 
             //Pull the average stock value from the history row
-            var average = value["average"];
+            var average = value["average"].toFixed(2);
 
             //Add data to ChartJS JSON array
             dataIn.push({x: time, y: average});
