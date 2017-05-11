@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Friend;
 use App\Http\Controllers\Auth\ResetPasswordController;
 use App\Mail\AdminAlert;
 use App\Message;
@@ -115,6 +116,16 @@ class AdminDashboardController extends Controller
 
                 //Delete the message
                 $message->delete();
+            }
+
+            //Remove all Friendships the deleted User has
+            $friendships = Friend::where('to', $user->id)->orWhere('from', $user->id)->get();
+            if ($friendships != null)
+            {
+                foreach ($friendships as $friendship)
+                {
+                    $friendship->delete();
+                }
             }
 
             //Then delete their account
