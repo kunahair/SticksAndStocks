@@ -11,7 +11,7 @@
                     <span class="icon-bar"></span>
                 </button>
                 <a href="/"><img src="/img/PineappleWC (1).gif" class="logo" alt="logo" align=""></a>
-                <text style="font-size: 300%;">Pineapple</text>
+                <text class="title">Pineapple</text>
 
             </div>
 
@@ -39,7 +39,7 @@
                     <li><a href="/dashboard">Dashboard</a></li>
                     <li><a href="/leaderboard">Leaderboard</a></li>
                     <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true">Inbox <span class="badge bg" id="alarm-system">{{count(Auth::user()->getNotifications())}}</span></a>
-                        <ul class="dropdown-menu">
+                        <ul class="">
                             {{--Loop through all the pending notifications the user has and display as dropdown notification--}}
                             @foreach(Auth::user()->getNotifications() as $notification)
 
@@ -73,7 +73,7 @@
 
                 </div>
                 <!-- user details-->
-                <ul class="nav navbar-nav navbar-right container-fluid">
+                <ul class="navbar-nav navbar-right container-fluid">
 
 
                     <p>

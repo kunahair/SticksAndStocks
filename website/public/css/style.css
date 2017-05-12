@@ -21,6 +21,7 @@ body {
 }
 .bg{
     background-color: #2ab27b;
+    color: white;
 }
 .top-center {
     position: absolute;
@@ -35,11 +36,13 @@ body {
 }
 
 .title {
-    font-size: 70px;
+
     padding: 10px;
     position: relative;
     color: white;
     padding-top: 6%;
+    font-size: 300%;
+
 }
 
 .links > a {
@@ -77,12 +80,17 @@ footer > li > a {
 
 
 .navbar {
-    font-family: 'Rockwell Extra Bold', sans-serif;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-weight: 100;
     margin-bottom: 0.5px;
     background-color: #123;
+
 }
 
+.content-box{
+    padding-right: 10%;
+    padding-left: 10%;
+}
 
 /* Dashboard page styling */
 
@@ -120,12 +128,19 @@ footer > li > a {
     width: 100%;
 }
 
-
+.modal{
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
 .modal-body{
     padding: 80px;
+
 }
 
-
+.stocktable{
+    padding: 0;
+    margin-bottom: 5%;
+    width: 50%;
+}
 
 
 .tops{
@@ -179,7 +194,7 @@ table {
 
 }
 thead{
-    background-color: #1b6d85;
+    background-color: #2ab27b;
     color:white;
 }
 th, td {
@@ -198,7 +213,7 @@ height: 100px;
     background-color: ghostwhite ;
 }
 .edit-info{
-    font-family: 'Raleway', sans-serif;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-size: 16px;
     color: white;
     background-color: #2ab27b;
@@ -207,7 +222,7 @@ height: 100px;
 }
 .edit-trade-account{
     color: white;
-    font-family: 'Raleway', sans-serif;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-size: 17px;
     padding-top: 3%;
 }
@@ -222,7 +237,7 @@ height: 100px;
 
     letter-spacing: 3px;
     font-size:9px;
-    font-family:'Raleway', sans-serif;
+    font-family:"Helvetica Neue", Helvetica, Arial, sans-serif;
     color: white;
     padding: 16px;
     text-decoration: none;
@@ -236,14 +251,24 @@ height: 100px;
 
 .trade-account{
     padding-top: 3%;
-    padding-bottom: 8%;
+    padding-bottom: 10%;
+
+}
+.heading{
+    letter-spacing: 3px;
+    background-color: #2ab27b;
+    font-family:"Helvetica Neue", Helvetica, Arial, sans-serif;
+    color: white;
+    padding: 16px;
+    text-decoration: none;
+    margin: auto;
 
 }
 .subheading{
 
     letter-spacing: 3px;
     background-color: #2ab27b;
-    font-family:'Raleway', sans-serif;
+    font-family:"Helvetica Neue", Helvetica, Arial, sans-serif;
     color: white;
     padding: 16px;
     text-decoration: none;
@@ -268,7 +293,15 @@ height: 100px;
     padding-right: 0px;
 }
 
+.current-stock{
+    font-size: 200%;
+    font-weight: bold;
+}
+.current-stock-price {
+    color: green;
+    padding-left: 0;
 
+}
 
 .jumbotron{
    margin-bottom: 0px;
@@ -359,7 +392,7 @@ height: 100px;
 
 .footer > .container {
     background-color: #123;
-    color: #e7e7e7;
+    color: white;
 }
 
 .container > ul > li {

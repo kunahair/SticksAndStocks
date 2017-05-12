@@ -1,9 +1,9 @@
+@include('layouts.header')
 
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
-<html>
+@section('title','Pineapple')
 
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.bundle.min.js"></script>
@@ -11,14 +11,7 @@
             src="https://code.jquery.com/jquery-3.2.1.min.js"
             integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
             crossorigin="anonymous"></script>
-    <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
 
-    <!--Bootstrap CSS-->
-    <link rel="stylesheet"
-          href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
-          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
-          crossorigin="anonymous"
-    >
 
     <!--Bootstrap Javascript-->
 <!-- Latest compiled and minified JavaScript -->
@@ -27,8 +20,6 @@
             integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
             crossorigin="anonymous"
     ></script>
-
-    <link href="{{ url('css/style.css') }}" rel="stylesheet" type="text/css">
 
     <style type="text/css">
         .stock-table-data {
@@ -54,15 +45,15 @@
 
 @include('layouts.navbar')
 
-<div class="container ">
 
-    <div class="">
-    </div>
+
+
 
 
 
     @section('charter')
-        <div class="stock">
+        <div class="bg">
+        <div class="stock content-box">
             <div class="col-xs-12" style="padding-left: 0">
                 <h2 style='float:left; font-family: "Raleway", sans-serif;'>{{ $stock->stock_name }} &nbsp; ({{$stock->market}})</h2>
                 <h4 style="font-family: 'Raleway', sans-serif; float:right;">{{ date('d/m/y') }}</h4>
@@ -77,7 +68,10 @@
                     <text id="stock-movement-percentage">&nbsp;({{$currentDataArray["curr_price"]["percentage"]}})</text>
                 </div>
             </div>
+        </div>
+        </div>
 
+            <div class="content-box">
             {{--Only Users who are signed in can purchase and sell stocks--}}
             @if(Auth::check())
               <!-- added a model for the buying stocks button-->
@@ -86,7 +80,7 @@
                 <div id="userBuyForm" class="modal fade" role="dialog">
                     <div  class=" modal-content modal-dialog" >
                         <div class="modal-header bg">
-                            <div class="subheading"> <h3>Buy Stock</h3></div>
+                            <div class="heading"> <h3>Buy Stock</h3></div>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="margin-top: -80px">
                                     <span aria-hidden="true" style="font-size: 200%">&times;</span>
                                 </button>
@@ -285,7 +279,7 @@
             <div id="userSellForm" class="modal fade" role="dialog">
                 <div  class=" modal-content modal-dialog" >
                     <div class="modal-header bg">
-                        <div class="subheading"> <h3>Sell Stock</h3></div>
+                        <div class="heading"> <h3>Sell Stock</h3></div>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="margin-top: -68px">
                                 <span aria-hidden="true" style="font-size: 200%">&times;</span>
                             </button>
@@ -299,6 +293,7 @@
                         <h4>Stock Price: {{$stock->current_price}}</h4>
                         <h4>Broker Cost: $50.00</h4>
                         <h4>Fee: <lable id="sellPercentageFee">0.25</lable>%</h4>
+                        <br/>
                         <h4> Stock:</h4>
                     <select id="sellTradeAccounts" class="form-control">
                     @foreach(Auth::user()->tradingAccounts as $tradeAccount)
@@ -306,8 +301,9 @@
                     @endforeach
                 </select>
                         <br/>
-                <input id="sellStockQuantity" type="number" value="1" name="quantity" />
                         <p>Stock Held: <text id="sellStockHeld"></text></p>
+                <input id="sellStockQuantity" class="form-control" type="number" value="1" name="quantity" />
+
                     </div>
                     <div class="modal-footer">
                         <h4 class="text-left">Sell Total: $<lable id="sellStockTotal">{{$stock->current_price}}</lable></h4>

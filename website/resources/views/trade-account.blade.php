@@ -1,5 +1,4 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
-<html>
+@include('layouts.header')
 
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
@@ -14,14 +13,6 @@
             integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU="
             crossorigin="anonymous"></script>
     <script src="{{url('js/jQDateRangeSlider-min.js')}}"></script>
-    <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
-
-    <!--Bootstrap CSS-->
-    <link rel="stylesheet"
-          href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
-          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
-          crossorigin="anonymous"
-    >
 
     <!--Bootstrap Javascript-->
     <!-- Latest compiled and minified JavaScript -->
@@ -76,15 +67,14 @@
 
 
 
-        <div class="bg">
-        <h2 class="subheading">{{$tradeAccount["name"]}}</h2>
-        <hr />
+        <div class="bg content-box">
+        <h2 class="heading">{{$tradeAccount["name"]}}</h2>
         {{--<h3>${{number_format($tradeAccount["balance"], 2)}}</h3>--}}
         </div>
-<div class=" container">
-        <div id="trade-account-info-box" class="col-xs-10 col-md-12 " style="padding-top: 3%">
+<div class=" content-box">
+        <div id="trade-account-info-box" class="col-xs-10 col-md-12 " >
 
-            <div class="col-xs-1 col-md-2"></div>
+
 
             <h2 >Held Stocks</h2>
 

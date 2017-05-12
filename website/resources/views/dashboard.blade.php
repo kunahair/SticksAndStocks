@@ -15,7 +15,7 @@
           <div class="row bg">
 
              <div class="col-md-2 ">
-               <h1 class="  subheading">Dashboard</h1>
+               <h1 class="subheading">Dashboard</h1>
              </div >
              <div class="col-md-10">
              <div class="balance">
@@ -23,7 +23,7 @@
              </div>
              </div>
 
-               <div id="create-ta-form" class="  " style="padding-bottom: 3%;">
+               <div id="create-ta-form" style="padding-bottom: 3%;">
                </div>
           </div>
              <div class="row edit-trade-account">
