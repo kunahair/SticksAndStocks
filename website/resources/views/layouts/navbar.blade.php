@@ -93,45 +93,11 @@
         </div><!-- /.container-fluid -->
     </nav>
 
-    {{--<form>--}}
-    {{--<input type="text" class="form-control col-2" name="stockList" id="autocomplete"/>--}}
-    {{--<div id="stocksList" style="position: absolute; z-index: 300"></div>--}}
-    {{--</form>--}}
 
     <script>
 
 
         $(document).ready(function(){ // this will be called when the DOM is ready
-
-            /**
-             * When user clicks a suggested item, the text box is filled with the ASX code and the
-             * User is directed to the stocks page of that code
-             **/
-            $(document).on('click', '.suggestion', function(event) {
-
-                //Stop the default click behaviour of this event
-                event.preventDefault();
-
-                //Get the decoded element
-                var string = htmlDecode(event.target.innerHTML);
-                //Tokenize the string into an array
-                var split = string.split(" ");
-
-                //Put the stock symbol value into the text field
-                $("#autocomplete").val(split[split.length - 1]);
-
-                //Get the stock code of the selected suggestion
-                var stockCode = split[split.length - 1];
-                stockCode = stockCode.substring(0, stockCode.indexOf("."));
-                //If the user clicked the company name, the code must be retrieved from the correct node
-                if (stockCode.length == 0)
-                    stockCode = event.target.parentNode.childNodes[0].childNodes[2].innerHTML;
-
-
-                //Direct User to the stock page of selected suggestion
-                //'http://pineapple-stocks.ddns.net/stock/'
-                location.href = "{{url('stock')}}" + "/" + stockCode;
-            });
 
             var stocksList = null; //Set stocksList to null initially
 
@@ -157,17 +123,19 @@
                 if (query == "")
                     return;
 
-                //Track the number of results to return
+                //Limit number of results shown
                 var j = 5;
 
                 //Go through each stock in the API stocksList, see if the query matches the name or symbol.
                 //If it does, add it to the suggestions
                 $.each(stocksList, function(i, item) {
-                    if ((item["stock_symbol"].indexOf(query.toUpperCase()) >= 0 || item["stock_name"].indexOf(query.toUpperCase()) >= 0) && j >= 0)
+                    if ((item["stock_symbol"].indexOf(query.toUpperCase()) >= 0 || item["stock_name"].indexOf(query.toUpperCase()) >= 0) && j > 0)
                     {
-                        {{--var link = "{{url('stock')}}" + "/" + item["stock_symbol"];--}}
+                        //Get the link to the stock page
+                        var link = "{{url('stock')}}" + "/" + item["stock_symbol"];
+                        //Add Found Stock to Stock Search auto complete
                         $('#stocksList').append('' +
-                            '<a href="#"><p class="suggestion" style="margin: 0; padding: 10px;">' + item["stock_name"] + ' <br /><text class="stock_symbol" >' + item["stock_symbol"] + '</text><text>.' + item["market"] + '</text></p></a>'
+                            '<a href="' + link + '"><p class="suggestion" style="margin: 0; padding: 10px;">' + item["stock_name"] + ' <br /><text class="stock_symbol" >' + item["stock_symbol"] + '</text><text>.' + item["market"] + '</text></p></a>'
                         );
                         j--;
                     }
