@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\TradeAccount;
+use App\User;
 use Dotenv\Exception\ValidationException;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
@@ -66,6 +67,32 @@ class UserAccountController extends Controller
 
         //Return to the caller with a 200 response
         return response(json_encode($response), 200);
+    }
+
+    /**
+     * Search Users by incoming query, searches by name and puts in ascending order, gets first 5 results
+     * @param Request $request
+     * @param null $query
+     * @return \Illuminate\Contracts\Routing\ResponseFactory|\Symfony\Component\HttpFoundation\Response
+     */
+    public function searchUserWithQuery(Request $request, $query = null)
+    {
+        //If there is no query value set, return null
+        if ($query == null)
+            return response(null, 200);
+
+        //Get the results where the query is is contained in either a name or email address
+        //Select only the id and name to send back, limit to first 5 results
+        //Sort by Name
+        $results = User::where('name', 'like', '%' . $query . '%')
+//       ->orWhere('email', 'like', '%' . $query . '%')
+            ->select('id', 'name')
+            ->take(5)
+            ->orderBy('name', 'asc')
+            ->get();
+
+        //Return the results as JSON
+        return response($results, 200);
     }
 
 }

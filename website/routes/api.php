@@ -45,3 +45,6 @@ Route::post('/acceptFriendRequest', 'FriendController@acceptFriendRequest');
 Route::post('/deleteUser', 'AdminDashboardController@deleteUser');
 Route::post('/modifyRole', 'AdminDashboardController@modifyRole');
 Route::post('/emailUsers', 'AdminDashboardController@emailUsers');
+
+//API call to get a list of users that match the query
+Route::get('/users/{query?}', 'UserAccountController@searchUserWithQuery');
