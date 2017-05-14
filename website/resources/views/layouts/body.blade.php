@@ -19,9 +19,12 @@
         <div class="">
 
             <!-- Trigger the modal with a button -->
-            <button type="button" class="btn btn-info btn-lg" onclick="location.href='{{ url('login') }}'">Login</button>
-            <button type="button" class="btn btn-info btn-lg" onclick="location.href='{{ url('register') }}'">Register</button>
-
+            <div class="col-md-4">
+            <button type="button" class="btn button btn-lg" onclick="location.href='{{ url('login') }}'">Login</button>
+            </div>
+            <div class="col-md-3 col-md-offset-3">
+            <button type="button" class="btn button btn-lg" onclick="location.href='{{ url('register') }}'">Register</button>
+            </div>
         </div>
     </div>
 

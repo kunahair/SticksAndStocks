@@ -501,7 +501,7 @@
             <!--Table to show quick stats about stock-->
             <!--In full screen mode the table is divided into two, side by side. when on mobile they are stacked-->
             <!--<div id="stock-stats-table" style="margin-bottom: 10%;">-->
-            <div class="table-responsive col-xs-12" style="margin-bottom: 3%; border: none">
+            <div class="table-responsive col-xs-12" style="margin-bottom: 3%; padding-top:3%; border: none">
                 <table class="col-xs-12 col-md-6 table-hover">
 
                     {{--Loop through the first half of the current data array and populate the left side of the table--}}
@@ -516,7 +516,7 @@
 
                 </table>
 
-                <table class="col-xs-12 col-md-6 table-hover">
+                <table class=" col-xs-12 col-md-6 table-hover">
 
                     {{--Loop through the second half of the current data array and populate the right side of the table--}}
                     @for($i = count($currentDataArray["curr_price"]["extraData"])/2; $i < count($currentDataArray["curr_price"]["extraData"]); $i++)
@@ -532,7 +532,7 @@
 
 
             <div class="col-xs-1 col-md-2"></div>
-            <div class="col-xs-10 col-md-8" style="margin: auto">
+            <div class="box col-xs-10 col-md-8" style="margin: auto">
                 <!--style="width: 500px;">-->
                 <canvas id='chart'></canvas>
             </div>
