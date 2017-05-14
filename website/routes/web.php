@@ -118,3 +118,10 @@ Route::get('404', function () {
 Route::get('privacy-and-policy', function () {
     return view('privacy-and-policy');
 });
+
+Route::get('api/getNotifications', function (){
+
+    $notifications = Auth::user()->getNotifications();
+
+    return response($notifications, 200);
+})->middleware('auth');

@@ -38,8 +38,13 @@
                     </li>
                     <li><a href="/dashboard">Dashboard</a></li>
                     <li><a href="/leaderboard">Leaderboard</a></li>
-                    <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true">Inbox <span class="badge bg" id="alarm-system">{{count(Auth::user()->getNotifications())}}</span></a>
-                        <ul class="">
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true">
+                            Inbox <span id="notificationsBadge" class="badge bg" id="alarm-system">
+                                {{count(Auth::user()->getNotifications())}}
+                            </span>
+                        </a>
+                        <ul id="notificationsList" class="dropdown-menu">
                             {{--Loop through all the pending notifications the user has and display as dropdown notification--}}
                             @foreach(Auth::user()->getNotifications() as $notification)
 
@@ -97,7 +102,32 @@
     <script>
 
 
+
         $(document).ready(function(){ // this will be called when the DOM is ready
+
+            //Get a list of all notifications every three seconds and update the Inbox navbar item
+            window.setInterval(function () {
+                //Get the list of unread notifications
+                $.get("{{url('api/getNotifications')}}")
+                    .done(function (data) {
+                        //Update the number of notifications badge
+                        $('#notificationsBadge').text(data.length);
+
+                        //Empty the notifications list
+                        $('#notificationsList').empty();
+
+                        //Loop through every received notification and add to the dropdown list
+                        $.each(data, function (index, item) {
+                            //If it has pending it means it is a friend request
+                            if (item["pending"] != null)
+                                $('#notificationsList').append('<li><a href="' + '/profile'  + '/' + item["from"] + '">New Friend Request from ' + item["name"] + '</a></li>');
+                            //Otherwise test to see if it is a message
+                            else if (item["message"] != null)
+                                $('#notificationsList').append('<li><a href="' + '/messages'  + '/' + item["from"] + '">New Message from ' + item["name"] + '</a></li>');
+                        });
+                    });
+
+            }, 3000);
 
             var stocksList = null; //Set stocksList to null initially
 
