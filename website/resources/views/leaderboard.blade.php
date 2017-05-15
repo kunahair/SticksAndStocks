@@ -19,7 +19,7 @@
             <td>Portfolio Value</td>
         </tr>
         </thead>
-        {{ $rank = 1 }}
+        @php ( $rank = 1)
     @foreach ($users as $user)
         <tr>
             <th>{{ $rank++ }}</th>
