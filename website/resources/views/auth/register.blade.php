@@ -3,8 +3,8 @@
 @section('content')
 <div class="container">
     <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-default">
+        <div class="col-md-8 col-md-offset-2 top-padding">
+            <div class="panel panel-default ">
                 <div class="panel-heading">Register</div>
                 <div class="panel-body">
                     <form class="form-horizontal" role="form" method="POST" action="{{ route('register') }}">
@@ -62,7 +62,7 @@
 
                         <div class="form-group">
                             <div class="col-md-6 col-md-offset-4">
-                                <button type="submit" class="btn btn-primary">
+                                <button type="submit" class="btn button">
                                     Register
                                 </button>
                             </div>
@@ -70,16 +70,20 @@
 
                     </form>
                     <div class="form-group">
-                        <label class="col-md-6 col-md-offset-4"> Sign in with Facebook</label>
+                        <label class="col-md-6 col-md-offset-4"> Sign in with:</label>
                     </div>
                     <div class="col-md-6 col-md-offset-4">
                         <a class="btn btn-block btn-social btn-twitter">
                             <span class="fa fa-twitter"></span> Sign in with Twitter
                         </a>
+                        <a class="btn btn-block btn-social btn-facebook">
+                            <span class="fa fa-facebook"></span> Sign in with Twitter
+                        </a>
+                        <a class="btn btn-block btn-social bg btn-google">
+                            <span class="fa fa-google"></span> Sign in with Twitter
+                        </a>
 
-                        <a href="{{url('/facebooklogin.blade.php')}}"> <img src="/img/facebook.png"></a>
-                        <a href="#"> <img src="{{url('img/googleplus.png')}}"></a>
-                        <a href="#">  <img src="{{url('img/twitter.png')}}"></a>
+
                     </div>
                 </div>
             </div>
@@ -87,3 +91,5 @@
     </div>
 </div>
 @endsection
+
+@include('layouts.footer')

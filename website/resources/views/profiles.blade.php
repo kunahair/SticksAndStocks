@@ -10,10 +10,11 @@
         }
 
     </style>
-
-    <h1 class="col-xs-12">Find Users</h1>
+<div class="content-box bg" style="padding-top:3%; ">
+    <h1 class=" heading ">Find Users</h1>
+</div>
     {{--User Search with autocomplete--}}
-    <div class="form-group col-xs-12 col-sm-8 col-sm-offset-2" style="padding-bottom: 50%">
+    <div class="form-group content-box " style="padding-bottom: 50%; padding-top: 3%;">
         <input type="text" class="form-control" placeholder="Search" id="usersAutocomplete">
         <div id="usersList" style="position: absolute; z-index: 300; background-color: #FFFFFF; width: 100%">
         </div>
