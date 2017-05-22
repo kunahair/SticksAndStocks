@@ -40,9 +40,14 @@
                     <li><a href="/leaderboard">Leaderboard</a></li>
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true">
-                            Inbox <span id="notificationsBadge" class="badge bg" id="alarm-system">
-                                {{count(Auth::user()->getNotifications())}}
-                            </span>
+                            Inbox
+                            @if(count(Auth::user()->getNotifications()) > 0)
+                                <span id="notificationsBadge" class="badge bg" id="alarm-system">
+                            @else
+                                 <span id="notificationsBadge" class="badge bg" id="alarm-system" style="display: none">
+                            @endif
+                                     {{count(Auth::user()->getNotifications())}}
+                                </span>
                         </a>
                         <ul id="notificationsList" class="dropdown-menu">
                             {{--Loop through all the pending notifications the user has and display as dropdown notification--}}
@@ -110,6 +115,13 @@
                 //Get the list of unread notifications
                 $.get("{{url('api/getNotifications')}}")
                     .done(function (data) {
+                        if (data.length > 0)
+                        {
+                            $('#notificationsBadge').css('display', 'inline');
+                        }
+                        else {
+                            $('#notificationsBadge').css('display', 'none');
+                        }
                         //Update the number of notifications badge
                         $('#notificationsBadge').text(data.length);
 
