@@ -1,13 +1,15 @@
 @include('layouts.header')
 
 
-<body class="background">
+<body >
 @include('layouts.navbar')
-<div class="bg">
+<div class="bg" style="padding-top:3% ">
+<div class="content-box bg">
 
-    <h1 class="subheading">Leaderboard</h1>
+    <h1 >Leaderboard</h1>
 </div>
-<div class="container ">
+</div>
+<div class="content-box">
     <br/>
     <br/>
 
@@ -30,6 +32,7 @@
     </table>
 
 </div>
+
 
 
 @include('layouts.footer')

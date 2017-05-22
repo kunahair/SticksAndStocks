@@ -3,7 +3,7 @@
 @include('layouts.navbar')
 
 
-<div class="container">
+<div class="container-box">
 
     {{--Error Message Display--}}
     <div class="alert alert-danger" id="friendError" style="display: none"></div>

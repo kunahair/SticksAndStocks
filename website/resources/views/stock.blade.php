@@ -274,11 +274,11 @@
 
             {{--Sell User From--}}
               <!-- added a model for the buying stocks button-->
-                  <button type="button" class="btn button btn-lg" data-toggle="modal" data-target="#userSellForm">Sell Stock</button>
+                  <button type="button" class="btn sell-button btn-lg" data-toggle="modal" data-target="#userSellForm">Sell Stock</button>
                   <!-- model layout-->
             <div id="userSellForm" class="modal fade" role="dialog">
                 <div  class=" modal-content modal-dialog" >
-                    <div class="modal-header bg">
+                    <div class="modal-header orange-bg">
                         <div class="heading"> <h3>Sell Stock</h3></div>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="margin-top: -68px">
                                 <span aria-hidden="true" style="font-size: 200%">&times;</span>
@@ -307,7 +307,7 @@
                     </div>
                     <div class="modal-footer">
                         <h4 class="text-left">Sell Total: $<lable id="sellStockTotal">{{$stock->current_price}}</lable></h4>
-                        <button id="sellButton" name="sellButton" class="btn btn-md button" >Sell</button>
+                        <button id="sellButton" name="sellButton" class="btn btn-md sell-button" >Sell</button>
                     </div>
                     {{--User messages--}}
                     <div id="sellError" class="alert alert-danger" style="display: none">There was an error</div>
