@@ -20,6 +20,7 @@ class CreateFriendsTable extends Migration
             $table->integer('from')->unsinged();
             $table->integer('timestamp')->unsigned();
             $table->boolean('pending');
+            $table->boolean('accept_view')->default(false);
 
             //Establish foreign keys
 //            $table->foreign('to')->references('id')->on('users');
