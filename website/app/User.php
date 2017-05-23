@@ -94,6 +94,10 @@ class User extends Authenticatable
         return 10;
     }
 
+    /**
+     * Get Pending Friend Requests and Unseen Friend Request Accepts
+     * @return \Illuminate\Contracts\Routing\ResponseFactory|\Symfony\Component\HttpFoundation\Response
+     */
     public function getFriendRequests()
     {
         //Get user ID
