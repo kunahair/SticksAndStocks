@@ -139,6 +139,13 @@
                 </table>
             </div>
 
+            {{--Pagination links for users--}}
+            <div class="row">
+                <div class="">
+                    {{$data["users"]->links()}}
+                </div>
+            </div>
+
             <div id="deleteWarning" class="modal fade" role="dialog">
                 <div class="modal-dialog">
                     <div class="modal-content">

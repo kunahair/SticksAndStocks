@@ -31,12 +31,12 @@ class AdminDashboardController extends Controller
     }
 
     /**
-     * Get a Collection of all the Users in the users table
+     * Get a Collection of all the Users in the users table, pagination for each group of 5
      * @return mixed - Collection of All Users
      */
     private function getAllUsers()
     {
-        $users = DB::table('users')->get();
+        $users = DB::table('users')->paginate(5);
         return $users;
     }
 
