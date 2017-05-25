@@ -45,11 +45,26 @@ class getCompany extends Command
 
         // print_r($this->historyHour($stock_code));
 
-        $currentStock = Stock::where('stock_symbol', $stock_code)->first();
+        try{
+            $getCompaniesClass = new \GetAllCompanies;
+            $current = $getCompaniesClass->getSingleStock($stock_code);
+        }
+        catch (\StockNotFoundException $exception)
+        {
+            print $exception->getMessage() . "\n" . "Code: " . $exception->getCode();
+            return;
+        }
+        catch (\NullStockCodeException $exception)
+        {
+            print $exception->getMessage() . "\n" . "Code: " . $exception->getCode();
+            return;
+        }
 
-        $currentHistory = $this->historyHour($stock_code, $currentStock->market);
-        if ($currentHistory != null) {
-            $currentStock->addHistory($currentHistory);
+        $currentStock = Stock::where('stock_symbol', $stock_code)->first();
+//
+//        $currentHistory = $this->historyHour($stock_code, $currentStock->market);
+        if ($current != null) {
+            $currentStock->addHistory($current);
         }
     }
 

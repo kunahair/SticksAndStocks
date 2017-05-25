@@ -53,55 +53,66 @@ class Stock extends Model
 
     public function addHistory($value)
     {
-        $stock_id = DB::table('stocks')->select('id')->where('stock_symbol', $value["code"])->first();
+//        $stock_id = DB::table('stocks')->select('id')->where('stock_symbol', $value["code"])->first();
 
-        $lastTimestamp = DB::table('stock_histories')->where('stock_id', $stock_id->id)->max('timestamp');
+        $history = new StockHistory;
 
-        if ($lastTimestamp == null)
-        {
-            foreach ($value[1] as $timeseries)
-            {
+        $history->stock_id = $value["id"];
 
-                $history = new StockHistory;
+        $history->timestamp = $value["timestamp"];
 
-                $history->stock_id = $stock_id->id;
-//                $history->low = $timeseries["low"];
-//                $history->high = $timeseries["high"];
-//                $history->open = $timeseries["open"];
-//                $history->time = $timeseries["time"];
-                $history->timestamp = $timeseries["timestamp"];
-//                $history->close = $timeseries["close"];
-//                $history->volume = $timeseries["volume"];
-                $history->average = $timeseries["average"];
+        $history->average = $value["price"];
 
-//                var_dump($timeseries["time"]);
+        $history->save();
 
-                $history->save();
-            }
-        }
-        else
-        {
-            foreach ($value[1] as $timeseries)
-            {
-
-                if ($timeseries["timestamp"] <= $lastTimestamp)
-                    continue;
-
-                $history = new StockHistory;
-
-                $history->stock_id = $stock_id->id;
-                $history->timestamp = $timeseries["timestamp"];
-                $history->average = $timeseries["average"];
-
-                $history->save();
-            }
-        }
+//        $lastTimestamp = DB::table('stock_histories')->where('stock_id', $stock_id->id)->max('timestamp');
+//
+//        if ($lastTimestamp == null)
+//        {
+//            foreach ($value[1] as $timeseries)
+//            {
+//
+//                $history = new StockHistory;
+//
+//                $history->stock_id = $stock_id->id;
+////                $history->low = $timeseries["low"];
+////                $history->high = $timeseries["high"];
+////                $history->open = $timeseries["open"];
+////                $history->time = $timeseries["time"];
+//                $history->timestamp = $timeseries["timestamp"];
+////                $history->close = $timeseries["close"];
+////                $history->volume = $timeseries["volume"];
+//                $history->average = $timeseries["average"];
+//
+////                var_dump($timeseries["time"]);
+//
+//                $history->save();
+//            }
+//        }
+//        else
+//        {
+//            foreach ($value[1] as $timeseries)
+//            {
+//
+//                if ($timeseries["timestamp"] <= $lastTimestamp)
+//                    continue;
+//
+//                $history = new StockHistory;
+//
+//                $history->stock_id = $stock_id->id;
+//                $history->timestamp = $timeseries["timestamp"];
+//                $history->average = $timeseries["average"];
+//
+//                $history->save();
+//            }
+//        }
 
         // Last History Value = Current Price
-        $this->current_price = end($value[1])['average'];
+//        $this->current_price = end($value[1])['average'];
+        $this->current_price = $value["price"];
         $this->save();
 
-        var_dump($value["code"]);
+        var_dump($value["name"]);
 
     }
 
@@ -144,6 +155,12 @@ class Stock extends Model
         //Return Latest History data to the caller in JSON format for use in Javascript
         return json_encode($latestHistoryArray, JSON_FORCE_OBJECT);
 
+    }
+
+    public function getHourlyGraphImage()
+    {
+        //https://www.google.com/finance/getchart?q=GOOGL&x=NASDAQ&p=1d&i=30
+        return '<img src="https://www.google.com/finance/getchart?q=' . $this->stock_symbol .'&x=' . $this->market . '&p=1d&i=30" />';
     }
 
 }
