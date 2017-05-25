@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Friend;
 use App\TradeAccount;
 use App\User;
 use Dotenv\Exception\ValidationException;
@@ -93,6 +94,36 @@ class UserAccountController extends Controller
 
         //Return the results as JSON
         return response($results, 200);
+    }
+
+    public function showUser(Request $request, $id = null)
+    {
+
+        //Get the user that is being requested
+        $user = User::find($id);
+
+        //If the user does not exist, go to the dashboard
+        if ($user == null)
+            return redirect('/dashboard');
+
+        //Get users total growth
+        $growth = \Growth::getTotalGrowth($id);
+
+        //Update accepted friend request view, that is, any now friend has accepted the friend request but
+        //current user has not seen, change to seen
+        try
+        {
+            Friend::
+                where([['to', $id], ['from', Auth::user()->id], ['pending', false]])
+                ->update(['accept_view' => true]);
+        }
+        catch (\Exception $exception)
+        {
+            //If there is an error updating, redirect to the dashboard
+            return redirect('/dashboard');
+        }
+
+        return view('profile', ['growth' => $growth, 'user' => $user]);
     }
 
 }

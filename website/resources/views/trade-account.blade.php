@@ -107,7 +107,7 @@
                             <td class=col-xs-1" style="padding: 0px">${{$stock["current_price"]}}</td>
                             <td class=col-xs-2" style="padding: 0px">${{$stock["total_growth"]}} ({{$stock["total_growth_percentage"]}}%)</td>
                             <td class=col-xs-2" style="padding: 0px">{{$stock["owns"]}}</td>
-                            <td class=col-xs-1" style="padding: 0px"><a href="#">view</a></td>
+                            <td class=col-xs-1" style="padding: 0px"><a href="{{url('/stock')}}/{{$stock["symbol"]}}">view</a></td>
                         </tr>
 
                     @endforeach

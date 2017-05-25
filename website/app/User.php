@@ -96,12 +96,23 @@ class User extends Authenticatable
 
     public function getFriendRequests()
     {
+        //Get user ID
+        $id = $this->getAuthIdentifier();
+
         try {
             //Get friend requests the user has pending, add the name of the user who sent the request
             $friendRequests = Friend::
-                where([['to', $this->getAuthIdentifier()], ['pending', true]])
+                where([['to', $id], ['pending', true]])
+                ->orwhere(
+                    [
+                        ['from', $id],
+                        ['pending', false],
+                        ['accept_view', false]
+                    ]
+                )
                 ->join('users', 'users.id', 'friends.from')
-                ->select('friends.*', 'users.name')
+                ->join('users as usrs', 'usrs.id', 'friends.to')
+                ->select('friends.*', 'users.name as name_from', 'usrs.name as name_to')
                 ->get();
         }
         catch (\Exception $exception)
@@ -195,6 +206,7 @@ class User extends Authenticatable
         //Return list of messages
         return $unreadMessages;
     }
+
 
     /**
      * Wrapper function to get all the notifications the user has

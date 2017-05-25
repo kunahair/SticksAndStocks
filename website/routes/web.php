@@ -73,16 +73,18 @@ Route::post('api/getTradeAccountStockQuantity', 'TransactionController@getSingle
 Route::post('api/broker/buy', 'BrokerController@buy');
 Route::post('api/broker/sell', 'BrokerController@sell');
 
-Route::get('profile/{id}', function ($id) {
-    $growth = Growth::getTotalGrowth(1);
-
-    $user = App\User::find($id);
-
-    if ($user == null)
-        return redirect('/dashboard');
-
-    return view('profile', ['growth' => $growth, 'user' => $user]);
-})->middleware('auth');
+Route::get('profile/{id}', 'UserAccountController@showUser')
+//    function ($id) {
+//    $growth = Growth::getTotalGrowth(1);
+//
+//    $user = App\User::find($id);
+//
+//    if ($user == null)
+//        return redirect('/dashboard');
+//
+//    return view('profile', ['growth' => $growth, 'user' => $user]);
+//}
+->middleware('auth');
 
 //When user loads the messages page for a user (by ID)
 Route::get('messages/{id}', 'MessagesController@view')->middleware('auth');

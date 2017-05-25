@@ -1,13 +1,15 @@
 @include('layouts.header')
 
 
-<body class="background">
+<body >
 @include('layouts.navbar')
-<div class="bg">
+<div class="bg" style="padding-top:3% ">
+<div class="content-box bg">
 
-    <h1 class="subheading">Leaderboard</h1>
+    <h1 >Leaderboard</h1>
 </div>
-<div class="container ">
+</div>
+<div class="content-box">
     <br/>
     <br/>
 
@@ -19,7 +21,7 @@
             <td>Portfolio Value</td>
         </tr>
         </thead>
-        {{ $rank = 1 }}
+        @php ( $rank = 1)
     @foreach ($users as $user)
         <tr>
             <th>{{ $rank++ }}</th>
@@ -30,6 +32,7 @@
     </table>
 
 </div>
+
 
 
 @include('layouts.footer')

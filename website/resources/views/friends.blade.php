@@ -5,15 +5,19 @@
 
 <style>
 
-    thead{
+   /* thead{
         background-color: black;
-    }
+    }*/
 
 </style>
+<div class="bg"style="padding-top: 3%; ">
+<div class="content-box" >
+    <h1>Friends</h1>
+</div>
+</div>
+<div class="content-box ">
 
 
-
-<h1>Friends</h1>
     {{--Padding--}}
     <div class="col-xs-1 col-md-3"></div>
 
@@ -40,5 +44,5 @@
 
     {{--Padding--}}
     <div class="col-xs-1 col-md-3"></div>
-
+</div>
 @include('layouts.footer')

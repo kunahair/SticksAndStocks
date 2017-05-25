@@ -40,9 +40,14 @@
                     <li><a href="/leaderboard">Leaderboard</a></li>
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true">
-                            Inbox <span id="notificationsBadge" class="badge bg" id="alarm-system">
-                                {{count(Auth::user()->getNotifications())}}
-                            </span>
+                            Inbox
+                            @if(count(Auth::user()->getNotifications()) > 0)
+                                <span id="notificationsBadge" class="badge bg" id="alarm-system">
+                            @else
+                                 <span id="notificationsBadge" class="badge bg" id="alarm-system" style="display: none">
+                            @endif
+                                     {{count(Auth::user()->getNotifications())}}
+                                </span>
                         </a>
                         <ul id="notificationsList" class="dropdown-menu">
                             {{--Loop through all the pending notifications the user has and display as dropdown notification--}}
@@ -57,9 +62,17 @@
                                 @endif
 
                                 {{--Othewise, assume that it is a new friend request and show that it is a new friend request and who it is from--}}
-                                <li>
-                                    <a href="{{url('profile')}}/{{$notification["from"]}}">New Friend Request from {{$notification["name"]}}</a>
-                                </li>
+                                @if($notification->pending == true)
+                                    <li>
+                                        <a href="{{url('profile')}}/{{$notification["from"]}}">New Friend Request from {{$notification["name_from"]}}</a>
+                                    </li>
+                                {{--If the notification is an accepted friend request that has not been viewed, show as such--}}
+                                 @elseif($notification->accept_view == false)
+                                    <li>
+                                        <a href="{{url('profile')}}/{{$notification["to"]}}">Friend Request Accepted from {{$notification["name_to"]}}</a>
+                                    </li>
+
+                                @endif
 
                             @endforeach
 
@@ -110,6 +123,13 @@
                 //Get the list of unread notifications
                 $.get("{{url('api/getNotifications')}}")
                     .done(function (data) {
+                        if (data.length > 0)
+                        {
+                            $('#notificationsBadge').css('display', 'inline');
+                        }
+                        else {
+                            $('#notificationsBadge').css('display', 'none');
+                        }
                         //Update the number of notifications badge
                         $('#notificationsBadge').text(data.length);
 
@@ -120,7 +140,13 @@
                         $.each(data, function (index, item) {
                             //If it has pending it means it is a friend request
                             if (item["pending"] != null)
-                                $('#notificationsList').append('<li><a href="' + '/profile'  + '/' + item["from"] + '">New Friend Request from ' + item["name"] + '</a></li>');
+                            {
+                                //If it is a pending friend request, show as Pending Friend Request
+                                if (item["pending"] == true)
+                                    $('#notificationsList').append('<li><a href="' + '/profile'  + '/' + item["from"] + '">New Friend Request from ' + item["name_from"] + '</a></li>');
+                                else if(item["accept_view"] == false)
+                                    $('#notificationsList').append('<li><a href="' + '/profile'  + '/' + item["to"] + '">Friend Request Accepted from ' + item["name_to"] + '</a></li>');
+                            }
                             //Otherwise test to see if it is a message
                             else if (item["message"] != null)
                                 $('#notificationsList').append('<li><a href="' + '/messages'  + '/' + item["from"] + '">New Message from ' + item["name"] + '</a></li>');

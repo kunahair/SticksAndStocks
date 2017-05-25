@@ -52,6 +52,10 @@ class MessagesController extends Controller
             DB::table('messages')
                 ->where([['from', $id], ['to', Auth::user()->id]])
                 ->update(['read' => true]);
+
+            Friend::
+            where([['to', $id], ['from', Auth::user()->id], ['pending', false]])
+                ->update(['accept_view' => true]);
         }
         catch (\Exception $exception)
         {

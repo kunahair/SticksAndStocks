@@ -44,7 +44,7 @@
                       {{--Create Panel that links to its individual Trade Account Page--}}
                 <a href="{{url('/tradeaccount/' . $ta->id) }}">
 
-                    <div class="panel panel-default  col-md-2 col-sm-1 col-xs-offset-1" >
+                    <div class="panel-group panel-default  col-md-2 col-sm-1 col-xs-offset-1" >
                         {{--Name of Trade Account--}}
                         <div class="panel-heading">
                             <h3 class="panel-title">{{$ta->name}}</h3>
