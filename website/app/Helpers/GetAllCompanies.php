@@ -20,9 +20,14 @@ class GetAllCompanies
     private $downloadURL = "http://download.finance.yahoo.com/d/quotes.csv?s=";
     private $completeAttributes = "&f=nabl1t1c1p2ohgpwkjdqr1y";
     private $simpleAttributes = "&f=nd1l1";
+
+
     public function getCompanies()
     {
-
+        $this->getASXStocks();
+        $this->getNASDAQStocks();
+        $this->getNYSEStocks();
+        $this->getAMEXStocks();
     }
 
     public function getSingleStock($code = null)

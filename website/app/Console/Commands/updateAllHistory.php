@@ -39,10 +39,7 @@ class updateAllHistory extends Command
     public function handle()
     {
         $getAllCompanies = new \GetAllCompanies;
-//        $getAllCompanies->getASXStocks();
-//        $getAllCompanies->getNASDAQStocks();
-//        $getAllCompanies->getNYSEStocks();
-        $getAllCompanies->getAMEXStocks();
+        $getAllCompanies->getCompanies();
         // Do 200 stocks at a time to save memory
 //        Stock::chunk(200, function($stocks) {
 //            $number = 1;
