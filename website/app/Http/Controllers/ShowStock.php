@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Stock as Stock;
+use Illuminate\Support\Facades\Artisan;
 
 class ShowStock extends Controller
 {
@@ -37,8 +38,10 @@ class ShowStock extends Controller
         $data[0]->save();
 
 		//Update history
-        $getHistory = new \GetAllCompanies;
-        $getHistory->getSingleStock($code);
+//        $getHistory = new \GetAllCompanies;
+//        $getHistory->getSingleStock($code);
+
+        Artisan::call('company:get', ['code' => $code]);
 
 
 		//Load Blade view with database and current info

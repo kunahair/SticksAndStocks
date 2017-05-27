@@ -39,6 +39,7 @@ class GetAllCompanies
         //If no stock code is provided, then return null
         if ($code == null)
         {
+            print "Code cannot be null";
             return null;
         }
 
