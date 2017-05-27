@@ -26,7 +26,7 @@
         <tr>
             <th>{{ $rank++ }}</th>
             <th>{{ $user->name }}</th>
-            <th>${{ $user->portfolio }}</th>
+            <th>${{number_format($user->portfolio, 2) }}</th>
         </tr>
     @endforeach
     </table>

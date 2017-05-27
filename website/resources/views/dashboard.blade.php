@@ -14,10 +14,10 @@
         <div class="block-foreground">
           <div class="row bg">
 
-             <div class="col-md-2 ">
+             <div class="col-md-3 ">
                <h1 class="subheading">Dashboard</h1>
              </div >
-             <div class="col-md-10">
+             <div class="col-md-9">
              <div class="balance">
                 <h2>Balance: ${{number_format(Auth::user()->balance,2)}}AUD</h2>
              </div>

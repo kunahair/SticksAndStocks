@@ -71,7 +71,7 @@
         </div>
         </div>
 
-            <div class="content-box">
+            <div class="col-xs-12 col-md-10 col-md-offset-1">
             {{--Only Users who are signed in can purchase and sell stocks--}}
             @if(Auth::check())
               <!-- added a model for the buying stocks button-->
@@ -532,7 +532,7 @@
 
 
             <div class="col-xs-1 col-md-2"></div>
-            <div class="box col-xs-10 col-md-8" style="margin: auto">
+            <div class="col-xs-10 col-md-8" style="margin: auto; margin-bottom: 5%; margin-top: 2%">
                 <!--style="width: 500px;">-->
                 <canvas id='chart'></canvas>
             </div>
