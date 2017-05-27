@@ -22,8 +22,6 @@ class ShowStock extends Controller
 		    return redirect('dashboard');
 		$currentData = \GuzzleHttp\json_encode($currentDataArray);
 
-		var_dump($currentDataArray);
-
         //Update the current price in the database
 		if ($data[0]->market != "ASX")
         {
