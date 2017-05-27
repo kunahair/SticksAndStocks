@@ -6,8 +6,8 @@
             <div id="logo">
                 @if(Auth::check())
                     <a href="{{url('/dashboard')}}">
-                    @else
-                        <a href="{{url('/')}}">
+                @else
+                     <a href="{{url('/')}}">
                 @endif
                     <img src="img/PineappleWC (1).gif" alt="logo" style="height: 200px; width:200px;"></a>
                 <br/>404 Error <br/> Page Not Found

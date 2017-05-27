@@ -64,15 +64,15 @@ class GetAllCompanies
                     $contents = file_get_contents($url);
                     break;
                 case 'NASDAQ':
-                    $url = $this->googleAPIBaseURL . $stock->stock_symbol;
+                    $url = $this->externalURL . $stock->stock_symbol;
                     $contents = file_get_contents($url);
                     break;
                 case 'NYSE':
-                    $url = $this->googleAPIBaseURL . $stock->stock_symbol;
+                    $url = $this->externalURL . $stock->stock_symbol;
                     $contents = file_get_contents($url);
                     break;
                 case 'AMEX':
-                    $url = $this->googleAPIBaseURL . $stock->stock_symbol;
+                    $url = $this->externalURL . $stock->stock_symbol;
                     $contents = file_get_contents($url);
                     break;
             }
