@@ -11,15 +11,15 @@ class ShowStock extends Controller
     //Get data from database for company
 		$data = Stock::where('stock_symbol', $code)->get();
 
-		if ($data == null) {
-		    return view('404');
+		if ($data == null || count($data) == 0) {
+		    return redirect('404');
         }
 
 		//Get the current information for company
 		$currentDataClass = new \CurrentCompanyStockInformation;
 		$currentDataArray = $currentDataClass->currentDetails($code, $data[0]->market);
 		if ($currentDataArray["curr_price"] == null)
-		    return redirect('dashboard');
+		    return redirect('404');
 		$currentData = \GuzzleHttp\json_encode($currentDataArray);
 
         //Update the current price in the database
