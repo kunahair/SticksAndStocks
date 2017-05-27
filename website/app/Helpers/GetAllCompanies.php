@@ -20,6 +20,7 @@ class GetAllCompanies
     private $downloadURL = "http://download.finance.yahoo.com/d/quotes.csv?s=";
     private $completeAttributes = "&f=nabl1t1c1p2ohgpwkjdqr1y";
     private $simpleAttributes = "&f=nd1l1";
+    private $externalURL = "http://139.59.240.148/getPrice.php?code=";
 
     private $googleAPIBaseURL = "https://www.google.com/finance/getprices?i=300&p=1d&f=d,o,h,l,c,v&df=cpct&q=";
 
@@ -59,7 +60,7 @@ class GetAllCompanies
             switch ($stock->market)
             {
                 case 'ASX':
-                    $url = $this->googleAPIBaseURL . $stock->stock_symbol . '.AX';
+                    $url = $this->externalURL . $stock->stock_symbol . '.AX';
                     $contents = file_get_contents($url);
                     break;
                 case 'NASDAQ':
@@ -176,16 +177,30 @@ class GetAllCompanies
     {
         //Get results where the market is ASX and their sector is not applicable
         //chunk results in groups of 200
-        \App\Stock::where([['market', 'ASX'], ['group', '!=', 'Not Applic']])->take(200)->chunk(200, function ($stocks){
+        \App\Stock::where([['market', 'ASX'], ['group', '!=', 'Not Applic']])->chunk(200, function ($stocks){
 
             foreach ($stocks as $stock)
             {
+                //Get the stock code of current stock
+                $code = $stock->stock_symbol;
 
-                $current = $this->getSingleStock($stock->stock_symbol);
+                //Get the price of the current stock
+                $price = $this->getPrice($code . ".AX");
 
-                if ($current != null) {
-                    $currentStock = \App\Stock::where('stock_symbol', $stock->stock_symbol)->first();
-                    $currentStock->addHistory($current);
+                //If the price is N/A, move to next code
+                if ($price == "N/A")
+                {
+                    print "No data for " . $code . " \n";
+                    continue;
+                }
+
+                //Format the price so it only has 2 decimal places
+                $price = number_format(floatval($price), 2);
+
+                //Update the current price of current stock
+                if ($price != null) {
+                    $stock->current_price = floatval($price);
+                    var_dump($stock->current_price);
                 }
             }
 
@@ -274,5 +289,32 @@ class GetAllCompanies
                 }
             }
         });
+    }
+
+    /**
+     * Does API call to get the current price of a stock by code
+     * @param null $code - Stock code, must include market code eg: .AX at end of code if outside US
+     * @return string - price of stock
+     */
+    private function getPrice($code = null)
+    {
+        //If there is no code selected, return N/A
+        if ($code == null)
+            return "N/A";
+
+        //Construct url API call
+        $url = $this->downloadURL . $code . $this->simpleAttributes;
+
+        //Get the contents of CSV file from
+        $contents = file_get_contents($url);
+
+        //Put top level into array
+        $contents = explode("\n", $contents);
+
+        //Take just the first row, which has data of concern and put all values into an array
+        $contents = explode(",", $contents[0]);
+
+        //Return the closing price
+        return $contents[2];
     }
 }

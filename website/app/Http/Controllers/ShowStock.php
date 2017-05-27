@@ -34,6 +34,10 @@ class ShowStock extends Controller
         //Save new current price to database
         $data[0]->save();
 
+		//Update history
+        $getHistory = new \GetAllCompanies;
+        $getHistory->getSingleStock($code);
+
 
 		//Load Blade view with database and current info
 		return view('stock', ['stock' => $data[0], 'current' => $currentData])->with('currentDataArray', $currentDataArray);
