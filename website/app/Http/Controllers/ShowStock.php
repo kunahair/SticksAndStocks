@@ -38,10 +38,10 @@ class ShowStock extends Controller
         $data[0]->save();
 
 		//Update history
-//        $getHistory = new \GetAllCompanies;
-//        $getHistory->getSingleStock($code);
+        $getHistory = new \GetAllCompanies;
+        $getHistory->getSingleStock($data[0]->stock_symbol);
 
-        Artisan::call('company:get', ['code' => $code]);
+//        Artisan::call('company:get', ['code' => $code]);
 
 
 		//Load Blade view with database and current info
