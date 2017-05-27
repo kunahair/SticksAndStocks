@@ -1,7 +1,7 @@
 @include('layouts.header')
 <body class="bg">
 <div class=" bg ">
-    <div class="title text-center errorpage col-md-4 col-lg-offset-4">
+    <div class="title text-center errorpage col-md-4 col-md-offset-4">
         <div class="" >
             <div id="logo">
                 @if(Auth::check())
