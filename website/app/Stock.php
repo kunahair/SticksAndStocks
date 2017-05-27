@@ -53,66 +53,48 @@ class Stock extends Model
 
     public function addHistory($value)
     {
-//        $stock_id = DB::table('stocks')->select('id')->where('stock_symbol', $value["code"])->first();
 
-        $history = new StockHistory;
+        $lastTimestamp = DB::table('stock_histories')->where('stock_id', $value["id"])->max('timestamp');
 
-        $history->stock_id = $value["id"];
+        //If there is no history, add all the history available
+        if ($lastTimestamp == null)
+        {
+            foreach ($value[1] as $timeseries)
+            {
 
-        $history->timestamp = $value["timestamp"];
+                $history = new StockHistory;
 
-        $history->average = $value["price"];
+                $history->stock_id = $value["id"];
+                $history->timestamp = $timeseries["timestamp"];
+                $history->average = $timeseries["average"];
 
-        $history->save();
+                $history->save();
+            }
+        }
+        else
+        {
+            //Otherwise, update the history from the last timestamp
+            foreach ($value[1] as $timeseries)
+            {
+                //If this history has been added to database, ignore it
+                if ($timeseries["timestamp"] <= $lastTimestamp)
+                    continue;
 
-//        $lastTimestamp = DB::table('stock_histories')->where('stock_id', $stock_id->id)->max('timestamp');
-//
-//        if ($lastTimestamp == null)
-//        {
-//            foreach ($value[1] as $timeseries)
-//            {
-//
-//                $history = new StockHistory;
-//
-//                $history->stock_id = $stock_id->id;
-////                $history->low = $timeseries["low"];
-////                $history->high = $timeseries["high"];
-////                $history->open = $timeseries["open"];
-////                $history->time = $timeseries["time"];
-//                $history->timestamp = $timeseries["timestamp"];
-////                $history->close = $timeseries["close"];
-////                $history->volume = $timeseries["volume"];
-//                $history->average = $timeseries["average"];
-//
-////                var_dump($timeseries["time"]);
-//
-//                $history->save();
-//            }
-//        }
-//        else
-//        {
-//            foreach ($value[1] as $timeseries)
-//            {
-//
-//                if ($timeseries["timestamp"] <= $lastTimestamp)
-//                    continue;
-//
-//                $history = new StockHistory;
-//
-//                $history->stock_id = $stock_id->id;
-//                $history->timestamp = $timeseries["timestamp"];
-//                $history->average = $timeseries["average"];
-//
-//                $history->save();
-//            }
-//        }
+
+                $history = new StockHistory;
+
+                $history->stock_id = $value["id"];
+                $history->timestamp = $timeseries["timestamp"];
+                $history->average = $timeseries["average"];
+
+                $history->save();
+            }
+        }
 
         // Last History Value = Current Price
-//        $this->current_price = end($value[1])['average'];
-        $this->current_price = $value["price"];
+        //Update the current price of the stock in the database
+        $this->current_price = end($value[1])['average'];
         $this->save();
-
-        var_dump($value["name"]);
 
     }
 

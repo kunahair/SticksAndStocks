@@ -64,7 +64,13 @@ class getCompany extends Command
 //
 //        $currentHistory = $this->historyHour($stock_code, $currentStock->market);
         if ($current != null) {
-            $currentStock->addHistory($current);
+            $data = array();
+            $data["id"] = $currentStock->id;
+            $data[1] = $current;
+            $currentStock->addHistory($data);
+        }
+        else {
+            print "Unable to add history for " . $stock_code . "\n";
         }
     }
 

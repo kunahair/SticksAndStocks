@@ -38,19 +38,19 @@ class updateAllHistory extends Command
      */
     public function handle()
     {
-        $getAllCompanies = new \GetAllCompanies;
-        $getAllCompanies->getCompanies();
+//        $getAllCompanies = new \GetAllCompanies;
+//        $getAllCompanies->getCompanies();
         // Do 200 stocks at a time to save memory
-//        Stock::chunk(200, function($stocks) {
-//            $number = 1;
-//            foreach ($stocks as $stock) {
-//                print($number . "\t" . $stock->stock_name . "\t" . $stock->stock_symbol . "\n");
-//                $this->call('company:get', [
-//                            'code' => $stock->stock_symbol
-//                        ]);
-//                $number++;
-//            }
-//        });
+        Stock::chunk(200, function($stocks) {
+            $number = 1;
+            foreach ($stocks as $stock) {
+                print($number . "\t" . $stock->stock_name . "\t" . $stock->stock_symbol . "\n");
+                $this->call('company:get', [
+                            'code' => $stock->stock_symbol
+                        ]);
+                $number++;
+            }
+        });
 
 
     }

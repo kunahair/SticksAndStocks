@@ -2,8 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="608787d3-05fa-4afa-98ae-b59fb2a6191d" name="Default" comment="subject: front-end&#10;fixed css for the home page">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/documentation/Styleguide.docx" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/documentation/Usermanual.pdf" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/website/app/Console/Commands/getCompany.php" afterPath="$PROJECT_DIR$/website/app/Console/Commands/getCompany.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/website/app/Console/Commands/updateAllHistory.php" afterPath="$PROJECT_DIR$/website/app/Console/Commands/updateAllHistory.php" />
@@ -765,7 +763,7 @@
       <workItem from="1495154620513" duration="2856000" />
       <workItem from="1495229445587" duration="1706000" />
       <workItem from="1495260472067" duration="11175000" />
-      <workItem from="1495702401057" duration="7291000" />
+      <workItem from="1495702401057" duration="7406000" />
     </task>
     <task id="LOCAL-00001" summary="Added API to get a list of Top 20 companies by capitalisation.&#10;Returns JSON list sorted by Market Capitalisation.">
       <created>1490674065207</created>
@@ -942,11 +940,18 @@
       <option name="project" value="LOCAL" />
       <updated>1495703068159</updated>
     </task>
-    <option name="localTasksCounter" value="26" />
+    <task id="LOCAL-00026" summary="subject: Updated the history command to get multiple histories&#10;*History command/s now work like they did before Yahoo! closed their API, it can can multiple histories and we can use most of the code that was collected before">
+      <created>1495849222489</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1495849222489</updated>
+    </task>
+    <option name="localTasksCounter" value="27" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="424948000" />
+    <option name="totallyTimeSpent" value="425063000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1009,7 +1014,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Added API to get a list of Top 20 companies by capitalisation.&#10;Returns JSON list sorted by Market Capitalisation." />
     <MESSAGE value="Fixed a wrong character in the URL to get Top 20 list" />
     <MESSAGE value="Abstracted the Top 20 list to take a parameter of top 20, 50, 100, 200 and 300&#10;Renamed Controller from Top20Controller to TopASXController.&#10;Had to add some checkers for the table selection of Top 200 as there is more information and tables on it than the others." />
     <MESSAGE value="Added unit tests for getting array of companies in the stock exchange and get a single company code. Single is tested with valid and invalid stock codes.&#10;Please note that these tests will not work with the Commands in their current standing, mainly for GetCompany. This is because we have taken the TDD way, so the Commands will have to updated so that the test works." />
@@ -1034,7 +1038,8 @@
     <MESSAGE value="subject: front-end&#10;styled leaderboard page trade-account page stocks pages to look the same and have a uniform design and fixed navbar toggle feature for stocks and trade-account page" />
     <MESSAGE value="subject: front-end&#10;fixed css for the home page" />
     <MESSAGE value="subject: updated the get all artisan command" />
-    <option name="LAST_COMMIT_MESSAGE" value="subject: updated the get all artisan command" />
+    <MESSAGE value="subject: Updated the history command to get multiple histories&#10;*History command/s now work like they did before Yahoo! closed their API, it can can multiple histories and we can use most of the code that was collected before" />
+    <option name="LAST_COMMIT_MESSAGE" value="subject: Updated the history command to get multiple histories&#10;*History command/s now work like they did before Yahoo! closed their API, it can can multiple histories and we can use most of the code that was collected before" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
