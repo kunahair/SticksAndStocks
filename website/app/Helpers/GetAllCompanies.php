@@ -21,7 +21,6 @@ class GetAllCompanies
     private $completeAttributes = "&f=nabl1t1c1p2ohgpwkjdqr1y";
     private $simpleAttributes = "&f=nd1l1";
 
-
     public function getCompanies()
     {
         $this->getASXStocks();
