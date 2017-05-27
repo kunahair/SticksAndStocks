@@ -18,7 +18,11 @@ class ShowStock extends Controller
 		//Get the current information for company
 		$currentDataClass = new \CurrentCompanyStockInformation;
 		$currentDataArray = $currentDataClass->currentDetails($code, $data[0]->market);
+		if ($currentDataArray["curr_price"] == null)
+		    return redirect('dashboard');
 		$currentData = \GuzzleHttp\json_encode($currentDataArray);
+
+		var_dump($currentDataArray);
 
         //Update the current price in the database
 		if ($data[0]->market != "ASX")

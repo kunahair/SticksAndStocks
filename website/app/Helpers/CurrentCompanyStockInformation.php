@@ -83,13 +83,20 @@ class CurrentCompanyStockInformation {
 
         //Additional information from the two tables in Yahoo! Finance
 
-        //Load all the rows in the left table into extraData array
-        $tableLeft = $dom->find('div[data-test=left-summary-table] table');
-        $this->scrapeTableRow($extraData, $tableLeft);
+        try{
+            //Load all the rows in the left table into extraData array
+            $tableLeft = $dom->find('div[data-test=left-summary-table] table');
+            $this->scrapeTableRow($extraData, $tableLeft);
 
-        //Load all the rows in the right table into extraData array
-        $tableRight = $dom->find('[data-test=right-summary-table] table');
-        $this->scrapeTableRow($extraData, $tableRight);
+            //Load all the rows in the right table into extraData array
+            $tableRight = $dom->find('[data-test=right-summary-table] table');
+            $this->scrapeTableRow($extraData, $tableRight);
+        }
+        catch (Exception $exception)
+        {
+            return null;
+        }
+
 
         $currencyClass = new \CurrencyConverter;
 
