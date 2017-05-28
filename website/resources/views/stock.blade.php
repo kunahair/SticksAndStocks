@@ -256,6 +256,7 @@
                                     .done(function(data) {
 //                                        $('#buySuccess').text(data["message"]);
                                         $('#buySuccess').css('display', 'block');
+                                        location.reload();
                                     })
 
                                     //If there are any errors, or the request fails, log it and show an error

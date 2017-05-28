@@ -299,7 +299,4 @@
             <br/>
             <br/>
         </div>
-    </body>
-
-
-</html>
+@include('layouts.footer')
