@@ -85,8 +85,8 @@
                 </span>
                 <br/>
                 <span id="account-info-edit-mode" style="display: none">
-                    <a href="" id="account-info-save-button" class="btn btn-lg button" >save</a>&nbsp;&nbsp;&nbsp;&nbsp;
-                    <a href="" id="account-info-cancel-button" class="btn btn-lg button" >cancel</a>
+                    <a href="#" id="account-info-save-button" class="btn btn-lg button" >save</a>&nbsp;&nbsp;&nbsp;&nbsp;
+                    <a href="#" id="account-info-cancel-button" class="btn btn-lg button" >cancel</a>
                 </span>
 
             </div>
@@ -178,7 +178,7 @@
 
         });
 
-        $('#account-info-cancel-button').click(function () {
+        $('#account-info-cancel-button').click(function (event) {
 
             event.preventDefault();
 
@@ -196,7 +196,7 @@
             });
         });
 
-        $('#account-info-save-button').click(function () {
+        $('#account-info-save-button').click(function (event) {
 
             event.preventDefault();
 
