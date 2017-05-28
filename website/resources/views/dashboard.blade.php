@@ -85,8 +85,8 @@
                 </span>
                 <br/>
                 <span id="account-info-edit-mode" style="display: none">
-                    <a href="#" id="account-info-save-button" class="btn btn-lg button" >save</a>&nbsp;&nbsp;&nbsp;&nbsp;
-                    <a href="#" id="account-info-cancel-button" class="btn btn-lg button" >cancel</a>
+                    <a href="" id="account-info-save-button" class="btn btn-lg button" >save</a>&nbsp;&nbsp;&nbsp;&nbsp;
+                    <a href="" id="account-info-cancel-button" class="btn btn-lg button" >cancel</a>
                 </span>
 
             </div>
@@ -194,8 +194,6 @@
                 var value = account_fields.pop();
                 $(this).innerHTML = value;
             });
-
-
         });
 
         $('#account-info-save-button').click(function () {
