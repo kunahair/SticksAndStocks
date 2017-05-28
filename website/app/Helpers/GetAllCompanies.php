@@ -208,26 +208,7 @@ class GetAllCompanies
         //Get results where the market is ASX and their sector is not applicable
         //chunk results in groups of 200
         \App\Stock::where([['market', 'NASDAQ'], ['group', '!=', 'Not Applic']])->chunk(200, function ($stocks) {
-
-            //Get the current exchange rate of US to AUD
-            $currencyConverter = new CurrencyConverter;
-            $exchangeRate = $currencyConverter->USDtoAUD(1.00);
-
-            foreach ($stocks as $stock) {
-
-                //Get stats for current stock
-                $current = $this->getSingleStock($stock->stock_symbol);
-
-                //If the stock is not null, then update the database
-                if ($current != null) {
-                    //Convert to AUD based on current UStoAUD exchange rate
-                    $current["price"] *= $exchangeRate;
-                    //Get the stock to update
-                    $currentStock = \App\Stock::where('stock_symbol', $stock->stock_symbol)->first();
-                    //Update the stock history
-                    $currentStock->addHistory($current);
-                }
-            }
+            $this->updateUSStock($stocks);
         });
     }
 
@@ -236,26 +217,7 @@ class GetAllCompanies
         //Get results where the market is ASX and their sector is not applicable
         //chunk results in groups of 200
         \App\Stock::where([['market', 'NYSE'], ['group', '!=', 'Not Applic']])->chunk(200, function ($stocks) {
-
-            //Get the current exchange rate of US to AUD
-            $currencyConverter = new CurrencyConverter;
-            $exchangeRate = $currencyConverter->USDtoAUD(1.00);
-
-            foreach ($stocks as $stock) {
-
-                //Get stats for current stock
-                $current = $this->getSingleStock($stock->stock_symbol);
-
-                //If the stock is not null, then update the database
-                if ($current != null) {
-                    //Convert to AUD based on current UStoAUD exchange rate
-                    $current["price"] *= $exchangeRate;
-                    //Get the stock to update
-                    $currentStock = \App\Stock::where('stock_symbol', $stock->stock_symbol)->first();
-                    //Update the stock history
-                    $currentStock->addHistory($current);
-                }
-            }
+            $this->updateUSStock($stocks);
         });
     }
 
@@ -264,27 +226,46 @@ class GetAllCompanies
         //Get results where the market is ASX and their sector is not applicable
         //chunk results in groups of 200
         \App\Stock::where([['market', 'AMEX'], ['group', '!=', 'Not Applic']])->chunk(200, function ($stocks) {
-
-            //Get the current exchange rate of US to AUD
-            $currencyConverter = new CurrencyConverter;
-            $exchangeRate = $currencyConverter->USDtoAUD(1.00);
-
-            foreach ($stocks as $stock) {
-
-                //Get stats for current stock
-                $current = $this->getSingleStock($stock->stock_symbol);
-
-                //If the stock is not null, then update the database
-                if ($current != null) {
-                    //Convert to AUD based on current UStoAUD exchange rate
-                    $current["price"] *= $exchangeRate;
-                    //Get the stock to update
-                    $currentStock = \App\Stock::where('stock_symbol', $stock->stock_symbol)->first();
-                    //Update the stock history
-                    $currentStock->addHistory($current);
-                }
-            }
+            $this->updateUSStock($stocks);
         });
+    }
+
+    /**
+     * Updates current price for each stock in given list of stocks.
+     * Does not add any market extension to API call
+     * @param $stocks - Eloquent list of Stocks
+     */
+    private function updateUSStock($stocks)
+    {
+        //Get the current exchange rate of US to AUD
+        $currencyConverter = new CurrencyConverter;
+        $exchangeRate = $currencyConverter->USDtoAUD(1.00);
+
+        foreach ($stocks as $stock) {
+
+            //Get the stock code of current stock
+            $code = $stock->stock_symbol;
+
+            //Get the price of the current stock
+            $price = $this->getPrice($code);
+
+            //If the stock is N/A, move to next stock
+            if ($price == "N/A")
+            {
+                print "No data for " . $code . " \n";
+                continue;
+            }
+
+            //Convert to AUD based on current UStoAUD exchange rate
+            $price= number_format($exchangeRate * floatval($price), 2);
+
+            //Update the price of current stock
+            if ($price != null)
+            {
+                $stock->current_price = floatval($price);
+                print $stock->stock_name . "(" . $stock->stock_symbol . "): " . $price . "\n";
+            }
+        }
     }
 
     /**
