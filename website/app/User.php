@@ -186,7 +186,7 @@ class User extends Authenticatable
             ->first();
 
         if ($friends != null)
-            return false;
+            return true;
 
         return false;
     }
