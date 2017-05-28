@@ -5,7 +5,9 @@
 <body class="background">
 
     <style>
-
+        .account-info-edit-field {
+            color: #000000;
+        }
     </style>
 
     @include('layouts.navbar')
@@ -107,13 +109,13 @@
                     <p>
                         <text style="font-weight: bold">Name: </text>
                         <text id="name-view" class="account-info-edit username-view" >{{Auth::user()->name}}</text>
-                        <input name="name" class="account-info-edit-field" value="{{Auth::user()->name}}" style="display: none" />
+                        <input name="name" class="account-info-edit-field" type="text" value="{{Auth::user()->name}}" style="display: none" />
                     </p>
 
                     <p>
                         <text style="font-weight: bold">Email: </text>
                         <text class="account-info-edit email-view">{{Auth::user()->email}}</text>
-                        <input name="email" class="account-info-edit-field" value="{{Auth::user()->email}}" style="display: none" />
+                        <input name="email" class="account-info-edit-field" type="email" value="{{Auth::user()->email}}" style="display: none" />
                     </p>
 
                     <p>
