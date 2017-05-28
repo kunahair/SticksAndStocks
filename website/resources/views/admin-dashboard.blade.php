@@ -61,6 +61,11 @@
                 filter: brightness(1.2) grayscale(.5) opacity(.9);
             }
 
+            #content > div.text-center > ul > li.active > span
+            {
+                background-color: #238f62 !important;
+            }
+
         </style>
 
         @include('layouts.navbar')
@@ -140,11 +145,9 @@
             </div>
 
             {{--Pagination links for users--}}
-            <div class="row">
-                <div class="">
+                <div class="text-center" style="">
                     {{$data["users"]->links()}}
                 </div>
-            </div>
 
             <div id="deleteWarning" class="modal fade" role="dialog">
                 <div class="modal-dialog">
