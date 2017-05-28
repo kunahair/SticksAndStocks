@@ -25,8 +25,8 @@ class MessagesController extends Controller
 
         //TODO: add check for all variables to make sure they are not null
 
-        if (Auth::user()->checkIfFriends($id) && $id != Auth::user()->id)
-            return view('/dashboard');
+        if (Auth::user()->checkIfFriends($id) || $id != Auth::user()->id)
+            return redirect('dashboard');
 
         try
         {
