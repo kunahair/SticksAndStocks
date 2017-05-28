@@ -39,7 +39,6 @@ class GetAllCompanies
         //If no stock code is provided, then return null
         if ($code == null)
         {
-            print "Code cannot be null";
             return null;
         }
 
@@ -49,7 +48,6 @@ class GetAllCompanies
         //If the stock does not exist, then return null
         if ($stock == null)
         {
-            print "Stock does not exist in database \n";
             return null;
         }
 
@@ -79,14 +77,12 @@ class GetAllCompanies
             }
         }
         catch (ErrorException $exception) {
-            print "Error getting the data \n";
             return null;
         }
 
         //If there was no content provided by API call, return null
         if ($contents == "")
         {
-            print "No contents provided by API \n";
             return null;
         }
 
@@ -103,7 +99,6 @@ class GetAllCompanies
         //If there are no rows in the new array, return null
         if (count($newArray) < 2)
         {
-            print "No element in API to add to database \n";
             return null;
         }
 

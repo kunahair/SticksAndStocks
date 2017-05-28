@@ -39,10 +39,15 @@ class ShowStock extends Controller
 
 		//Update history
         $getHistory = new \GetAllCompanies;
-        $getHistory->getSingleStock($data[0]->stock_symbol);
+        $historyData = $getHistory->getSingleStock($data[0]->stock_symbol);
 
-//        Artisan::call('company:get', ['code' => $code]);
-
+        if ($historyData != null)
+        {
+            $history = array();
+            $history["id"] = $data[0]->id;
+            $history[1] = $historyData;
+            $data[0]->addHistory($history);
+        }
 
 		//Load Blade view with database and current info
 		return view('stock', ['stock' => $data[0], 'current' => $currentData])->with('currentDataArray', $currentDataArray);

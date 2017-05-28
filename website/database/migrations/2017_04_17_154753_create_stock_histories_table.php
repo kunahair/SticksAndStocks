@@ -16,20 +16,12 @@ class CreateStockHistoriesTable extends Migration
         Schema::create('stock_histories', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('timestamp');
-//            $table->string('time');
-//            $table->float('low');
-//            $table->float('high');
-//            $table->float('open');
-//            $table->float('close');
-//            $table->integer('volume');
             $table->float('average');
 
             $table->integer('stock_id')->unsigned();
 
             //Establish foreign keys
-            $table->foreign('stock_id')->references('id')->on('stocks');
-
-//            $table->timestamps();
+            $table->foreign('stock_id')->references('id')->on('stocks')->onDelete('cascade');
         });
     }
 
