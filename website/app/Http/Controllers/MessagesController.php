@@ -18,14 +18,15 @@ class MessagesController extends Controller
 
         //If there is no user id supplied, return user to dashboard
         if ($id == null)
-            return view('/dashboard');
+            return redirect('dashboard');
 
         //Get the information of the Friend to make displaying data easier
         $user = DB::table('users')->select('name', 'id')->where('id', $id)->first();
 
         //TODO: add check for all variables to make sure they are not null
 
-        if (Auth::user()->checkIfFriends($id) || $id != Auth::user()->id)
+        //If the User and the selected User are not friends, or the User id is the same as Friend id, go to dashboard
+        if (Auth::user()->checkIfFriends($id) || $id == Auth::user()->id)
             return redirect('dashboard');
 
         try
