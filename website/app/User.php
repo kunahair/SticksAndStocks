@@ -260,4 +260,27 @@ class User extends Authenticatable
             }
         }
     }
+
+    /**
+     * Get User position in leaderboard
+     * @param $id - ID of the User that you want to get the position of
+     * @return int|string - Position in leaderboard, N/A string if not ranked
+     */
+    public function getLeaderBoardPosition($id)
+    {
+        //Get list of all Users, ordered by their portfolio worth
+        $users = User::orderBy('portfolio', 'desc')->get();
+
+        //Loop through each user, when the selected user is hit, return the tracked position
+        $position = 1;
+        foreach ($users as $user)
+        {
+            if ($user->id == $id)
+                return $position;
+            $position++;
+        }
+
+        //Return N/A by default, if the user is not ranked
+        return "N/A";
+    }
 }

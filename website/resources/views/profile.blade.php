@@ -47,7 +47,7 @@
         <div class="col-xs-10 col-md-4" >
             <h2 style="font-weight: bold"><br />Stats:</h2>
             <p><h3>Total Growth: {{number_format(Growth::getTotalGrowth($user->id),2)}}</h3></p>
-            <p><h3>Leaderboard: N/A</h3></p>
+            <p><h3>Leaderboard: {{Auth::user()->getLeaderBoardPosition($user->id)}}</h3></p>
             <p><h3>Number of Friends: {{count($user->getFriendList($user->id))}}</h3></p>
         </div>
         <div class="col-xs-1 col-md-2"></div>
@@ -103,8 +103,8 @@
                     $('#friendSuccess').text('Friend Request Accepted').css('display', 'block');
                     $('#friendError').css('display', 'none');
                     $('#acceptFriendRequestButton').css('display', 'none');
-                    $('#acceptFriendRequestButton').replaceWith('<button id="sendMessageButton" class="btn btn-primary">Send Message</button>');
-
+                    $('#acceptFriendRequestButton').replaceWith({{'<a href="' . url('messages') . '/' . $user->id}} +
+                        '"<button id="sendMessageButton" class="btn btn-primary">Send Message</button>');
                 })
                 //If there is an error, display error message to user
                 .fail(function (error) {
