@@ -102,9 +102,9 @@ class CurrentCompanyStockInformation {
 
         //Load return data into structured array
         $data = array();
-        $data["price"] = $currencyClass->USDtoAUD(floatval($price));
+        $data["price"] = floatval($price);
 //        $data["direction"] = $stockMovement;
-        $data["amount"] = $currencyClass->USDtoAUD(floatval($stockMovementAmount));
+        $data["amount"] = floatval($stockMovementAmount);
         $data["percentage"] = $stockMovementPercentage;
         $data["extraData"] = $extraData;
 

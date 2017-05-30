@@ -19,15 +19,21 @@ class ShowStock extends Controller
 		//Get the current information for company
 		$currentDataClass = new \CurrentCompanyStockInformation;
 		$currentDataArray = $currentDataClass->currentDetails($code, $data[0]->market);
+
 		if ($currentDataArray["curr_price"] == null)
 		    return redirect('404');
 		$currentData = \GuzzleHttp\json_encode($currentDataArray);
 
+
+
         //Update the current price in the database
+        //If stock is in USA, also convert to AUD and update data passed to the view
 		if ($data[0]->market != "ASX")
         {
             $currencyConverter = new \CurrencyConverter;
-            $data[0]->current_price = $currencyConverter->USDtoAUD($currentDataArray["curr_price"]["price"]);
+            $price = $currencyConverter->USDtoAUD($currentDataArray["curr_price"]["price"]);
+            $data[0]->current_price = $price;
+            $currentDataArray["curr_price"]["price"] = $price;
         }
         else
         {
