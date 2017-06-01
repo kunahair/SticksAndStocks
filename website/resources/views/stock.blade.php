@@ -7,19 +7,6 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.bundle.min.js"></script>
-    <script
-            src="https://code.jquery.com/jquery-3.2.1.min.js"
-            integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
-            crossorigin="anonymous"></script>
-
-
-    <!--Bootstrap Javascript-->
-<!-- Latest compiled and minified JavaScript -->
-    <script
-            src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
-            integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
-            crossorigin="anonymous"
-    ></script>
 
     <style type="text/css">
         .stock-table-data {
@@ -27,17 +14,6 @@
         }
     </style>
 
-    <!--<link rel="stylesheet" href="style.css"/>-->
-    <!--<style>
-        .box{
-            background-color: white;
-            width:500px ;
-            padding: 10px;
-        }
-        .box:hover{
-            box-shadow: 4px 4px 2px #888888;
-        }
-    </style>-->
     {{ !date_default_timezone_set('Australia/Melbourne') }}
 </head>
 

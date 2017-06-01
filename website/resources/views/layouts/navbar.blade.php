@@ -29,7 +29,7 @@
                 </form>
                 <!-- links-->
                 <div class="nav navbar-nav navbar-left">
-                    <li > <a href="/tradeaccount/" class="dropdown-toggle" data-toggle="dropdown" role="button" >Social</a>
+                    <li > <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" >Social</a>
                         <ul class="dropdown-menu">
                             <li><a href="/messages">Messages</a></li>
                             <li ><a href="/friends">Friends</a></li>

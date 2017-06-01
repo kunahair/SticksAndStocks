@@ -4,23 +4,15 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.bundle.min.js"></script>
-    <script
-            src="https://code.jquery.com/jquery-3.2.1.min.js"
-            integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
-            crossorigin="anonymous"></script>
+    {{--<script--}}
+            {{--src="https://code.jquery.com/jquery-3.2.1.min.js"--}}
+            {{--integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="--}}
+            {{--crossorigin="anonymous"></script>--}}
     <script
             src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"
             integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU="
             crossorigin="anonymous"></script>
     <script src="{{url('js/jQDateRangeSlider-min.js')}}"></script>
-
-    <!--Bootstrap Javascript-->
-    <!-- Latest compiled and minified JavaScript -->
-    <script
-            src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
-            integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
-            crossorigin="anonymous"
-    ></script>
 
     <script type="text/javascript" src="//cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
     <script type="text/javascript" src="//cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.js"></script>
@@ -30,26 +22,11 @@
     <link href="{{ url('css/style.css') }}" rel="stylesheet" type="text/css">
 
     <style type="text/css">
-        .stock-table-data {
-            width: 50%;
-        }
-
         .sort-header:hover {
             cursor: pointer;
         }
     </style>
 
-    <!--<link rel="stylesheet" href="style.css"/>-->
-    <!--<style>
-        .box{
-            background-color: white;
-            width:500px ;
-            padding: 10px;
-        }
-        .box:hover{
-            box-shadow: 4px 4px 2px #888888;
-        }
-    </style>-->
     {{ !date_default_timezone_set('Australia/Melbourne') }}
 </head>
 
@@ -126,152 +103,6 @@
             </div>
 
 
-
-                {{--@php--}}
-                    {{--//Holder for grouped transactions--}}
-                    {{--$transactions = array();--}}
-
-                    {{--//Loop through all the transactions the current trade account has--}}
-                    {{--//Group all the transactions into the transactions array--}}
-                    {{--foreach ($tradeAccount->transactions as $transaction)--}}
-                    {{--{--}}
-                        {{--//If the stock has not been assigned into transactions, add it--}}
-                        {{--if(!array_key_exists($transaction->stock_id, $transactions))--}}
-                        {{--{--}}
-                            {{--$transactions[$transaction->stock_id] = array();--}}
-                        {{--}--}}
-                        {{--//Add the current transaction to its transactions group--}}
-                        {{--array_push($transactions[$transaction->stock_id], $transaction);--}}
-                    {{--}--}}
-
-                    {{--$allStocksTotalValue = 0.00;--}}
-                    {{--$allStocksTotalCount = 0;--}}
-                    {{--$stockCount = 0;--}}
-
-                    {{--//Loop through each transaction group--}}
-                    {{--//Inner loop the individual transactions for that group--}}
-                    {{--//For each individual transaction that is not in a waiting state, gather statistics--}}
-                    {{--foreach ($transactions as $transactionsGroup)--}}
-                    {{--{--}}
-                        {{--//Stock stats and info--}}
-                        {{--$stock_symbol = "";--}}
-                        {{--$stock_name = "";--}}
-                        {{--$stock_total_cost = 0.00;--}}
-                        {{--$stock_owned = 0;--}}
-                        {{--$stock_sold = 0;--}}
-                        {{--$stock_total_growth = 0.00;--}}
-                        {{--$stock_current_price = 0.00;--}}
-
-                        {{--$assignOnce = 0;--}}
-
-                        {{--foreach ($transactionsGroup as $transaction)--}}
-                        {{--{--}}
-                            {{--//If the current transaction is waiting, then move onto the next one--}}
-                            {{--if ($transaction->waiting)--}}
-                            {{--{--}}
-                                {{--continue;--}}
-                            {{--}--}}
-
-                            {{--//To save memory, just capture the name, symbol and current price of stock group once--}}
-                            {{--if ($assignOnce == 0)--}}
-                            {{--{--}}
-                                {{--$stock_symbol = $transaction->stock->stock_symbol;--}}
-                                {{--$stock_name = $transaction->stock->stock_name;--}}
-
-                                {{--$stock_current_price = $transaction->stock->current_price;--}}
-
-                                {{--$assignOnce++;--}}
-                            {{--}--}}
-
-                            {{--//Calculate the initial cost to the user for the stock, add it to total--}}
-                            {{--$stock_total_cost += ($transaction->price * ($transaction->bought - $transaction->sold));--}}
-                            {{--//Get the amount of stock owned for this transaction, add it to total--}}
-                            {{--$stock_owned += $transaction->bought;--}}
-                            {{--//Get the amount of stock sold for this transaction, add it to total--}}
-                            {{--$stock_sold += $transaction->sold;--}}
-
-                            {{--//$stock_total_growth += ($stock_total_cost * ($transaction->bought - $transaction->sold));--}}
-
-                            {{--//echo '<pre>';--}}
-                            {{--//print_r($transaction->price);--}}
-                            {{--//echo '</pre>';--}}
-                        {{--}--}}
-
-                        {{--//If the stock owned is less than 1 (it should never hit below 0)--}}
-                        {{--//Then stock is not needed as it is not working for account in current state--}}
-                        {{--if ($stock_owned <= 0 || $stock_sold == $stock_owned)--}}
-                        {{--{--}}
-                            {{--continue;--}}
-                        {{--}--}}
-
-                        {{--//Calculate the total amount of growth that the account has for this stock (overall NOT average)--}}
-                        {{--$stock_total_growth = ($stock_total_cost / ($stock_owned - $stock_sold)) - $stock_current_price;--}}
-
-                        {{--if ($stock_total_growth > 0.00)--}}
-                            {{--$stock_total_growth *= -1;--}}
-                            {{--//$stock_total_growth *= ($stock_owned - $stock_sold) * -1.00;--}}
-
-                        {{--//Get the growth as a percentage--}}
-                        {{--if (($stock_total_cost / ($stock_owned - $stock_sold)) == 0.00 ||--}}
-                            {{--($stock_total_cost / ($stock_owned - $stock_sold)) == 0.0 || ($stock_total_cost / ($stock_owned - $stock_sold)) == 0)--}}
-                            {{--continue;--}}
-                        {{--$stock_total_growth_percentage = ((($stock_current_price / ($stock_total_cost / ($stock_owned - $stock_sold))) * 100) - 100) * -1;--}}
-
-                        {{--//Add stock information to the holding table--}}
-                        {{--echo '<tr>--}}
-                                    {{--<td class="col-xs-1 " style="padding: 0px"><a href="' . "../stock/". $stock_symbol . '">' . $stock_symbol . '</a></td>--}}
-                                    {{--<td class=col-xs-4" style="padding: 0px">' . $stock_name . '</td>--}}
-                                    {{--<td class=col-xs-1" style="padding: 0px">$' . number_format($stock_total_cost, 2) . '</td>--}}
-                                    {{--<td class=col-xs-1" style="padding: 0px">$' . number_format($stock_current_price, 2) . '</td>--}}
-                                    {{--<td class=col-xs-2" style="padding: 0px">$' . number_format($stock_total_growth, 2) . ' (' . number_format($stock_total_growth_percentage, 2) . '%)' . '</td>--}}
-                                    {{--<td class=col-xs-2" style="padding: 0px">' . ($stock_owned - $stock_sold) . '</td>--}}
-                                    {{--<td class=col-xs-1" style="padding: 0px">' . '<a href="#">view</a>' . '</td>--}}
-                                 {{--</tr>';--}}
-
-                        {{--$allStocksTotalValue += $stock_current_price * ($stock_owned - $stock_sold);--}}
-                        {{--$allStocksTotalCount += ($stock_owned - $stock_sold);--}}
-                        {{--$stockCount++;--}}
-
-                    {{--}--}}
-
-                    {{--echo '</tbody></table>';--}}
-
-                    {{--//Show the average Stock value of this Trade Account--}}
-                    {{--echo '<div class="col-xs-12" style="padding-left: 0">';--}}
-                    {{----}}
-                    {{--if ($allStocksTotalCount > 0)--}}
-                    {{--echo '<h4>Stock Average Value: $' . number_format(($allStocksTotalValue / $allStocksTotalCount),2) . 'AUD</h4>';--}}
-
-                    {{--echo '</div>';--}}
-
-                    {{--//Show the total Stock value of this Trade Account--}}
-                    {{--echo '<div class="col-xs-12" style="padding-left: 0">';--}}
-
-                    {{--echo '<h4>Stock Total Value: $' . number_format($allStocksTotalValue, 2) . 'AUD</h4>';--}}
-
-                    {{--echo '</div>';--}}
-                {{--@endphp--}}
-
-
-
-
-                {{--<tr>--}}
-                    {{--<td class=col-xs-3" id="1" style="padding: 0px"> NAB</td>--}}
-                    {{--<td class=col-xs-3" style="padding: 0px"> National Australia Bank</td>--}}
-                    {{--<td class=col-xs-3" style="padding: 0px"> $$</td>--}}
-                    {{--<td class=col-xs-3" style="padding: 0px"> Growth</td>--}}
-                    {{--<td class=col-xs-3" style="padding: 0px"> <button type="button" class="btn btn-info btn-lg" onclick="myFunction()" data-toggle="modal" data-target="#Buy">Buy</button><button type="button" class="btn btn-info btn-lg" onclick="myFunction()" data-toggle="modal" data-target="#Sell">Sell</button></td>--}}
-                {{--</tr>--}}
-                {{--<tr>--}}
-                    {{--<td class="col-xs-1 " style="padding: 0px"> CBA</td>--}}
-                    {{--<td class=col-xs-3" style="padding: 0px"> CommonWealth Bank Australia</td>--}}
-                    {{--<td class=col-xs-3" style="padding: 0px"> $$</td>--}}
-                    {{--<td class=col-xs-3" style="padding: 0px"> Growth</td>--}}
-                    {{--<td class=col-xs-3" style="padding: 0px"> <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#Buy">Buy</button><button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#Sell">Sell</button></td>--}}
-                {{--</tr>--}}
-{{-->>>>>>> origin/master--}}
-                {{--</tbody>--}}
-            {{--</table>--}}
         </div>
         <div class="col-xs-1 col-md-3"></div>
 
@@ -491,26 +322,6 @@
                 </thead>
 
                 <tbody id="transactionsTableBody">
-
-                    {{--Loop through all the transactions that the user has and show in a table--}}
-                    {{--@foreach($tradeAccount->transactions as $transaction)--}}
-
-
-                        {{--<tr>--}}
-                            {{--<td class=col-xs-3" style="padding: 0px"> {{$transaction->stock->stock_symbol}}</td>--}}
-                            {{--<td class=col-xs-3" style="padding: 0px"> {{$transaction->stock->stock_name}}</td>--}}
-                            {{--<td class=col-xs-3" style="padding: 0px"> ${{number_format($transaction->price, 2)}}</td>--}}
-                            {{--@if($transaction->sold > 0)--}}
-                                {{--<td class=col-xs-3" style="padding: 0px"> -{{$transaction->sold}}</td>--}}
-                            {{--@else--}}
-                                {{--<td class=col-xs-3" style="padding: 0px"> +{{$transaction->bought}}</td>--}}
-                            {{--@endif--}}
-                            {{--<td class=col-xs-3" style="padding: 0px"> {{$transaction->updated_at}}</td>--}}
-{{--                            <td class="col-xs-3" style="padding: 0"> {{$transaction->stock->current_price - $transaction->price}}</td>--}}
-                            {{--<td class=col-xs-3" style="padding: 0px"> <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#Buy">Buy</button><button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#Sell">Sell</button></td>--}}
-                        {{--</tr>--}}
-
-                    {{--@endforeach--}}
                 </tbody>
             </table>
             </div>
@@ -520,6 +331,5 @@
 
 @include('layouts.footer')
 
-</body>
 
 
