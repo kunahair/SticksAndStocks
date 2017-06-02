@@ -89,9 +89,13 @@ class stockChangeCheck extends Command
                         //If the latest Stock information is not null, set as current price and update the database
                         if ($stockInfo != null)
                         {
+                            print_r("stockInfo not null, got latest price");
                             //If the Stock is not ASX stock, convert from US to AUD
                             if($stock->market != 'ASX')
                                 $currentPrice = $stockInfo["curr_price"]["price"] * $exchangeRate;
+                            else
+                                //otherwise, just set the price that is already in AUD
+                                $currentPrice = $stockInfo["curr_price"]["price"];
 
                             //Set the current price in the database and save
                             $stock->current_price = $currentPrice;
