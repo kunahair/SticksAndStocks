@@ -48,6 +48,10 @@
                                     <span class="help-block">
                                         <strong>{{ $errors->first('password') }}</strong>
                                     </span>
+                                @else
+                                    <span class="help-block">
+                                        The password must be at least 6 characters
+                                    </span>
                                 @endif
                             </div>
                         </div>
@@ -69,22 +73,22 @@
                         </div>
 
                     </form>
-                    <div class="form-group">
-                        <label class="col-md-6 col-md-offset-4"> Sign in with:</label>
-                    </div>
-                    <div class="col-md-6 col-md-offset-4">
-                        <a class="btn btn-block btn-social btn-twitter">
-                            <span class="fa fa-twitter"></span> Sign in with Twitter
-                        </a>
-                        <a class="btn btn-block btn-social btn-facebook">
-                            <span class="fa fa-facebook"></span> Sign in with Twitter
-                        </a>
-                        <a class="btn btn-block btn-social bg btn-google">
-                            <span class="fa fa-google"></span> Sign in with Twitter
-                        </a>
+                    {{--<div class="form-group">--}}
+                        {{--<label class="col-md-6 col-md-offset-4"> Sign in with:</label>--}}
+                    {{--</div>--}}
+                    {{--<div class="col-md-6 col-md-offset-4">--}}
+                        {{--<a class="btn btn-block btn-social btn-twitter">--}}
+                            {{--<span class="fa fa-twitter"></span> Sign in with Twitter--}}
+                        {{--</a>--}}
+                        {{--<a class="btn btn-block btn-social btn-facebook">--}}
+                            {{--<span class="fa fa-facebook"></span> Sign in with Twitter--}}
+                        {{--</a>--}}
+                        {{--<a class="btn btn-block btn-social bg btn-google">--}}
+                            {{--<span class="fa fa-google"></span> Sign in with Twitter--}}
+                        {{--</a>--}}
 
 
-                    </div>
+                    {{--</div>--}}
                 </div>
             </div>
         </div>
