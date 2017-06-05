@@ -237,7 +237,9 @@
                                     .done(function(data) {
 //                                        $('#buySuccess').text(data["message"]);
                                         $('#buySuccess').css('display', 'block');
+                                        $('#buyButton').addClass('disabled');
                                         location.reload();
+
                                     })
 
                                     //If there are any errors, or the request fails, log it and show an error
@@ -458,6 +460,7 @@
                             .done(function (data) {
                                 $('#sellSuccess').css('display', 'block').text('Sale Successful');
                                 $('#sellError').css('display', 'none');
+                                $('#sellButton').addClass('disabled');
 
                                 window.setTimeout(function () {
                                     location.reload();
