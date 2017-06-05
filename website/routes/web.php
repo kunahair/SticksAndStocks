@@ -122,3 +122,5 @@ Route::get('api/getNotifications', function (){
 
     return response($notifications, 200);
 })->middleware('auth');
+
+Route::post('api/getTransactionsInDateRange', 'TransactionController@getTransactionsInDateRange')->middleware('auth');

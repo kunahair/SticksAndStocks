@@ -282,7 +282,7 @@ class TransactionController extends Controller
 
     public function getTransactionsInDateRange(Request $request)
     {
-        //TODO: Add auth check, move Route from API to web so we can check user has the auth to access this info
+        //TODO: Add checks for request input
 
         //Extract the POST info from the request
         $start = intval($request->start);
@@ -293,12 +293,14 @@ class TransactionController extends Controller
         //Also join the information from the stocks table
         //Not that there has to be a select function attached when doing this join, as the updated_at and created_at columns
         //created a conflict and Laravel/SQL where guessing which table to pick from, BE EXPLICIT!!
+        //Order by date (timestamp), newest first
         $transactions = DB::table('transactions')->where([
             ['trade_account_id', '=', $tradeAccountId],
             ['timestamp', '>=', $start],
             ['timestamp', '<=', $end]
         ])->join('stocks', 'transactions.stock_id', '=', 'stocks.id')
             ->select('transactions.*', 'stocks.stock_name', 'stocks.stock_symbol', 'stocks.market')
+            ->orderBy('transactions.timestamp', 'desc')
             ->get();
 
         return response($transactions, 200);

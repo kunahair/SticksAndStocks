@@ -37,7 +37,7 @@ Route::get('/all-ords', 'AllOrdinariesController@getCurrentAllOrdinaries');
 
 Route::get('/all-stocks', 'DatabaseStockCodes@getAllStockCodesAndCompanyNames');
 
-Route::post('/getTransactionsInDateRange', 'TransactionController@getTransactionsInDateRange');
+//Route::post('/getTransactionsInDateRange', 'TransactionController@getTransactionsInDateRange');
 
 //API call to add a friend/send friend request
 //todo: make this use the middleware route
