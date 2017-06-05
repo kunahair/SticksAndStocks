@@ -1,6 +1,6 @@
 {{--/**--}}
 {{--* Created by: Paul Davidson.--}}
-{{--* Authors: Paul Davidson and Abnezer Yhannes--}}
+{{--* Authors: Paul Davidson, Sadhurshan Ganeshan and Abnezer Yhannes--}}
 {{--*/--}}
 @include('layouts.header')
 

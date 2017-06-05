@@ -1,6 +1,6 @@
 {{--/**--}}
 {{--* Created by: Josh Gerlach.--}}
-{{--* Authors: Josh Gerlach--}}
+{{--* Authors: Josh Gerlach and Sadhurshan Ganeshan--}}
 {{--*/--}}
 
 @include('layouts.header')
