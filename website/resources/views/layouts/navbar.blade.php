@@ -76,6 +76,12 @@
 
                             @endforeach
 
+                            @if(count(Auth::user()->getNotifications()) == 0)
+                                <li>
+                                    <a href="#">No Notifications</a>
+                                </li>
+                            @endif
+
                         </ul>
 
                     </li>
@@ -123,18 +129,21 @@
                 //Get the list of unread notifications
                 $.get("{{url('api/getNotifications')}}")
                     .done(function (data) {
+
+                        //Update the number of notifications badge
+                        $('#notificationsBadge').text(data.length);
+
+                        //Empty the notifications list
+                        $('#notificationsList').empty();
+
                         if (data.length > 0)
                         {
                             $('#notificationsBadge').css('display', 'inline');
                         }
                         else {
                             $('#notificationsBadge').css('display', 'none');
+                            $('#notificationsList').append('<li><a href="#">No Notifications</a></li>');
                         }
-                        //Update the number of notifications badge
-                        $('#notificationsBadge').text(data.length);
-
-                        //Empty the notifications list
-                        $('#notificationsList').empty();
 
                         //Loop through every received notification and add to the dropdown list
                         $.each(data, function (index, item) {

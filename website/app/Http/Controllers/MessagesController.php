@@ -128,8 +128,12 @@ class MessagesController extends Controller
             return view('/dashboard');
 
         //Make sure that the person sending the message and the reciever are Friends
-        if (Auth::user()->checkIfFriends($id) && $id != Auth::user()->id)
+        if (!Auth::user()->checkIfFriends($id) && $id != Auth::user()->id)
+        {
+            var_dump(Auth::user()->checkIfFriends($id));
             return $this->view($request, $id, "You are no Friends, so you cant send messages");
+        }
+
 
         //Check that the message is not empty
         if ($request->message == null)
