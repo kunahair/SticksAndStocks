@@ -167,13 +167,22 @@
 
                         //Add the sold or bought attribute as a positive or negative integer adding the prop quantity
                         if (transactionData[i]["sold"] > 0)
+                        {
                             transactionData[i]["quantity"] = transactionData[i]["sold"] * -1;
+//                            $('#transactionsTableBody').append(
+//                                '<tr bgcolor="#FF0000">');
+                        }
                         else
+                        {
                             transactionData[i]["quantity"] = transactionData[i]["bought"];
+//                            $('#transactionsTableBody').append(
+//                                '<tr bgcolor="#00FF00">');
+                        }
+
 
                         //Add the next row after the last row that has been added
                         $('#transactionsTableBody').append(
-                            '<tr>' +
+                            '<tr bgcolor="' + (transactionData[i]["quantity"]<0?'#f2a473':'#83e2bc')  + '">' +
                             '<td class=col-xs-3" style="padding: 0px">' + transactionData[i]["stock_symbol"] + '</td>' +
                             '<td class=col-xs-3" style="padding: 0px">'+ transactionData[i]["stock_name"] + ' (' + transactionData[i]["market"] + ')' + '</td>'   +
                             '<td class=col-xs-3" style="padding: 0px"> $' + transactionData[i]["price"] +'</td>' +
