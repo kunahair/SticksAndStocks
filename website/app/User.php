@@ -1,5 +1,10 @@
 <?php
 
+/**
+ * Created by: Laravel Framwork.
+ * Authors: Paul Davidson and Josh Gerlach
+ */
+
 namespace App;
 
 use Illuminate\Notifications\Notifiable;

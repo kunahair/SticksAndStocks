@@ -1,10 +1,8 @@
 <?php
 
 /**
- * Created by PhpStorm.
- * User: joshgerlach
- * Date: 5/5/17
- * Time: 4:15 PM
+ * Created by: Josh Gerlach.
+ * Authors: Josh Gerlach
  */
 
 class MoneyConversionException extends Exception {

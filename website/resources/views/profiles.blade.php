@@ -1,3 +1,8 @@
+{{--/**--}}
+{{--* Created by: Josh Gerlach.--}}
+{{--* Authors: Josh Gerlach--}}
+{{--*/--}}
+
 @include('layouts.header')
 @include('layouts.navbar')
 

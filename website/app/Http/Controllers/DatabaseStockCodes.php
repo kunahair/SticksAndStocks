@@ -1,5 +1,10 @@
 <?php
 
+/**
+ * Created by: Paul Davidson.
+ * Authors: Paul Davidson and Josh Gerlach
+ */
+
 namespace App\Http\Controllers;
 
 use App\Stock;
@@ -12,7 +17,7 @@ header('Access-Control-Allow-Origin: *');
 class DatabaseStockCodes extends Controller
 {
     /**
-     * Get all stock listings. Gets Stocks Symbol and Stock Name
+     * Get all stock listings. Gets Stocks Symbol, Stock Name and Stock Market
      * @return \Illuminate\Contracts\Routing\ResponseFactory|\Symfony\Component\HttpFoundation\Response
      */
     public function getAllStockCodesAndCompanyNames()

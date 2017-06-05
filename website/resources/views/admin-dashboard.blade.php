@@ -1,3 +1,7 @@
+{{--/**--}}
+{{--* Created by: Josh Gerlach.--}}
+{{--* Authors: Paul Davidson, Josh Gerlach and Abnezer Yhannes--}}
+{{--*/--}}
 @include('layouts.header')
 
 @section('title','Pineapple')

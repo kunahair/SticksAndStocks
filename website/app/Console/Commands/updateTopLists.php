@@ -1,5 +1,10 @@
 <?php
 
+/**
+ * Created by: Paul Davidson.
+ * Authors: Paul Davidson
+ */
+
 namespace App\Console\Commands;
 
 use Illuminate\Console\Command;

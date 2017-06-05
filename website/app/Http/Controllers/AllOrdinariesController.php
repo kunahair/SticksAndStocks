@@ -1,5 +1,10 @@
 <?php
 
+/**
+ * Created by: Josh Gerlach.
+ * Authors: Josh Gerlach
+ */
+
 namespace App\Http\Controllers;
 
 use App\User;

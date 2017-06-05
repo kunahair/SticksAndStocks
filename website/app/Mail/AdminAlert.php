@@ -1,5 +1,10 @@
 <?php
 
+/**
+ * Created by: Paul Davidson.
+ * Authors: Paul Davidson
+ */
+
 namespace App\Mail;
 
 use Illuminate\Bus\Queueable;

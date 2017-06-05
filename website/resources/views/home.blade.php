@@ -1,3 +1,7 @@
+{{--/**--}}
+{{--* Created by: Paul Davidson.--}}
+{{--* Authors: Paul Davidson and Abnezer Yhannes--}}
+{{--*/--}}
 @include('layouts.header')
 
 @section('title','Pineapple')

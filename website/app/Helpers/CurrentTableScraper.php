@@ -1,6 +1,11 @@
 <?php
 
 /**
+ * Created by: Josh Gerlach.
+ * Authors: Josh Gerlach
+ */
+
+/**
  * Extract data from a given DOM object. Pushes heading key and value onto specified dataArray.
  * If there is an error getting Key or Value, then the object is not added to dataArray.
  * @param $dom - DOM object, passed by reference

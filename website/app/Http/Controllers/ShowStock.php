@@ -1,5 +1,10 @@
 <?php
 
+/**
+ * Created by: Paul Davidson.
+ * Authors: Paul Davidson and Josh Gerlach
+ */
+
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;

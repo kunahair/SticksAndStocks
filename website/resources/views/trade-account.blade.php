@@ -1,3 +1,8 @@
+{{--/**--}}
+{{--* Created by: Paul Davidson.--}}
+{{--* Authors: Paul Davidson, Josh Gerlach and Abnezer Yhannes--}}
+{{--*/--}}
+
 @include('layouts.header')
 
 <head>

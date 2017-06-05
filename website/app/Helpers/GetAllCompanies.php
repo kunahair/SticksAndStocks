@@ -1,10 +1,8 @@
 <?php
 
 /**
- * Created by PhpStorm.
- * User: joshgerlach
- * Date: 25/5/17
- * Time: 10:58 AM
+ * Created by: Josh Gerlach.
+ * Authors: Paul Davidson and Josh Gerlach
  */
 
 class StockNotFoundException extends ErrorException{

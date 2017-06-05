@@ -1,5 +1,10 @@
 <?php
 
+/**
+ * Created by: Josh Gerlach.
+ * Authors: Josh Gerlach
+ */
+
 namespace App\Http\Controllers;
 
 use App\Friend;
@@ -56,6 +61,12 @@ class AdminDashboardController extends Controller
         return view('admin-dashboard')->with('data', $data);
     }
 
+    /**
+     * Delete a user and all their transactions and messages. User ID to be deleted passed through POST request
+     *
+     * @param Request $request - Contains the id of the user to delete
+     * @return \Illuminate\Contracts\Routing\ResponseFactory|string|\Symfony\Component\HttpFoundation\Response
+     */
     public function deleteUser(Request $request) {
 
         //Check that the admin is signed in
@@ -148,6 +159,12 @@ class AdminDashboardController extends Controller
         return json_encode($returnData);
     }
 
+    /**
+     * Update a Users role, e.g. Admin to User, User to Admin etc... User ID passed through POST request
+     *
+     * @param Request $request - User ID of user to modify role and role change state
+     * @return \Illuminate\Contracts\Routing\ResponseFactory|string|\Symfony\Component\HttpFoundation\Response
+     */
     public function modifyRole(Request $request) {
         //Check that the admin is signed in
     //        if (!Auth::check())
@@ -191,6 +208,12 @@ class AdminDashboardController extends Controller
         return json_encode($returnData);
     }
 
+    /**
+     * Send email to all Users as admin.
+     *
+     * @param Request $request
+     * @return \Illuminate\Contracts\Routing\ResponseFactory|string|\Symfony\Component\HttpFoundation\Response
+     */
     public function emailUsers(Request $request) {
         //Check that the admin is signed in
 //        if (!Auth::check())

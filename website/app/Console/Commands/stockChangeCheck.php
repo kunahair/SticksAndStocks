@@ -1,5 +1,10 @@
 <?php
 
+/**
+ * Created by: Paul Davidson.
+ * Authors: Paul Davidson and Josh Gerlach
+ */
+
 namespace App\Console\Commands;
 
 use App\Stock;

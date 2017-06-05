@@ -1,5 +1,10 @@
 <?php
 
+/**
+ * Created by: Josh Gerlach.
+ * Authors: Josh Gerlach
+ */
+
 namespace App\Http\Controllers;
 
 use App\Friend;
@@ -12,6 +17,14 @@ use Illuminate\Support\Facades\DB;
 
 class MessagesController extends Controller
 {
+    /**
+     * View messages from selected friend
+     *
+     * @param Request $request - Not used, put as argument for consistency over the Laravel Framework
+     * @param null $id - ID of the User who is a friend to view messages
+     * @param null $error - If there are any errors from previous calculations
+     * @return $this|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector - View to ultimately render
+     */
     public function view(Request $request, $id = null, $error = null)
     {
         $data = array();
@@ -101,6 +114,13 @@ class MessagesController extends Controller
         return view('messages', ['user' => $user], ['id' => $id])->with('data', $data);
     }
 
+    /**
+     * Send a message to selected user, API call
+     *
+     * @param Request $request - Contains the message to send as POST data
+     * @param null $id - User ID of the User that the message is to be sent to
+     * @return MessagesController|\Illuminate\Contracts\View\Factory|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector|\Illuminate\View\View
+     */
     public function sendMessage(Request $request, $id = null)
     {
         //Check that the Friend ID has been supplied
@@ -176,7 +196,12 @@ class MessagesController extends Controller
 
     }
 
-    //Save a new sent message to the database
+    /**
+     * Save a new sent message to the database
+     * @param $message - String message to be saved/sent
+     * @param $id - User ID of the recipient
+     * @return bool - true if the message saved to the database, false otherwise
+     */
     private function saveMessage($message, $id)
     {
 
@@ -198,7 +223,11 @@ class MessagesController extends Controller
 
     }
 
-    //Load the first user in the friends list and show their messages
+    /**
+     * Load the first User in the friends list and show their messages
+     * @param Request $request - Not Used, part of the Laravel Framework
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Http\RedirectResponse|\Illuminate\View\View
+     */
     public function first(Request $request)
     {
         //Get all the users friends
@@ -224,9 +253,15 @@ class MessagesController extends Controller
 
     }
 
-
+    /**
+     * Accept money sent from a friend. Allows partial amount to be accepted
+     * @param Request $request - Contains the amount to be accepted
+     * @param null $id - User ID of the User who sent it
+     * @return MessagesController|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
     public function acceptMoney(Request $request, $id = null)
     {
+        //Check if the money accepted is numeric
         if (!is_numeric($request->moneyAccept))
             return $this->view($request, $request->friend_id, "Amount must be numberic");
 
@@ -256,6 +291,7 @@ class MessagesController extends Controller
         $money->taken = $acceptAmount;
         $money->save();
 
+        //Redirect back to Message View, shows that the the current user accepted an amount
         return redirect()->action('MessagesController@view', ['id' => $id]);
 
     }

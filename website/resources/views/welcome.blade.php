@@ -1,3 +1,8 @@
+{{--/**--}}
+{{--* Created by: Laravel Framework.--}}
+{{--* Authors: Paul Davidson, Josh Gerlach and Abnezer Yhannes--}}
+{{--*/--}}
+
 <!DOCTYPE html>
 <html lang="{{ config('app.locale') }}">
     <head>

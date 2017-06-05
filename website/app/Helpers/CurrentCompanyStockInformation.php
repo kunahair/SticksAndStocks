@@ -1,5 +1,10 @@
 <?php
 
+/**
+ * Created by: Josh Gerlach.
+ * Authors: Paul Davidson and Josh Gerlach
+ */
+
 use PHPHtmlParser\Dom;
 
 class CurrentCompanyStockInformation {
