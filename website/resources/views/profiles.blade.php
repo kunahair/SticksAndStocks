@@ -18,31 +18,14 @@
 <div class="content-box bg" style="padding-top:3%; ">
     <h1 class=" heading ">Find Users</h1>
 </div>
+
     {{--User Search with autocomplete--}}
-    <div class="form-group content-box " style="padding-bottom: 50%; padding-top: 3%;">
+    <div class="form-group content-box " style="padding-bottom: 0; padding-top: 3%;">
+        <strong >Start typing your friends name into the search bar below to find them</strong>
         <input type="text" class="form-control" placeholder="Search" id="usersAutocomplete">
         <div id="usersList" style="position: absolute; z-index: 300; background-color: #FFFFFF; width: 100%">
         </div>
     </div>
-
-    {{--Padding--}}
-    {{--<div class="col-xs-1 col-md-3"></div>--}}
-
-    {{--<table class="table-hover table-bordered">--}}
-        {{--<thead>--}}
-            {{--<tr>--}}
-                {{--<th>Name</th>--}}
-            {{--</tr>--}}
-        {{--</thead>--}}
-        {{--<tbody>--}}
-            {{--Loop through all users (not admins) and show in the table--}}
-            {{--@foreach($users as $user)--}}
-                {{--<tr onclick="window.document.location=' {{url('profile')}}/{{$user["id"]}}'" class="clickable-table-item">--}}
-                    {{--<td>{{$user["name"]}}</td>--}}
-                {{--</tr>--}}
-            {{--@endforeach--}}
-        {{--</tbody>--}}
-    {{--</table>--}}
 
     {{--Padding--}}
     <div class="col-xs-1 col-md-3"></div>
@@ -79,7 +62,7 @@
                     $.each(data, function(i, item) {
                         //Add User row with link to profile page to the autocomplete div
                         $('#usersList').append('' +
-                            '<a href ="/profile/' + item["id"] +'"><p style="margin: 0; padding: 10px;">' + item["name"] + '<br /></p></a>'
+                            '<a href ="/profile/' + item["id"] +'" ><p class="suggestion col-xs-9" style="margin: 0; padding: 10px;">' + item["name"] + '<br /></p></a>'
                         );
                     });
                 })
