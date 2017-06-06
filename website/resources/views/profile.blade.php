@@ -10,10 +10,21 @@
 
 <div class="container-box">
 
-    {{--Error Message Display--}}
-    <div class="alert alert-danger" id="friendError" style="display: none"></div>
-    {{--Success Message Display--}}
-    <div class="alert alert-success" id="friendSuccess" style="display: none"></div>
+    <div class="col-xs-12 col-md-8 col-md-offset-2 col-xs-offset-0">
+        {{--Error Message Display--}}
+        <div class="alert alert-danger" id="friendError" style="display: none"></div>
+        {{--Success Message Display--}}
+        <div class="alert alert-success" id="friendSuccess" style="display: none"></div>
+
+        @if(isset($message))
+            {{--Success Message Display if message passed to view--}}
+            <div class="alert alert-success" id="friendSuccess">{{$message}}</div>
+        @else
+            {{--Success Message Display if there is no message, make invisible until action taken--}}
+            <div class="alert alert-success" id="friendSuccess" style="display: none"></div>
+        @endif
+
+    </div>
 
     <div class="col-xs-12">
         <div class="col-xs-1 col-md-2"></div>

@@ -15,6 +15,7 @@ use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
+use League\Flysystem\Exception;
 
 class UserAccountController extends Controller
 {
@@ -111,24 +112,49 @@ class UserAccountController extends Controller
         if ($user == null)
             return redirect('/dashboard');
 
+        $data = array();
+
         //Get users total growth
         $growth = \Growth::getTotalGrowth($id);
+
+        $data['growth'] = $growth;
+        $data['user'] = $user;
 
         //Update accepted friend request view, that is, any now friend has accepted the friend request but
         //current user has not seen, change to seen
         try
         {
-            Friend::
-                where([['to', $id], ['from', Auth::user()->id], ['pending', false]])
-                ->update(['accept_view' => true]);
+            if($user->checkIfFriends(Auth::user()->getAuthIdentifier()))
+            {
+                $acceptViewState = Friend::
+                    where([['to', $id], ['from', Auth::user()->id], ['pending', false]])
+                    ->select('accept_view')
+                    ->first();
+
+                //Check if the state is null, if it is then just show the profile
+                if($acceptViewState == null)
+                    return view('profile', $data);
+                //Otherwise, if the accept_view is false, update to true and add message
+                else if($acceptViewState->accept_view == false)
+                {
+                    Friend::where([['to', $id], ['from', Auth::user()->id], ['pending', false]])
+                        ->update(['accept_view' => true]);
+                    $data['message'] = 'Friend request accepted';
+                }
+
+
+            }
+
         }
         catch (\Exception $exception)
         {
-            //If there is an error updating, redirect to the dashboard
-            return redirect('/dashboard');
+            //If there is an error updating, show profile with no message
+            //Needs to be here as execution of PHP stops when exceptions are thrown
+            return view('profile', $data);
         }
 
-        return view('profile', ['growth' => $growth, 'user' => $user]);
+        //Show profile
+        return view('profile', $data);
     }
 
 }
