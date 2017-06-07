@@ -59,7 +59,7 @@
 
 
             <h2 >Held Stocks</h2>
-
+            <div class="table-responsive">
             <table class="table table-hover col-xs-10 ">
                 <thead>
                     <tr>
@@ -96,7 +96,7 @@
 
                 </tbody>
             </table>
-
+            </div>
             {{--Show Stock Average value (as per the original spec)--}}
             <div class="col-xs-12" style="padding-left: 0">
                 <h4>Stock Average Value: ${{$tradeAccount->getCurrentStock()["stats"]["average_stock_value"]}}AUD</h4>
@@ -323,6 +323,7 @@
             </script>
 
             {{--Table to show list of transactions, searched above by date and filled with jQuery/Javascript--}}
+            <div class="table-responsive">
             <table class="table col-xs-12 ">
                 <thead>
                     <tr>
@@ -338,6 +339,7 @@
                 <tbody id="transactionsTableBody">
                 </tbody>
             </table>
+            </div>
             </div>
         </div>
     </div>
