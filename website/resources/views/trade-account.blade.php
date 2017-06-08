@@ -169,14 +169,10 @@
                         if (transactionData[i]["sold"] > 0)
                         {
                             transactionData[i]["quantity"] = transactionData[i]["sold"] * -1;
-//                            $('#transactionsTableBody').append(
-//                                '<tr bgcolor="#FF0000">');
                         }
                         else
                         {
                             transactionData[i]["quantity"] = transactionData[i]["bought"];
-//                            $('#transactionsTableBody').append(
-//                                '<tr bgcolor="#00FF00">');
                         }
 
 
