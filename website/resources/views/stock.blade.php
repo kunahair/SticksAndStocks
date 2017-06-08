@@ -54,7 +54,8 @@
 
             <div class="col-xs-12 col-md-10 col-md-offset-1">
             {{--Only Users who are signed in can purchase and sell stocks--}}
-            @if(Auth::check())
+            @if(Auth::check() && count(Auth::user()->tradingAccounts) > 0)
+
               <!-- added a model for the buying stocks button-->
                 <button type="button" class="btn button btn-lg " data-toggle="modal" data-target="#userBuyForm">Buy Stocks</button>
                 <!-- model layout-->
@@ -480,8 +481,9 @@
                 </div>
             </div>
 
-
-
+            @else
+                {{--Otherwise show a message that the user must have a least one trade account to trade stocks--}}
+                    <strong>Please create a trade account to trade stocks: <a href="{{url('/dashboard')}}">Dashboard</a> </strong>
             @endif
             <!--Table to show quick stats about stock-->
             <!--In full screen mode the table is divided into two, side by side. when on mobile they are stacked-->
