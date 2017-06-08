@@ -31,6 +31,9 @@ class TradeAccount extends Model
 
         $this->groupTransactions($transactions);
 
+//        if ($transactions != null)
+//            return;
+
         $allStocksTotalValue = 0.00;
         $allStocksTotalCount = 0;
         $allStocksTotalGrowth = 0.00;
@@ -42,45 +45,54 @@ class TradeAccount extends Model
         foreach ($transactions as $transactionsGroup)
         {
             //Stock stats and info
-            $stock_symbol = "";
-            $stock_name = "";
-            $stock_total_cost = 0.00;
-            $stock_owned = 0;
-            $stock_sold = 0;
-            $stock_total_growth = 0.00;
-            $stock_current_price = 0.00;
+//            $stock_symbol = "";
+//            $stock_name = "";
+//            $stock_total_cost = 0.00;
+//            $stock_owned = 0;
+//            $stock_sold = 0;
+//            $stock_total_growth = 0.00;
+//            $stock_current_price = 0.00;
+//
+//            $assignOnce = 0;
 
-            $assignOnce = 0;
+            //Get the stats for current Stock
+            $stockStats = $this->calculateStockStats($transactionsGroup);
 
-            foreach ($transactionsGroup as $transaction)
-            {
-                //If the current transaction is waiting, then move onto the next one
-                if ($transaction->waiting)
-                {
-                    continue;
-                }
+            //Assign values based on Stock Stats
+            $stock_total_cost = $stockStats["stockTotalCost"];
+            $stock_owned = $stockStats["stockOwned"];
+            $stock_sold = $stockStats["stockSold"];
+            $stock_current_price = $stockStats["stockCurrentPrice"];
 
-                //To save memory, just capture the name, symbol and current price of stock group once
-                if ($assignOnce == 0)
-                {
-                    $stock_symbol = $transaction->stock->stock_symbol;
-                    $stock_name = $transaction->stock->stock_name;
-
-                    $stock_current_price = $transaction->stock->current_price;
-
-                    $assignOnce++;
-                }
-
-                //Calculate the initial cost to the user for the stock, add it to total
-                $stock_total_cost += ($transaction->price * ($transaction->bought - $transaction->sold));
-                //Get the amount of stock owned for this transaction, add it to total
-                $stock_owned += $transaction->bought;
-                //Get the amount of stock sold for this transaction, add it to total
-                $stock_sold += $transaction->sold;
-
-                //$stock_total_growth += ($stock_total_cost * ($transaction->bought - $transaction->sold));
-
-            }
+//            foreach ($transactionsGroup as $transaction)
+//            {
+//                //If the current transaction is waiting, then move onto the next one
+//                if ($transaction->waiting)
+//                {
+//                    continue;
+//                }
+//
+//                //To save memory, just capture the name, symbol and current price of stock group once
+//                if ($assignOnce == 0)
+//                {
+//                    $stock_symbol = $transaction->stock->stock_symbol;
+//                    $stock_name = $transaction->stock->stock_name;
+//
+//                    $stock_current_price = $transaction->stock->current_price;
+//
+//                    $assignOnce++;
+//                }
+//
+//                //Calculate the initial cost to the user for the stock, add it to total
+//                $stock_total_cost += ($transaction->price * ($transaction->bought - $transaction->sold));
+//                //Get the amount of stock owned for this transaction, add it to total
+//                $stock_owned += $transaction->bought;
+//                //Get the amount of stock sold for this transaction, add it to total
+//                $stock_sold += $transaction->sold;
+//
+//                //$stock_total_growth += ($stock_total_cost * ($transaction->bought - $transaction->sold));
+//
+//            }
 
             //If the stock owned is less than 1 (it should never hit below 0)
             //Then stock is not needed as it is not working for account in current state
@@ -124,47 +136,59 @@ class TradeAccount extends Model
         foreach ($transactions as $transactionsGroup)
         {
             //Stock stats and info
-            $stock_symbol = "";
-            $stock_name = "";
-            $stock_market = "";
-            $stock_total_cost = 0.00;
-            $stock_owned = 0;
-            $stock_sold = 0;
-            $stock_total_growth = 0.00;
-            $stock_current_price = 0.00;
+//            $stock_symbol = "";
+//            $stock_name = "";
+//            $stock_market = "";
+//            $stock_total_cost = 0.00;
+//            $stock_owned = 0;
+//            $stock_sold = 0;
+//            $stock_total_growth = 0.00;
+//            $stock_current_price = 0.00;
 
-            $assignOnce = 0;
+            //Get the stats for current Stock
+            $stockStats = $this->calculateStockStats($transactionsGroup);
 
-            foreach ($transactionsGroup as $transaction)
-            {
-                //If the current transaction is waiting, then move onto the next one
-                if ($transaction->waiting)
-                {
-                    continue;
-                }
+            //Assign values based on Stock Stats
+            $stock_name = $stockStats["stockName"];
+            $stock_symbol = $stockStats["stockSymbol"];
+            $stock_market = $stockStats["stockMarket"];
+            $stock_total_cost = $stockStats["stockTotalCost"];
+            $stock_owned = $stockStats["stockOwned"];
+            $stock_sold = $stockStats["stockSold"];
+            $stock_current_price = $stockStats["stockCurrentPrice"];
 
-                //To save memory, just capture the name, symbol and current price of stock group once
-                if ($assignOnce == 0)
-                {
-                    $stock_symbol = $transaction->stock->stock_symbol;
-                    $stock_name = $transaction->stock->stock_name;
-                    $stock_market = $transaction->stock->market;
-
-                    $stock_current_price = $transaction->stock->current_price;
-
-                    $assignOnce++;
-                }
-
-                //Calculate the initial cost to the user for the stock, add it to total
-                $stock_total_cost += ($transaction->price * ($transaction->bought - $transaction->sold));
-                //Get the amount of stock owned for this transaction, add it to total
-                $stock_owned += $transaction->bought;
-                //Get the amount of stock sold for this transaction, add it to total
-                $stock_sold += $transaction->sold;
-
-                //$stock_total_growth += ($stock_total_cost * ($transaction->bought - $transaction->sold));
-
-            }
+//            $assignOnce = 0;
+//
+//            foreach ($transactionsGroup as $transaction)
+//            {
+//                //If the current transaction is waiting, then move onto the next one
+//                if ($transaction->waiting)
+//                {
+//                    continue;
+//                }
+//
+//                //To save memory, just capture the name, symbol and current price of stock group once
+//                if ($assignOnce == 0)
+//                {
+//                    $stock_symbol = $transaction->stock->stock_symbol;
+//                    $stock_name = $transaction->stock->stock_name;
+//                    $stock_market = $transaction->stock->market;
+//
+//                    $stock_current_price = $transaction->stock->current_price;
+//
+//                    $assignOnce++;
+//                }
+//
+//                //Calculate the initial cost to the user for the stock, add it to total
+//                $stock_total_cost += ($transaction->price * ($transaction->bought - $transaction->sold));
+//                //Get the amount of stock owned for this transaction, add it to total
+//                $stock_owned += $transaction->bought;
+//                //Get the amount of stock sold for this transaction, add it to total
+//                $stock_sold += $transaction->sold;
+//
+//                //$stock_total_growth += ($stock_total_cost * ($transaction->bought - $transaction->sold));
+//
+//            }
 
             //If the stock owned is less than 1 (it should never hit below 0)
             //Then stock is not needed as it is not working for account in current state
@@ -235,6 +259,67 @@ class TradeAccount extends Model
             array_push($transactions[$transaction->stock_id], $transaction);
         }
 
+    }
+
+    /**
+     * Gather and calculate single Stock statistics based on grouped transactions for that Stock
+     * Takes array reference to save memory
+     *
+     * @param $transactionsGroup - Array reference that has all transactions grouped together for single Stock
+     * @return array - Stats of stock (stock symbol, name, market, total cost, owned, sold, current price
+     */
+    private function calculateStockStats(&$transactionsGroup)
+    {
+        //Stock stats and info
+        $stock_symbol = "";
+        $stock_name = "";
+        $stock_market = "";
+        $stock_total_cost = 0.00;
+        $stock_owned = 0;
+        $stock_sold = 0;
+        $stock_current_price = 0.00;
+
+        $assignOnce = 0;
+
+        //Loop through each transaction for stock group and collect stats
+        foreach ($transactionsGroup as $transaction)
+        {
+            //If the current transaction is waiting, then move onto the next one
+            if ($transaction->waiting)
+                continue;
+
+
+            //To save memory, just capture the name, symbol and current price of stock group once
+            if ($assignOnce == 0)
+            {
+                $stock_symbol = $transaction->stock->stock_symbol;
+                $stock_name = $transaction->stock->stock_name;
+                $stock_market = $transaction->stock->market;
+
+                $stock_current_price = $transaction->stock->current_price;
+                $assignOnce++;
+            }
+
+            //Calculate the initial cost to the user for the stock, add it to total
+            $stock_total_cost += ($transaction->price * ($transaction->bought - $transaction->sold));
+            //Get the amount of stock owned for this transaction, add it to total
+            $stock_owned += $transaction->bought;
+            //Get the amount of stock sold for this transaction, add it to total
+            $stock_sold += $transaction->sold;
+        }
+
+        //Wrap up data into array due to multiple return values
+        $data = array();
+        $data["stockName"] = $stock_name;
+        $data["stockSymbol"] = $stock_symbol;
+        $data["stockMarket"] = $stock_market;
+        $data["stockTotalCost"] = $stock_total_cost;
+        $data["stockOwned"] = $stock_owned;
+        $data["stockSold"] = $stock_sold;
+        $data["stockCurrentPrice"] = $stock_current_price;
+
+        //Return stats as array
+        return $data;
     }
 
 }
