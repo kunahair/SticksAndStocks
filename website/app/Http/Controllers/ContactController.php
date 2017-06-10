@@ -10,6 +10,7 @@ namespace App\Http\Controllers;
 use App\Mail\ContactForm;
 use Illuminate\Http\Request;
 use Illuminate\Validation\ValidationException;
+use Mail;
 
 class ContactController extends Controller
 {
