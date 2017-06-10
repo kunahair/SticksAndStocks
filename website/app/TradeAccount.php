@@ -125,10 +125,19 @@ class TradeAccount extends Model
                 continue;
             }
 
-            //Calculate the total amount of growth that the account has for this stock (overall NOT average)
-            $stock_total_growth = ($stock_total_cost / ($stock_owned - $stock_sold)) - $stock_current_price;
+            $stock_growth = ($stock_total_cost / ($stock_owned - $stock_sold));
 
-            var_dump($stock_total_growth);
+            //Calculate the total amount of growth that the account has for this stock (overall NOT average)
+            $stock_total_growth = 0.00;
+
+            //Formulas different if stock growth if above or below, check to see which one to use
+            //take growth of 0 into account
+            if ($stock_growth < 0.00)
+                $stock_total_growth = $stock_growth - $stock_current_price;
+            elseif ($stock_growth > 0.00)
+                $stock_total_growth = $stock_current_price - $stock_growth;
+            else
+                $stock_total_growth = 0.00;
 
             //If any calculated value equals 0, continue to next stock as it is not part of calculation
             if (($stock_total_cost / ($stock_owned - $stock_sold)) == 0.00 ||

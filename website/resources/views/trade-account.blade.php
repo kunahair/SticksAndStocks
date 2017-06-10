@@ -181,7 +181,7 @@
                             '<tr bgcolor="' + (transactionData[i]["quantity"]<0?'#f2a473':'#83e2bc')  + '">' +
                             '<td class=col-xs-3" style="padding: 0px">' + transactionData[i]["stock_symbol"] + '</td>' +
                             '<td class=col-xs-3" style="padding: 0px">'+ transactionData[i]["stock_name"] + ' (' + transactionData[i]["market"] + ')' + '</td>'   +
-                            '<td class=col-xs-3" style="padding: 0px"> $' + transactionData[i]["price"] +'</td>' +
+                            '<td class=col-xs-3" style="padding: 0px"> $' + transactionData[i]["price"].toFixed(2) +'</td>' +
                             '<td class=col-xs-3" style="padding: 0px">' + (transactionData[i]["quantity"]<0?'':'+') + transactionData[i]["quantity"] +'</td>' +
                             '<td class=col-xs-3" style="padding: 0px">' + transactionData[i]["updated_at"] + '</td>'
                             + '</tr>'
