@@ -34,16 +34,29 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
+    /**
+     * Establish relationship between User and Trade Accounts
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
     public function tradingAccounts() {
         return $this->hasMany('App\TradeAccount');
     }
 
-    //Check if User is an Admin
+    /**
+     * Check if the User is an admin
+     * @return mixed - Boolean. True: is admin, False: is not admin
+     */
     public function isAdmin()
     {
         return $this->admin;
     }
 
+    /**
+     * Get detailed Friend status information between Users (User IDs passed)
+     * @param $authid - The User making the call
+     * @param $id - The User to get Friend information
+     * @return int - Status of Friendship
+     */
     public function isFriend($authid, $id)
     {
         /**
@@ -132,6 +145,11 @@ class User extends Authenticatable
         return $friendRequests;
     }
 
+    /**
+     * Get Friends list of selected User (by User ID)
+     * @param $id - ID of user
+     * @return array|\Illuminate\Contracts\Routing\ResponseFactory|\Symfony\Component\HttpFoundation\Response
+     */
     public function getFriendList($id)
     {
         try {
@@ -179,6 +197,11 @@ class User extends Authenticatable
         return $friends;
     }
 
+    /**
+     * Check if the current user if friends with a User (passed User ID)
+     * @param $id - ID of User to check against to see if Friends
+     * @return bool - True: friends, false: not friends
+     */
     public function checkIfFriends($id)
     {
         //Get the current User ID
@@ -190,15 +213,17 @@ class User extends Authenticatable
             ->orWhere([['from', $authid], ['to', $id]])
             ->first();
 
+        //If a value is returned from the database, then they are friends
         if ($friends != null)
             return true;
 
+        //If there is no such row, they are not friends and return false
         return false;
     }
 
     /**
      * Get all current users unread messages
-     * @return mixed
+     * @return mixed - Eloquent Model list of unread messages
      */
     public function getUnreadMessages()
     {
@@ -236,34 +261,61 @@ class User extends Authenticatable
         return $data;
     }
 
+    /**
+     * Update the users portfolio.
+     * Add the value of all the trade accounts the user has with their balance, this is the portfolio value
+     * 
+     */
     public function updatePortfolio() {
-        $buySell = Array();
+//        $buySell = Array();
 
         // Portfolio Value will be the ranking
-        $this->portfolio = $this->balance;
+//        $this->portfolio = $this->balance;
+//        $this->save();
+
+        //Set the base portfolio level as the current balance
+        $portfolioValue = $this->balance;
+
+        //Loop through each trade account and add the total growth (in dollars) to the portfolio value
+        foreach ($this->tradingAccounts as $tradingAccount)
+        {
+            //Get the trade accounts current stock holdings stats
+            $groupedTransactions = $tradingAccount->getCurrentStock();
+
+            //Convert from a comma separated string to a float
+            $totalStockValue = $groupedTransactions["stats"]["total_stock_value"];
+            $totalStockValue = str_replace(",", "", $totalStockValue);
+            $totalStockValue = floatval($totalStockValue);
+
+            //Add the value of this stock to the portfolio value
+            $portfolioValue += $totalStockValue;
+        }
+
+        //Set the new calculated portfolio value and save to the database
+        $this->portfolio = $portfolioValue;
         $this->save();
 
-        foreach ($this->tradingAccounts()->get() as $tradeAccount) {
-            foreach ($tradeAccount->transactions()->get() as $transaction) {
-                $buySell[$transaction->stock()->first()->id] = 0;
-            }
-            foreach ($tradeAccount->transactions()->get() as $transaction) {
-                $buySell[$transaction->stock()->first()->id] += $transaction->bought;
-                $buySell[$transaction->stock()->first()->id] -= $transaction->sold;
-            }
-            foreach ($buySell as $key => $value) {
-                // Check if the user has the stock
-                if ($value > 0) {
-
-                    // Current Value
-                    $currentPrice = Stock::where('id', $key)->first()->current_price;
-
-                    // Append to the Portfolio Value
-                    $this->portfolio += $currentPrice * $value;
-                    $this->save();
-                }
-            }
-        }
+//        foreach ($this->tradingAccounts()->get() as $tradeAccount) {
+//            foreach ($tradeAccount->transactions()->get() as $transaction) {
+//                $buySell[$transaction->stock()->first()->id] = 0;
+//            }
+//            foreach ($tradeAccount->transactions()->get() as $transaction) {
+//                $buySell[$transaction->stock()->first()->id] += $transaction->bought;
+//                $buySell[$transaction->stock()->first()->id] -= $transaction->sold;
+//            }
+//            foreach ($buySell as $key => $value) {
+//                // Check if the user has the stock
+//                if ($value > 0) {
+//
+//                    // Current Value
+//                    $currentPrice = Stock::where('id', $key)->first()->current_price;
+//
+//                    // Append to the Portfolio Value
+//                    $this->portfolio += $currentPrice * $value;
+//                    $this->save();
+//                }
+//            }
+//        }
     }
 
     /**
