@@ -50,7 +50,7 @@ class ContactController extends Controller
             'comments' => $comments
         ];
 
-        var_dump($content);
+        var_dump($request->name);
 
         try
         {
