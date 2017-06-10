@@ -50,8 +50,6 @@ class ContactController extends Controller
             'comments' => $comments
         ];
 
-        var_dump($request->name);
-
         try
         {
             //Send email to the selected admin email
