@@ -27,7 +27,7 @@ class ContactController extends Controller
         try {
             // Validate the request data
             $this->validate($request, [
-                'name' => 'required|',
+                'name' => 'required',
                 'email' => 'required|email',
                 'comments' => 'required'
             ]);
@@ -35,7 +35,7 @@ class ContactController extends Controller
         }catch (ValidationException $validationException)
         {
             //If any validation occurred, send message back to contact page
-            return view('contact')->with('message', ["type" => 'error', "message" => 'Unable to send message']);
+            return view('contact')->with('message', ["type" => 'error', "message" => 'Field missing from input, please try again']);
         }
 
         //Get all inputs from user
@@ -50,8 +50,18 @@ class ContactController extends Controller
             'comments' => $comments
         ];
 
-        //Send email to the selected admin email
-        Mail::to('s3453952@student.rmit.edu.au')->send(new ContactForm($content));
+        var_dump($content);
+
+        try
+        {
+            //Send email to the selected admin email
+            Mail::to('s3453952@student.rmit.edu.au')->send(new ContactForm($content));
+        }catch (\Exception $exception)
+        {
+            //If any validation occurred, send message back to contact page
+            return view('contact')->with('message', ["type" => 'error', "message" => 'Unable to send message']);
+        }
+
 
         //Return view wit success message
         return view('contact')->with('message',
