@@ -25,9 +25,9 @@ Route::get('stockinfo', function () {
 });
 
 
-Route::get('contact', function () {
-    return view('contact');
-});
+Route::get('contact', 'ContactController@view');
+
+Route::post('contact', 'ContactController@email');
 
 Route::get('dashboard', function () {
 
@@ -124,3 +124,4 @@ Route::get('api/getNotifications', function (){
 })->middleware('auth');
 
 Route::post('api/getTransactionsInDateRange', 'TransactionController@getTransactionsInDateRange')->middleware('auth');
+
