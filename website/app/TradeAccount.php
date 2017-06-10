@@ -24,6 +24,11 @@ class TradeAccount extends Model
         return $this->hasMany('App\Transaction');
     }
 
+    /**
+     * Get total growth of Trade Account
+     *
+     * @return float|int - Growth of Trade Account
+     */
     public function totalGrowth()
     {
         //Holder for grouped transactions
@@ -73,6 +78,13 @@ class TradeAccount extends Model
         return $allStocksTotalGrowth;
     }
 
+    /**
+     * Get Stock stats for all Stocks held by Trade Account.
+     * Stocks held must be positive for each Stock company to be included in calculation.
+     * Extends on functionality of totalGrowth
+     *
+     * @return array - Stock stats array
+     */
     public function getCurrentStock()
     {
 
@@ -83,6 +95,7 @@ class TradeAccount extends Model
 
         $this->groupTransactions($transactions);
 
+        //Outer stock stats holders
         $allStocksTotalValue = 0.00;
         $allStocksTotalCount = 0;
         $stockCount = 0;
@@ -115,17 +128,21 @@ class TradeAccount extends Model
             //Calculate the total amount of growth that the account has for this stock (overall NOT average)
             $stock_total_growth = ($stock_total_cost / ($stock_owned - $stock_sold)) - $stock_current_price;
 
-            if ($stock_total_growth > 0.00)
-                $stock_total_growth *= -1;
-            //$stock_total_growth *= ($stock_owned - $stock_sold) * -1.00;
 
-            //Get the growth as a percentage
+            //If any calculated value equals 0, continue to next stock as it is not part of calculation
             if (($stock_total_cost / ($stock_owned - $stock_sold)) == 0.00 ||
-                ($stock_total_cost / ($stock_owned - $stock_sold)) == 0.0 || ($stock_total_cost / ($stock_owned - $stock_sold)) == 0)
+                ($stock_total_cost / ($stock_owned - $stock_sold)) == 0.00 || ($stock_total_cost / ($stock_owned - $stock_sold)) == 0)
                 continue;
 
-            $stock_total_growth_percentage = ((($stock_current_price / ($stock_total_cost / ($stock_owned - $stock_sold))) * 100)) - 100;
+            //Get the growth as a percentage
+            //Calculate ratio of growth
+            $stock_total_growth_percentage = ($stock_current_price + $stock_total_growth) / $stock_current_price;
 
+            //Turn radio into percentage
+            $stock_total_growth_percentage -= 1;
+            $stock_total_growth_percentage *= 100;
+
+            //Group stock stats together for return
             $groupedStocks[$stock_symbol]["name"] = $stock_name;
             $groupedStocks[$stock_symbol]["symbol"] = $stock_symbol;
             $groupedStocks[$stock_symbol]["market"] = $stock_market;
@@ -135,23 +152,25 @@ class TradeAccount extends Model
             $groupedStocks[$stock_symbol]["total_growth_percentage"] = number_format($stock_total_growth_percentage, 2);
             $groupedStocks[$stock_symbol]["owns"] = ($stock_owned - $stock_sold);
 
-
+            //Update trade account values
             $allStocksTotalValue += $stock_current_price * ($stock_owned - $stock_sold);
             $allStocksTotalCount += ($stock_owned - $stock_sold);
             $stockCount++;
-
         }
 
+        //Update number of stocks counter
         $groupedStocks["stats"]["total_stock_count"] = $allStocksTotalCount;
 
+        //Gather average value of stocks for stats
         if ($allStocksTotalCount > 0)
             $groupedStocks["stats"]["average_stock_value"] = number_format(($allStocksTotalValue / $allStocksTotalCount),2);
         else
             $groupedStocks["stats"]["average_stock_value"] = 0.00;
 
+        //Add the total stock value to the returned stats
         $groupedStocks["stats"]["total_stock_value"] = number_format($allStocksTotalValue, 2);
 
-
+        //Return trade account stock stats
         return $groupedStocks;
     }
 
