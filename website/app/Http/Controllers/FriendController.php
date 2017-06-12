@@ -14,6 +14,12 @@ use Illuminate\Support\Facades\Auth;
 class FriendController extends Controller
 {
 
+    /**
+     * Send Friend request to the selected User and send response on success or failure
+     *
+     * @param Request $request
+     * @return \Illuminate\Contracts\Routing\ResponseFactory|\Symfony\Component\HttpFoundation\Response
+     */
     public function sendFriendRequest(Request $request)
     {
         //Get data from the request
@@ -62,6 +68,12 @@ class FriendController extends Controller
 
     }
 
+    /**
+     * Accept Friend Request. Update the database and return response.
+     *
+     * @param Request $request
+     * @return \Illuminate\Contracts\Routing\ResponseFactory|\Symfony\Component\HttpFoundation\Response
+     */
     public function acceptFriendRequest(Request $request)
     {
         //Get data from the request
@@ -87,10 +99,18 @@ class FriendController extends Controller
         return response("Friend Request Accepted", 200);
     }
 
+    /**
+     * View list of Friends
+     *
+     * @param Request $request
+     * @return mixed
+     */
     public function view(Request $request)
     {
+        //Get all Users Friends
         $friends = Auth::user()->getFriendList(Auth::user()->id);
 
+        //Show Friends view template passing friends list
         return view('friends')->with('friends', $friends);
     }
 }

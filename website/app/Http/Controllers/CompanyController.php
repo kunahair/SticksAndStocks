@@ -200,7 +200,7 @@ class CompanyController extends Controller
             $heading = $dom->find('[data-reactid=' . $headingReactID . ']')->text();
         //Get the value from the DOM by react ID
         $value = $dom->find('[data-reactid=' . $valueReactID . ']')->text();
-        
+
         //Set the value under the heading in the data array
         $extraData[$heading] = $value;
     }
