@@ -30,32 +30,22 @@ class TransactionController extends Controller
 
     public function apiAddBuyTransaction(Request $request)
     {
-        $error = array();
-
         //Check that the user is signed in
         if (!Auth::check())
-        {
-            $error["message"] = "User not logged in";
-            $error["code"] = 403;
-            return response(json_encode($error), 403);
-        }
+            return $this->returnError("User not logged in", 403);
 
         //Make sure this is a POST request
         if (!$request->isMethod('POST'))
-        {
-            $error["message"] = "Invalid call to add buy transaction";
-            $error["code"] = 403;
-            return response(json_encode($error), 403);
-        }
+            return $this->returnError("Invalid call to add buy transaction", 403);
 
         $quantity = $request->quantity;
 
         //If the quantity is not an integer, return an error
         if (!ctype_digit($quantity))
-            return response("Stock Quantity must be an integer", 412);
+            return $this->returnError("Stock Quantity must be an integer", 412);
 
-        else if ($quantity >! 0)
-            return response("Stock Quantity must be greater than 0", 412);
+        else if ($quantity <= 0)
+            return $this->returnError("Stock Quantity must be greater than 0", 412);
 
         $user = Auth::user();
 
@@ -66,14 +56,11 @@ class TransactionController extends Controller
             $price = $stock->current_price;
 
             //Get the balance of this Trade Account
-//            $tradeAccount = DB::table('trade_accounts')->where('id', $request->TradeAccountId)->first();
             $balance = $user->balance;
         }
         catch (\Exception $exception)
         {
-            $error["message"] = "Unable to query Stock and Trade Account information";
-            $error["code"] = 404;
-            return response(json_encode($error), 404);
+            return $this->returnError("Unable to query Stock and Trade Account information", 404);
         }
 
         //Get the total cost of Stock Purchase without the percentage or Broker Fee
@@ -90,37 +77,14 @@ class TransactionController extends Controller
 
         //If the Trade User does not have enough to cover the cost, send back error
         if ($totalCost > $balance)
-        {
-            $error["message"] = "Not enough funds for transaction";
-            $error["code"] = 404;
-            return response(json_encode($error), 404);
-        }
+            return $this->returnError("Not enough funds for transaction", 404);
 
-
-        //TradeAccountId, stock_id, quantity
-
-        //Create and fill the new Transaction object
-        $data = new Transaction;
-        $data->timestamp = time();
-        $data->bought = $request->quantity;
-        $data->sold = 0;
-        $data->price = $price;
-        $data->waiting = false;
-
-        //Foreign keys
-        $data->stock_id = $request->stock_id;
-        $data->trade_account_id = $request->TradeAccountId;
-
-        //Save it to the database
-        $saveResult = $data->save();
+        //Add transaction to database
+        $saveResult = $this->addTransactionToDatabase($price, $request->quantity, $request->stock_id, $request->TradeAccountId, true);
 
         //If for some reason it did not save, send back error message to user
         if (!$saveResult)
-        {
-            $error["message"] = "An error occurred saving the new transaction, please try again";
-            $error["code"] = 403;
-            return response(json_encode($error), 403);
-        }
+            return $this->returnError("An error occurred saving the new transaction, please try again", 403);
 
         //Update the User Balance
         $newBalance = $balance - $totalCost;
@@ -137,25 +101,24 @@ class TransactionController extends Controller
 
     public function apiAddSellTransaction(Request $request)
     {
-        $error = array();
-
-        $stock_id = $request->stock_id;
 
         //Check that the user is signed in
         if (!Auth::check())
-        {
-            $error["message"] = "User not logged in";
-            $error["code"] = 403;
-            return response(json_encode($error), 403);
-        }
+            return $this->returnError("User not logged in", 403);
+
+        $stock_id = $request->stock_id;
+        $quantity = $request->quantity;
+
+        //If the quantity is not an integer, return an error
+        if (!ctype_digit($quantity))
+            return $this->returnError("Stock Quantity must be an integer", 412);
+        //If the quantity is less than 0, return precondition error
+        else if ($quantity <= 0)
+            return $this->returnError("Stock Quantity must be greater than 0", 412);
 
         //Make sure this is a POST request
         if (!$request->isMethod('POST'))
-        {
-            $error["message"] = "Invalid call to add buy transaction";
-            $error["code"] = 403;
-            return response(json_encode($error), 403);
-        }
+            return $this->returnError("Invalid call to add buy transaction", 403);
 
         $user = Auth::user();
 
@@ -167,63 +130,29 @@ class TransactionController extends Controller
 
             //Get the balance of this Trade Account
             $tradeAccount = DB::table('trade_accounts')->where('id', intval($request->trade_account_id))->first();
-//            $balance = intval($tradeAccount->balance);
 
             $balance = $user->balance;
 
-            //Get the quantity of selected stock this trading account has
-            $transactions = DB::table('transactions')->where('trade_account_id', $tradeAccount->id)->get();
-
-            $stocks = 0;
-            foreach ($transactions as $transaction)
-            {
-                if($transaction->stock_id == $stock_id)
-                {
-                    $stocks += $transaction->bought;
-                    $stocks -= $transaction->sold;
-                }
-            }
+            //Get the number of Stocks held by Trade Account
+            $stocks = $this->getStingleStockCount($stock_id, $tradeAccount->id);
         }
         catch (\Exception $exception)
         {
-            $error["message"] = "Unable to query Stock, Transaction and Trade Account information";
-            $error["code"] = 404;
-            return response(json_encode($error), 404);
+            return $this->returnError("Unable to query Stock, Transaction and Trade Account information", 404);
         }
 
         //If trade account does not have enough stocks for the quantity to sell, return an error.
         if ($stocks < $request->quantity)
         {
-            $error["message"] = "Sell Quantity must be equal to or less than the number of Stocks Held";
-            $error["code"] = 404;
-            return response(json_encode($error), 404);
+            return $this->returnError("Sell Quantity must be equal to or less than the number of Stocks Held", 404);
         }
 
-
-        //TradeAccountId, stock_id, quantity
-
-        //Create and fill the new Transaction object
-        $data = new Transaction;
-        $data->timestamp = time();
-        $data->bought = 0;
-        $data->sold = $request->quantity;
-        $data->price = $price;
-        $data->waiting = false;
-
-        //Foreign keys
-        $data->stock_id = $request->stock_id;
-        $data->trade_account_id = intval($request->trade_account_id);
-
         //Save it to the database
-        $saveResult = $data->save();
+        $saveResult = $this->addTransactionToDatabase($price, $request->quantity, $request->stock_id, $request->trade_account_id, false);
 
         //If for some reason it did not save, send back error message to user
         if (!$saveResult)
-        {
-            $error["message"] = "An error occurred saving the new transaction, please try again";
-            $error["code"] = 403;
-            return response(json_encode($error), 403);
-        }
+            return $this->returnError("An error occurred saving the new transaction, please try again", 403);
 
         //Get total Sell Profit, without Broker Fee and Fee
         $totalSell = ($price * $request->quantity);
@@ -246,9 +175,15 @@ class TransactionController extends Controller
         $returnData = array();
         $returnData["message"] = $totalSell;
         $returnData["code"] = 200;
-        return json_encode($data);
+        return json_encode($returnData);
     }
 
+    /**
+     * Get quantity of Stock that transactions have record of for a single Trade Account
+     *
+     * @param Request $request
+     * @return \Illuminate\Contracts\Routing\ResponseFactory|\Symfony\Component\HttpFoundation\Response
+     */
     public function getSingleStockQuantity(Request $request)
     {
         $error = array();
@@ -261,11 +196,20 @@ class TransactionController extends Controller
             return response(json_encode($error), 403);
         }
 
+        //Get the stock ID of interest
         $stock_id = $request->stock_id;
+        //Get the Trade Account ID of interest
         $trade_account_id = $request->trade_account_id;
 
+        //Get all transactions that a Trade Account has of a curtain stock
         $transactions = DB::table('transactions')->where('trade_account_id', $trade_account_id)->get();
 
+        //If the Trade Account does not have any Stocks registered in their Transactions
+        //return 0 stock count with 200 OK status
+        if ($transactions == null)
+            return response(0, 200);
+
+        //Loop through all transactions the Trade Account has and add up (or subtract) to the total number of Stocks held
         $stocks = 0;
         foreach ($transactions as $transaction)
         {
@@ -276,8 +220,43 @@ class TransactionController extends Controller
             }
         }
 
-
+        //Return the stock count with a 200 OK status
         return response($stocks, 200);
+    }
+
+    private function getStingleStockCount($stock_id, $trade_account_id)
+    {
+        $error = array();
+
+        //Check that the user is signed in
+        if (!Auth::check())
+        {
+            $error["message"] = "User not logged in";
+            $error["code"] = 403;
+            return response(json_encode($error), 403);
+        }
+
+        //Get all transactions that a Trade Account has of a curtain stock
+        $transactions = DB::table('transactions')->where('trade_account_id', $trade_account_id)->get();
+
+        //If the Trade Account does not have any Stocks registered in their Transactions
+        //return 0 stock count with 200 OK status
+        if ($transactions == null)
+            return 0;
+
+        //Loop through all transactions the Trade Account has and add up (or subtract) to the total number of Stocks held
+        $stocks = 0;
+        foreach ($transactions as $transaction)
+        {
+            if($transaction->stock_id == $stock_id)
+            {
+                $stocks += $transaction->bought;
+                $stocks -= $transaction->sold;
+            }
+        }
+
+        //Return the stock count with a 200 OK status
+        return $stocks;
     }
 
     public function getTransactionsInDateRange(Request $request)
@@ -304,5 +283,54 @@ class TransactionController extends Controller
             ->get();
 
         return response($transactions, 200);
+    }
+
+    /**
+     * Add transaction to the database
+     *
+     * @param $price - Price the stock is at time of transaction
+     * @param $quantity - Quantity that is to be bought or sold
+     * @param $stock_id - ID of the Stock that is being bought or sold
+     * @param $trade_account_id - Trade Account ID that the transaction will be tied to
+     * @param bool $buy - Boolean, True: buying Stock, False: selling Stock
+     * @return bool - Boolean, if the transaction was successful or not
+     */
+    private function addTransactionToDatabase($price, $quantity, $stock_id, $trade_account_id, $buy = false)
+    {
+        //TradeAccountId, stock_id, quantity
+
+        //Create and fill the new Transaction object
+        $data = new Transaction;
+        $data->timestamp = time();
+
+        //Check if buying or selling stocks, cant do both at the same time
+        //Must be separate transactions
+        if ($buy)
+        {
+            $data->bought = $quantity;
+            $data->sold = 0;
+        }
+        else
+        {
+            $data->bought = 0;
+            $data->sold = $quantity;
+        }
+
+        $data->price = $price;
+        $data->waiting = false;
+
+        //Foreign keys
+        $data->stock_id = $stock_id;
+        $data->trade_account_id = intval($trade_account_id);
+
+        //Save it to the database, and return the result
+        return $data->save();
+    }
+
+    private function returnError($message, $code = 404)
+    {
+        $error["message"] = $message;
+        $error["code"] = $code;
+        return response(json_encode($error), $code);
     }
 }

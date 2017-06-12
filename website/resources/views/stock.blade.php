@@ -26,12 +26,6 @@
 
 @include('layouts.navbar')
 
-
-
-
-
-
-
     @section('charter')
         <div class="bg">
         <div class="stock content-box">
@@ -130,12 +124,11 @@
                             {
                                 //Get the quantity in the field
                                 var stockQTY = $('#stockQuantity').val();
-                                var stockQTY = parseInt(stockQTY);
+                                var stockQTY = parseInt(stockQTY) || 0;
 
                                 //If the stock is less than 1, set to 1 and return
                                 if (stockQTY < 1 || isNaN(stockQTY))
                                 {
-//                                    $('#stockQuantity').val(1);
                                     //Update the cost for the user
                                     $('#buyStockTotal').text((curr_value * stockQTY).toFixed(2));
 
@@ -236,7 +229,6 @@
                                 $.post("{{ url('api/addBuyTransaction') }}", postData)
                                 //If all went well, show success message
                                     .done(function(data) {
-//                                        $('#buySuccess').text(data["message"]);
                                         $('#buySuccess').css('display', 'block');
                                         $('#buyButton').addClass('disabled');
                                         location.reload();
@@ -245,8 +237,8 @@
 
                                     //If there are any errors, or the request fails, log it and show an error
                                     .fail(function(error){
-                                        console.log(error);
-                                        $('#buyError').text(error["responseText"]);
+                                        console.log(error["responseText"]);
+                                        $('#buyError').text(jsonError["message"]);
                                         $('#buyError').css('display', 'block');
                                     })
                                 ;
@@ -317,7 +309,6 @@
                     //Threshold Sell Percentage
                     const sellFeeMass = (0.1875 / 100);
 
-
                     //Listener on the Sell Trade Account Selector, gets the Stock Held count and displays it to user
                     $('#sellTradeAccounts').change(function () {
 
@@ -337,13 +328,15 @@
 
                     //Update the values shown to the user based on the value in the sell quantity input
                     function calculateSellTotal() {
-                        var stockQTY = parseFloat($('#sellStockQuantity').val());
+                        var stockQTY = parseInt($('#sellStockQuantity').val() || 0);
                         var stockHeld = parseFloat($('#sellStockHeld').text());
 
                         //If the selected stock quantity is greater than that of stock held
                         //disable sell button and return
-                        if (stockQTY > stockHeld)
+                        //Check if Stock quantity is less than 0, also if stockQTY is NaN
+                        if (stockQTY > stockHeld || stockQTY <= 0)
                         {
+                            $('#sellStockTotal').text('0.00');
                             $('#sellButton').addClass('disabled');
                             return;
                         }
@@ -364,8 +357,6 @@
                             totalSell -= totalSell * sellFeeMass;
                         }
 
-
-
                         //Subtract Broker Fee
                         totalSell -= brokerFee;
 
@@ -384,8 +375,7 @@
                     $('#sellStockQuantity').on('input', function() {
 
                         $('#sellError').css('display', 'none');
-                        $('sellSuccess').css('display', 'none');
-
+                        $('#sellSuccess').css('display', 'none');
 
                         calculateSellTotal();
 
@@ -470,7 +460,8 @@
                             //If there is an error, display error message to user
                             .fail(function (error) {
                                 console.log(error);
-                                $('#sellError').css('display', 'block').text(error["responseText"]);
+                                var errorJSON = JSON.parse(error["responseText"]);
+                                $('#sellError').css('display', 'block').text(errorJSON["message"]);
                                 $('#sellSuccess').css('display', 'none');
                             })
                         ;
@@ -550,31 +541,6 @@
 
         //Array that stores data to be shown in Stock Daily Graph
         var dataIn = [];
-
-        //Blade syntax to get the stocks element that was passed by the Laravel controller, get the history JSON string
-        {{--var dataAsString = '{{!! $stock->history !!}}';--}}
-        {{--//Convert the history data from String to JSON--}}
-        {{--var dataAsJSON = JSON.parse(dataAsString.slice(1,-1));--}}
-
-        {{--var date = "{{date("d-m-y")}}";--}}
-
-        {{--if (!('{{date("d-m-y")}}' in dataAsJSON)) {--}}
-            {{--date = Object.keys(dataAsJSON)[0];--}}
-            {{--// date = '{{date("d-m-y",strtotime("-1 days"))}}';--}}
-        {{--}--}}
-
-        {{--//Loop through each json object that contains the stocks data--}}
-        {{--//Get the time and the average and plog on a graph--}}
-        {{--$.each(dataAsJSON[date], function(index, value) {--}}
-            {{--//Get the time value that is going to be shown on the chart--}}
-            {{--var time = "{{date('Y/m/d')}} " + value.time;--}}
-
-            {{--console.log(time);--}}
-            {{--//Get the average of the stock value at time to plot on graph--}}
-            {{--var average = value.average;--}}
-            {{--//Add the collected time and average to the dataIn array that is to be displayed on the graph--}}
-            {{--dataIn.push({x: time, y: average});--}}
-        {{--});--}}
 
         {{--Get Stock Lastest History from DB and convert to JSON--}}
         var stockHistoriesString = htmlDecode("{{$stock->getLatestHistory()}}");
