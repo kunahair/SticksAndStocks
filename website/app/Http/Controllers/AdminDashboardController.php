@@ -69,16 +69,6 @@ class AdminDashboardController extends Controller
      */
     public function deleteUser(Request $request) {
 
-        //Check that the admin is signed in
-//        if (!Auth::check()) {
-//            $user = Auth::user();
-//            if ($user->admin == 0) {
-//                $error["message"] = "Admin not logged in";
-//                $error["code"] = 403;
-//                return response(json_encode($error), 403);
-//            }
-//        }
-
         //Make sure this is a POST request
         if (!$request->isMethod('POST'))
         {
@@ -87,7 +77,6 @@ class AdminDashboardController extends Controller
             return response(json_encode($error), 403);
         }
 
-        Log::info("woat " . $request->userid);
         //Get the User that is to be deleted from the database
         $user = User::where('id',$request->userid)->first();
         //If the User does not exist, send back a 404 with error that the User was not found
@@ -98,49 +87,8 @@ class AdminDashboardController extends Controller
         }
 
         try {
-            //Delete all Trade Accounts that User has
-            $tradeAccounts = TradeAccount::where('user_id', $user->id)->get();
-            foreach ($tradeAccounts as $tradeAccount)
-            {
-                //Delete all Transactions that Trade Account has
-                $transactions = Transaction::where('trade_account_id', $tradeAccount->id)->get();
-                foreach ($transactions as $transaction)
-                {
-                    $transaction->delete();
-                }
-                $tradeAccount->delete();
-            }
-
-            //Delete all messages User has sent or received
-            $messages = Message::where('to', $user->id)->orWhere('from', $user->id)->get();
-            foreach ($messages as $message)
-            {
-                //If the messages have Money Transfers attached to them, delete them
-                $moneyTransfers = Money::where('message_id', $message->id)->get();
-                if ($moneyTransfers != null)
-                {
-                    foreach ($moneyTransfers as $moneyTransfer)
-                    {
-                        $moneyTransfer->delete();
-                    }
-                }
-
-                //Delete the message
-                $message->delete();
-            }
-
-            //Remove all Friendships the deleted User has
-            $friendships = Friend::where('to', $user->id)->orWhere('from', $user->id)->get();
-            if ($friendships != null)
-            {
-                foreach ($friendships as $friendship)
-                {
-                    $friendship->delete();
-                }
-            }
-
-            //Then delete their account
-            $user->delete();
+            //Delete User and all bound associated entities
+            $this->deleteUserEntities($user);
         }
         catch (\Exception $exception)
         {
@@ -160,19 +108,65 @@ class AdminDashboardController extends Controller
     }
 
     /**
+     * Delete all User assosiated entities and then the User.
+     * Functionality should not be available to the User, but only though admin, hence functionality is here
+     *
+     * @param $user - User to delete
+     */
+    private function deleteUserEntities($user)
+    {
+        //Delete all Trade Accounts that User has
+        $tradeAccounts = TradeAccount::where('user_id', $user->id)->get();
+        foreach ($tradeAccounts as $tradeAccount)
+        {
+            //Delete all Transactions that Trade Account has
+            $transactions = Transaction::where('trade_account_id', $tradeAccount->id)->get();
+            foreach ($transactions as $transaction)
+            {
+                $transaction->delete();
+            }
+            $tradeAccount->delete();
+        }
+
+        //Delete all messages User has sent or received
+        $messages = Message::where('to', $user->id)->orWhere('from', $user->id)->get();
+        foreach ($messages as $message)
+        {
+            //If the messages have Money Transfers attached to them, delete them
+            $moneyTransfers = Money::where('message_id', $message->id)->get();
+            if ($moneyTransfers != null)
+            {
+                foreach ($moneyTransfers as $moneyTransfer)
+                {
+                    $moneyTransfer->delete();
+                }
+            }
+
+            //Delete the message
+            $message->delete();
+        }
+
+        //Remove all Friendships the deleted User has
+        $friendships = Friend::where('to', $user->id)->orWhere('from', $user->id)->get();
+        if ($friendships != null)
+        {
+            foreach ($friendships as $friendship)
+            {
+                $friendship->delete();
+            }
+        }
+
+        //Then delete their account
+        $user->delete();
+    }
+
+    /**
      * Update a Users role, e.g. Admin to User, User to Admin etc... User ID passed through POST request
      *
      * @param Request $request - User ID of user to modify role and role change state
      * @return \Illuminate\Contracts\Routing\ResponseFactory|string|\Symfony\Component\HttpFoundation\Response
      */
     public function modifyRole(Request $request) {
-        //Check that the admin is signed in
-    //        if (!Auth::check())
-    //        {
-    //            $error["message"] = "Admin not logged in";
-    //            $error["code"] = 403;
-    //            return response(json_encode($error), 403);
-    //        }
 
         //Make sure this is a POST request
         if (!$request->isMethod('POST'))
@@ -182,29 +176,37 @@ class AdminDashboardController extends Controller
             return response(json_encode($error), 403);
         }
 
+        //Get the User whose role is being changed
         $user = User::where('id',$request->userid)->first();
 
+        //If there is no such User, send back error message
         if ($user == null) {
             $error["message"] = "User doesn't exist";
             $error["code"] = 404;
             return response(json_encode($error), 404);
         }
 
+        //Change the Users role accordingly
         if ($request->role == 'admin') {
             $user->admin = 1;
         } elseif ($request->role == 'user') {
             $user->admin = 0;
         } else {
+            //Otherwise the selected role does not exists, send back an error
             $error["message"] = "Role doesn't exist";
             $error["code"] = 404;
             return response(json_encode($error), 404);
         }
 
+        //Save the User's new role
         $user->save();
 
+        //Set return data
         $returnData = array();
         $returnData["message"] = "The requested users' account has been given another role.";
         $returnData["code"] = 200;
+
+        //Return data with OK message
         return json_encode($returnData);
     }
 
@@ -215,15 +217,7 @@ class AdminDashboardController extends Controller
      * @return \Illuminate\Contracts\Routing\ResponseFactory|string|\Symfony\Component\HttpFoundation\Response
      */
     public function emailUsers(Request $request) {
-        //Check that the admin is signed in
-//        if (!Auth::check())
-//        {
-//            $error["message"] = "Admin not logged in";
-//            $error["code"] = 403;
-//            return response(json_encode($error), 403);
-//        }
 
-        //Check that there is a message there.
 
         //Make sure this is a POST request
         if (!$request->isMethod('POST'))
@@ -233,20 +227,26 @@ class AdminDashboardController extends Controller
             return response(json_encode($error), 403);
         }
 
+        //Get all Users
         $users = User::all();
 
+        //Set the content of the message
         $content = [
             'message' => $request->message
         ];
 
+        //Loop through all Users and email message
         foreach ($users as $user) {
             // Mail the admins message to that user
             Mail::to($user->email)->send(new AdminAlert($content));
         }
 
+        //Set the return data
         $returnData = array();
         $returnData["message"] = "The message has been sent.";
         $returnData["code"] = 200;
+
+        //Return all is OK
         return json_encode($returnData);
     }
 }
