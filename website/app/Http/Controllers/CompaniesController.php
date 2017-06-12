@@ -45,6 +45,25 @@ class CompaniesController extends Controller
         $rows = explode("\n", $dataCSV);
         //New return array
         $array = array();
+
+        //Process Rows and put information into array
+        $this->processRow($array, $rows);
+
+        //Wrap up the companies data into a nice array
+        $data = array();
+        $data["companies"] = $array;
+        //Respond and send data as JSON String
+        return $data;
+    }
+
+    /**
+     * Loop through each row and process data, and place into array
+     *
+     * @param $array - Array to place processed data
+     * @param $rows - List of rows to loop through and process
+     */
+    private function processRow(&$array, &$rows)
+    {
         //Array to store all headings in
         $headings = array();
         //Row holder for current CSV Row
@@ -79,7 +98,7 @@ class CompaniesController extends Controller
                 $companyRow[$headings[$j]] = $csvRow[0][$j];
 
             //If there are more elements in the current row than there are headings, then assume that is extra company data
-            //and add to the end of the last element, separated by a commma
+            //and add to the end of the last element, separated by a comma
             if (count($csvRow[0]) > count($headings))
             {
                 for ($j = 3; $j < count($csvRow[0]); $j++)
@@ -92,11 +111,5 @@ class CompaniesController extends Controller
             //Increment the index
             $index++;
         }
-
-        //Wrap up the companies data into a nice array
-        $data = array();
-        $data["companies"] = $array;
-        //Respond and send data as JSON String
-        return $data;
     }
 }
