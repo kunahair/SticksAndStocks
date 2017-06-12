@@ -100,70 +100,38 @@ class CompanyController extends Controller
         //Additional information from the two tables in Yahoo! Finance
 
         //Previous close
-        $heading = $dom->find('[data-reactid=321]')->text();
-        $value = $dom->find('[data-reactid=322]')->text();
-        $extraData[$heading] = $value;
+        $this->getDataFromRow(321, 322, $extraData, $dom);
 
         //Open
-        $heading = $dom->find('[data-reactid=325]')->text();
-        $value = $dom->find('[data-reactid=326]')->text();
-        $extraData[$heading] = $value;
+        $this->getDataFromRow(325, 326, $extraData, $dom);
 
         //Bid
-        $heading = $dom->find('[data-reactid=329]')->text();
-        $value = $dom->find('[data-reactid=330]')->text();
-        $extraData[$heading] = $value;
+        $this->getDataFromRow(329, 330, $extraData, $dom);
 
         //Ask
-        $heading = $dom->find('[data-reactid=333]')->text();
-        $value = $dom->find('[data-reactid=334]')->text();
-        $extraData[$heading] = $value;
+        $this->getDataFromRow(333, 334, $extraData, $dom);
 
         //Days Range
-        $heading = 'Days range';
-        $value = $dom->find('[data-reactid=338]')->text();
-        $extraData[$heading] = $value;
+        $this->getDataFromRow(321, 322, $extraData, $dom, 'Days range');
 
         //52 Week Range
-        $heading = $dom->find('[data-reactid=341]')->text();
-        $value = $dom->find('[data-reactid=342]')->text();
-        $extraData[$heading] = $value;
+        $this->getDataFromRow(341, 342, $extraData, $dom);
 
         //Volume
-        $heading = $dom->find('[data-reactid=345]')->text();
-        $value = $dom->find('[data-reactid=346]')->text();
-        $extraData[$heading] = $value;
+        $this->getDataFromRow(345, 346, $extraData, $dom);
 
         //Average Volume
-        $heading = $dom->find('[data-reactid=349]')->text();
-        $value = $dom->find('[data-reactid=350]')->text();
-        $extraData[$heading] = $value;
+        $this->getDataFromRow(349, 350, $extraData, $dom);
 
         //Table 2
         //Market Cap
-        $heading = $dom->find('[data-reactid=356]')->text();
-        $value = $dom->find('[data-reactid=357]')->text();
-        $extraData[$heading] = $value;
+        $this->getDataFromRow(356, 357, $extraData, $dom);
 
         //Beta
-        $heading = $dom->find('[data-reactid=360]')->text();
-        $value = $dom->find('[data-reactid=361]')->text();
-        $extraData[$heading] = $value;
+        $this->getDataFromRow(360, 361, $extraData, $dom);
 
         //PE ratio (TTM)
-        $heading = $dom->find('[data-reactid=364]')->text();
-        $value = $dom->find('[data-reactid=365]')->text();
-        $extraData[$heading] = $value;
-
-        //EPS (TTM)
-//        $heading = $dom->find('[data-reactid=368]')->text();
-//        $value = $dom->find('[data-reactid=369]')->text();
-//        $extraData[$heading] = $value;
-
-        //Earnings Data
-//        $heading = $dom->find('[data-reactid=372]')->text();
-//        $value = $dom->find('[data-reactid=373]')->text();
-//        $extraData[$heading] = $value;
+        $this->getDataFromRow(364, 365, $extraData, $dom);
 
         //Dividend and Yield
         $value = $dom->find('[data-reactid=377]')->text();
@@ -186,16 +154,8 @@ class CompanyController extends Controller
         $value = $yield;
         $extraData[$heading] = $value;
 
-
-        //Ex-dividend Date
-//        $heading = $dom->find('[data-reactid=380]')->text();
-//        $value = $dom->find('[data-reactid=381]')->text();
-//        $extraData[$heading] = $value;
-
         //1year target estimation
-        $heading = $dom->find('[data-reactid=384]')->text();
-        $value = $dom->find('[data-reactid=385]')->text();
-        $extraData[$heading] = $value;
+        $this->getDataFromRow(384, 385, $extraData, $dom);
 
 
         //Load return data into structured array
@@ -222,6 +182,27 @@ class CompanyController extends Controller
         $error["message"] = $message;
         $error["code"] = 404;
         exit(json_encode($error));
+    }
+
+    /**
+     * Get Data from selected Row in Yahoo! Finance company page
+     *
+     * @param $headingReactID - React ID of heading
+     * @param $valueReactID - React ID of the value
+     * @param $extraData - Array to load the data into
+     * @param $dom - The DOM to extract the data from
+     * @param $heading - Optional heading if heading is not available in DOM row
+     */
+    private function getDataFromRow($headingReactID, $valueReactID, &$extraData, &$dom, $heading = null)
+    {
+        //If the heading has not been set, then get the heading from he DOM
+        if ($heading == null)
+            $heading = $dom->find('[data-reactid=' . $headingReactID . ']')->text();
+        //Get the value from the DOM by react ID
+        $value = $dom->find('[data-reactid=' . $valueReactID . ']')->text();
+        
+        //Set the value under the heading in the data array
+        $extraData[$heading] = $value;
     }
 }
 
