@@ -264,14 +264,9 @@ class User extends Authenticatable
     /**
      * Update the users portfolio.
      * Add the value of all the trade accounts the user has with their balance, this is the portfolio value
-     * 
+     *
      */
     public function updatePortfolio() {
-//        $buySell = Array();
-
-        // Portfolio Value will be the ranking
-//        $this->portfolio = $this->balance;
-//        $this->save();
 
         //Set the base portfolio level as the current balance
         $portfolioValue = $this->balance;
@@ -294,28 +289,6 @@ class User extends Authenticatable
         //Set the new calculated portfolio value and save to the database
         $this->portfolio = $portfolioValue;
         $this->save();
-
-//        foreach ($this->tradingAccounts()->get() as $tradeAccount) {
-//            foreach ($tradeAccount->transactions()->get() as $transaction) {
-//                $buySell[$transaction->stock()->first()->id] = 0;
-//            }
-//            foreach ($tradeAccount->transactions()->get() as $transaction) {
-//                $buySell[$transaction->stock()->first()->id] += $transaction->bought;
-//                $buySell[$transaction->stock()->first()->id] -= $transaction->sold;
-//            }
-//            foreach ($buySell as $key => $value) {
-//                // Check if the user has the stock
-//                if ($value > 0) {
-//
-//                    // Current Value
-//                    $currentPrice = Stock::where('id', $key)->first()->current_price;
-//
-//                    // Append to the Portfolio Value
-//                    $this->portfolio += $currentPrice * $value;
-//                    $this->save();
-//                }
-//            }
-//        }
     }
 
     /**

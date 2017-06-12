@@ -23,7 +23,7 @@ class MessagesController extends Controller
      * @param Request $request - Not used, put as argument for consistency over the Laravel Framework
      * @param null $id - ID of the User who is a friend to view messages
      * @param null $error - If there are any errors from previous calculations
-     * @return $this|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector - View to ultimately render
+     * @return mixed - View to ultimately render
      */
     public function view(Request $request, $id = null, $error = null)
     {

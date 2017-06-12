@@ -37,6 +37,10 @@ class Stock extends Model
 		}
 	}
 
+    /**
+     * Append Stock information to the top lists
+     * @param $value
+     */
 	public function appendTopLists($value) {
 	    // Check for non-empty list
         if ($this->top_lists != null) {
@@ -56,6 +60,11 @@ class Stock extends Model
         $this->save();
     }
 
+    /**
+     * Add history to Stock
+     *
+     * @param $value - Array that contains information about Stock and History
+     */
     public function addHistory($value)
     {
 
@@ -107,7 +116,11 @@ class Stock extends Model
 	    return $this->hasMany('App\StockHistory');
     }
 
-    //Get the Latest Day's History for this Stock
+    /**
+     * Get the Latest Day's History for this Stock.
+     *
+     * @return string - JSON object of last day's history
+     */
     public function getLatestHistory()
     {
         //Try to get the latest Timestamp of data
@@ -144,6 +157,10 @@ class Stock extends Model
 
     }
 
+    /**
+     * For use in emergency. Provides link to Google generated Daily Graph
+     * @return string
+     */
     public function getHourlyGraphImage()
     {
         //https://www.google.com/finance/getchart?q=GOOGL&x=NASDAQ&p=1d&i=30
